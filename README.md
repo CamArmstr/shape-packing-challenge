@@ -4,7 +4,7 @@ Pack **15 unit semicircles** (radius = 1) into the smallest possible enclosing c
 
 Your **score** is the radius of the enclosing circle. Lower is better.
 
-The baseline scores 3.50. The theoretical lower bound is ~2.74. How close can you get?
+The baseline scores 3.50. The area lower bound is ~2.74 (you can't beat it, but you probably can't reach it either). How close can you get?
 
 ![Baseline packing](baseline.png)
 
