@@ -1,0 +1,31 @@
+[project]
+name = "semicircle-packing"
+version = "0.1.0"
+description = "Pack 15 unit semicircles into the smallest possible circle."
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+dependencies = [
+  "numpy>=1.26",
+  "shapely>=2.0",
+]
+
+[dependency-groups]
+dev = [
+  "pytest>=8.3",
+  "matplotlib>=3.8",
+]
+
+[tool.uv]
+package = true
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/semicircle_packing"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]
