@@ -24,11 +24,34 @@ Open `solve.py`. Return a list of 15 `Semicircle(x, y, theta)` placements:
 - **(x, y)** — center of the full disk
 - **theta** — angle (radians) the curved part extends toward. The flat edge passes through (x, y) perpendicular to theta.
 
+## JSON
+
+Export your solution as JSON:
+
+```bash
+uv run python run.py --export solution.json
+```
+
+Score a JSON solution:
+
+```bash
+uv run python run.py --from-json solution.json
+```
+
+Format is a bare array of coordinates:
+
+```json
+[
+  { "x": -2.0, "y": 0.0, "theta": 0.0 },
+  { "x": -2.0, "y": 0.0, "theta": 3.14159 },
+  ...
+]
+```
+
 ## Other Commands
 
 ```bash
-uv run python run.py --save-plot packing.png   # save a visualization
-uv run python run.py --visualize                # open plot in a window
-uv run python run.py --export results.json      # export results as JSON
-uv run pytest                                   # run tests
+uv run python run.py --save-plot packing.png  # save a visualization
+uv run python run.py --visualize              # open plot in a window
+uv run pytest                                 # run tests
 ```

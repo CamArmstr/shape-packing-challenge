@@ -17,16 +17,26 @@ def main() -> None:
     )
     parser.add_argument(
         "--export", type=str, metavar="FILE",
-        help="export results to JSON file (standardized format)",
+        help="export solution coordinates to JSON file",
+    )
+    parser.add_argument(
+        "--from-json", type=str, metavar="FILE",
+        help="load and score a JSON solution file instead of running solve()",
     )
     args = parser.parse_args()
 
-    from solve import solve
     from semicircle_packing.scoring import validate_and_score, print_report
+    from semicircle_packing.geometry import Semicircle
 
-    start = time.time()
-    semicircles = solve()
-    solve_elapsed = time.time() - start
+    if args.from_json:
+        semicircles = _load_solution(args.from_json)
+        solve_elapsed = 0.0
+    else:
+        from solve import solve
+
+        start = time.time()
+        semicircles = solve()
+        solve_elapsed = time.time() - start
 
     val_start = time.time()
     result = validate_and_score(semicircles)
@@ -38,50 +48,35 @@ def main() -> None:
     print()
 
     if args.export:
-        _export_results(args.export, semicircles, result, solve_elapsed, val_elapsed)
+        data = [{"x": sc.x, "y": sc.y, "theta": sc.theta} for sc in semicircles]
+        with open(args.export, "w") as f:
+            json.dump(data, f, indent=2)
+        print(f"  Solution exported to {args.export}")
+        print()
 
     if args.visualize or args.save_plot:
         from semicircle_packing.visualization import plot_packing
         plot_packing(semicircles, result.mec, save_path=args.save_plot)
 
 
-def _export_results(path, semicircles, result, solve_time, val_time):
-    """Export results in standardized JSON format."""
-    import datetime
-    from semicircle_packing.config import N, RADIUS
+def _load_solution(path: str) -> list:
+    """Load a solution from a JSON file: [{"x": ..., "y": ..., "theta": ...}, ...]"""
+    from semicircle_packing.geometry import Semicircle
 
-    data = {
-        "challenge": "semicircle_packing",
-        "version": "0.1.0",
-        "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
-        "config": {
-            "n": N,
-            "radius": RADIUS,
-        },
-        "solution": [
-            {"x": sc.x, "y": sc.y, "theta": sc.theta}
-            for sc in semicircles
-        ],
-        "result": {
-            "valid": result.valid,
-            "score": result.score,
-            "mec": {
-                "cx": result.mec[0],
-                "cy": result.mec[1],
-                "radius": result.mec[2],
-            } if result.mec else None,
-            "errors": result.errors,
-        },
-        "timing": {
-            "solve_seconds": round(solve_time, 6),
-            "validation_seconds": round(val_time, 6),
-        },
-    }
+    with open(path) as f:
+        data = json.load(f)
 
-    with open(path, "w") as f:
-        json.dump(data, f, indent=2)
-    print(f"  Results exported to {path}")
-    print()
+    if not isinstance(data, list):
+        raise ValueError("Expected a JSON array of {x, y, theta} objects")
+
+    semicircles = []
+    for i, item in enumerate(data):
+        for key in ("x", "y", "theta"):
+            if key not in item:
+                raise ValueError(f"Item {i} missing required field '{key}'")
+        semicircles.append(Semicircle(x=float(item["x"]), y=float(item["y"]), theta=float(item["theta"])))
+
+    return semicircles
 
 
 if __name__ == "__main__":
