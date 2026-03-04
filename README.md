@@ -15,43 +15,30 @@ uv sync
 uv run python run.py
 ```
 
-That's it. You'll see your score and whether the packing is valid (no overlaps).
+This scores `solution.json` — the file you edit. Open it and tweak the coordinates.
 
-## What to Edit
+## Format
 
-Open `solve.py`. Return a list of 15 `Semicircle(x, y, theta)` placements:
-
-- **(x, y)** — center of the full disk
-- **theta** — angle (radians) the curved part extends toward. The flat edge passes through (x, y) perpendicular to theta.
-
-## JSON
-
-Export your solution as JSON:
-
-```bash
-uv run python run.py --export solution.json
-```
-
-Score a JSON solution:
-
-```bash
-uv run python run.py --from-json solution.json
-```
-
-Format is a bare array of coordinates:
+`solution.json` is a JSON array of 15 semicircle placements:
 
 ```json
 [
   { "x": -2.0, "y": 0.0, "theta": 0.0 },
-  { "x": -2.0, "y": 0.0, "theta": 3.14159 },
+  { "x": -2.0, "y": 0.0, "theta": 3.141593 },
   ...
 ]
 ```
 
+- **(x, y)** — center of the full disk
+- **theta** — angle (radians) the curved part extends toward. The flat edge passes through (x, y) perpendicular to theta.
+
+This is the same format the [Optimization Arena](https://arena.lol/packing) accepts — paste it directly to submit.
+
 ## Other Commands
 
 ```bash
-uv run python run.py --save-plot packing.png  # save a visualization
-uv run python run.py --visualize              # open plot in a window
-uv run pytest                                 # run tests
+uv run python run.py my_solution.json         # score a different file
+uv run python run.py --save-plot packing.png   # save a visualization
+uv run python run.py --visualize               # open plot in a window
+uv run pytest                                  # run tests
 ```
