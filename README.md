@@ -32,7 +32,9 @@ This scores `solution.json` — the file you edit. Open it and tweak the coordin
 - **(x, y)** — center of the full disk
 - **theta** — angle (radians) the curved part extends toward. The flat edge passes through (x, y) perpendicular to theta.
 
-This is the same format the [Optimization Arena](https://arena.lol/packing) accepts — paste it directly to submit.
+**Precision:** Coordinates are rounded to 6 decimal places before validation and scoring. This matches the [Optimization Arena](https://optimization-arena.com/packing) server behavior. The local `run.py` applies the same rounding, so your local score will match the server.
+
+This is the same format the arena accepts — paste it directly to submit.
 
 ## Other Commands
 
