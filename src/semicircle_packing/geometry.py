@@ -183,15 +183,14 @@ def _semicircle_endpoints(sc: Semicircle) -> tuple[tuple[float, float], tuple[fl
 def semicircles_overlap(a: Semicircle, b: Semicircle) -> bool:
     """Return True if two semicircles have overlapping interior area.
 
-    Uses high-resolution Shapely polygon intersection. The polygon uses 1024
-    arc points per semicircle, giving positional error < 5e-7 — far below
-    any meaningful overlap.
+    Uses high-resolution Shapely polygon intersection at POLYGON_ARC_POINTS
+    per semicircle (default 4096, giving radial error < 7.4e-8).
     """
     from .config import RADIUS, OVERLAP_TOL
     if math.hypot(a.x - b.x, a.y - b.y) > 2 * RADIUS:
         return False
-    pa = semicircle_polygon(a, 1024)
-    pb = semicircle_polygon(b, 1024)
+    pa = semicircle_polygon(a)
+    pb = semicircle_polygon(b)
     return pa.intersection(pb).area > OVERLAP_TOL
 
 

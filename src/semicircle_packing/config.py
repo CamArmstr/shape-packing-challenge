@@ -3,8 +3,9 @@
 N = 15
 RADIUS = 1.0
 
-# Number of points on the arc when building the Shapely polygon
-POLYGON_ARC_POINTS = 256
+# Number of points on the arc when building the Shapely polygon.
+# 4096 gives radial error <7.4e-8 — two orders below OVERLAP_TOL.
+POLYGON_ARC_POINTS = 4096
 
 # Number of boundary sample points per semicircle for initial MEC sampling
 # (analytical refinement then converges to machine precision)
