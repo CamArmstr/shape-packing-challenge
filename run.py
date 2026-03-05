@@ -55,7 +55,12 @@ def _load_solution(path: str) -> list:
         for key in ("x", "y", "theta"):
             if key not in item:
                 raise ValueError(f"Item {i} missing required field '{key}'")
-        semicircles.append(Semicircle(x=float(item["x"]), y=float(item["y"]), theta=float(item["theta"])))
+        # Round to 6 decimal places — the server applies the same rounding
+        semicircles.append(Semicircle(
+            x=round(float(item["x"]), 6),
+            y=round(float(item["y"]), 6),
+            theta=round(float(item["theta"]), 6),
+        ))
 
     return semicircles
 
