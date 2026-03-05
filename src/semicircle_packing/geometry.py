@@ -6,9 +6,9 @@ import math
 from dataclasses import dataclass
 
 import numpy as np
-from shapely.geometry import Polygon, Point
+from shapely.geometry import Polygon
 
-from .config import POLYGON_ARC_POINTS, OVERLAP_TOL, MEC_BOUNDARY_POINTS
+from .config import POLYGON_ARC_POINTS, MEC_BOUNDARY_POINTS
 
 
 @dataclass(frozen=True)
@@ -65,11 +65,39 @@ def semicircle_boundary_points(sc: Semicircle, n: int = MEC_BOUNDARY_POINTS) -> 
     return np.vstack([arc, flat])
 
 
+def _overlap_polygon_arc_points(a: Semicircle, b: Semicircle) -> int:
+    """Choose enough arc samples to resolve near-tangent overlaps."""
+    from .config import RADIUS
+
+    center_distance = math.hypot(a.x - b.x, a.y - b.y)
+    overlap_depth = (2 * RADIUS) - center_distance
+    if overlap_depth <= 0:
+        return POLYGON_ARC_POINTS
+
+    # Keep the inscribed polygon close enough to the true arc that tiny but
+    # valid overlaps near tangency are still represented.
+    target_sagitta = max(overlap_depth / 4, 1e-12)
+    max_segment_angle = 2 * math.acos(max(-1.0, min(1.0, 1.0 - target_sagitta / RADIUS)))
+    if max_segment_angle <= 0:
+        return max(POLYGON_ARC_POINTS, 32768)
+
+    segment_count = math.ceil(math.pi / max_segment_angle)
+    return max(POLYGON_ARC_POINTS, min(segment_count + 1, 32768))
+
+
 def semicircles_overlap(a: Semicircle, b: Semicircle) -> bool:
-    """Return True if two semicircles have overlapping interior area."""
-    pa = semicircle_polygon(a)
-    pb = semicircle_polygon(b)
-    return pa.intersection(pb).area > OVERLAP_TOL
+    """Return True when two semicircles share interior area."""
+    from .config import RADIUS
+
+    if math.hypot(a.x - b.x, a.y - b.y) >= 2 * RADIUS:
+        return False
+
+    n_arc = _overlap_polygon_arc_points(a, b)
+    pa = semicircle_polygon(a, n_arc=n_arc)
+    pb = semicircle_polygon(b, n_arc=n_arc)
+
+    # Interior intersections are overlaps; pure boundary contact is allowed.
+    return pa.intersects(pb) and not pa.touches(pb)
 
 
 def semicircle_contained_in_circle(sc: Semicircle, cx: float, cy: float, cr: float) -> bool:

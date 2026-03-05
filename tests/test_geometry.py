@@ -1,7 +1,6 @@
 """Tests for semicircle geometry."""
 
 import math
-import pytest
 from semicircle_packing.geometry import (
     Semicircle,
     semicircle_polygon,
@@ -42,6 +41,20 @@ def test_overlap_slight_intrusion():
     """Semicircles barely overlapping."""
     a = Semicircle(0, 0, 0)
     b = Semicircle(1.5, 0, math.pi)
+    assert semicircles_overlap(a, b)
+
+
+def test_overlap_diagonal_false_negative_regression():
+    """Overlaps should not depend on sampled interior probe directions."""
+    a = Semicircle(-1.5, -1.5, 3 * math.pi / 4)
+    b = Semicircle(-1.0, -1.0, -math.pi / 4)
+    assert semicircles_overlap(a, b)
+
+
+def test_overlap_tiny_intrusion_near_tangent():
+    """Tiny positive-area overlaps should still be rejected."""
+    a = Semicircle(0, 0, 0)
+    b = Semicircle(1.999999, 0, math.pi)
     assert semicircles_overlap(a, b)
 
 
