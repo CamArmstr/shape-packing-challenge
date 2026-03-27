@@ -76,11 +76,14 @@ def phi_pair(xi, yi, ti, xj, yj, tj):
     pc = phi_PC(xi, yi, ti, xj, yj)
     phi = max(cc, cp, pc)
 
-    # Only include phi_PP for near-anti-parallel orientations
+    # Damped phi_PP: scale by max(0, -n_dot) so it only contributes for anti-parallel normals.
+    # At n_dot=-1 (conjugate): full weight. At n_dot=0 (perpendicular): zero. At n_dot>0: zero.
+    # This is smooth and differentiable — no discontinuous threshold.
     n_dot = np.cos(ti) * np.cos(tj) + np.sin(ti) * np.sin(tj)
-    if n_dot < -0.5:
-        pp = phi_PP(xi, yi, ti, xj, yj, tj)
-        phi = max(phi, pp)
+    damping = max(0.0, -n_dot)
+    if damping > 0:
+        pp_damped = phi_PP(xi, yi, ti, xj, yj, tj) * damping
+        phi = max(phi, pp_damped)
 
     return phi
 
@@ -205,10 +208,10 @@ def penalty_gradient(xs, ys, ts, R):
             pc = phi_PC(xi, yi, ti, xj, yj)
             pp = phi_PP(xi, yi, ti, xj, yj, tj)
 
-                        # Conditional phi_PP: only for near-anti-parallel orientations
+                        # Damped phi_PP
             n_dot = np.cos(ti)*np.cos(tj) + np.sin(ti)*np.sin(tj)
-            use_pp = n_dot < -0.5
-            pp_val = phi_PP(xi, yi, ti, xj, yj, tj) if use_pp else -np.inf
+            damping = max(0.0, -n_dot)
+            pp_val = phi_PP(xi, yi, ti, xj, yj, tj) * damping if damping > 0 else -np.inf
             phi = max(cc, cp, pc, pp_val)
 
             if phi >= 0:
@@ -233,13 +236,16 @@ def penalty_gradient(xs, ys, ts, R):
                 gx[j] += coeff * (-cti); gy[j] += coeff * (-sti)
                 gt[i] += coeff * (np.sin(ti)*(xj-xi) - np.cos(ti)*(yj-yi))
 
-            else:  # pp (only reached when use_pp=True and n_dot < -0.5)
+            else:  # pp_damped = phi_PP(xi,yi,ti,xj,yj,tj) * damping
+                # d(pp_damped)/d(param) = damping * d(phi_PP)/d(param)
+                # (d(damping)/d(ti) term is zero because damping = max(0,-n_dot) is treated
+                #  as a constant wrt the active branch — subgradient approximation)
                 cti = np.cos(ti); sti = np.sin(ti)
-                gx[i] += coeff * cti
-                gy[i] += coeff * sti
-                gx[j] += coeff * (-cti)
-                gy[j] += coeff * (-sti)
-                gt[i] += coeff * (-sti*(xi-xj) + cti*(yi-yj))
+                gx[i] += coeff * damping * cti
+                gy[i] += coeff * damping * sti
+                gx[j] += coeff * damping * (-cti)
+                gy[j] += coeff * damping * (-sti)
+                gt[i] += coeff * damping * (-sti*(xi-xj) + cti*(yi-yj))
 
     # Containment gradients
     for i in range(n):
