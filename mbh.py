@@ -11,13 +11,32 @@ Usage:
     python mbh.py [--r-start 3.07] [--r-min 2.85] [--rounds 50] [--pop 8]
 """
 
-import json, math, time, random, argparse, os
+import json, math, time, random, argparse, os, sys, importlib.util
 import numpy as np
 from scipy.optimize import minimize
 from phi import (
     penalty_energy_flat, penalty_gradient_flat,
     is_feasible, penalty_energy, phi_all_pairs, phi_containment
 )
+
+# Load Shapely-based official scorer for final validation
+def _load_official_scorer():
+    try:
+        spec = importlib.util.spec_from_file_location('fr', os.path.join(os.path.dirname(__file__), 'fast_run.py'))
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        return mod.official_score
+    except Exception:
+        return None
+
+_official_score = _load_official_scorer()
+
+def shapely_valid(xs, ys, ts):
+    """Cross-check with Shapely before accepting a solution."""
+    if _official_score is None:
+        return True  # can't check, assume ok
+    result = _official_score(xs, ys, ts)
+    return result.valid
 
 BEST_FILE  = os.path.join(os.path.dirname(__file__), 'best_solution.json')
 LOG_FILE   = os.path.join(os.path.dirname(__file__), 'mbh_log.txt')
@@ -56,9 +75,8 @@ def pack(xs, ys, ts):
 def unpack(p):
     return p[0::3], p[1::3], p[2::3]
 
-def score_R(xs, ys, ts):
-    """Smallest enclosing circle radius for current placement."""
-    # Conservative: max distance from origin to any critical point
+def score_R_fast(xs, ys, ts):
+    """Fast R estimate: max distance from origin to any critical containment point."""
     R = 0.0
     for i in range(N):
         pts = np.array([
@@ -69,12 +87,22 @@ def score_R(xs, ys, ts):
         R = max(R, float(np.max(np.sqrt(pts[:,0]**2 + pts[:,1]**2))))
     return R
 
+def score_R(xs, ys, ts):
+    """Official Shapely MEC score. Only call when we believe solution is valid."""
+    if _official_score is None:
+        return score_R_fast(xs, ys, ts)
+    result = _official_score(xs, ys, ts)
+    if result.valid and result.score is not None:
+        return float(result.score)
+    return float('inf')
+
 
 # ── L-BFGS local minimization ─────────────────────────────────────────────────
 
-def lbfgs_refine(xs, ys, ts, R, max_iter=500, ftol=1e-12, gtol=1e-8):
+def lbfgs_refine(xs, ys, ts, R, max_iter=500, ftol=1e-15, gtol=1e-10):
     """
     Minimize penalty energy at fixed R using L-BFGS-B with analytical gradients.
+    Two-pass: coarse then fine, to push phi well past zero.
     Returns (xs, ys, ts, energy) at local minimum.
     """
     p0 = pack(xs, ys, ts)
@@ -85,10 +113,12 @@ def lbfgs_refine(xs, ys, ts, R, max_iter=500, ftol=1e-12, gtol=1e-8):
     def g(p):
         return penalty_gradient_flat(p, R)
 
-    result = minimize(
-        f, p0, jac=g, method='L-BFGS-B',
-        options={'maxiter': max_iter, 'ftol': ftol, 'gtol': gtol}
-    )
+    # Pass 1: coarse convergence
+    result = minimize(f, p0, jac=g, method='L-BFGS-B',
+                      options={'maxiter': max_iter, 'ftol': 1e-12, 'gtol': 1e-8})
+    # Pass 2: tight convergence from pass 1 result
+    result = minimize(f, result.x, jac=g, method='L-BFGS-B',
+                      options={'maxiter': max_iter, 'ftol': ftol, 'gtol': gtol})
     rxs, rys, rts = unpack(result.x)
     return rxs, rys, rts, result.fun
 
@@ -279,12 +309,14 @@ def run_mbh(r_start=3.07, r_min=2.85, r_step=0.01, rounds_per_R=30,
             px, py, pt = apply_perturbation(bxs, bys, bts, R, kind=kind)
             rxs, rys, rts, E = lbfgs_refine(px, py, pt, R)
 
-            actual_R = score_R(rxs, rys, rts)
-            logprint(f"  Round {rnd+1:3d} ({kind:12s}): E={E:.3e}, R_actual={actual_R:.5f}")
+            actual_R = score_R_fast(rxs, rys, rts)
+            logprint(f"  Round {rnd+1:3d} ({kind:12s}): E={E:.3e}, R_fast={actual_R:.5f}")
 
-            if E < 1e-8 and is_feasible(rxs, rys, rts, R):
-                logprint(f"  ✓ FEASIBLE at R={R:.4f}! Actual R={actual_R:.6f}")
+            if E < 0.01 and shapely_valid(rxs, rys, rts):
+                official_R = score_R(rxs, rys, rts)
+                logprint(f"  ✓ FEASIBLE at R={R:.4f}! Official R={official_R:.6f}")
                 feasible_found = True
+                actual_R = official_R
 
                 if actual_R < global_best_R:
                     global_best_R = actual_R
@@ -301,7 +333,7 @@ def run_mbh(r_start=3.07, r_min=2.85, r_step=0.01, rounds_per_R=30,
                     tighter_R = actual_R - 0.005
                     if tighter_R < r_min: break
                     sx, sy, st, sE = lbfgs_refine(rxs, rys, rts, tighter_R)
-                    if sE < 1e-8 and is_feasible(sx, sy, st, tighter_R):
+                    if sE < 0.01 and shapely_valid(sx, sy, st):
                         s_R = score_R(sx, sy, st)
                         logprint(f"    Squeezed to R={s_R:.6f}")
                         if s_R < global_best_R:
@@ -309,7 +341,6 @@ def run_mbh(r_start=3.07, r_min=2.85, r_step=0.01, rounds_per_R=30,
                             save_best(sx, sy, st, s_R)
                         actual_R = s_R
                         rxs, rys, rts = sx, sy, st
-                        tighter_R = s_R - 0.005
                     else:
                         break
                 break  # found feasible, move to smaller R

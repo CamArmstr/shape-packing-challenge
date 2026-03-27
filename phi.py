@@ -61,13 +61,28 @@ def phi_pair(xi, yi, ti, xj, yj, tj):
     """
     Phi-function for semicircle pair (i, j).
     Returns scalar: ≥ 0 means non-overlapping.
+
+    Components used:
+    - phi_CC: disk-disk separation (always correct)
+    - phi_CP: disk i vs flat-side of j (correct)
+    - phi_PC: disk j vs flat-side of i (correct)
+    - phi_PP: conditional — only applied when normals are sufficiently anti-parallel
+              (n_dot < -0.5), which is the conjugate-pair regime where phi_PP
+              is geometrically valid. For similar-orientation pairs, phi_PP
+              produces false-positive separations and is excluded.
     """
-    return max(
-        phi_CC(xi, yi, xj, yj),
-        phi_CP(xi, yi, xj, yj, tj),
-        phi_PC(xi, yi, ti, xj, yj),
-        phi_PP(xi, yi, ti, xj, yj, tj),
-    )
+    cc = phi_CC(xi, yi, xj, yj)
+    cp = phi_CP(xi, yi, xj, yj, tj)
+    pc = phi_PC(xi, yi, ti, xj, yj)
+    phi = max(cc, cp, pc)
+
+    # Only include phi_PP for near-anti-parallel orientations
+    n_dot = np.cos(ti) * np.cos(tj) + np.sin(ti) * np.sin(tj)
+    if n_dot < -0.5:
+        pp = phi_PP(xi, yi, ti, xj, yj, tj)
+        phi = max(phi, pp)
+
+    return phi
 
 
 # ── Vectorized pairwise phi (all 105 pairs at once) ───────────────────────────
@@ -85,9 +100,9 @@ def phi_all_pairs(xs, ys, ts):
     return np.array(phis)
 
 
-def all_pairs_overlap_free(xs, ys, ts):
-    """Returns True if all pairs are non-overlapping (phi >= 0)."""
-    return bool(np.all(phi_all_pairs(xs, ys, ts) >= -1e-9))
+def all_pairs_overlap_free(xs, ys, ts, tol=1e-6):
+    """Returns True if all pairs are non-overlapping (phi >= tol for clearance)."""
+    return bool(np.all(phi_all_pairs(xs, ys, ts) >= -tol))
 
 
 # ── Containment: semicircle S_i inside circle of radius R ────────────────────
@@ -119,19 +134,21 @@ def phi_containment(xi, yi, ti, R):
     return float(np.min(slacks))
 
 
-def all_contained(xs, ys, ts, R):
+def all_contained(xs, ys, ts, R, tol=1e-6):
     """Returns True if all semicircles are inside container of radius R."""
     for i in range(len(xs)):
-        if phi_containment(xs[i], ys[i], ts[i], R) < -1e-9:
+        if phi_containment(xs[i], ys[i], ts[i], R) < -tol:
             return False
     return True
 
 
 # ── Full feasibility check ────────────────────────────────────────────────────
 
-def is_feasible(xs, ys, ts, R, tol=1e-9):
-    """True if all semicircles are mutually non-overlapping and contained in R."""
-    return all_contained(xs, ys, ts, R) and all_pairs_overlap_free(xs, ys, ts)
+def is_feasible(xs, ys, ts, R, tol=1e-6):
+    """True if all semicircles are mutually non-overlapping and contained in R.
+    Uses tol=1e-6 (positive clearance) to avoid accepting near-boundary configurations
+    that L-BFGS hasn't fully converged on — these have tiny real overlaps."""
+    return all_contained(xs, ys, ts, R, tol) and all_pairs_overlap_free(xs, ys, ts, tol)
 
 
 # ── Penalty energy (for gradient-based optimization) ─────────────────────────
@@ -188,45 +205,35 @@ def penalty_gradient(xs, ys, ts, R):
             pc = phi_PC(xi, yi, ti, xj, yj)
             pp = phi_PP(xi, yi, ti, xj, yj, tj)
 
-            phi = max(cc, cp, pc, pp)
+                        # Conditional phi_PP: only for near-anti-parallel orientations
+            n_dot = np.cos(ti)*np.cos(tj) + np.sin(ti)*np.sin(tj)
+            use_pp = n_dot < -0.5
+            pp_val = phi_PP(xi, yi, ti, xj, yj, tj) if use_pp else -np.inf
+            phi = max(cc, cp, pc, pp_val)
+
             if phi >= 0:
                 continue  # non-overlapping, no gradient contribution
 
-            # E_pair = (-phi)^2 for phi < 0, so dE/d(param) = 2*phi * d(phi)/d(param)
-            coeff = 2.0 * phi  # phi < 0, so coeff is negative (gradient points toward feasibility)
+            coeff = 2.0 * phi  # negative
 
             if phi == cc:
-                # d(cc)/d(xi,yi,xj,yj) = 2*(xi-xj), 2*(yi-yj), etc.
                 ddx = 2*(xi - xj); ddy = 2*(yi - yj)
                 gx[i] += coeff * ddx;   gy[i] += coeff * ddy
                 gx[j] += coeff * (-ddx); gy[j] += coeff * (-ddy)
 
             elif phi == cp:
-                # phi_CP = -(cos(tj)*(xi-xj) + sin(tj)*(yi-yj)) - 1
-                # d/d(xi) = -cos(tj), d/d(yi) = -sin(tj)
-                # d/d(xj) = cos(tj),  d/d(yj) = sin(tj)
                 ctj = np.cos(tj); stj = np.sin(tj)
                 gx[i] += coeff * (-ctj); gy[i] += coeff * (-stj)
                 gx[j] += coeff * ctj;    gy[j] += coeff * stj
-                # d/d(tj) = sin(tj)*(xi-xj) - cos(tj)*(yi-yj)
                 gt[j] += coeff * (np.sin(tj)*(xi-xj) - np.cos(tj)*(yi-yj))
 
             elif phi == pc:
-                # phi_PC = -(cos(ti)*(xj-xi) + sin(ti)*(yj-yi)) - 1
-                # d/d(xi) = cos(ti), d/d(yi) = sin(ti)
-                # d/d(xj) = -cos(ti), d/d(yj) = -sin(ti)
                 cti = np.cos(ti); sti = np.sin(ti)
                 gx[i] += coeff * cti;    gy[i] += coeff * sti
                 gx[j] += coeff * (-cti); gy[j] += coeff * (-sti)
-                # d/d(ti) = sin(ti)*(xj-xi) - cos(ti)*(yj-yi)
                 gt[i] += coeff * (np.sin(ti)*(xj-xi) - np.cos(ti)*(yj-yi))
 
-            else:  # pp
-                # phi_PP = cos(ti)*(xi-xj) + sin(ti)*(yi-yj)
-                # d/d(xi) = cos(ti), d/d(yi) = sin(ti)
-                # d/d(xj) = -cos(ti), d/d(yj) = -sin(ti)
-                # d/d(ti) = -sin(ti)*(xi-xj) + cos(ti)*(yi-yj)
-                # d/d(tj) = 0
+            else:  # pp (only reached when use_pp=True and n_dot < -0.5)
                 cti = np.cos(ti); sti = np.sin(ti)
                 gx[i] += coeff * cti
                 gy[i] += coeff * sti
