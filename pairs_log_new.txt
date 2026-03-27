@@ -1,0 +1,33 @@
+Building conjugate-pairs starting geometry...
+Pairs start: valid=True, score=3.4375
+  Plot saved to pairs_start.png
+Saved pairs_start.png
+Centered score: 3.4375
+
+Running pairs-based search...
+Starting best: 3.071975
+
+[pairs] Attempt 1/100: scale=1.141 noise=0.005
+  Initial score: 3.6054
+  [pairs_0]       0/1500000: r=3.5989 ovlp=0.000000 lam=50 best_feas=inf imp=0
+  [pairs_0]  100000/1500000: r=3.8619 ovlp=0.002917 lam=68 best_feas=3.5397 imp=3
+  [pairs_0]  200000/1500000: r=4.1024 ovlp=0.001045 lam=92 best_feas=3.4798 imp=6
+  [pairs_0]  300000/1500000: r=3.5519 ovlp=0.000163 lam=126 best_feas=3.4258 imp=10
+  [pairs_0]  400000/1500000: r=3.3570 ovlp=0.000361 lam=171 best_feas=3.2521 imp=17
+  [pairs_0]  500000/1500000: r=3.4913 ovlp=0.000002 lam=232 best_feas=3.2124 imp=26
+  [pairs_0]  600000/1500000: r=3.2743 ovlp=0.000038 lam=315 best_feas=3.1771 imp=33
+  [pairs_0]  700000/1500000: r=3.1616 ovlp=0.000018 lam=429 best_feas=3.0988 imp=54
+  [pairs_0]  800000/1500000: r=3.2106 ovlp=-0.000000 lam=583 best_feas=3.0988 imp=54
+  [pairs_0]  900000/1500000: r=3.1211 ovlp=-0.000000 lam=792 best_feas=3.0806 imp=57
+  [pairs_0] 1000000/1500000: r=3.0726 ovlp=0.000000 lam=1077 best_feas=3.0315 imp=81
+  [pairs_0] 1100000/1500000: r=3.0436 ovlp=-0.000000 lam=1464 best_feas=3.0315 imp=81
+  [pairs_0] 1200000/1500000: r=3.0346 ovlp=-0.000000 lam=1991 best_feas=3.0270 imp=94
+  [pairs_0] 1300000/1500000: r=3.0244 ovlp=0.000000 lam=2706 best_feas=3.0242 imp=115
+  [pairs_0] 1400000/1500000: r=3.0184 ovlp=-0.000000 lam=3678 best_feas=3.0172 imp=163
+  VALID: 3.141889 (814s)
+
+[pairs] Attempt 2/100: scale=1.141 noise=0.005
+  Initial score: 3.6054
+  [pairs_1]       0/1500000: r=3.5989 ovlp=0.000000 lam=50 best_feas=inf imp=0
+  [pairs_1]  100000/1500000: r=3.8410 ovlp=0.001812 lam=68 best_feas=3.5840 imp=2
+  [pairs_1]  200000/1500000: r=3.9067 ovlp=0.000628 lam=92 best_feas=3.3970 imp=5

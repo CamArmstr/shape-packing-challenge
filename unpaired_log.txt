@@ -1,0 +1,18 @@
+Starting best: 3.071975
+
+==================================================
+Run 1: boundary_biased_1
+  Could not build start, skipping
+
+==================================================
+Run 2: random_valid_2
+  Init score: 3.7191
+  [random_valid_2]       0/2000000: r=3.7165 ovlp=0.000000 lam=5 best_feas=3.7165 imp=1
+  [random_valid_2]  100000/2000000: r=3.7701 ovlp=3.530278 lam=7 best_feas=3.7164 imp=2
+  [random_valid_2]  200000/2000000: r=4.3845 ovlp=0.493873 lam=9 best_feas=3.7164 imp=2
+  [random_valid_2]  300000/2000000: r=4.0108 ovlp=0.776516 lam=13 best_feas=3.7164 imp=2
+  [random_valid_2]  400000/2000000: r=4.0918 ovlp=0.121017 lam=18 best_feas=3.7164 imp=2
+  [random_valid_2]  500000/2000000: r=4.4424 ovlp=0.086819 lam=25 best_feas=3.6239 imp=5
+  [random_valid_2]  600000/2000000: r=3.5581 ovlp=0.024060 lam=34 best_feas=3.4877 imp=12
+  [random_valid_2]  700000/2000000: r=3.8787 ovlp=0.003291 lam=47 best_feas=3.4226 imp=15
+  [random_valid_2]  800000/2000000: r=3.5150 ovlp=0.000118 lam=65 best_feas=3.3226 imp=22

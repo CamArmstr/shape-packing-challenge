@@ -198,12 +198,13 @@ def run_pairs_search(n_attempts=50, sa_steps=2000000, label="pairs"):
         ts = np.array([d['theta'] for d in raw])
         
         # Run penalty SA from this start
+        # Tighter schedule for pairs: already near feasible, don't need to explore far
         t0 = time.time()
         result_sa, best_r = mod.sa_run(
             xs, ys, ts,
             n_steps=sa_steps,
-            T_start=1.0, T_end=0.001,
-            lam_start=10.0, lam_end=3000.0,
+            T_start=0.4, T_end=0.0005,
+            lam_start=50.0, lam_end=5000.0,
             seed=attempt * 137 + 42,
             label=f"{label}_{attempt}"
         )

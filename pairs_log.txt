@@ -11,3 +11,66 @@ Starting best: 3.071975
   Initial score: 3.6054
   [pairs_0]       0/1500000: r=3.5989 ovlp=0.000000 lam=10 best_feas=inf imp=0
   [pairs_0]  100000/1500000: r=3.9316 ovlp=0.771934 lam=15 best_feas=3.5992 imp=1
+  [pairs_0]  200000/1500000: r=3.9624 ovlp=0.082161 lam=21 best_feas=3.5992 imp=1
+  [pairs_0]  300000/1500000: r=4.0195 ovlp=0.040901 lam=31 best_feas=3.5992 imp=1
+  [pairs_0]  400000/1500000: r=3.6103 ovlp=0.012070 lam=46 best_feas=3.4588 imp=7
+  [pairs_0]  500000/1500000: r=3.2497 ovlp=0.003309 lam=67 best_feas=3.2462 imp=13
+  [pairs_0]  600000/1500000: r=3.3302 ovlp=0.000412 lam=98 best_feas=3.2462 imp=13
+  [pairs_0]  700000/1500000: r=3.4442 ovlp=0.000254 lam=143 best_feas=3.1376 imp=28
+  [pairs_0]  800000/1500000: r=3.2588 ovlp=-0.000000 lam=209 best_feas=3.1279 imp=30
+  [pairs_0]  900000/1500000: r=3.1548 ovlp=-0.000000 lam=306 best_feas=3.1174 imp=39
+  [pairs_0] 1000000/1500000: r=3.1609 ovlp=0.000002 lam=448 best_feas=3.0733 imp=52
+  [pairs_0] 1100000/1500000: r=3.1172 ovlp=-0.000000 lam=655 best_feas=3.0554 imp=56
+  [pairs_0] 1200000/1500000: r=3.0643 ovlp=-0.000000 lam=959 best_feas=3.0554 imp=56
+  [pairs_0] 1300000/1500000: r=3.0339 ovlp=-0.000000 lam=1402 best_feas=3.0285 imp=113
+  [pairs_0] 1400000/1500000: r=3.0377 ovlp=-0.000000 lam=2051 best_feas=3.0141 imp=145
+  VALID: 3.100151 (783s)
+
+[pairs] Attempt 2/100: scale=1.141 noise=0.005
+  Initial score: 3.6054
+  [pairs_1]       0/1500000: r=3.5989 ovlp=0.000000 lam=10 best_feas=inf imp=0
+  [pairs_1]  100000/1500000: r=3.7532 ovlp=1.082763 lam=15 best_feas=inf imp=0
+  [pairs_1]  200000/1500000: r=4.4096 ovlp=0.045331 lam=21 best_feas=4.6258 imp=8
+  [pairs_1]  300000/1500000: r=3.7420 ovlp=0.035851 lam=31 best_feas=3.6975 imp=18
+  [pairs_1]  400000/1500000: r=4.1029 ovlp=0.014742 lam=46 best_feas=3.5657 imp=20
+  [pairs_1]  500000/1500000: r=4.0998 ovlp=0.002573 lam=67 best_feas=3.4412 imp=25
+  [pairs_1]  600000/1500000: r=3.3697 ovlp=0.000586 lam=98 best_feas=3.2648 imp=38
+  [pairs_1]  700000/1500000: r=3.3746 ovlp=-0.000000 lam=143 best_feas=3.2256 imp=43
+  [pairs_1]  800000/1500000: r=3.3465 ovlp=-0.000000 lam=209 best_feas=3.1398 imp=55
+  [pairs_1]  900000/1500000: r=3.2142 ovlp=0.000085 lam=306 best_feas=3.1068 imp=63
+  [pairs_1] 1000000/1500000: r=3.1354 ovlp=-0.000000 lam=448 best_feas=3.0939 imp=76
+  [pairs_1] 1100000/1500000: r=3.1007 ovlp=0.000010 lam=655 best_feas=3.0610 imp=99
+  [pairs_1] 1200000/1500000: r=3.0832 ovlp=-0.000000 lam=959 best_feas=3.0610 imp=99
+  [pairs_1] 1300000/1500000: r=3.0608 ovlp=-0.000000 lam=1402 best_feas=3.0451 imp=120
+  [pairs_1] 1400000/1500000: r=3.0414 ovlp=-0.000000 lam=2051 best_feas=3.0325 imp=145
+  VALID: 3.133360 (785s)
+
+[pairs] Attempt 3/100: scale=1.141 noise=0.005
+  Initial score: 3.6054
+  [pairs_2]       0/1500000: r=3.5989 ovlp=0.000000 lam=10 best_feas=inf imp=0
+  [pairs_2]  100000/1500000: r=3.9987 ovlp=0.412147 lam=15 best_feas=inf imp=0
+  [pairs_2]  200000/1500000: r=3.9882 ovlp=0.073071 lam=21 best_feas=4.2801 imp=1
+  [pairs_2]  300000/1500000: r=4.3300 ovlp=0.069690 lam=31 best_feas=3.6705 imp=7
+  [pairs_2]  400000/1500000: r=3.8828 ovlp=0.007156 lam=46 best_feas=3.4394 imp=17
+  [pairs_2]  500000/1500000: r=3.6832 ovlp=0.003557 lam=67 best_feas=3.3816 imp=24
+  [pairs_2]  600000/1500000: r=3.6977 ovlp=0.000691 lam=98 best_feas=3.3101 imp=33
+  [pairs_2]  700000/1500000: r=3.3740 ovlp=-0.000000 lam=143 best_feas=3.1738 imp=51
+  [pairs_2]  800000/1500000: r=3.2310 ovlp=0.000165 lam=209 best_feas=3.1306 imp=55
+  [pairs_2]  900000/1500000: r=3.2231 ovlp=-0.000000 lam=306 best_feas=3.0829 imp=61
+  [pairs_2] 1000000/1500000: r=3.1283 ovlp=-0.000000 lam=448 best_feas=3.0829 imp=61
+  [pairs_2] 1100000/1500000: r=3.0953 ovlp=-0.000000 lam=655 best_feas=3.0702 imp=67
+  [pairs_2] 1200000/1500000: r=3.0947 ovlp=0.000001 lam=959 best_feas=3.0523 imp=88
+  [pairs_2] 1300000/1500000: r=3.0304 ovlp=-0.000000 lam=1402 best_feas=3.0197 imp=124
+  [pairs_2] 1400000/1500000: r=3.0226 ovlp=-0.000000 lam=2051 best_feas=3.0155 imp=129
+  VALID: 3.132893 (788s)
+
+[pairs] Attempt 4/100: scale=1.141 noise=0.005
+  Initial score: 3.6054
+  [pairs_3]       0/1500000: r=3.5989 ovlp=0.000000 lam=10 best_feas=inf imp=0
+  [pairs_3]  100000/1500000: r=3.6654 ovlp=0.257736 lam=15 best_feas=3.9662 imp=1
+  [pairs_3]  200000/1500000: r=4.2591 ovlp=0.076731 lam=21 best_feas=3.9662 imp=1
+  [pairs_3]  300000/1500000: r=3.9870 ovlp=0.045506 lam=31 best_feas=3.7382 imp=5
+  [pairs_3]  400000/1500000: r=3.7972 ovlp=0.000973 lam=46 best_feas=3.5053 imp=8
+  [pairs_3]  500000/1500000: r=3.6317 ovlp=0.000969 lam=67 best_feas=3.4644 imp=10
+  [pairs_3]  600000/1500000: r=3.5304 ovlp=0.000000 lam=98 best_feas=3.2712 imp=28
+  [pairs_3]  700000/1500000: r=3.2952 ovlp=0.000088 lam=143 best_feas=3.1596 imp=44
