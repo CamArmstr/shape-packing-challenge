@@ -408,21 +408,28 @@ def run_mbh(r_start=3.07, r_min=2.85, r_step=0.01, rounds_per_R=30,
                 if actual_R < population[sim_idx][3]:
                     population[sim_idx] = (rxs, rys, rts, actual_R)
 
-                # Refine further: try to squeeze R even tighter
-                for squeeze in range(10):
-                    tighter_R = actual_R - 0.005
-                    if tighter_R < r_min: break
-                    sx, sy, st, sE = lbfgs_refine(rxs, rys, rts, tighter_R)
-                    if sE < 1e-6 and is_feasible_exact(sx, sy, st, tighter_R):
+                # Squeeze: binary-search R downward from actual_R
+                lo, hi = r_min, actual_R
+                for squeeze in range(15):
+                    mid_R = (lo + hi) / 2
+                    if hi - lo < 0.002: break
+                    # Multiple L-BFGS passes with increasing iterations to settle complex configs
+                    sx, sy, st = rxs.copy(), rys.copy(), rts.copy()
+                    for n_iter in [300, 500, 1000]:
+                        sx, sy, st, sE = lbfgs_refine(sx, sy, st, mid_R, max_iter=n_iter)
+                        if sE < 1e-6: break
+                    if sE < 1e-6 and is_feasible_exact(sx, sy, st, mid_R):
                         s_R = score_R(sx, sy, st)
-                        logprint(f"    Squeezed to R={s_R:.6f}")
+                        logprint(f"    Squeeze R={mid_R:.4f} → feasible (R={s_R:.6f})")
                         if s_R < global_best_R:
                             global_best_R = s_R
                             save_best(sx, sy, st, s_R)
-                        actual_R = s_R
+                            logprint(f"  ★ NEW GLOBAL BEST: R = {s_R:.6f}")
                         rxs, rys, rts = sx, sy, st
+                        actual_R = s_R
+                        hi = mid_R  # can go tighter
                     else:
-                        break
+                        lo = mid_R  # too tight, relax
                 break  # found feasible, move to smaller R
 
             elif E < penalty_energy(bxs, bys, bts, R) + 0.01:
@@ -433,9 +440,7 @@ def run_mbh(r_start=3.07, r_min=2.85, r_step=0.01, rounds_per_R=30,
 
         if not feasible_found:
             logprint(f"  ✗ Not feasible at R={R:.4f} after {rounds_per_R} rounds")
-            R += r_step * 0.5  # small backstep and try again (or stop)
-            if R > r_start:
-                break
+            break  # can't go tighter from this population state
         else:
             R = min(actual_R - r_step, R - r_step)
 
