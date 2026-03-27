@@ -192,8 +192,8 @@ def penalty_gradient(xs, ys, ts, R):
             if phi >= 0:
                 continue  # non-overlapping, no gradient contribution
 
-            # Which branch is active?
-            coeff = -2.0 * phi  # derivative of -phi² w.r.t. phi is -2*phi
+            # E_pair = (-phi)^2 for phi < 0, so dE/d(param) = 2*phi * d(phi)/d(param)
+            coeff = 2.0 * phi  # phi < 0, so coeff is negative (gradient points toward feasibility)
 
             if phi == cc:
                 # d(cc)/d(xi,yi,xj,yj) = 2*(xi-xj), 2*(yi-yj), etc.
@@ -243,21 +243,24 @@ def penalty_gradient(xs, ys, ts, R):
             s = slacks[k]
             if s >= 0:
                 continue
-            coeff = -2.0 * s
+            # E_cont = (-s)^2 for s < 0, so dE/d(param) = 2*s * d(s)/d(param)
+            # slack = R^2 - px^2 - py^2
+            # d(slack)/d(xi) = -2*px (since d(px)/d(xi) = 1 for all 3 critical points)
+            # dE/d(xi) = 2*s * (-2*px)
             px, py = pts[k]
-            # d(slack)/d(xi) = -2*px * d(px)/d(xi) - 2*py * d(py)/d(xi)
-            # but coeff already accounts for -2*s, so grad is coeff * d(slack)/d(param)
-            # d(slack)/d(xi) = -2*px * 1 (since px = xi + ..., d(px)/d(xi) = 1)
-            gx[i] += coeff * (-2.0 * px)
-            gy[i] += coeff * (-2.0 * py)
-            # d(px)/d(ti), d(py)/d(ti) depend on which point k is
+            ds_dxi = -2.0 * px   # d(slack)/d(xi)
+            ds_dyi = -2.0 * py   # d(slack)/d(yi)
+            gx[i] += 2.0 * s * ds_dxi
+            gy[i] += 2.0 * s * ds_dyi
+            # d(slack)/d(ti) = -2*px*d(px)/d(ti) - 2*py*d(py)/d(ti)
             if k == 0:   # (xi+cos(ti), yi+sin(ti))
                 dpx_dti = -np.sin(ti); dpy_dti = np.cos(ti)
-            elif k == 1: # (xi-cos(ti), yi-sin(ti))
-                dpx_dti = np.sin(ti);  dpy_dti = -np.cos(ti)
-            else:        # (xi-sin(ti), yi+cos(ti))
+            elif k == 1: # (xi-sin(ti), yi+cos(ti))
                 dpx_dti = -np.cos(ti); dpy_dti = -np.sin(ti)
-            gt[i] += coeff * (-2.0 * (px * dpx_dti + py * dpy_dti))
+            else:        # (xi+sin(ti), yi-cos(ti))
+                dpx_dti = np.cos(ti);  dpy_dti = np.sin(ti)
+            ds_dti = -2.0 * (px * dpx_dti + py * dpy_dti)
+            gt[i] += 2.0 * s * ds_dti
 
     return gx, gy, gt
 
