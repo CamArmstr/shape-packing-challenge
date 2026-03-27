@@ -300,7 +300,59 @@ def perturb_scale_expand(xs, ys, ts, factor=1.08):
     return xs, ys, ts.copy()
 
 
-PERTURBATIONS = ['flip', 'swap', 'shift_worst', 'reflect', 'jitter', 'lns', 'expand']
+def perturb_wall_slide(xs, ys, ts, R, n_slide=2, dphi=0.3):
+    """
+    FSS-inspired perturbation: slide n_slide pieces along the container wall.
+    Changes φ (angular position) while holding θ_rel = θ - φ fixed.
+    This moves a piece around the container wall without changing its
+    orientation relative to the radial direction — a move that requires
+    coordinated (x,y,θ) changes in Cartesian space.
+    """
+    xs, ys, ts = xs.copy(), ys.copy(), ts.copy()
+    idxs = random.sample(range(N), min(n_slide, N))
+    for i in idxs:
+        r = math.sqrt(xs[i]**2 + ys[i]**2)
+        if r < 0.1:
+            continue  # can't slide something at the center
+        phi = math.atan2(ys[i], xs[i])
+        theta_rel = ts[i] - phi  # relative orientation
+        # Slide: change phi by dphi (signed random)
+        dphi_sign = random.choice([-1, 1]) * dphi * (0.5 + random.random())
+        new_phi = phi + dphi_sign
+        xs[i] = r * math.cos(new_phi)
+        ys[i] = r * math.sin(new_phi)
+        ts[i] = theta_rel + new_phi  # maintain θ_rel
+    return xs, ys, ts
+
+
+def perturb_herringbone_seed(xs, ys, ts, R):
+    """
+    Attempt to create flat-edge-aligned clusters (herringbone/brick pattern).
+    Picks a random piece and places a copy rotated by π nearby with flat edges touching.
+    Based on Fejes Tóth's insight: flat edges pack more densely than curved.
+    """
+    xs, ys, ts = xs.copy(), ys.copy(), ts.copy()
+    i = random.randrange(N)
+    j = random.randrange(N)
+    if i == j:
+        return xs, ys, ts
+
+    xi, yi, ti = xs[i], ys[i], ts[i]
+    # Place j anti-parallel to i with flat edges touching
+    # Anti-parallel: tj = ti + π
+    # Flat edge contact: center-to-center distance = 0 (flat edges coincide, offset perpendicular)
+    # Place j at: xi + sin(ti)*offset, yi - cos(ti)*offset, ti + π
+    # with offset along the flat edge direction
+    tx, ty = -math.sin(ti), math.cos(ti)  # tangent (along flat edge)
+    offset = (random.random() - 0.5) * 1.5
+    xs[j] = xi + tx * offset
+    ys[j] = yi + ty * offset
+    ts[j] = ti + math.pi
+    return xs, ys, ts
+
+
+PERTURBATIONS = ['flip', 'swap', 'shift_worst', 'reflect', 'jitter', 'lns', 'expand',
+                 'wall_slide', 'herringbone']
 
 def apply_perturbation(xs, ys, ts, R, kind=None):
     if kind is None:
@@ -320,6 +372,11 @@ def apply_perturbation(xs, ys, ts, R, kind=None):
     elif kind == 'expand':
         factor = random.uniform(1.04, 1.15)
         return perturb_scale_expand(xs, ys, ts, factor)
+    elif kind == 'wall_slide':
+        n = random.choice([1, 2, 3])
+        return perturb_wall_slide(xs, ys, ts, R, n_slide=n)
+    elif kind == 'herringbone':
+        return perturb_herringbone_seed(xs, ys, ts, R)
     else:
         return perturb_random_jitter(xs, ys, ts)
 
