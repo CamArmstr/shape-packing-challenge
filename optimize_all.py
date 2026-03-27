@@ -20,6 +20,14 @@ import numpy as np
 os.chdir('/home/camcore/.openclaw/workspace/shape-packing-challenge')
 sys.path.insert(0, '.')
 
+# Numba SA — import and warm up JIT at module level so workers inherit compiled cache
+try:
+    from sa_numba import sa_run_numba_wrapper as _sa_numba
+    USE_NUMBA = True
+except Exception as _e:
+    USE_NUMBA = False
+    print(f"[warn] Numba SA unavailable: {_e}; falling back to Shapely SA", flush=True)
+
 import importlib.util
 spec = importlib.util.spec_from_file_location("overnight", "overnight.py")
 mod = importlib.util.module_from_spec(spec)
@@ -325,13 +333,31 @@ def start_random_valid(r_max=2.8, seed=None):
 
 STRATEGIES = [
     # (name, builder, T_start, T_end, lam_start, lam_end, n_steps)
-    # 6 workers (down from 9) to cap CPU at ~70% on 16-core machine
-    ('from_best_tight',   lambda: start_from_best(0.02),          0.25, 0.0005, 500,    5000,   2000000),
-    ('d1_symmetric',      lambda: start_d1_symmetric() or start_random_valid(2.8),    1.2, 0.001, 8, 3000, 2000000),
-    ('pairs_tight',       lambda: start_pairs(1.02, 0.0, None),   0.5,  0.0005, 100,    5000,   2000000),
-    ('from_best_large',   lambda: start_from_best(0.20),          1.0,  0.001,  50,     3000,   2000000),
-    ('double_lattice',    lambda: start_double_lattice() or start_random_valid(2.8), 1.2, 0.001, 8, 3000, 2000000),
-    ('boundary_biased',   lambda: start_boundary_biased() or start_random_valid(2.7), 1.5, 0.001, 5, 3000, 2000000),
+    # 12 workers on 16-core machine.
+    # Heavy exploitation near best (6 workers), moderate perturbation (4), exploration (2).
+
+    # n_steps bumped to 50M — at ~988k steps/sec that's ~50s per run
+    # (vs 37 min with Shapely at 2M steps)
+
+    # --- Tight exploitation: tiny noise, very cold SA, high lam ---
+    ('from_best_tight_0', lambda: start_from_best(0.01),  0.10, 0.0002, 2000, 20000, 50_000_000),
+    ('from_best_tight_1', lambda: start_from_best(0.02),  0.15, 0.0003, 1000, 15000, 50_000_000),
+    ('from_best_tight_2', lambda: start_from_best(0.03),  0.20, 0.0004,  800, 12000, 50_000_000),
+    ('from_best_tight_3', lambda: start_from_best(0.01),  0.08, 0.0002, 3000, 25000, 50_000_000),
+
+    # --- Medium perturbation: escape local basin, still near best ---
+    ('from_best_med_0',   lambda: start_from_best(0.08),  0.40, 0.0008,  300,  8000, 50_000_000),
+    ('from_best_med_1',   lambda: start_from_best(0.12),  0.50, 0.0008,  200,  6000, 50_000_000),
+    ('from_best_med_2',   lambda: start_from_best(0.06),  0.30, 0.0006,  400, 10000, 50_000_000),
+    ('from_best_med_3',   lambda: start_from_best(0.15),  0.60, 0.001,   150,  5000, 50_000_000),
+
+    # --- Large perturbation: different basin entirely ---
+    ('from_best_large_0', lambda: start_from_best(0.25),  1.0,  0.001,   50,  3000, 50_000_000),
+    ('from_best_large_1', lambda: start_from_best(0.35),  1.2,  0.001,   30,  2500, 50_000_000),
+
+    # --- Diverse starts: escape from best-solution basin entirely ---
+    ('d1_symmetric',      lambda: start_d1_symmetric() or start_random_valid(2.8), 1.2, 0.001, 8, 3000, 50_000_000),
+    ('random_valid',      lambda: start_random_valid(2.8), 1.5, 0.001, 5, 3000, 50_000_000),
 ]
 
 
@@ -360,27 +386,41 @@ def worker(worker_id, global_best, result_queue, stop_event):
                 time.sleep(1)
                 continue
             xs, ys, ts = init
-        result, _ = mod.sa_run(xs, ys, ts,
-            n_steps=n_steps, T_start=T_start, T_end=T_end,
-            lam_start=lam_start, lam_end=lam_end,
-            seed=run * 137 * (worker_id+1),
-            label=label)
-
-        if result is None:
-            print(f"  [{label}] no result", flush=True)
-            continue
-
-        rx, ry, rt = result
-        val = mod.official_validate(rx, ry, rt)
+        run_seed = run * 137 * (worker_id + 1)
+        if USE_NUMBA:
+            rx, ry, rt, r_fast = _sa_numba(
+                xs, ys, ts,
+                n_steps=n_steps, T_start=T_start, T_end=T_end,
+                lam_start=lam_start, lam_end=lam_end,
+                seed=run_seed)
+            if rx is None:
+                print(f"  [{label}] no feasible result", flush=True)
+                continue
+            # Official exact validation (Shapely) — only when numba found something
+            val = mod.official_validate(rx, ry, rt)
+        else:
+            result, _ = mod.sa_run(xs, ys, ts,
+                n_steps=n_steps, T_start=T_start, T_end=T_end,
+                lam_start=lam_start, lam_end=lam_end,
+                seed=run_seed, label=label)
+            if result is None:
+                print(f"  [{label}] no result", flush=True)
+                continue
+            rx, ry, rt = result
+            val = mod.official_validate(rx, ry, rt)
+        mode = "numba" if USE_NUMBA else "shapely"
         if val.valid:
-            print(f"  [{label}] VALID: {val.score:.6f} (best: {global_best.value:.6f})", flush=True)
+            print(f"  [{label}|{mode}] VALID: {val.score:.6f} (best: {global_best.value:.6f})", flush=True)
             result_queue.put((val.score, rx.tolist(), ry.tolist(), rt.tolist(), label))
         else:
-            print(f"  [{label}] INVALID", flush=True)
+            print(f"  [{label}|{mode}] INVALID (official)", flush=True)
 
-        # After best-based strategies, refresh with new best each run
-        if 'from_best' in name or 'tight' in name:
-            STRATEGIES[worker_id] = (name, lambda: start_from_best(0.02 if 'tight' in name else 0.20),
+        # After best-based strategies, rebuild the lambda so it re-reads best_solution.json
+        # each run rather than capturing the stale array from startup
+        if 'from_best' in name:
+            noise = (0.01 if 'tight' in name else
+                     0.10 if 'med' in name else 0.30)
+            STRATEGIES[worker_id] = (name, lambda n=noise: start_from_best(n),
                                      T_start, T_end, lam_start, lam_end, n_steps)
 
 
