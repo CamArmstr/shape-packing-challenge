@@ -291,19 +291,18 @@ def start_random_valid(r_max=2.8, seed=None):
 
 STRATEGIES = [
     # (name, builder, T_start, T_end, lam_start, lam_end, n_steps)
+    # 6 workers (down from 9) to cap CPU at ~70% on 16-core machine
     ('from_best_tight',   lambda: start_from_best(0.02),          0.25, 0.0005, 500,    5000,   2000000),
-    ('pairs_break',       lambda: start_pairs(1.04, 0.01, None),  1.2,  0.001,  8,      3000,   2000000),
-    ('boundary_biased',   lambda: start_boundary_biased() or start_random_valid(2.7), 1.5, 0.001, 5, 3000, 2000000),
     ('d1_symmetric',      lambda: start_d1_symmetric() or start_random_valid(2.8),    1.2, 0.001, 8, 3000, 2000000),
-    ('random_loose',      lambda: start_random_valid(3.0),        2.0,  0.001,  5,      3000,   2000000),
     ('pairs_tight',       lambda: start_pairs(1.02, 0.0, None),   0.5,  0.0005, 100,    5000,   2000000),
-    ('random_medium',     lambda: start_random_valid(2.6),        1.5,  0.001,  5,      3000,   2000000),
     ('from_best_large',   lambda: start_from_best(0.20),          1.0,  0.001,  50,     3000,   2000000),
     ('double_lattice',    lambda: start_double_lattice() or start_random_valid(2.8), 1.2, 0.001, 8, 3000, 2000000),
+    ('boundary_biased',   lambda: start_boundary_biased() or start_random_valid(2.7), 1.5, 0.001, 5, 3000, 2000000),
 ]
 
 
 def worker(worker_id, global_best, result_queue, stop_event):
+    os.nice(5)  # yield to higher-priority system tasks
     np.random.seed(worker_id * 1000 + int(time.time()) % 10000)
     random.seed(worker_id * 7919 + int(time.time()) % 10000)
 
@@ -327,8 +326,6 @@ def worker(worker_id, global_best, result_queue, stop_event):
                 time.sleep(1)
                 continue
             xs, ys, ts = init
-
-        xs, ys, ts = init
         result, _ = mod.sa_run(xs, ys, ts,
             n_steps=n_steps, T_start=T_start, T_end=T_end,
             lam_start=lam_start, lam_end=lam_end,
