@@ -56,23 +56,34 @@ def total_overlap(xs, ys, ts, polys):
     return total
 
 
+ARC_PTS_MEC = 16  # arc sample points for fast_mec (was 3 — tripled accuracy)
+_ARC_OFFSETS = np.linspace(-math.pi/2, math.pi/2, ARC_PTS_MEC)
+PTS_PER_SC = ARC_PTS_MEC + 2  # arc + 2 flat endpoints
+
+
 def compute_boundary_pts(xs, ys, ts):
-    """Compute 3 key boundary points per semicircle (arc tip + 2 flat endpoints)."""
-    pts = np.zeros((N * 3, 2))
+    """Sample ARC_PTS_MEC arc points + 2 flat endpoints per semicircle."""
+    pts = np.zeros((N * PTS_PER_SC, 2))
     for i in range(N):
         x, y, t = xs[i], ys[i], ts[i]
-        pts[i*3] = [x + math.cos(t), y + math.sin(t)]
-        pts[i*3+1] = [x + math.cos(t + math.pi/2), y + math.sin(t + math.pi/2)]
-        pts[i*3+2] = [x + math.cos(t - math.pi/2), y + math.sin(t - math.pi/2)]
+        base = i * PTS_PER_SC
+        for k, off in enumerate(_ARC_OFFSETS):
+            a = t + off
+            pts[base + k] = [x + math.cos(a), y + math.sin(a)]
+        pts[base + ARC_PTS_MEC] = [x + math.cos(t + math.pi/2), y + math.sin(t + math.pi/2)]
+        pts[base + ARC_PTS_MEC + 1] = [x + math.cos(t - math.pi/2), y + math.sin(t - math.pi/2)]
     return pts
 
 
 def update_boundary_pts(pts, xs, ys, ts, idx):
     """Update boundary points for a single semicircle."""
     x, y, t = xs[idx], ys[idx], ts[idx]
-    pts[idx*3] = [x + math.cos(t), y + math.sin(t)]
-    pts[idx*3+1] = [x + math.cos(t + math.pi/2), y + math.sin(t + math.pi/2)]
-    pts[idx*3+2] = [x + math.cos(t - math.pi/2), y + math.sin(t - math.pi/2)]
+    base = idx * PTS_PER_SC
+    for k, off in enumerate(_ARC_OFFSETS):
+        a = t + off
+        pts[base + k] = [x + math.cos(a), y + math.sin(a)]
+    pts[base + ARC_PTS_MEC] = [x + math.cos(t + math.pi/2), y + math.sin(t + math.pi/2)]
+    pts[base + ARC_PTS_MEC + 1] = [x + math.cos(t - math.pi/2), y + math.sin(t - math.pi/2)]
 
 
 def fast_mec(pts):
