@@ -31,3 +31,4 @@ Starting best: 3.071975
   [pairs_1]       0/1500000: r=3.5989 ovlp=0.000000 lam=50 best_feas=inf imp=0
   [pairs_1]  100000/1500000: r=3.8410 ovlp=0.001812 lam=68 best_feas=3.5840 imp=2
   [pairs_1]  200000/1500000: r=3.9067 ovlp=0.000628 lam=92 best_feas=3.3970 imp=5
+  [pairs_1]  300000/1500000: r=3.5943 ovlp=0.004724 lam=126 best_feas=3.3922 imp=7

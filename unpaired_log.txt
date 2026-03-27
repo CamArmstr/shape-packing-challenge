@@ -16,3 +16,5 @@ Run 2: random_valid_2
   [random_valid_2]  600000/2000000: r=3.5581 ovlp=0.024060 lam=34 best_feas=3.4877 imp=12
   [random_valid_2]  700000/2000000: r=3.8787 ovlp=0.003291 lam=47 best_feas=3.4226 imp=15
   [random_valid_2]  800000/2000000: r=3.5150 ovlp=0.000118 lam=65 best_feas=3.3226 imp=22
+  [random_valid_2]  900000/2000000: r=3.6258 ovlp=0.001596 lam=89 best_feas=3.2471 imp=34
+  [random_valid_2] 1000000/2000000: r=3.5009 ovlp=0.000110 lam=122 best_feas=3.1957 imp=46
