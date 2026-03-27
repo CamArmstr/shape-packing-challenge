@@ -1,0 +1,13 @@
+Building conjugate-pairs starting geometry...
+Pairs start: valid=True, score=3.4375
+  Plot saved to pairs_start.png
+Saved pairs_start.png
+Centered score: 3.4375
+
+Running pairs-based search...
+Starting best: 3.071975
+
+[pairs] Attempt 1/100: scale=1.141 noise=0.005
+  Initial score: 3.6054
+  [pairs_0]       0/1500000: r=3.5989 ovlp=0.000000 lam=10 best_feas=inf imp=0
+  [pairs_0]  100000/1500000: r=3.9316 ovlp=0.771934 lam=15 best_feas=3.5992 imp=1
