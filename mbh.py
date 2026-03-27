@@ -432,9 +432,13 @@ def run_mbh(r_start=3.07, r_min=2.85, r_step=0.01, rounds_per_R=30,
             actual_R = score_R_fast(rxs, rys, rts)
             logprint(f"  Round {rnd+1:3d} ({kind:12s}): E={E:.3e}, R_fast={actual_R:.5f}")
 
-            # Accept if either: exactly feasible, or very close (let Shapely be final gate)
-            if E < 1e-4 and (is_feasible_exact(rxs, rys, rts, R) or shapely_valid(rxs, rys, rts)):
-                official_R = score_R(rxs, rys, rts)
+            # Shapely is the final ground truth
+            if E < 1e-4:
+                shapely_result = _official_score(rxs, rys, rts) if _official_score else None
+                is_valid = shapely_result is not None and shapely_result.valid
+                official_R = float(shapely_result.score) if (is_valid and shapely_result.score) else float('inf')
+                if not is_valid:
+                    continue  # Shapely says still overlapping, keep trying
                 logprint(f"  ✓ FEASIBLE at R={R:.4f}! Official R={official_R:.6f}")
                 feasible_found = True
                 actual_R = official_R
@@ -459,7 +463,7 @@ def run_mbh(r_start=3.07, r_min=2.85, r_step=0.01, rounds_per_R=30,
                     for n_iter in [300, 500, 1000]:
                         sx, sy, st, sE = lbfgs_refine(sx, sy, st, mid_R, max_iter=n_iter)
                         if sE < 1e-6: break
-                    if sE < 1e-4 and (is_feasible_exact(sx, sy, st, mid_R) or shapely_valid(sx, sy, st)):
+                    if sE < 1e-4 and shapely_valid(sx, sy, st):
                         s_R = score_R(sx, sy, st)
                         logprint(f"    Squeeze R={mid_R:.4f} → feasible (R={s_R:.6f})")
                         if s_R < global_best_R:
