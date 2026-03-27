@@ -464,6 +464,21 @@ def sync_from_disk(global_best):
 
 
 def main():
+    # Warm up Numba JIT before forking — workers inherit compiled functions
+    if USE_NUMBA:
+        import json as _json
+        print("Warming up Numba JIT...", flush=True)
+        try:
+            _raw = _json.load(open(BEST_FILE))
+            _xs = np.array([s['x'] for s in _raw]) + np.random.randn(N)*0.05
+            _ys = np.array([s['y'] for s in _raw]) + np.random.randn(N)*0.05
+            _ts = np.array([s['theta'] for s in _raw]) + np.random.randn(N)*0.05
+            _sa_numba(_xs, _ys, _ts, n_steps=10_000, T_start=0.1, T_end=0.001,
+                      lam_start=500, lam_end=5000, seed=0, shapely_check_interval=5000)
+            print("Numba JIT ready.", flush=True)
+        except Exception as e:
+            print(f"Numba warm-up failed: {e}", flush=True)
+
     _, _, _, initial_best = load_best()
     print(f"Starting best: {initial_best:.6f}")
     print(f"Launching {len(STRATEGIES)} parallel workers")
@@ -521,5 +536,7 @@ def main():
 
 
 if __name__ == '__main__':
-    mp.set_start_method('spawn')
+    # Use 'fork' so worker processes inherit the parent's JIT-compiled Numba
+    # functions. 'spawn' causes Numba cache misses and __mp_main__ errors.
+    mp.set_start_method('fork')
     main()

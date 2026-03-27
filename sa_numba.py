@@ -213,22 +213,111 @@ def sa_run_numba(xs, ys, ts, n_steps, T_start, T_end, lam_start, lam_end, seed):
 
 # ── Python wrapper ───────────────────────────────────────────────────────────
 
-def sa_run_numba_wrapper(xs, ys, ts, n_steps=2000000, T_start=0.25, T_end=0.0005,
-                         lam_start=500.0, lam_end=5000.0, seed=42):
+def _shapely_validate(xs, ys, ts):
+    """Quick Shapely feasibility check. Returns (valid, R) or (False, inf)."""
+    try:
+        import sys, os
+        sys.path.insert(0, os.path.dirname(__file__))
+        from src.semicircle_packing.geometry import Semicircle
+        from src.semicircle_packing.scoring import validate_and_score
+        scs = [Semicircle(float(xs[i]), float(ys[i]), float(ts[i])) for i in range(len(xs))]
+        r = validate_and_score(scs)
+        return r.valid, (r.score if r.valid else float('inf'))
+    except Exception:
+        return False, float('inf')
+
+
+def sa_run_numba_wrapper(xs, ys, ts, n_steps=50_000_000, T_start=0.25, T_end=0.0005,
+                         lam_start=500.0, lam_end=5000.0, seed=42,
+                         shapely_check_interval=1_000_000):
     """
-    Python wrapper around the Numba SA loop.
-    Returns (best_xs, best_ys, best_ts, best_r) or (None, None, None, inf).
+    Chunked SA runner with Shapely feasibility gating.
+
+    Every `shapely_check_interval` steps, if phi declared a new feasible best,
+    we call Shapely to confirm. If Shapely rejects:
+      - we don't save the solution
+      - we jitter the current state to escape the false-feasible basin
+      - we continue running (don't waste the remaining budget)
+
+    This stops the SA from spending 50M steps optimizing a phantom solution.
     """
     xs = np.asarray(xs, dtype=np.float64)
     ys = np.asarray(ys, dtype=np.float64)
     ts = np.asarray(ts, dtype=np.float64)
 
-    bx, by, bt, br, found = sa_run_numba(
-        xs, ys, ts, n_steps, T_start, T_end, lam_start, lam_end, seed
-    )
+    n_chunks = max(1, n_steps // shapely_check_interval)
+    chunk_size = n_steps // n_chunks
 
-    if found:
-        return bx, by, bt, br
+    # Track across chunks
+    best_xs, best_ys, best_ts = xs.copy(), ys.copy(), ts.copy()
+    best_r = float('inf')
+    shapely_confirmed_r = float('inf')
+
+    # Schedule: each chunk gets a slice of the full T/lam schedule
+    cur_xs, cur_ys, cur_ts = xs.copy(), ys.copy(), ts.copy()
+    phi_best_r = float('inf')   # last best R that phi declared feasible
+    phi_best_xs = xs.copy()
+    phi_best_ys = ys.copy()
+    phi_best_ts = ts.copy()
+    last_shapely_checked_r = float('inf')
+    rng = np.random.default_rng(seed + 9999)
+
+    for chunk_idx in range(n_chunks):
+        frac_start = chunk_idx / n_chunks
+        frac_end   = (chunk_idx + 1) / n_chunks
+
+        T_s  = T_start  * (T_end  / T_start)  ** frac_start
+        T_e  = T_start  * (T_end  / T_start)  ** frac_end
+        lam_s = lam_start * (lam_end / lam_start) ** frac_start
+        lam_e = lam_start * (lam_end / lam_start) ** frac_end
+
+        chunk_seed = seed * 1000 + chunk_idx
+
+        bx, by, bt, br, found = sa_run_numba(
+            cur_xs, cur_ys, cur_ts,
+            chunk_size, T_s, T_e, lam_s, lam_e, chunk_seed
+        )
+
+        # Carry state forward: use the final accepted state (which is cur_xs after
+        # the Numba run — Numba modifies in-place on accept). We restart from best
+        # feasible if phi found one, otherwise continue from wherever we ended.
+        if found and br < phi_best_r:
+            phi_best_r = br
+            phi_best_xs, phi_best_ys, phi_best_ts = bx.copy(), by.copy(), bt.copy()
+
+        # Shapely gate: check whenever phi found a new feasible better than
+        # last Shapely-confirmed R
+        if found and phi_best_r < last_shapely_checked_r - 1e-6:
+            last_shapely_checked_r = phi_best_r
+            valid, shapely_r = _shapely_validate(phi_best_xs, phi_best_ys, phi_best_ts)
+            if valid and shapely_r < best_r:
+                best_r = shapely_r
+                best_xs = phi_best_xs.copy()
+                best_ys = phi_best_ys.copy()
+                best_ts = phi_best_ts.copy()
+                # Continue SA from this confirmed-good state
+                cur_xs, cur_ys, cur_ts = phi_best_xs.copy(), phi_best_ys.copy(), phi_best_ts.copy()
+            elif not valid:
+                # Phi lied — jitter away from this false-feasible basin and continue
+                cur_xs = phi_best_xs + rng.standard_normal(len(phi_best_xs)) * 0.15
+                cur_ys = phi_best_ys + rng.standard_normal(len(phi_best_ys)) * 0.15
+                cur_ts = phi_best_ts + rng.standard_normal(len(phi_best_ts)) * 0.3
+                # Reset phi tracking so we check again when it finds next candidate
+                phi_best_r = float('inf')
+                last_shapely_checked_r = float('inf')
+            else:
+                # Valid but not better than our best — continue from phi's best
+                cur_xs, cur_ys, cur_ts = phi_best_xs.copy(), phi_best_ys.copy(), phi_best_ts.copy()
+        elif found:
+            cur_xs, cur_ys, cur_ts = bx.copy(), by.copy(), bt.copy()
+        # else: no feasible found this chunk, continue from wherever we ended
+        # (bx/by/bt from numba still hold the last accepted state even if not feasible)
+        # Use bx as the continuation state
+        else:
+            cur_xs, cur_ys, cur_ts = bx.copy(), by.copy(), bt.copy()
+
+    if best_r < float('inf'):
+        return best_xs, best_ys, best_ts, best_r
     else:
         return None, None, None, float('inf')
 
