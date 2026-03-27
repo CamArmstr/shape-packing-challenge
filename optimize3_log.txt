@@ -1,0 +1,16 @@
+============================================================
+Semicircle Packing Optimizer v3 (SA)
+============================================================
+
+Phase 1: Quick screen (100k steps each)
+
+  [grid]
+  [grid] VALID score=3.500000 obj=3.364805 (63.1s)
+
+  [hex7]
+  [hex7] INVALID mec=3.0095 ovlp=0.000000 errors=2 (63.2s)
+
+  [concentric]
+  [concentric] INVALID mec=3.6684 ovlp=0.000000 errors=18 (64.0s)
+
+  [flower]

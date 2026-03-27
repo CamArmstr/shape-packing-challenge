@@ -1,0 +1,619 @@
+Starting best: 3.071975
+Launching 6 parallel workers on 16 cores
+  [worker4_from_best]       0/2000000: r=3.0989 ovlp=0.498369 lam=50 best_feas=inf imp=0
+  [worker0_from_best]       0/2000000: r=3.0993 ovlp=0.778429 lam=50 best_feas=inf imp=0
+  [worker1_from_best]       0/2000000: r=3.1178 ovlp=0.485289 lam=50 best_feas=inf imp=0
+  [worker2_from_best]       0/2000000: r=3.0457 ovlp=0.647279 lam=50 best_feas=inf imp=0
+  [worker5_from_best]       0/2000000: r=3.0904 ovlp=0.346838 lam=50 best_feas=inf imp=0
+  [worker3_from_best]       0/2000000: r=3.0984 ovlp=0.607864 lam=50 best_feas=inf imp=0
+[5s] Best=3.071975 Workers=6/6
+[10s] Best=3.071975 Workers=6/6
+[15s] Best=3.071975 Workers=6/6
+[20s] Best=3.071975 Workers=6/6
+[25s] Best=3.071975 Workers=6/6
+[30s] Best=3.071975 Workers=6/6
+[35s] Best=3.071975 Workers=6/6
+[40s] Best=3.071975 Workers=6/6
+[45s] Best=3.071975 Workers=6/6
+[50s] Best=3.071975 Workers=6/6
+[55s] Best=3.071975 Workers=6/6
+  [worker4_from_best]  100000/2000000: r=4.9170 ovlp=0.010438 lam=61 best_feas=3.7223 imp=16
+  [worker1_from_best]  100000/2000000: r=4.7330 ovlp=0.019849 lam=61 best_feas=3.9154 imp=11
+  [worker2_from_best]  100000/2000000: r=4.5575 ovlp=0.030406 lam=61 best_feas=3.7587 imp=7
+  [worker5_from_best]  100000/2000000: r=4.4852 ovlp=0.015691 lam=61 best_feas=3.8716 imp=17
+  [worker3_from_best]  100000/2000000: r=3.9587 ovlp=0.052838 lam=61 best_feas=3.7444 imp=2
+  [worker0_from_best]  100000/2000000: r=4.4305 ovlp=0.010537 lam=61 best_feas=3.8474 imp=17
+[60s] Best=3.071975 Workers=6/6
+[65s] Best=3.071975 Workers=6/6
+[70s] Best=3.071975 Workers=6/6
+[75s] Best=3.071975 Workers=6/6
+[80s] Best=3.071975 Workers=6/6
+[85s] Best=3.071975 Workers=6/6
+[90s] Best=3.071975 Workers=6/6
+[95s] Best=3.071975 Workers=6/6
+[100s] Best=3.071975 Workers=6/6
+[105s] Best=3.071975 Workers=6/6
+  [worker2_from_best]  200000/2000000: r=4.0245 ovlp=0.005262 lam=75 best_feas=3.7587 imp=7
+[110s] Best=3.071975 Workers=6/6
+  [worker3_from_best]  200000/2000000: r=3.7779 ovlp=0.019069 lam=75 best_feas=3.6743 imp=5
+  [worker4_from_best]  200000/2000000: r=4.2616 ovlp=0.012410 lam=75 best_feas=3.7223 imp=16
+  [worker1_from_best]  200000/2000000: r=4.2079 ovlp=0.005544 lam=75 best_feas=3.6828 imp=13
+  [worker5_from_best]  200000/2000000: r=4.4939 ovlp=0.020243 lam=75 best_feas=3.5655 imp=26
+  [worker0_from_best]  200000/2000000: r=3.7673 ovlp=0.019296 lam=75 best_feas=3.8175 imp=20
+[115s] Best=3.071975 Workers=6/6
+[120s] Best=3.071975 Workers=6/6
+[125s] Best=3.071975 Workers=6/6
+[130s] Best=3.071975 Workers=6/6
+[135s] Best=3.071975 Workers=6/6
+[140s] Best=3.071975 Workers=6/6
+[145s] Best=3.071975 Workers=6/6
+[150s] Best=3.071975 Workers=6/6
+[155s] Best=3.071975 Workers=6/6
+[160s] Best=3.071975 Workers=6/6
+  [worker2_from_best]  300000/2000000: r=4.2570 ovlp=0.003856 lam=92 best_feas=3.6672 imp=10
+  [worker4_from_best]  300000/2000000: r=4.1954 ovlp=0.004759 lam=92 best_feas=3.4908 imp=23
+[165s] Best=3.071975 Workers=6/6
+  [worker1_from_best]  300000/2000000: r=4.2537 ovlp=0.010082 lam=92 best_feas=3.5998 imp=14
+  [worker3_from_best]  300000/2000000: r=3.9465 ovlp=0.000258 lam=92 best_feas=3.5463 imp=13
+  [worker5_from_best]  300000/2000000: r=3.6813 ovlp=0.013000 lam=92 best_feas=3.5655 imp=26
+  [worker0_from_best]  300000/2000000: r=3.9795 ovlp=0.001709 lam=92 best_feas=3.6241 imp=28
+[170s] Best=3.071975 Workers=6/6
+[175s] Best=3.071975 Workers=6/6
+[180s] Best=3.071975 Workers=6/6
+[185s] Best=3.071975 Workers=6/6
+[190s] Best=3.071975 Workers=6/6
+[195s] Best=3.071975 Workers=6/6
+[200s] Best=3.071975 Workers=6/6
+[205s] Best=3.071975 Workers=6/6
+[210s] Best=3.071975 Workers=6/6
+[215s] Best=3.071975 Workers=6/6
+  [worker2_from_best]  400000/2000000: r=3.9875 ovlp=0.000588 lam=113 best_feas=3.5017 imp=19
+[220s] Best=3.071975 Workers=6/6
+  [worker4_from_best]  400000/2000000: r=4.1562 ovlp=0.001823 lam=113 best_feas=3.4908 imp=23
+  [worker1_from_best]  400000/2000000: r=4.0206 ovlp=0.005824 lam=113 best_feas=3.5035 imp=15
+  [worker3_from_best]  400000/2000000: r=3.7556 ovlp=0.000897 lam=113 best_feas=3.4179 imp=17
+  [worker0_from_best]  400000/2000000: r=3.6808 ovlp=0.004023 lam=113 best_feas=3.5641 imp=31
+  [worker5_from_best]  400000/2000000: r=3.7144 ovlp=0.001003 lam=113 best_feas=3.5506 imp=28
+[225s] Best=3.071975 Workers=6/6
+[230s] Best=3.071975 Workers=6/6
+[235s] Best=3.071975 Workers=6/6
+[241s] Best=3.071975 Workers=6/6
+[246s] Best=3.071975 Workers=6/6
+[251s] Best=3.071975 Workers=6/6
+[256s] Best=3.071975 Workers=6/6
+[261s] Best=3.071975 Workers=6/6
+[266s] Best=3.071975 Workers=6/6
+[271s] Best=3.071975 Workers=6/6
+[276s] Best=3.071975 Workers=6/6
+  [worker4_from_best]  500000/2000000: r=4.0000 ovlp=0.002316 lam=139 best_feas=3.4237 imp=25
+  [worker2_from_best]  500000/2000000: r=4.2690 ovlp=0.000565 lam=139 best_feas=3.4551 imp=26
+  [worker1_from_best]  500000/2000000: r=3.9283 ovlp=-0.000000 lam=139 best_feas=3.3775 imp=21
+  [worker3_from_best]  500000/2000000: r=3.8668 ovlp=0.000937 lam=139 best_feas=3.4179 imp=17
+  [worker0_from_best]  500000/2000000: r=3.9743 ovlp=0.000241 lam=139 best_feas=3.4184 imp=38
+  [worker5_from_best]  500000/2000000: r=3.9262 ovlp=0.000062 lam=139 best_feas=3.4249 imp=32
+[281s] Best=3.071975 Workers=6/6
+[286s] Best=3.071975 Workers=6/6
+[291s] Best=3.071975 Workers=6/6
+[296s] Best=3.071975 Workers=6/6
+[301s] Best=3.071975 Workers=6/6
+[306s] Best=3.071975 Workers=6/6
+[311s] Best=3.071975 Workers=6/6
+[316s] Best=3.071975 Workers=6/6
+[321s] Best=3.071975 Workers=6/6
+[326s] Best=3.071975 Workers=6/6
+[331s] Best=3.071975 Workers=6/6
+  [worker2_from_best]  600000/2000000: r=3.7836 ovlp=0.000035 lam=171 best_feas=3.3900 imp=30
+  [worker4_from_best]  600000/2000000: r=3.5988 ovlp=0.000315 lam=171 best_feas=3.2753 imp=34
+[336s] Best=3.071975 Workers=6/6
+  [worker1_from_best]  600000/2000000: r=3.8465 ovlp=0.000493 lam=171 best_feas=3.3775 imp=21
+  [worker0_from_best]  600000/2000000: r=3.5220 ovlp=0.000218 lam=171 best_feas=3.3948 imp=39
+  [worker5_from_best]  600000/2000000: r=3.6706 ovlp=-0.000000 lam=171 best_feas=3.3009 imp=38
+  [worker3_from_best]  600000/2000000: r=3.7701 ovlp=-0.000000 lam=171 best_feas=3.2755 imp=28
+[341s] Best=3.071975 Workers=6/6
+[346s] Best=3.071975 Workers=6/6
+[351s] Best=3.071975 Workers=6/6
+[356s] Best=3.071975 Workers=6/6
+[361s] Best=3.071975 Workers=6/6
+[366s] Best=3.071975 Workers=6/6
+[371s] Best=3.071975 Workers=6/6
+[376s] Best=3.071975 Workers=6/6
+[381s] Best=3.071975 Workers=6/6
+[386s] Best=3.071975 Workers=6/6
+[391s] Best=3.071975 Workers=6/6
+  [worker2_from_best]  700000/2000000: r=3.4133 ovlp=-0.000000 lam=210 best_feas=3.2713 imp=48
+  [worker4_from_best]  700000/2000000: r=3.6516 ovlp=0.000000 lam=210 best_feas=3.2753 imp=34
+  [worker0_from_best]  700000/2000000: r=3.5922 ovlp=-0.000000 lam=210 best_feas=3.2168 imp=49
+  [worker1_from_best]  700000/2000000: r=3.5443 ovlp=-0.000000 lam=210 best_feas=3.3043 imp=28
+  [worker5_from_best]  700000/2000000: r=3.3756 ovlp=0.000822 lam=210 best_feas=3.2647 imp=41
+  [worker3_from_best]  700000/2000000: r=3.6677 ovlp=-0.000000 lam=210 best_feas=3.2755 imp=28
+[396s] Best=3.071975 Workers=6/6
+[401s] Best=3.071975 Workers=6/6
+[406s] Best=3.071975 Workers=6/6
+[411s] Best=3.071975 Workers=6/6
+[416s] Best=3.071975 Workers=6/6
+[421s] Best=3.071975 Workers=6/6
+[426s] Best=3.071975 Workers=6/6
+[431s] Best=3.071975 Workers=6/6
+[436s] Best=3.071975 Workers=6/6
+[441s] Best=3.071975 Workers=6/6
+[446s] Best=3.071975 Workers=6/6
+[451s] Best=3.071975 Workers=6/6
+  [worker2_from_best]  800000/2000000: r=3.5036 ovlp=0.000008 lam=257 best_feas=3.2713 imp=48
+  [worker4_from_best]  800000/2000000: r=3.3014 ovlp=0.000272 lam=257 best_feas=3.2753 imp=34
+  [worker1_from_best]  800000/2000000: r=3.2887 ovlp=0.000456 lam=257 best_feas=3.2429 imp=43
+  [worker0_from_best]  800000/2000000: r=3.3855 ovlp=-0.000000 lam=257 best_feas=3.1292 imp=53
+  [worker3_from_best]  800000/2000000: r=3.5339 ovlp=0.000020 lam=257 best_feas=3.2755 imp=28
+  [worker5_from_best]  800000/2000000: r=3.2500 ovlp=0.000018 lam=257 best_feas=3.2450 imp=42
+[456s] Best=3.071975 Workers=6/6
+[461s] Best=3.071975 Workers=6/6
+[466s] Best=3.071975 Workers=6/6
+[471s] Best=3.071975 Workers=6/6
+[476s] Best=3.071975 Workers=6/6
+[481s] Best=3.071975 Workers=6/6
+[486s] Best=3.071975 Workers=6/6
+[491s] Best=3.071975 Workers=6/6
+[496s] Best=3.071975 Workers=6/6
+[501s] Best=3.071975 Workers=6/6
+[506s] Best=3.071975 Workers=6/6
+[511s] Best=3.071975 Workers=6/6
+  [worker2_from_best]  900000/2000000: r=3.4267 ovlp=-0.000000 lam=316 best_feas=3.1962 imp=54
+  [worker4_from_best]  900000/2000000: r=3.3991 ovlp=0.001350 lam=316 best_feas=3.2016 imp=43
+  [worker1_from_best]  900000/2000000: r=3.3952 ovlp=0.000404 lam=316 best_feas=3.1797 imp=54
+  [worker0_from_best]  900000/2000000: r=3.3325 ovlp=-0.000000 lam=316 best_feas=3.1292 imp=53
+  [worker3_from_best]  900000/2000000: r=3.4559 ovlp=-0.000000 lam=316 best_feas=3.1641 imp=53
+  [worker5_from_best]  900000/2000000: r=3.3291 ovlp=0.000203 lam=316 best_feas=3.1879 imp=55
+[516s] Best=3.071975 Workers=6/6
+[521s] Best=3.071975 Workers=6/6
+[526s] Best=3.071975 Workers=6/6
+[531s] Best=3.071975 Workers=6/6
+[536s] Best=3.071975 Workers=6/6
+[541s] Best=3.071975 Workers=6/6
+[546s] Best=3.071975 Workers=6/6
+[551s] Best=3.071975 Workers=6/6
+[556s] Best=3.071975 Workers=6/6
+[561s] Best=3.071975 Workers=6/6
+[566s] Best=3.071975 Workers=6/6
+[571s] Best=3.071975 Workers=6/6
+  [worker4_from_best] 1000000/2000000: r=3.3575 ovlp=0.000000 lam=387 best_feas=3.1818 imp=51
+  [worker2_from_best] 1000000/2000000: r=3.3243 ovlp=-0.000000 lam=387 best_feas=3.1171 imp=63
+  [worker0_from_best] 1000000/2000000: r=3.3555 ovlp=-0.000000 lam=387 best_feas=3.1292 imp=53
+  [worker3_from_best] 1000000/2000000: r=3.3053 ovlp=0.000011 lam=387 best_feas=3.1615 imp=55
+  [worker1_from_best] 1000000/2000000: r=3.2811 ovlp=-0.000000 lam=387 best_feas=3.1459 imp=65
+[576s] Best=3.071975 Workers=6/6
+  [worker5_from_best] 1000000/2000000: r=3.1678 ovlp=-0.000000 lam=387 best_feas=3.1516 imp=60
+[581s] Best=3.071975 Workers=6/6
+[586s] Best=3.071975 Workers=6/6
+[591s] Best=3.071975 Workers=6/6
+[596s] Best=3.071975 Workers=6/6
+[601s] Best=3.071975 Workers=6/6
+[606s] Best=3.071975 Workers=6/6
+[611s] Best=3.071975 Workers=6/6
+[616s] Best=3.071975 Workers=6/6
+[621s] Best=3.071975 Workers=6/6
+[626s] Best=3.071975 Workers=6/6
+[631s] Best=3.071975 Workers=6/6
+  [worker4_from_best] 1100000/2000000: r=3.2626 ovlp=0.000001 lam=475 best_feas=3.1235 imp=65
+  [worker0_from_best] 1100000/2000000: r=3.1935 ovlp=-0.000000 lam=475 best_feas=3.0980 imp=60
+  [worker2_from_best] 1100000/2000000: r=3.2071 ovlp=0.000028 lam=475 best_feas=3.1097 imp=64
+[636s] Best=3.071975 Workers=6/6
+  [worker3_from_best] 1100000/2000000: r=3.1654 ovlp=-0.000000 lam=475 best_feas=3.1137 imp=65
+  [worker1_from_best] 1100000/2000000: r=3.2130 ovlp=-0.000000 lam=475 best_feas=3.0911 imp=72
+  [worker5_from_best] 1100000/2000000: r=3.2913 ovlp=0.000022 lam=475 best_feas=3.1305 imp=64
+[641s] Best=3.071975 Workers=6/6
+[646s] Best=3.071975 Workers=6/6
+[651s] Best=3.071975 Workers=6/6
+[656s] Best=3.071975 Workers=6/6
+[661s] Best=3.071975 Workers=6/6
+[666s] Best=3.071975 Workers=6/6
+[671s] Best=3.071975 Workers=6/6
+[676s] Best=3.071975 Workers=6/6
+[681s] Best=3.071975 Workers=6/6
+[686s] Best=3.071975 Workers=6/6
+[691s] Best=3.071975 Workers=6/6
+[697s] Best=3.071975 Workers=6/6
+  [worker0_from_best] 1200000/2000000: r=3.1448 ovlp=-0.000000 lam=583 best_feas=3.0900 imp=62
+  [worker4_from_best] 1200000/2000000: r=3.2052 ovlp=0.000000 lam=583 best_feas=3.0931 imp=73
+  [worker2_from_best] 1200000/2000000: r=3.1966 ovlp=0.000016 lam=583 best_feas=3.1097 imp=64
+  [worker1_from_best] 1200000/2000000: r=3.2318 ovlp=0.000018 lam=583 best_feas=3.0911 imp=72
+  [worker3_from_best] 1200000/2000000: r=3.1212 ovlp=0.000033 lam=583 best_feas=3.0762 imp=70
+[702s] Best=3.071975 Workers=6/6
+  [worker5_from_best] 1200000/2000000: r=3.1828 ovlp=0.000013 lam=583 best_feas=3.0720 imp=79
+[707s] Best=3.071975 Workers=6/6
+[712s] Best=3.071975 Workers=6/6
+[717s] Best=3.071975 Workers=6/6
+[722s] Best=3.071975 Workers=6/6
+[727s] Best=3.071975 Workers=6/6
+[732s] Best=3.071975 Workers=6/6
+[737s] Best=3.071975 Workers=6/6
+[742s] Best=3.071975 Workers=6/6
+[747s] Best=3.071975 Workers=6/6
+[752s] Best=3.071975 Workers=6/6
+[757s] Best=3.071975 Workers=6/6
+  [worker0_from_best] 1300000/2000000: r=3.1549 ovlp=0.000072 lam=716 best_feas=3.0794 imp=63
+[762s] Best=3.071975 Workers=6/6
+  [worker2_from_best] 1300000/2000000: r=3.1030 ovlp=0.000008 lam=716 best_feas=3.0720 imp=75
+  [worker4_from_best] 1300000/2000000: r=3.0944 ovlp=0.000004 lam=716 best_feas=3.0773 imp=85
+  [worker1_from_best] 1300000/2000000: r=3.1530 ovlp=0.000013 lam=716 best_feas=3.0819 imp=75
+  [worker5_from_best] 1300000/2000000: r=3.1443 ovlp=0.000006 lam=716 best_feas=3.0661 imp=80
+  [worker3_from_best] 1300000/2000000: r=3.1342 ovlp=-0.000000 lam=716 best_feas=3.0762 imp=70
+[767s] Best=3.071975 Workers=6/6
+[772s] Best=3.071975 Workers=6/6
+[777s] Best=3.071975 Workers=6/6
+[782s] Best=3.071975 Workers=6/6
+[787s] Best=3.071975 Workers=6/6
+[792s] Best=3.071975 Workers=6/6
+[797s] Best=3.071975 Workers=6/6
+[802s] Best=3.071975 Workers=6/6
+[807s] Best=3.071975 Workers=6/6
+[812s] Best=3.071975 Workers=6/6
+[817s] Best=3.071975 Workers=6/6
+[822s] Best=3.071975 Workers=6/6
+  [worker0_from_best] 1400000/2000000: r=3.1917 ovlp=-0.000000 lam=878 best_feas=3.0654 imp=66
+  [worker2_from_best] 1400000/2000000: r=3.1292 ovlp=0.000000 lam=878 best_feas=3.0720 imp=75
+  [worker4_from_best] 1400000/2000000: r=3.0756 ovlp=0.000000 lam=878 best_feas=3.0704 imp=90
+[827s] Best=3.071975 Workers=6/6
+  [worker1_from_best] 1400000/2000000: r=3.1217 ovlp=-0.000000 lam=878 best_feas=3.0722 imp=83
+  [worker5_from_best] 1400000/2000000: r=3.1269 ovlp=-0.000000 lam=878 best_feas=3.0661 imp=80
+  [worker3_from_best] 1400000/2000000: r=3.0947 ovlp=-0.000000 lam=878 best_feas=3.0762 imp=70
+[832s] Best=3.071975 Workers=6/6
+[837s] Best=3.071975 Workers=6/6
+[842s] Best=3.071975 Workers=6/6
+[847s] Best=3.071975 Workers=6/6
+[852s] Best=3.071975 Workers=6/6
+[857s] Best=3.071975 Workers=6/6
+[862s] Best=3.071975 Workers=6/6
+[867s] Best=3.071975 Workers=6/6
+[872s] Best=3.071975 Workers=6/6
+[877s] Best=3.071975 Workers=6/6
+[882s] Best=3.071975 Workers=6/6
+[887s] Best=3.071975 Workers=6/6
+  [worker0_from_best] 1500000/2000000: r=3.0668 ovlp=-0.000000 lam=1078 best_feas=3.0499 imp=75
+  [worker2_from_best] 1500000/2000000: r=3.1364 ovlp=-0.000000 lam=1078 best_feas=3.0672 imp=85
+  [worker4_from_best] 1500000/2000000: r=3.0555 ovlp=0.000000 lam=1078 best_feas=3.0555 imp=98
+  [worker1_from_best] 1500000/2000000: r=3.0847 ovlp=-0.000000 lam=1078 best_feas=3.0452 imp=124
+[892s] Best=3.071975 Workers=6/6
+  [worker5_from_best] 1500000/2000000: r=3.0770 ovlp=-0.000000 lam=1078 best_feas=3.0661 imp=80
+  [worker3_from_best] 1500000/2000000: r=3.1273 ovlp=-0.000000 lam=1078 best_feas=3.0696 imp=72
+[897s] Best=3.071975 Workers=6/6
+[902s] Best=3.071975 Workers=6/6
+[907s] Best=3.071975 Workers=6/6
+[912s] Best=3.071975 Workers=6/6
+[917s] Best=3.071975 Workers=6/6
+[922s] Best=3.071975 Workers=6/6
+[927s] Best=3.071975 Workers=6/6
+[932s] Best=3.071975 Workers=6/6
+[937s] Best=3.071975 Workers=6/6
+[942s] Best=3.071975 Workers=6/6
+[947s] Best=3.071975 Workers=6/6
+[952s] Best=3.071975 Workers=6/6
+  [worker0_from_best] 1600000/2000000: r=3.0711 ovlp=-0.000000 lam=1323 best_feas=3.0327 imp=89
+  [worker4_from_best] 1600000/2000000: r=3.0643 ovlp=0.000000 lam=1323 best_feas=3.0455 imp=113
+  [worker2_from_best] 1600000/2000000: r=3.0817 ovlp=-0.000000 lam=1323 best_feas=3.0545 imp=95
+  [worker1_from_best] 1600000/2000000: r=3.0827 ovlp=-0.000000 lam=1323 best_feas=3.0452 imp=124
+[957s] Best=3.071975 Workers=6/6
+  [worker5_from_best] 1600000/2000000: r=3.0953 ovlp=-0.000000 lam=1323 best_feas=3.0406 imp=107
+  [worker3_from_best] 1600000/2000000: r=3.0750 ovlp=-0.000000 lam=1323 best_feas=3.0450 imp=103
+[962s] Best=3.071975 Workers=6/6
+[967s] Best=3.071975 Workers=6/6
+[972s] Best=3.071975 Workers=6/6
+[977s] Best=3.071975 Workers=6/6
+[982s] Best=3.071975 Workers=6/6
+[987s] Best=3.071975 Workers=6/6
+[992s] Best=3.071975 Workers=6/6
+[997s] Best=3.071975 Workers=6/6
+[1002s] Best=3.071975 Workers=6/6
+[1007s] Best=3.071975 Workers=6/6
+[1012s] Best=3.071975 Workers=6/6
+[1017s] Best=3.071975 Workers=6/6
+  [worker0_from_best] 1700000/2000000: r=3.1022 ovlp=-0.000000 lam=1623 best_feas=3.0327 imp=89
+  [worker4_from_best] 1700000/2000000: r=3.0641 ovlp=0.000003 lam=1623 best_feas=3.0349 imp=129
+  [worker2_from_best] 1700000/2000000: r=3.0565 ovlp=-0.000000 lam=1623 best_feas=3.0396 imp=110
+  [worker1_from_best] 1700000/2000000: r=3.0625 ovlp=0.000000 lam=1623 best_feas=3.0274 imp=141
+[1022s] Best=3.071975 Workers=6/6
+  [worker5_from_best] 1700000/2000000: r=3.0774 ovlp=-0.000000 lam=1623 best_feas=3.0406 imp=107
+  [worker3_from_best] 1700000/2000000: r=3.0511 ovlp=-0.000000 lam=1623 best_feas=3.0450 imp=103
+[1027s] Best=3.071975 Workers=6/6
+[1032s] Best=3.071975 Workers=6/6
+[1037s] Best=3.071975 Workers=6/6
+[1042s] Best=3.071975 Workers=6/6
+[1047s] Best=3.071975 Workers=6/6
+[1052s] Best=3.071975 Workers=6/6
+[1057s] Best=3.071975 Workers=6/6
+[1062s] Best=3.071975 Workers=6/6
+[1067s] Best=3.071975 Workers=6/6
+[1072s] Best=3.071975 Workers=6/6
+[1077s] Best=3.071975 Workers=6/6
+[1082s] Best=3.071975 Workers=6/6
+  [worker4_from_best] 1800000/2000000: r=3.0455 ovlp=0.000000 lam=1992 best_feas=3.0282 imp=147
+  [worker0_from_best] 1800000/2000000: r=3.0386 ovlp=-0.000000 lam=1992 best_feas=3.0319 imp=94
+  [worker1_from_best] 1800000/2000000: r=3.0475 ovlp=-0.000000 lam=1992 best_feas=3.0274 imp=141
+  [worker2_from_best] 1800000/2000000: r=3.0429 ovlp=-0.000000 lam=1992 best_feas=3.0370 imp=119
+[1087s] Best=3.071975 Workers=6/6
+  [worker5_from_best] 1800000/2000000: r=3.0386 ovlp=0.000001 lam=1992 best_feas=3.0256 imp=128
+  [worker3_from_best] 1800000/2000000: r=3.0337 ovlp=-0.000000 lam=1992 best_feas=3.0268 imp=131
+[1092s] Best=3.071975 Workers=6/6
+[1097s] Best=3.071975 Workers=6/6
+[1102s] Best=3.071975 Workers=6/6
+[1107s] Best=3.071975 Workers=6/6
+[1112s] Best=3.071975 Workers=6/6
+[1117s] Best=3.071975 Workers=6/6
+[1122s] Best=3.071975 Workers=6/6
+[1127s] Best=3.071975 Workers=6/6
+[1132s] Best=3.071975 Workers=6/6
+[1138s] Best=3.071975 Workers=6/6
+[1143s] Best=3.071975 Workers=6/6
+[1148s] Best=3.071975 Workers=6/6
+  [worker4_from_best] 1900000/2000000: r=3.0171 ovlp=0.000000 lam=2445 best_feas=3.0147 imp=199
+  [worker1_from_best] 1900000/2000000: r=3.0480 ovlp=0.000000 lam=2445 best_feas=3.0274 imp=141
+  [worker2_from_best] 1900000/2000000: r=3.0259 ovlp=-0.000000 lam=2445 best_feas=3.0251 imp=157
+  [worker5_from_best] 1900000/2000000: r=3.0214 ovlp=-0.000000 lam=2445 best_feas=3.0210 imp=141
+  [worker0_from_best] 1900000/2000000: r=3.0256 ovlp=-0.000000 lam=2445 best_feas=3.0245 imp=158
+[1153s] Best=3.071975 Workers=6/6
+  [worker3_from_best] 1900000/2000000: r=3.0222 ovlp=-0.000000 lam=2445 best_feas=3.0210 imp=171
+[1158s] Best=3.071975 Workers=6/6
+[1163s] Best=3.071975 Workers=6/6
+[1168s] Best=3.071975 Workers=6/6
+[1173s] Best=3.071975 Workers=6/6
+[1178s] Best=3.071975 Workers=6/6
+[1183s] Best=3.071975 Workers=6/6
+[1188s] Best=3.071975 Workers=6/6
+[1193s] Best=3.071975 Workers=6/6
+[1198s] Best=3.071975 Workers=6/6
+[1203s] Best=3.071975 Workers=6/6
+[1208s] Best=3.071975 Workers=6/6
+  [worker4_ring_3.5]       0/2000000: r=3.7679 ovlp=4.680981 lam=50 best_feas=inf imp=0
+[1213s] Best=3.071975 Workers=6/6
+  [Worker 1] Found: 3.145081
+  [worker1_ring_3.5]       0/2000000: r=3.6587 ovlp=4.728577 lam=50 best_feas=inf imp=0
+  [worker2_ring_3.5]       0/2000000: r=3.6598 ovlp=4.870234 lam=50 best_feas=inf imp=0
+[1218s] Best=3.071975 Workers=6/6
+  [Worker 5] Found: 3.122553
+  [worker5_ring_3.5]       0/2000000: r=3.6615 ovlp=4.822563 lam=50 best_feas=inf imp=0
+  [Worker 0] Found: 3.141507
+  [worker0_ring_3.5]       0/2000000: r=3.6774 ovlp=4.857784 lam=50 best_feas=inf imp=0
+  [Worker 3] Found: 3.124298
+  [worker3_ring_3.5]       0/2000000: r=3.6585 ovlp=4.895967 lam=50 best_feas=inf imp=0
+[1223s] Best=3.071975 Workers=6/6
+[1228s] Best=3.071975 Workers=6/6
+[1233s] Best=3.071975 Workers=6/6
+[1238s] Best=3.071975 Workers=6/6
+[1243s] Best=3.071975 Workers=6/6
+[1248s] Best=3.071975 Workers=6/6
+[1253s] Best=3.071975 Workers=6/6
+[1258s] Best=3.071975 Workers=6/6
+[1263s] Best=3.071975 Workers=6/6
+  [worker4_ring_3.5]  100000/2000000: r=4.0001 ovlp=0.253546 lam=61 best_feas=4.9412 imp=11
+[1268s] Best=3.071975 Workers=6/6
+  [worker2_ring_3.5]  100000/2000000: r=3.9926 ovlp=0.286575 lam=61 best_feas=4.5734 imp=4
+  [worker1_ring_3.5]  100000/2000000: r=5.0755 ovlp=0.230096 lam=61 best_feas=4.9445 imp=4
+[1273s] Best=3.071975 Workers=6/6
+  [worker5_ring_3.5]  100000/2000000: r=3.9639 ovlp=0.055083 lam=61 best_feas=4.3439 imp=7
+  [worker0_ring_3.5]  100000/2000000: r=4.8455 ovlp=0.160935 lam=61 best_feas=4.4622 imp=4
+  [worker3_ring_3.5]  100000/2000000: r=4.5527 ovlp=0.058391 lam=61 best_feas=4.1750 imp=11
+[1278s] Best=3.071975 Workers=6/6
+[1283s] Best=3.071975 Workers=6/6
+[1288s] Best=3.071975 Workers=6/6
+[1293s] Best=3.071975 Workers=6/6
+[1298s] Best=3.071975 Workers=6/6
+[1303s] Best=3.071975 Workers=6/6
+[1308s] Best=3.071975 Workers=6/6
+[1313s] Best=3.071975 Workers=6/6
+[1318s] Best=3.071975 Workers=6/6
+[1323s] Best=3.071975 Workers=6/6
+  [worker4_ring_3.5]  200000/2000000: r=4.5085 ovlp=0.066229 lam=75 best_feas=3.8425 imp=14
+  [worker2_ring_3.5]  200000/2000000: r=5.3669 ovlp=0.049176 lam=75 best_feas=4.1401 imp=9
+[1328s] Best=3.071975 Workers=6/6
+  [worker1_ring_3.5]  200000/2000000: r=4.3553 ovlp=0.030487 lam=75 best_feas=4.0108 imp=7
+  [worker5_ring_3.5]  200000/2000000: r=4.2433 ovlp=0.065047 lam=75 best_feas=4.0152 imp=16
+  [worker0_ring_3.5]  200000/2000000: r=4.4007 ovlp=0.014426 lam=75 best_feas=4.1055 imp=8
+  [worker3_ring_3.5]  200000/2000000: r=4.2013 ovlp=0.093294 lam=75 best_feas=3.9890 imp=12
+[1333s] Best=3.071975 Workers=6/6
+[1338s] Best=3.071975 Workers=6/6
+[1343s] Best=3.071975 Workers=6/6
+[1348s] Best=3.071975 Workers=6/6
+[1353s] Best=3.071975 Workers=6/6
+[1358s] Best=3.071975 Workers=6/6
+[1363s] Best=3.071975 Workers=6/6
+[1368s] Best=3.071975 Workers=6/6
+[1373s] Best=3.071975 Workers=6/6
+[1378s] Best=3.071975 Workers=6/6
+  [worker4_ring_3.5]  300000/2000000: r=4.4178 ovlp=0.019152 lam=92 best_feas=3.8425 imp=14
+  [worker2_ring_3.5]  300000/2000000: r=3.8278 ovlp=0.035324 lam=92 best_feas=3.7705 imp=17
+[1383s] Best=3.071975 Workers=6/6
+  [worker1_ring_3.5]  300000/2000000: r=3.8692 ovlp=0.013097 lam=92 best_feas=3.7526 imp=13
+  [worker0_ring_3.5]  300000/2000000: r=4.1545 ovlp=0.013545 lam=92 best_feas=3.7423 imp=15
+  [worker5_ring_3.5]  300000/2000000: r=4.3483 ovlp=0.000478 lam=92 best_feas=3.8336 imp=21
+  [worker3_ring_3.5]  300000/2000000: r=3.9967 ovlp=0.016860 lam=92 best_feas=3.8342 imp=13
+[1388s] Best=3.071975 Workers=6/6
+[1393s] Best=3.071975 Workers=6/6
+[1398s] Best=3.071975 Workers=6/6
+[1403s] Best=3.071975 Workers=6/6
+[1408s] Best=3.071975 Workers=6/6
+[1413s] Best=3.071975 Workers=6/6
+[1418s] Best=3.071975 Workers=6/6
+[1423s] Best=3.071975 Workers=6/6
+[1428s] Best=3.071975 Workers=6/6
+[1433s] Best=3.071975 Workers=6/6
+  [worker4_ring_3.5]  400000/2000000: r=4.1336 ovlp=0.003120 lam=113 best_feas=3.5808 imp=24
+  [worker2_ring_3.5]  400000/2000000: r=3.8111 ovlp=0.013321 lam=113 best_feas=3.6948 imp=23
+[1438s] Best=3.071975 Workers=6/6
+  [worker0_ring_3.5]  400000/2000000: r=3.9065 ovlp=0.013907 lam=113 best_feas=3.6718 imp=19
+  [worker1_ring_3.5]  400000/2000000: r=4.3443 ovlp=0.003368 lam=113 best_feas=3.6635 imp=17
+  [worker5_ring_3.5]  400000/2000000: r=4.1470 ovlp=0.014666 lam=113 best_feas=3.7331 imp=22
+  [worker3_ring_3.5]  400000/2000000: r=3.7154 ovlp=0.006953 lam=113 best_feas=3.6138 imp=17
+[1443s] Best=3.071975 Workers=6/6
+[1448s] Best=3.071975 Workers=6/6
+[1453s] Best=3.071975 Workers=6/6
+[1458s] Best=3.071975 Workers=6/6
+[1463s] Best=3.071975 Workers=6/6
+[1468s] Best=3.071975 Workers=6/6
+[1473s] Best=3.071975 Workers=6/6
+[1478s] Best=3.071975 Workers=6/6
+[1483s] Best=3.071975 Workers=6/6
+[1488s] Best=3.071975 Workers=6/6
+  [worker4_ring_3.5]  500000/2000000: r=4.2515 ovlp=0.000104 lam=139 best_feas=3.5368 imp=31
+  [worker2_ring_3.5]  500000/2000000: r=4.0242 ovlp=0.000356 lam=139 best_feas=3.5476 imp=25
+[1493s] Best=3.071975 Workers=6/6
+  [worker0_ring_3.5]  500000/2000000: r=4.6003 ovlp=0.004031 lam=139 best_feas=3.5944 imp=25
+  [worker5_ring_3.5]  500000/2000000: r=3.7865 ovlp=0.006028 lam=139 best_feas=3.6061 imp=24
+  [worker1_ring_3.5]  500000/2000000: r=4.0898 ovlp=0.001036 lam=139 best_feas=3.6591 imp=18
+  [worker3_ring_3.5]  500000/2000000: r=3.9216 ovlp=0.000544 lam=139 best_feas=3.4446 imp=24
+[1498s] Best=3.071975 Workers=6/6
+[1503s] Best=3.071975 Workers=6/6
+[1508s] Best=3.071975 Workers=6/6
+[1513s] Best=3.071975 Workers=6/6
+[1518s] Best=3.071975 Workers=6/6
+[1523s] Best=3.071975 Workers=6/6
+[1528s] Best=3.071975 Workers=6/6
+[1533s] Best=3.071975 Workers=6/6
+[1538s] Best=3.071975 Workers=6/6
+[1543s] Best=3.071975 Workers=6/6
+  [worker4_ring_3.5]  600000/2000000: r=3.5289 ovlp=0.003336 lam=171 best_feas=3.3515 imp=42
+  [worker2_ring_3.5]  600000/2000000: r=3.8432 ovlp=0.000000 lam=171 best_feas=3.4078 imp=36
+[1548s] Best=3.071975 Workers=6/6
+  [worker0_ring_3.5]  600000/2000000: r=3.8276 ovlp=0.000173 lam=171 best_feas=3.4899 imp=36
+  [worker5_ring_3.5]  600000/2000000: r=4.0521 ovlp=0.000360 lam=171 best_feas=3.4783 imp=34
+  [worker1_ring_3.5]  600000/2000000: r=3.5344 ovlp=0.001673 lam=171 best_feas=3.4422 imp=27
+[1553s] Best=3.071975 Workers=6/6
+  [worker3_ring_3.5]  600000/2000000: r=3.9651 ovlp=0.000377 lam=171 best_feas=3.2766 imp=34
+[1558s] Best=3.071975 Workers=6/6
+[1563s] Best=3.071975 Workers=6/6
+[1568s] Best=3.071975 Workers=6/6
+[1573s] Best=3.071975 Workers=6/6
+[1578s] Best=3.071975 Workers=6/6
+[1583s] Best=3.071975 Workers=6/6
+[1588s] Best=3.071975 Workers=6/6
+[1593s] Best=3.071975 Workers=6/6
+[1598s] Best=3.071975 Workers=6/6
+  [worker4_ring_3.5]  700000/2000000: r=3.6451 ovlp=0.000703 lam=210 best_feas=3.3515 imp=42
+[1603s] Best=3.071975 Workers=6/6
+  [worker2_ring_3.5]  700000/2000000: r=3.8916 ovlp=0.001480 lam=210 best_feas=3.4078 imp=36
+  [worker0_ring_3.5]  700000/2000000: r=3.6580 ovlp=0.000638 lam=210 best_feas=3.3944 imp=40
+  [worker5_ring_3.5]  700000/2000000: r=3.7379 ovlp=-0.000000 lam=210 best_feas=3.3303 imp=43
+[1608s] Best=3.071975 Workers=6/6
+  [worker1_ring_3.5]  700000/2000000: r=3.7576 ovlp=0.000001 lam=210 best_feas=3.4299 imp=28
+  [worker3_ring_3.5]  700000/2000000: r=3.9124 ovlp=0.000925 lam=210 best_feas=3.2766 imp=34
+[1613s] Best=3.071975 Workers=6/6
+[1619s] Best=3.071975 Workers=6/6
+[1624s] Best=3.071975 Workers=6/6
+[1629s] Best=3.071975 Workers=6/6
+[1634s] Best=3.071975 Workers=6/6
+[1639s] Best=3.071975 Workers=6/6
+[1644s] Best=3.071975 Workers=6/6
+[1649s] Best=3.071975 Workers=6/6
+[1654s] Best=3.071975 Workers=6/6
+[1659s] Best=3.071975 Workers=6/6
+  [worker4_ring_3.5]  800000/2000000: r=3.5197 ovlp=0.000000 lam=257 best_feas=3.3082 imp=46
+  [worker2_ring_3.5]  800000/2000000: r=3.8480 ovlp=0.000000 lam=257 best_feas=3.3291 imp=50
+[1664s] Best=3.071975 Workers=6/6
+  [worker0_ring_3.5]  800000/2000000: r=3.6537 ovlp=0.001382 lam=257 best_feas=3.3418 imp=52
+  [worker5_ring_3.5]  800000/2000000: r=3.4691 ovlp=-0.000000 lam=257 best_feas=3.3303 imp=43
+  [worker1_ring_3.5]  800000/2000000: r=3.5631 ovlp=0.000912 lam=257 best_feas=3.2827 imp=38
+[1669s] Best=3.071975 Workers=6/6
+  [worker3_ring_3.5]  800000/2000000: r=3.5824 ovlp=0.000115 lam=257 best_feas=3.2766 imp=34
+[1674s] Best=3.071975 Workers=6/6
+[1679s] Best=3.071975 Workers=6/6
+[1684s] Best=3.071975 Workers=6/6
+[1689s] Best=3.071975 Workers=6/6
+[1694s] Best=3.071975 Workers=6/6
+[1699s] Best=3.071975 Workers=6/6
+[1704s] Best=3.071975 Workers=6/6
+[1709s] Best=3.071975 Workers=6/6
+[1714s] Best=3.071975 Workers=6/6
+  [worker4_ring_3.5]  900000/2000000: r=3.6695 ovlp=0.000025 lam=316 best_feas=3.2615 imp=48
+[1719s] Best=3.071975 Workers=6/6
+  [worker2_ring_3.5]  900000/2000000: r=3.5551 ovlp=0.000039 lam=316 best_feas=3.2803 imp=56
+[1724s] Best=3.071975 Workers=6/6
+  [worker0_ring_3.5]  900000/2000000: r=3.5260 ovlp=0.000983 lam=316 best_feas=3.2462 imp=64
+  [worker5_ring_3.5]  900000/2000000: r=3.5891 ovlp=0.000059 lam=316 best_feas=3.2337 imp=56
+  [worker3_ring_3.5]  900000/2000000: r=3.4291 ovlp=0.000000 lam=316 best_feas=3.2601 imp=39
+  [worker1_ring_3.5]  900000/2000000: r=3.5270 ovlp=0.000330 lam=316 best_feas=3.2504 imp=49
+[1729s] Best=3.071975 Workers=6/6
+[1734s] Best=3.071975 Workers=6/6
+[1739s] Best=3.071975 Workers=6/6
+[1744s] Best=3.071975 Workers=6/6
+[1749s] Best=3.071975 Workers=6/6
+[1754s] Best=3.071975 Workers=6/6
+[1759s] Best=3.071975 Workers=6/6
+[1764s] Best=3.071975 Workers=6/6
+[1769s] Best=3.071975 Workers=6/6
+[1774s] Best=3.071975 Workers=6/6
+  [worker4_ring_3.5] 1000000/2000000: r=3.4483 ovlp=0.000082 lam=387 best_feas=3.1772 imp=55
+[1779s] Best=3.071975 Workers=6/6
+  [worker2_ring_3.5] 1000000/2000000: r=3.2377 ovlp=0.000119 lam=387 best_feas=3.2411 imp=61
+[1784s] Best=3.071975 Workers=6/6
+  [worker0_ring_3.5] 1000000/2000000: r=3.3532 ovlp=0.000336 lam=387 best_feas=3.2326 imp=68
+  [worker5_ring_3.5] 1000000/2000000: r=3.4978 ovlp=0.000034 lam=387 best_feas=3.2194 imp=61
+  [worker3_ring_3.5] 1000000/2000000: r=3.3377 ovlp=0.000112 lam=387 best_feas=3.1998 imp=53
+  [worker1_ring_3.5] 1000000/2000000: r=3.3513 ovlp=0.000000 lam=387 best_feas=3.1938 imp=57
+[1789s] Best=3.071975 Workers=6/6
+[1794s] Best=3.071975 Workers=6/6
+[1799s] Best=3.071975 Workers=6/6
+[1804s] Best=3.071975 Workers=6/6
+[1809s] Best=3.071975 Workers=6/6
+[1814s] Best=3.071975 Workers=6/6
+[1819s] Best=3.071975 Workers=6/6
+[1824s] Best=3.071975 Workers=6/6
+[1829s] Best=3.071975 Workers=6/6
+[1834s] Best=3.071975 Workers=6/6
+[1839s] Best=3.071975 Workers=6/6
+  [worker4_ring_3.5] 1100000/2000000: r=3.4780 ovlp=0.000002 lam=475 best_feas=3.1595 imp=57
+  [worker2_ring_3.5] 1100000/2000000: r=3.2406 ovlp=0.000125 lam=475 best_feas=3.1655 imp=80
+[1844s] Best=3.071975 Workers=6/6
+  [worker5_ring_3.5] 1100000/2000000: r=3.2235 ovlp=-0.000000 lam=475 best_feas=3.1763 imp=76
+  [worker0_ring_3.5] 1100000/2000000: r=3.2909 ovlp=0.000060 lam=475 best_feas=3.1386 imp=87
+[1849s] Best=3.071975 Workers=6/6
+  [worker3_ring_3.5] 1100000/2000000: r=3.4343 ovlp=0.000017 lam=475 best_feas=3.1520 imp=58
+  [worker1_ring_3.5] 1100000/2000000: r=3.2240 ovlp=0.000000 lam=475 best_feas=3.1354 imp=63
+[1854s] Best=3.071975 Workers=6/6
+[1859s] Best=3.071975 Workers=6/6
+[1864s] Best=3.071975 Workers=6/6
+[1869s] Best=3.071975 Workers=6/6
+[1874s] Best=3.071975 Workers=6/6
+[1879s] Best=3.071975 Workers=6/6
+[1884s] Best=3.071975 Workers=6/6
+[1889s] Best=3.071975 Workers=6/6
+[1894s] Best=3.071975 Workers=6/6
+[1899s] Best=3.071975 Workers=6/6
+  [worker4_ring_3.5] 1200000/2000000: r=3.2323 ovlp=0.000000 lam=583 best_feas=3.1559 imp=59
+[1904s] Best=3.071975 Workers=6/6
+  [worker2_ring_3.5] 1200000/2000000: r=3.2682 ovlp=0.000000 lam=583 best_feas=3.1537 imp=83
+  [worker5_ring_3.5] 1200000/2000000: r=3.2038 ovlp=0.000025 lam=583 best_feas=3.1158 imp=91
+  [worker0_ring_3.5] 1200000/2000000: r=3.1433 ovlp=0.000000 lam=583 best_feas=3.1021 imp=98
+[1909s] Best=3.071975 Workers=6/6
+  [worker3_ring_3.5] 1200000/2000000: r=3.2426 ovlp=0.000000 lam=583 best_feas=3.1198 imp=72
+[1914s] Best=3.071975 Workers=6/6
+  [worker1_ring_3.5] 1200000/2000000: r=3.2420 ovlp=0.000000 lam=583 best_feas=3.1183 imp=66
+[1919s] Best=3.071975 Workers=6/6
+[1924s] Best=3.071975 Workers=6/6
+[1929s] Best=3.071975 Workers=6/6
+[1934s] Best=3.071975 Workers=6/6
+[1939s] Best=3.071975 Workers=6/6
+[1944s] Best=3.071975 Workers=6/6
+[1949s] Best=3.071975 Workers=6/6
+[1954s] Best=3.071975 Workers=6/6
+[1959s] Best=3.071975 Workers=6/6
+[1964s] Best=3.071975 Workers=6/6
+  [worker4_ring_3.5] 1300000/2000000: r=3.2796 ovlp=0.000000 lam=716 best_feas=3.1213 imp=71
+  [worker2_ring_3.5] 1300000/2000000: r=3.1600 ovlp=0.000023 lam=716 best_feas=3.0838 imp=103
+  [worker5_ring_3.5] 1300000/2000000: r=3.1453 ovlp=-0.000000 lam=716 best_feas=3.0806 imp=106
+  [worker0_ring_3.5] 1300000/2000000: r=3.2486 ovlp=0.000000 lam=716 best_feas=3.1021 imp=98
+[1969s] Best=3.071975 Workers=6/6
+[1974s] Best=3.071975 Workers=6/6
+  [worker3_ring_3.5] 1300000/2000000: r=3.1262 ovlp=0.000000 lam=716 best_feas=3.1083 imp=74
+  [worker1_ring_3.5] 1300000/2000000: r=3.1837 ovlp=0.000007 lam=716 best_feas=3.1035 imp=68
+[1979s] Best=3.071975 Workers=6/6
+[1984s] Best=3.071975 Workers=6/6
+[1989s] Best=3.071975 Workers=6/6
+[1994s] Best=3.071975 Workers=6/6
+[1999s] Best=3.071975 Workers=6/6
+[2004s] Best=3.071975 Workers=6/6
+[2009s] Best=3.071975 Workers=6/6
+[2014s] Best=3.071975 Workers=6/6
+[2019s] Best=3.071975 Workers=6/6
+[2024s] Best=3.071975 Workers=6/6
+  [worker4_ring_3.5] 1400000/2000000: r=3.1106 ovlp=0.000008 lam=878 best_feas=3.0770 imp=89
+  [worker2_ring_3.5] 1400000/2000000: r=3.1637 ovlp=0.000000 lam=878 best_feas=3.0780 imp=105
+[2029s] Best=3.071975 Workers=6/6
+  [worker5_ring_3.5] 1400000/2000000: r=3.1308 ovlp=0.000011 lam=878 best_feas=3.0806 imp=106
+  [worker0_ring_3.5] 1400000/2000000: r=3.1872 ovlp=0.000021 lam=878 best_feas=3.0839 imp=110
