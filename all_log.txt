@@ -937,10 +937,10 @@ NameError: name 'overlaps_any' is not defined
   [w5_boundary_biased_75] starting
   [w5_boundary_biased_75]       0/2000000: r=3.7161 ovlp=0.002581 lam=5 best_feas=inf imp=0
   [w3_from_best_large_2]  800000/2000000: r=3.7971 ovlp=0.000137 lam=257 best_feas=3.2940 imp=26
-camcore/.local/share/uv/python/cpython-3.10-linux-x86_64-gnu/lib/python3.10/multiprocessing/process.py", line 314, in _bootstrap
-    self.run()
-  File "/home/camcore/.local/share/uv/python/cpython-3.10-linux-x86_64-gnu/lib/python3.10/multiprocessing/process.py", line 108, in run
-    self._target(*self._args, **self._kwargs)
+  [w1_d1_symmetric_25]  500000/2000000: r=3.7379 ovlp=0.055585 lam=35 best_feas=3.5930 imp=10
+  [w2_pairs_tight_2]  800000/2000000: r=3.4076 ovlp=0.000000 lam=478 best_feas=3.1690 imp=21
+  [w0_from_best_tight_2]  800000/2000000: r=3.3038 ovlp=0.000000 lam=1256 best_feas=3.1143 imp=26
+elf._target(*self._args, **self._kwargs)
   File "/home/camcore/.openclaw/workspace/shape-packing-challenge/optimize_all.py", line 357, in worker
     init = builder()
   File "/home/camcore/.openclaw/workspace/shape-packing-challenge/optimize_all.py", line 333, in <lambda>
@@ -981,3 +981,72 @@ NameError: name 'overlaps_any' is not defined
   [w5_boundary_biased_8] starting
 [66s] Best=3.010195 Workers=5/6
 [71s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_8] failed to build start, retrying
+  [w5_boundary_biased_9] starting
+[76s] Best=3.010195 Workers=5/6
+[81s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_9] failed to build start, retrying
+  [w5_boundary_biased_10] starting
+[86s] Best=3.010195 Workers=5/6
+[91s] Best=3.010195 Workers=5/6
+  [w0_from_best_tight_1]  100000/2000000: r=3.9447 ovlp=-0.000000 lam=561 best_feas=3.5011 imp=11
+  [w5_boundary_biased_10] failed to build start, retrying
+[96s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_11] starting
+[101s] Best=3.010195 Workers=5/6
+  [w3_from_best_large_1]  100000/2000000: r=4.4275 ovlp=0.052932 lam=61 best_feas=3.8875 imp=4
+[106s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_11] failed to build start, retrying
+  [w5_boundary_biased_12] starting
+[111s] Best=3.010195 Workers=5/6
+  [w2_pairs_tight_1]  100000/2000000: r=4.2016 ovlp=0.004060 lam=122 best_feas=3.5381 imp=4
+[116s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_12] failed to build start, retrying
+  [w5_boundary_biased_13] starting
+[121s] Best=3.010195 Workers=5/6
+[127s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_13] failed to build start, retrying
+  [w5_boundary_biased_14] starting
+[132s] Best=3.010195 Workers=5/6
+[137s] Best=3.010195 Workers=5/6
+[142s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_14] failed to build start, retrying
+  [w1_d1_symmetric_2]  100000/2000000: r=3.6451 ovlp=0.296386 lam=11 best_feas=3.8208 imp=3
+  [w5_boundary_biased_15] starting
+[147s] Best=3.010195 Workers=5/6
+[152s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_15] failed to build start, retrying
+  [w5_boundary_biased_16] starting
+[157s] Best=3.010195 Workers=5/6
+[162s] Best=3.010195 Workers=5/6
+[167s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_16] failed to build start, retrying
+  [w5_boundary_biased_17] starting
+[172s] Best=3.010195 Workers=5/6
+[177s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_17] failed to build start, retrying
+  [w5_boundary_biased_18] starting
+[182s] Best=3.010195 Workers=5/6
+[187s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_18] failed to build start, retrying
+  [w5_boundary_biased_19] starting
+[192s] Best=3.010195 Workers=5/6
+[197s] Best=3.010195 Workers=5/6
+[203s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_19] failed to build start, retrying
+  [w5_boundary_biased_20] starting
+[208s] Best=3.010195 Workers=5/6
+[213s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_20] failed to build start, retrying
+[218s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_21] starting
+[223s] Best=3.010195 Workers=5/6
+[228s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_21] failed to build start, retrying
+  [w0_from_best_tight_1]  200000/2000000: r=4.0842 ovlp=-0.000000 lam=629 best_feas=3.4248 imp=16
+  [w5_boundary_biased_22] starting
+[233s] Best=3.010195 Workers=5/6
+  [w3_from_best_large_1]  200000/2000000: r=4.5891 ovlp=0.007455 lam=75 best_feas=3.8875 imp=4
+  [w5_boundary_biased_22] failed to build start, retrying
+[238s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_23] starting

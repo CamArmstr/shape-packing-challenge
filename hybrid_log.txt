@@ -1,0 +1,3067 @@
+12:47:32 
+============================================================
+12:47:32 Hybrid Optimizer — 2026-03-27 12:47:32
+12:47:32 ============================================================
+12:47:32 === Validation ===
+12:47:32   Valid solution at R=3.07: Shapely energy = 3.62e-14
+12:47:32   After hybrid_lbfgs at R=3.07: energy = 3.62e-14 (expect < 1e-10)
+12:47:32   After hybrid_lbfgs at R=3.05: energy = 3.65e-04
+12:47:32   R=3.05 result: INVALID (13 errors)
+12:47:32 === Validation done ===
+
+12:47:32 
+=== Quick test: 20 rounds at R=3.06 ===
+12:47:32   R=3.06 rnd  1 (flip  ): E=8.565e-01
+12:47:33   R=3.06 rnd  2 (flip  ): E=1.318e-01
+12:47:33   R=3.06 rnd  3 (swap  ): E=8.905e-05
+12:47:33   R=3.06 rnd  4 (jitter): E=4.047e-04
+12:47:34   R=3.06 rnd  5 (flip  ): E=3.016e-03
+12:47:34   R=3.06 rnd  6 (jitter): E=2.805e-03
+12:47:34   R=3.06 rnd  7 (jitter): E=2.103e-03
+12:47:34   R=3.06 rnd  8 (swap  ): E=8.905e-05
+12:47:35   R=3.06 rnd  9 (flip  ): E=2.568e+00
+12:47:35   R=3.06 rnd 10 (swap  ): E=8.905e-05
+12:47:35   R=3.06 rnd 11 (flip  ): E=5.032e-01
+12:47:35   R=3.06 rnd 12 (swap  ): E=8.905e-05
+12:47:35   R=3.06 rnd 13 (flip  ): E=1.498e+00
+12:47:35   R=3.06 rnd 14 (jitter): E=7.680e-04
+12:47:36   R=3.06 rnd 15 (swap  ): E=8.905e-05
+12:47:36   R=3.06 rnd 16 (flip  ): E=1.495e-02
+12:47:36   R=3.06 rnd 17 (swap  ): E=8.905e-05
+12:47:36   R=3.06 rnd 18 (swap  ): E=8.905e-05
+12:47:37   R=3.06 rnd 19 (jitter): E=1.984e-03
+12:47:37   R=3.06 rnd 20 (swap  ): E=8.905e-05
+12:47:37   Valid solutions at R=3.06: 0/20
+12:47:37 
+=== Starting full MBH ===
+12:47:37 === Hybrid MBH started | best R = 3.071975 | target R <= 2.85 ===
+12:47:37 
+── Testing R = 3.0600 ──
+12:47:37   Rnd   1 (flip  ): E=3.379e-02
+12:47:37   Rnd   2 (swap  ): E=8.905e-05
+12:47:38   Rnd   3 (jitter): E=3.923e-02
+12:47:38   Rnd   4 (flip  ): E=2.172e-01
+12:47:38   Rnd   5 (jitter): E=3.806e-03
+12:47:38   Rnd   6 (flip  ): E=3.294e+00
+12:47:38   Rnd   7 (flip  ): E=1.525e-02
+12:47:39   Rnd   8 (jitter): E=4.629e-03
+12:47:39   Rnd   9 (jitter): E=1.525e-04
+12:47:39   Rnd  10 (swap  ): E=8.905e-05
+12:47:39   Rnd  11 (swap  ): E=8.905e-05
+12:47:39   Rnd  12 (swap  ): E=8.905e-05
+12:47:39   Rnd  13 (flip  ): E=8.713e-02
+12:47:40   Rnd  14 (flip  ): E=5.995e-03
+12:47:41   Rnd  15 (jitter): E=9.450e-04
+12:47:41   Rnd  16 (flip  ): E=9.699e-01
+12:47:41   Rnd  17 (flip  ): E=1.082e-01
+12:47:41   Rnd  18 (jitter): E=2.289e-04
+12:47:41   Rnd  19 (swap  ): E=8.905e-05
+12:47:42   Rnd  20 (jitter): E=1.121e-02
+12:47:42   Rnd  21 (flip  ): E=1.495e-02
+12:47:42   Rnd  22 (jitter): E=6.066e-03
+12:47:43   Rnd  23 (swap  ): E=8.905e-05
+12:47:43   Rnd  24 (swap  ): E=8.905e-05
+12:47:43   Rnd  25 (flip  ): E=1.387e+00
+12:47:43   Rnd  26 (flip  ): E=5.140e-01
+12:47:43   Rnd  27 (jitter): E=7.339e-04
+12:47:44   Rnd  28 (flip  ): E=2.956e-01
+12:47:44   Rnd  29 (jitter): E=9.168e-04
+12:47:44   Rnd  30 (flip  ): E=2.518e-01
+12:47:44   ✗ No feasible solution at R=3.0600
+12:47:44 
+=== Hybrid MBH done | best R = 3.071975 ===
+12:47:44 
+Hybrid optimizer finished at 12:47:44
+12:48:17 
+============================================================
+12:48:17 Hybrid Optimizer — 2026-03-27 12:48:17
+12:48:17 ============================================================
+12:48:17 === Validation ===
+12:48:17   Valid solution at R=3.07: Shapely energy = 3.62e-14
+12:48:17   After hybrid_lbfgs at R=3.07: energy = 3.62e-14 (expect < 1e-10)
+12:48:24   After hybrid_lbfgs at R=3.05: energy = 4.90e-07
+12:48:24   R=3.05 result: INVALID (21 errors)
+12:48:24 === Validation done ===
+
+12:48:24 
+=== Quick test: 20 rounds at R=3.06 ===
+12:48:25   R=3.06 rnd  1 (flip  ): E=1.785e-02
+12:48:33   R=3.06 rnd  2 (swap  ): E=6.820e-09
+12:48:41   R=3.06 rnd  3 (swap  ): E=6.820e-09
+12:48:50   R=3.06 rnd  4 (jitter): E=7.912e-06
+12:48:58   R=3.06 rnd  5 (jitter): E=4.998e-05
+12:49:05   R=3.06 rnd  6 (jitter): E=1.889e-04
+12:49:13   R=3.06 rnd  7 (swap  ): E=6.820e-09
+12:49:21   R=3.06 rnd  8 (jitter): E=1.986e-06
+12:49:21   R=3.06 rnd  9 (flip  ): E=2.639e-01
+12:49:29   R=3.06 rnd 10 (swap  ): E=6.820e-09
+12:49:29   R=3.06 rnd 11 (flip  ): E=1.085e+00
+12:49:37   R=3.06 rnd 12 (swap  ): E=6.820e-09
+12:49:44   R=3.06 rnd 13 (swap  ): E=6.820e-09
+12:49:54   R=3.06 rnd 14 (jitter): E=5.113e-06
+12:50:00   R=3.06 rnd 15 (jitter): E=9.771e-05
+12:50:08   R=3.06 rnd 16 (jitter): E=3.820e-06
+12:50:17   R=3.06 rnd 17 (jitter): E=5.445e-07
+12:50:22   R=3.06 rnd 18 (jitter): E=6.460e-05
+12:50:31   R=3.06 rnd 19 (swap  ): E=6.820e-09
+12:50:42   R=3.06 rnd 20 (jitter): E=5.164e-08
+12:50:42   Valid solutions at R=3.06: 0/20
+12:50:42 
+=== Starting full MBH ===
+12:50:42 === Hybrid MBH started | best R = 3.071975 | target R <= 2.85 ===
+12:50:42 
+── Testing R = 3.0600 ──
+12:50:42   Rnd   1 (flip  ): E=3.379e-02
+12:50:51   Rnd   2 (swap  ): E=6.820e-09
+12:50:51   ✗ Low energy but invalid (22 errs)
+12:50:58   Rnd   3 (jitter): E=2.551e-06
+12:50:58   Rnd   4 (flip  ): E=2.172e-01
+12:51:06   Rnd   5 (jitter): E=9.683e-07
+12:51:07   ✗ Low energy but invalid (18 errs)
+12:51:07   Rnd   6 (flip  ): E=3.294e+00
+12:51:07   Rnd   7 (flip  ): E=1.525e-02
+12:51:14   Rnd   8 (jitter): E=2.457e-05
+12:51:21   Rnd   9 (jitter): E=1.104e-05
+12:51:29   Rnd  10 (swap  ): E=6.820e-09
+12:51:30   ✗ Low energy but invalid (22 errs)
+12:51:38   Rnd  11 (swap  ): E=6.820e-09
+12:51:39   ✗ Low energy but invalid (22 errs)
+12:51:45   Rnd  12 (swap  ): E=6.820e-09
+12:51:46   ✗ Low energy but invalid (22 errs)
+12:51:46   Rnd  13 (flip  ): E=8.713e-02
+12:51:52   Rnd  14 (flip  ): E=1.943e-03
+12:52:02   Rnd  15 (jitter): E=3.760e-06
+12:52:02   Rnd  16 (flip  ): E=9.699e-01
+12:52:02   Rnd  17 (flip  ): E=1.082e-01
+12:52:09   Rnd  18 (jitter): E=1.394e-05
+12:52:16   Rnd  19 (swap  ): E=6.820e-09
+12:52:16   ✗ Low energy but invalid (22 errs)
+12:52:23   Rnd  20 (jitter): E=8.914e-06
+12:52:23   Rnd  21 (flip  ): E=1.495e-02
+12:52:34   Rnd  22 (jitter): E=2.114e-07
+12:52:34   ✗ Low energy but invalid (17 errs)
+12:52:43   Rnd  23 (swap  ): E=6.820e-09
+12:52:43   ✗ Low energy but invalid (22 errs)
+12:52:50   Rnd  24 (swap  ): E=6.820e-09
+12:52:51   ✗ Low energy but invalid (22 errs)
+12:52:51   Rnd  25 (flip  ): E=1.387e+00
+12:52:51   Rnd  26 (flip  ): E=5.140e-01
+12:53:01   Rnd  27 (jitter): E=2.293e-06
+12:53:01   Rnd  28 (flip  ): E=2.956e-01
+12:53:01   Rnd  29 (jitter): E=1.145e-02
+12:53:02   Rnd  30 (flip  ): E=2.518e-01
+12:53:02   ✗ No feasible solution at R=3.0600
+12:53:02 
+=== Hybrid MBH done | best R = 3.071975 ===
+12:53:02 
+Hybrid optimizer finished at 12:53:02
+12:53:32 
+============================================================
+12:53:32 Hybrid Optimizer — 2026-03-27 12:53:32
+12:53:32 ============================================================
+12:53:32 === Validation ===
+12:53:32   Valid solution at R=3.07: Shapely energy = 1.07e-10
+12:53:34   After hybrid_lbfgs at R=3.07: energy = 1.07e-10 (expect < 1e-10)
+12:53:47   After hybrid_lbfgs at R=3.05: energy = 3.67e-07
+12:53:47   R=3.05 result: INVALID (17 errors)
+12:53:47 === Validation done ===
+
+12:53:47 
+=== Quick test: 20 rounds at R=3.06 ===
+12:54:01   R=3.06 rnd  1 (jitter): E=5.370e-06
+12:54:09   R=3.06 rnd  2 (jitter): E=1.340e-05
+12:54:09   R=3.06 rnd  3 (flip  ): E=2.768e-01
+12:54:25   R=3.06 rnd  4 (swap  ): E=1.182e-09
+12:54:25   R=3.06 rnd  5 (flip  ): E=1.087e+00
+12:54:42   R=3.06 rnd  6 (swap  ): E=9.108e-09
+12:55:08   R=3.06 rnd  7 (swap  ): E=2.134e-09
+12:55:08   R=3.06 rnd  8 (flip  ): E=1.146e-01
+12:55:09   R=3.06 rnd  9 (flip  ): E=7.339e-02
+12:55:27   R=3.06 rnd 10 (swap  ): E=6.643e-09
+12:55:47   R=3.06 rnd 11 (swap  ): E=2.630e-09
+12:56:06   R=3.06 rnd 12 (swap  ): E=3.963e-09
+12:56:15   R=3.06 rnd 13 (jitter): E=1.892e-06
+12:56:24   R=3.06 rnd 14 (flip  ): E=1.368e-03
+12:56:42   R=3.06 rnd 15 (swap  ): E=7.487e-09
+12:56:50   R=3.06 rnd 16 (flip  ): E=2.515e-03
+12:57:01   R=3.06 rnd 17 (jitter): E=1.421e-05
+12:57:19   R=3.06 rnd 18 (swap  ): E=1.570e-08
+12:57:30   R=3.06 rnd 19 (flip  ): E=1.819e-05
+12:57:40   R=3.06 rnd 20 (jitter): E=2.159e-05
+12:57:40   Valid solutions at R=3.06: 0/20
+12:57:40 
+=== Starting full MBH ===
+12:57:40 === Hybrid MBH started | best R = 3.071975 | target R <= 2.85 ===
+12:57:40 
+── Testing R = 3.0600 ──
+12:57:49   Rnd   1 (flip  ): E=1.151e-03
+12:58:08   Rnd   2 (swap  ): E=7.205e-09
+12:58:08   ✗ Low energy but invalid (15 errs)
+12:58:18   Rnd   3 (jitter): E=2.657e-05
+12:58:18   Rnd   4 (flip  ): E=2.178e-01
+12:58:26   Rnd   5 (jitter): E=3.757e-05
+12:58:27   Rnd   6 (flip  ): E=3.298e+00
+12:58:35   Rnd   7 (flip  ): E=5.672e-04
+12:58:44   Rnd   8 (jitter): E=1.944e-05
+12:58:56   Rnd   9 (jitter): E=6.167e-06
+12:59:15   Rnd  10 (swap  ): E=3.072e-09
+12:59:15   ✗ Low energy but invalid (10 errs)
+12:59:34   Rnd  11 (swap  ): E=4.441e-09
+12:59:35   ✗ Low energy but invalid (13 errs)
+12:59:51   Rnd  12 (swap  ): E=1.903e-09
+12:59:51   ✗ Low energy but invalid (9 errs)
+12:59:51   Rnd  13 (flip  ): E=8.762e-02
+12:59:59   Rnd  14 (flip  ): E=3.312e-03
+13:00:09   Rnd  15 (jitter): E=2.356e-06
+13:00:10   Rnd  16 (flip  ): E=9.708e-01
+13:00:10   Rnd  17 (flip  ): E=1.084e-01
+13:00:22   Rnd  18 (jitter): E=6.457e-06
+13:00:40   Rnd  19 (swap  ): E=1.992e-09
+13:00:40   ✗ Low energy but invalid (11 errs)
+13:00:49   Rnd  20 (jitter): E=6.738e-06
+13:00:57   Rnd  21 (flip  ): E=9.651e-04
+13:01:10   Rnd  22 (jitter): E=1.124e-06
+13:01:30   Rnd  23 (swap  ): E=2.522e-09
+13:01:30   ✗ Low energy but invalid (13 errs)
+13:01:46   Rnd  24 (swap  ): E=9.177e-09
+13:01:46   ✗ Low energy but invalid (14 errs)
+13:01:46   Rnd  25 (flip  ): E=1.389e+00
+13:01:46   Rnd  26 (flip  ): E=5.134e-01
+13:01:57   Rnd  27 (jitter): E=3.503e-05
+13:01:57   Rnd  28 (flip  ): E=2.968e-01
+13:02:11   Rnd  29 (jitter): E=1.248e-06
+13:02:11   Rnd  30 (flip  ): E=2.520e-01
+13:02:11   ✗ No feasible solution at R=3.0600
+13:02:11 
+=== Hybrid MBH done | best R = 3.071975 ===
+13:02:11 
+Hybrid optimizer finished at 13:02:11
+13:03:31 
+============================================================
+13:03:31 Hybrid Optimizer — 2026-03-27 13:03:31
+13:03:31 ============================================================
+13:03:31 === Validation ===
+13:03:31   Valid solution at R=3.07: Shapely energy = 1.02e-09
+13:03:45   After hybrid_lbfgs at R=3.07: energy = 1.34e-10 (expect < 1e-10)
+13:04:07   After hybrid_lbfgs at R=3.05: energy = 4.74e-07
+13:04:07   R=3.05 result: INVALID (17 errors)
+13:04:07 === Validation done ===
+
+13:04:07 
+=== Quick test: 20 rounds at R=3.06 ===
+13:04:07   R=3.06 rnd  1 (flip  ): E=1.460e+00
+13:04:07   R=3.06 rnd  2 (flip  ): E=7.818e-01
+13:04:32   R=3.06 rnd  3 (swap  ): E=3.243e-09
+13:04:32   R=3.06 rnd  4 (flip  ): E=6.493e-01
+13:04:48   R=3.06 rnd  5 (jitter): E=1.219e-05
+13:05:10   R=3.06 rnd  6 (jitter): E=6.314e-06
+13:05:40   R=3.06 rnd  7 (swap  ): E=6.375e-09
+13:05:55   R=3.06 rnd  8 (jitter): E=3.271e-05
+13:06:24   R=3.06 rnd  9 (swap  ): E=2.242e-09
+13:06:41   R=3.06 rnd 10 (jitter): E=6.534e-06
+13:06:56   R=3.06 rnd 11 (swap  ): E=6.328e-08
+13:07:18   R=3.06 rnd 12 (jitter): E=2.363e-06
+13:07:33   R=3.06 rnd 13 (jitter): E=1.867e-05
+13:08:03   R=3.06 rnd 14 (swap  ): E=4.974e-10
+13:08:39   R=3.06 rnd 15 (swap  ): E=2.189e-10
+13:08:40   R=3.06 rnd 16 (flip  ): E=3.757e-01
+13:09:01   R=3.06 rnd 17 (jitter): E=1.985e-07
+13:09:01   R=3.06 rnd 18 (flip  ): E=9.777e-01
+13:09:20   R=3.06 rnd 19 (jitter): E=1.033e-04
+13:09:20   R=3.06 rnd 20 (flip  ): E=1.248e+00
+13:09:20   Valid solutions at R=3.06: 0/20
+13:09:20 
+=== Starting full MBH ===
+13:09:21 === Hybrid MBH started | best R = 3.071975 | target R <= 2.85 ===
+13:09:21 
+── Testing R = 3.0600 ──
+13:09:21   Rnd   1 (flip  ): E=5.620e-01
+13:09:37   Rnd   2 (swap  ): E=6.328e-08
+13:09:37   ✗ Low energy but invalid (9 errs)
+13:09:56   Rnd   3 (jitter): E=6.284e-06
+13:09:57   Rnd   4 (flip  ): E=1.134e-01
+13:10:12   Rnd   5 (jitter): E=3.230e-05
+13:10:12   Rnd   6 (flip  ): E=2.177e+00
+13:10:13   Rnd   7 (flip  ): E=8.101e-02
+13:10:28   Rnd   8 (jitter): E=2.780e-07
+13:10:28   ✗ Low energy but invalid (12 errs)
+13:10:51   Rnd   9 (jitter): E=5.433e-06
+13:11:18   Rnd  10 (swap  ): E=5.725e-09
+13:11:18   ✗ Low energy but invalid (9 errs)
+13:11:43   Rnd  11 (swap  ): E=3.016e-11
+13:11:43   ✓ VALID! Official R = 3.076276
+13:11:43     Squeezed: R = 3.076276
+13:11:44     Squeezed: R = 3.076276
+13:11:44     Squeezed: R = 3.076276
+13:11:45     Squeezed: R = 3.076276
+13:11:45     Squeezed: R = 3.076276
+13:11:45     Squeezed: R = 3.076276
+13:11:46     Squeezed: R = 3.076276
+13:11:46     Squeezed: R = 3.076276
+13:11:46     Squeezed: R = 3.076276
+13:11:47     Squeezed: R = 3.076276
+13:11:47     Squeezed: R = 3.076276
+13:11:47     Squeezed: R = 3.076276
+13:11:48     Squeezed: R = 3.076276
+13:11:48     Squeezed: R = 3.076276
+13:11:48     Squeezed: R = 3.076276
+13:11:49     Squeezed: R = 3.076276
+13:11:49     Squeezed: R = 3.076276
+13:11:49     Squeezed: R = 3.076276
+13:11:50     Squeezed: R = 3.076276
+13:11:50     Squeezed: R = 3.076276
+13:11:50 
+── Testing R = 3.0500 ──
+13:11:51   Rnd   1 (flip  ): E=1.180e+00
+13:12:14   Rnd   2 (swap  ): E=4.777e-07
+13:12:15   ✗ Low energy but invalid (16 errs)
+13:12:32   Rnd   3 (jitter): E=5.996e-06
+13:12:32   Rnd   4 (flip  ): E=1.389e+00
+13:12:51   Rnd   5 (jitter): E=6.183e-05
+13:12:51   Rnd   6 (flip  ): E=2.256e+00
+13:12:52   Rnd   7 (flip  ): E=1.014e-01
+13:13:12   Rnd   8 (jitter): E=2.798e-06
+13:13:30   Rnd   9 (jitter): E=5.492e-05
+13:13:52   Rnd  10 (swap  ): E=4.490e-07
+13:13:53   ✗ Low energy but invalid (17 errs)
+13:14:13   Rnd  11 (swap  ): E=3.967e-07
+13:14:13   ✗ Low energy but invalid (18 errs)
+13:14:36   Rnd  12 (swap  ): E=4.790e-07
+13:14:36   ✗ Low energy but invalid (17 errs)
+13:14:37   Rnd  13 (flip  ): E=4.388e-01
+13:14:37   Rnd  14 (flip  ): E=6.010e-01
+13:14:52   Rnd  15 (jitter): E=4.512e-05
+13:14:52   Rnd  16 (flip  ): E=1.232e+00
+13:14:52   Rnd  17 (flip  ): E=9.693e-01
+13:15:11   Rnd  18 (jitter): E=2.701e-05
+13:16:46 
+============================================================
+13:16:46 Hybrid Optimizer — 2026-03-27 13:16:46
+13:16:46 ============================================================
+13:16:46 === Validation ===
+13:16:46   Valid solution at R=3.08: Shapely energy = 1.69e-13
+13:16:46   After hybrid_lbfgs at R=3.08: energy = 1.69e-13 (expect < 1e-10)
+13:17:21   After hybrid_lbfgs at R=3.05: energy = 1.17e-07
+13:17:21   R=3.05 result: INVALID (18 errors)
+13:17:21 === Validation done ===
+
+13:17:21 
+=== Quick test: 20 rounds at R=3.06 ===
+13:17:47   R=3.06 rnd  1 (jitter      ): E=5.087e-06
+13:17:48   R=3.06 rnd  2 (shift_worst ): E=2.960e-01
+13:18:14   R=3.06 rnd  3 (jitter      ): E=1.092e-06
+13:18:15   R=3.06 rnd  4 (shift_worst ): E=2.294e-01
+13:18:15   R=3.06 rnd  5 (shift_worst ): E=5.598e-02
+13:18:16   R=3.06 rnd  6 (shift_worst ): E=8.689e-02
+13:18:16   R=3.06 rnd  7 (shift_worst ): E=9.101e-02
+13:18:17   R=3.06 rnd  8 (shift_worst ): E=4.727e-01
+13:18:17   R=3.06 rnd  9 (shift_worst ): E=4.597e-01
+13:18:18   R=3.06 rnd 10 (reflect     ): E=8.826e-01
+13:18:40   R=3.06 rnd 11 (flip        ): E=3.614e-04
+13:19:03   R=3.06 rnd 12 (jitter      ): E=1.533e-05
+13:19:04   R=3.06 rnd 13 (reflect     ): E=1.097e+00
+13:19:05   R=3.06 rnd 14 (reflect     ): E=1.102e-01
+13:19:05   R=3.06 rnd 15 (reflect     ): E=2.245e-01
+13:19:36   R=3.06 rnd 16 (jitter      ): E=3.461e-06
+13:19:36   R=3.06 rnd 17 (reflect     ): E=1.886e-01
+13:20:11   R=3.06 rnd 18 (jitter      ): E=4.532e-06
+13:20:30   R=3.06 rnd 19 (jitter      ): E=1.254e-04
+13:20:31   R=3.06 rnd 20 (flip        ): E=1.987e+00
+13:20:31   Valid solutions at R=3.06: 0/20
+13:20:31 
+=== Starting full MBH ===
+13:20:31 === Hybrid MBH started | best R = 3.071975 | target R <= 2.85 ===
+13:20:31 
+── Testing R = 3.0700 ──
+13:20:31   Rnd   1 (reflect     ): E=1.140e+00
+13:20:55   Rnd   2 (jitter      ): E=1.086e-05
+13:21:22   Rnd   3 (jitter      ): E=1.669e-07
+13:21:22   Rnd   4 (flip        ): E=2.161e+00
+13:21:22   Rnd   5 (flip        ): E=9.744e-01
+13:21:23   Rnd   6 (reflect     ): E=8.167e-01
+13:21:24   Rnd   7 (shift_worst ): E=1.237e-01
+13:21:24   Rnd   8 (flip        ): E=2.885e-01
+13:21:25   Rnd   9 (flip        ): E=1.182e+00
+13:21:25   Rnd  10 (flip        ): E=2.142e-01
+13:21:44   Rnd  11 (shift_worst ): E=1.559e-03
+13:40:47 
+============================================================
+13:40:47 Hybrid Optimizer — 2026-03-27 13:40:47
+13:40:47 ============================================================
+13:40:47 === Validation ===
+13:40:47   Official: valid=True, R=3.071975382731833
+13:40:47   Shapely energy at R=3.071975: 2.46e-13
+13:40:47   Shapely energy at R=3.081975: 3.62e-14
+13:41:06   hybrid_lbfgs at R=3.0820: E=2.48e-09
+13:41:06   → valid=False, R=None
+13:41:20   hybrid_lbfgs at R=3.06: E=1.45e-08
+13:41:20 === Validation done ===
+
+13:41:20 
+=== Quick test: 20 rounds at R=3.0710 ===
+13:41:21   rnd  1 (reflect     ): E=1.087e+00 (0.7s)
+13:41:29   rnd  2 (jitter      ): E=1.033e-09 (8.3s) ✗(11)
+13:41:38   rnd  3 (jitter      ): E=6.886e-10 (8.2s) ✗(13)
+13:41:38   rnd  4 (flip        ): E=1.386e+00 (0.3s)
+13:41:39   rnd  5 (flip        ): E=7.989e-01 (0.4s)
+13:41:39   rnd  6 (reflect     ): E=4.078e-01 (0.6s)
+13:41:40   rnd  7 (shift_worst ): E=1.698e-01 (0.8s)
+13:41:40   rnd  8 (flip        ): E=5.371e-01 (0.2s)
+13:41:40   rnd  9 (flip        ): E=1.081e+00 (0.3s)
+13:41:41   rnd 10 (flip        ): E=3.478e-01 (0.3s)
+13:41:41   rnd 11 (shift_worst ): E=2.844e-01 (0.5s)
+13:41:42   rnd 12 (jitter      ): E=2.029e-01 (0.3s)
+13:41:48   rnd 13 (swap        ): E=1.349e-16 (6.4s) ✗(1)
+13:41:54   rnd 14 (swap        ): E=0.000e+00 (5.9s) ✓ R=3.070888
+13:41:55   rnd 15 (reflect     ): E=1.087e+00 (0.7s)
+13:42:11   rnd 16 (jitter      ): E=2.941e-10 (15.5s) ✗(9)
+13:42:19   rnd 17 (jitter      ): E=1.757e-10 (7.9s) ✗(14)
+13:42:19   rnd 18 (flip        ): E=1.386e+00 (0.4s)
+13:42:20   rnd 19 (flip        ): E=7.989e-01 (0.3s)
+13:42:20   rnd 20 (reflect     ): E=4.078e-01 (0.2s)
+13:42:20   Valid: 1/20
+13:42:20 
+=== Starting full MBH ===
+13:42:20 === MBH started | best R=3.071975 ===
+13:42:20 
+── R = 3.0710 ──
+13:42:20     1 (shift_worst ): E=1.698e-01 (0.3s)
+13:42:20     2 (flip        ): E=5.371e-01 (0.2s)
+13:42:21     3 (flip        ): E=1.081e+00 (0.3s)
+13:42:21     4 (flip        ): E=3.478e-01 (0.3s)
+13:42:21     5 (shift_worst ): E=2.844e-01 (0.4s)
+13:42:32     6 (jitter      ): E=1.510e-09 (10.2s) ✗(15 errs)
+13:42:38     7 (swap        ): E=1.349e-16 (6.0s) ✗(1 errs)
+13:42:44     8 (swap        ): E=0.000e+00 (5.8s) ✓ R=3.070888
+13:42:44   ★ NEW BEST: R = 3.070888
+13:42:59 
+── R = 3.0659 ──
+13:42:59     1 (reflect     ): E=1.266e+00 (0.3s)
+13:42:59     2 (jitter      ): E=1.698e-02 (0.3s)
+13:43:17     3 (jitter      ): E=5.243e-10 (17.3s) ✗(13 errs)
+13:43:17     4 (flip        ): E=1.360e+00 (0.3s)
+13:43:18     5 (flip        ): E=4.306e-01 (0.6s)
+13:43:18     6 (reflect     ): E=1.121e+00 (0.2s)
+13:43:18     7 (shift_worst ): E=2.265e-01 (0.4s)
+13:43:19     8 (flip        ): E=1.954e+00 (0.2s)
+13:43:19     9 (flip        ): E=8.925e-01 (0.4s)
+13:43:19    10 (flip        ): E=3.579e-01 (0.3s)
+13:43:20    11 (shift_worst ): E=3.215e-01 (0.7s)
+13:43:21    12 (jitter      ): E=2.614e-02 (1.4s)
+13:43:31    13 (swap        ): E=1.055e-08 (9.9s)
+13:43:45    14 (swap        ): E=4.761e-09 (13.6s) ✗(19 errs)
+13:43:45    15 (jitter      ): E=2.656e-02 (0.5s)
+13:43:46    16 (flip        ): E=1.244e+00 (0.2s)
+13:43:57    17 (jitter      ): E=1.356e-09 (11.3s) ✗(8 errs)
+13:43:57    18 (shift_worst ): E=4.679e-01 (0.3s)
+13:44:07    19 (swap        ): E=1.181e-08 (9.8s)
+13:44:08    20 (reflect     ): E=5.806e-01 (0.3s)
+13:44:18    21 (jitter      ): E=1.205e-09 (10.5s) ✗(16 errs)
+13:44:19    22 (flip        ): E=4.340e-02 (0.3s)
+13:44:33    23 (jitter      ): E=3.044e-10 (14.7s) ✗(10 errs)
+13:44:34    24 (shift_worst ): E=4.887e-01 (0.4s)
+13:44:34    25 (flip        ): E=9.597e-01 (0.3s)
+13:44:35    26 (shift_worst ): E=7.378e-01 (0.3s)
+13:44:35    27 (shift_worst ): E=3.496e-02 (0.3s)
+13:44:35    28 (shift_worst ): E=9.563e-01 (0.5s)
+13:44:36    29 (jitter      ): E=1.985e-01 (0.2s)
+13:44:36    30 (flip        ): E=1.441e+00 (0.2s)
+13:44:36   ✗ Failed at R=3.0659
+13:44:36 
+── R = 3.0684 ──
+13:44:36     1 (reflect     ): E=1.269e+00 (0.3s)
+13:44:54     2 (jitter      ): E=9.839e-10 (17.3s) ✗(7 errs)
+13:44:54     3 (shift_worst ): E=7.533e-01 (0.3s)
+13:45:04     4 (jitter      ): E=6.409e-16 (10.2s) ✗(6 errs)
+13:45:05     5 (reflect     ): E=8.143e-01 (0.4s)
+13:45:05     6 (reflect     ): E=3.321e-01 (0.3s)
+13:45:19     7 (jitter      ): E=4.747e-10 (13.6s) ✗(11 errs)
+13:45:19     8 (reflect     ): E=2.359e-01 (0.3s)
+13:45:38     9 (jitter      ): E=5.978e-12 (18.6s) ✗(11 errs)
+13:45:38    10 (jitter      ): E=1.657e-02 (0.3s)
+13:45:39    11 (shift_worst ): E=7.259e-01 (0.5s)
+13:45:49    12 (shift_worst ): E=3.456e-08 (10.3s)
+13:45:49    13 (shift_worst ): E=3.236e-01 (0.2s)
+13:46:37 
+============================================================
+13:46:37 Hybrid Optimizer — 2026-03-27 13:46:37
+13:46:37 ============================================================
+13:46:37 === Validation ===
+13:46:37   Official: valid=True, R=3.0708880056282437
+13:46:37   Shapely energy at R=3.070888: 7.20e-09
+13:46:37   Shapely energy at R=3.080888: 0.00e+00
+13:46:37   hybrid_lbfgs at R=3.0809: E=0.00e+00
+13:46:37   → valid=False, R=None
+13:46:38   hybrid_lbfgs at R=3.06: E=0.00e+00
+13:46:38 === Validation done ===
+
+13:46:38 
+=== Quick test: 20 rounds at R=3.0699 ===
+13:46:39   rnd  1 (reflect     ): E=7.516e-01 (0.6s)
+13:46:39   rnd  2 (jitter      ): E=0.000e+00 (0.4s) ✗(3)
+13:46:40   rnd  3 (jitter      ): E=0.000e+00 (0.2s) ✗(3)
+13:46:40   rnd  4 (flip        ): E=3.857e-01 (0.4s)
+13:46:41   rnd  5 (flip        ): E=9.285e-04 (0.4s)
+13:46:41   rnd  6 (reflect     ): E=0.000e+00 (0.3s) ✗(6)
+13:46:42   rnd  7 (shift_worst ): E=8.313e-03 (0.5s)
+13:46:42   rnd  8 (flip        ): E=9.427e-01 (0.2s)
+13:46:42   rnd  9 (flip        ): E=6.496e-02 (0.3s)
+13:46:43   rnd 10 (flip        ): E=3.018e-02 (0.4s)
+13:46:43   rnd 11 (shift_worst ): E=1.647e-02 (0.4s)
+13:46:44   rnd 12 (jitter      ): E=0.000e+00 (0.4s) ✗(3)
+13:46:44   rnd 13 (swap        ): E=0.000e+00 (0.1s) ✗(2)
+13:46:44   rnd 14 (swap        ): E=0.000e+00 (0.1s) ✗(2)
+13:46:45   rnd 15 (jitter      ): E=0.000e+00 (0.2s) ✗(3)
+13:46:45   rnd 16 (flip        ): E=8.861e-01 (0.2s)
+13:46:46   rnd 17 (jitter      ): E=0.000e+00 (0.2s) ✗(2)
+13:46:46   rnd 18 (shift_worst ): E=0.000e+00 (0.4s) ✗(4)
+13:46:46   rnd 19 (swap        ): E=0.000e+00 (0.1s) ✗(2)
+13:46:47   rnd 20 (reflect     ): E=0.000e+00 (0.2s) ✗(5)
+13:46:47   Valid: 0/20
+13:46:47 
+=== Starting full MBH ===
+13:46:47 === MBH started | best R=3.070888 ===
+13:46:47 
+── R = 3.0699 ──
+13:46:47     1 (jitter      ): E=3.740e-26 (0.2s) ✗(2 errs)
+13:46:48     2 (flip        ): E=0.000e+00 (0.2s) ✗(4 errs)
+13:46:48     3 (jitter      ): E=0.000e+00 (0.1s) ✗(3 errs)
+13:46:49     4 (shift_worst ): E=7.232e-01 (0.4s)
+13:46:49     5 (flip        ): E=0.000e+00 (0.3s) ✗(5 errs)
+13:46:50     6 (shift_worst ): E=1.159e-18 (0.4s) ✗(4 errs)
+13:46:50     7 (shift_worst ): E=8.201e-02 (0.6s)
+13:46:51     8 (shift_worst ): E=8.647e-05 (0.6s)
+13:46:52     9 (jitter      ): E=2.714e-02 (0.7s)
+13:46:52    10 (flip        ): E=3.704e-02 (0.3s)
+13:46:52    11 (reflect     ): E=6.942e-02 (0.3s)
+13:46:53    12 (jitter      ): E=0.000e+00 (0.4s) ✗(3 errs)
+13:46:53    13 (shift_worst ): E=2.117e-03 (0.5s)
+13:46:54    14 (jitter      ): E=1.468e-15 (0.2s) ✗(2 errs)
+13:46:54    15 (reflect     ): E=0.000e+00 (0.2s) ✗(3 errs)
+13:46:54    16 (reflect     ): E=1.992e-01 (0.3s)
+13:46:55    17 (jitter      ): E=0.000e+00 (0.2s) ✗(1 errs)
+13:46:55    18 (reflect     ): E=1.854e-01 (0.3s)
+13:46:56    19 (jitter      ): E=0.000e+00 (0.4s) ✗(3 errs)
+13:46:57    20 (jitter      ): E=2.530e-21 (0.9s) ✗(3 errs)
+13:46:57    21 (shift_worst ): E=5.133e-03 (0.4s)
+13:46:57    22 (shift_worst ): E=0.000e+00 (0.2s) ✗(3 errs)
+13:46:58    23 (shift_worst ): E=9.020e-01 (0.2s)
+13:46:58    24 (jitter      ): E=3.718e-16 (0.2s) ✗(2 errs)
+13:46:58    25 (swap        ): E=0.000e+00 (0.1s) ✗(2 errs)
+13:46:59    26 (flip        ): E=1.439e-02 (0.5s)
+13:46:59    27 (reflect     ): E=1.339e-01 (0.3s)
+13:47:00    28 (jitter      ): E=0.000e+00 (0.3s) ✗(3 errs)
+13:47:00    29 (reflect     ): E=0.000e+00 (0.2s) ✗(4 errs)
+13:47:01    30 (jitter      ): E=0.000e+00 (0.1s) ✗(3 errs)
+13:47:01    31 (flip        ): E=0.000e+00 (0.1s) ✗(3 errs)
+13:47:02    32 (jitter      ): E=0.000e+00 (0.4s) ✗(1 errs)
+13:47:02    33 (jitter      ): E=0.000e+00 (0.4s) ✗(1 errs)
+13:47:03    34 (jitter      ): E=7.354e-22 (0.2s) ✗(3 errs)
+13:47:03    35 (reflect     ): E=0.000e+00 (0.3s) ✗(2 errs)
+13:47:03    36 (flip        ): E=1.431e-01 (0.3s)
+13:47:04    37 (jitter      ): E=0.000e+00 (0.2s) ✗(1 errs)
+13:47:04    38 (shift_worst ): E=1.084e-01 (0.2s)
+13:47:04    39 (flip        ): E=0.000e+00 (0.2s) ✗(3 errs)
+13:47:05    40 (jitter      ): E=1.934e-19 (0.2s) ✗(1 errs)
+13:47:06    41 (shift_worst ): E=0.000e+00 (0.4s) ✗(4 errs)
+13:47:06    42 (reflect     ): E=1.277e-01 (0.2s)
+13:47:06    43 (swap        ): E=0.000e+00 (0.1s) ✗(2 errs)
+13:47:07    44 (shift_worst ): E=0.000e+00 (0.3s) ✗(3 errs)
+13:47:07    45 (swap        ): E=0.000e+00 (0.1s) ✗(2 errs)
+13:47:07    46 (reflect     ): E=0.000e+00 (0.2s) ✗(2 errs)
+13:47:08    47 (reflect     ): E=3.112e-01 (0.3s)
+13:47:08    48 (shift_worst ): E=9.519e-01 (0.2s)
+13:47:08    49 (reflect     ): E=0.000e+00 (0.2s) ✗(4 errs)
+13:47:09    50 (swap        ): E=0.000e+00 (0.1s) ✗(2 errs)
+13:47:09    51 (flip        ): E=1.286e-01 (0.2s)
+13:47:09    52 (reflect     ): E=6.354e-01 (0.2s)
+13:47:10    53 (shift_worst ): E=8.546e-06 (0.7s)
+13:47:11    54 (shift_worst ): E=1.112e-06 (1.0s)
+13:47:11    55 (reflect     ): E=0.000e+00 (0.1s) ✗(3 errs)
+13:47:11    56 (shift_worst ): E=0.000e+00 (0.2s) ✗(4 errs)
+13:47:12    57 (jitter      ): E=0.000e+00 (0.2s) ✗(3 errs)
+13:47:12    58 (shift_worst ): E=0.000e+00 (0.3s) ✗(5 errs)
+13:47:13    59 (shift_worst ): E=8.046e-06 (0.9s)
+13:47:14    60 (flip        ): E=5.342e-01 (0.3s)
+13:47:14    61 (jitter      ): E=3.700e-16 (0.1s) ✗(3 errs)
+13:47:15    62 (jitter      ): E=0.000e+00 (0.3s) ✗(3 errs)
+13:47:15    63 (flip        ): E=2.003e-01 (0.3s)
+13:47:15    64 (reflect     ): E=7.172e-02 (0.2s)
+13:47:15    65 (jitter      ): E=0.000e+00 (0.1s) ✗(1 errs)
+13:47:16    66 (jitter      ): E=0.000e+00 (0.2s) ✗(3 errs)
+13:47:16    67 (jitter      ): E=0.000e+00 (0.4s) ✗(3 errs)
+13:47:17    68 (flip        ): E=2.186e-01 (0.2s)
+13:47:17    69 (shift_worst ): E=1.170e-06 (0.9s)
+13:47:18    70 (jitter      ): E=0.000e+00 (0.1s) ✗(3 errs)
+13:47:18    71 (swap        ): E=0.000e+00 (0.1s) ✗(2 errs)
+13:47:19    72 (shift_worst ): E=2.212e-16 (0.4s) ✗(3 errs)
+13:47:19    73 (jitter      ): E=9.839e-21 (0.1s) ✗(3 errs)
+13:47:20    74 (flip        ): E=1.076e+00 (0.4s)
+13:47:20    75 (reflect     ): E=0.000e+00 (0.3s) ✗(5 errs)
+13:47:21    76 (reflect     ): E=7.928e-02 (0.3s)
+13:47:21    77 (reflect     ): E=2.780e-02 (0.6s)
+13:47:22    78 (jitter      ): E=0.000e+00 (0.3s) ✗(2 errs)
+13:47:22    79 (swap        ): E=0.000e+00 (0.1s) ✗(2 errs)
+13:47:22    80 (swap        ): E=0.000e+00 (0.1s) ✗(2 errs)
+13:47:23    81 (jitter      ): E=0.000e+00 (0.2s) ✗(1 errs)
+13:47:23    82 (reflect     ): E=2.302e-01 (0.4s)
+13:47:24    83 (jitter      ): E=0.000e+00 (0.5s) ✗(2 errs)
+13:47:25    84 (reflect     ): E=0.000e+00 (0.9s) ✗(3 errs)
+13:47:26    85 (jitter      ): E=5.282e-26 (0.3s) ✗(3 errs)
+13:47:26    86 (flip        ): E=1.439e-02 (0.5s)
+13:47:27    87 (shift_worst ): E=8.700e-05 (0.4s)
+13:47:27    88 (reflect     ): E=5.205e-21 (0.2s) ✗(4 errs)
+13:47:27    89 (swap        ): E=0.000e+00 (0.1s) ✗(2 errs)
+13:47:28    90 (jitter      ): E=0.000e+00 (0.2s) ✗(1 errs)
+13:47:28    91 (swap        ): E=0.000e+00 (0.1s) ✗(1 errs)
+13:47:29    92 (flip        ): E=4.792e-01 (0.4s)
+13:47:29    93 (reflect     ): E=8.154e-03 (0.6s)
+13:47:30    94 (shift_worst ): E=3.346e-05 (0.5s)
+13:47:31    95 (shift_worst ): E=3.258e-06 (1.6s)
+13:47:32    96 (flip        ): E=1.996e-01 (0.4s)
+13:47:32    97 (jitter      ): E=1.555e-01 (0.8s)
+13:47:33    98 (jitter      ): E=0.000e+00 (0.2s) ✗(3 errs)
+13:47:33    99 (jitter      ): E=0.000e+00 (0.2s) ✗(1 errs)
+13:47:34   100 (jitter      ): E=0.000e+00 (0.3s) ✗(2 errs)
+13:47:34   ✗ Failed at R=3.0699
+13:47:34 
+── R = 3.0724 ──
+13:47:34     1 (swap        ): E=0.000e+00 (0.2s) ✗(2 errs)
+13:47:35     2 (reflect     ): E=1.124e-02 (0.5s)
+13:47:36     3 (jitter      ): E=1.725e-15 (0.5s) ✗(1 errs)
+13:47:36     4 (jitter      ): E=0.000e+00 (0.3s) ✗(1 errs)
+13:47:36     5 (shift_worst ): E=9.001e-02 (0.4s)
+13:47:37     6 (reflect     ): E=5.847e-02 (0.3s)
+13:47:37     7 (shift_worst ): E=4.376e-04 (0.4s)
+13:47:38     8 (jitter      ): E=0.000e+00 (0.1s) ✗(2 errs)
+13:47:38     9 (jitter      ): E=0.000e+00 (0.1s) ✗(2 errs)
+13:47:38    10 (reflect     ): E=1.446e-01 (0.3s)
+13:47:39    11 (jitter      ): E=0.000e+00 (0.2s) ✗(2 errs)
+13:47:39    12 (jitter      ): E=0.000e+00 (0.1s) ✗(2 errs)
+13:47:39    13 (reflect     ): E=2.036e-01 (0.3s)
+13:47:40    14 (jitter      ): E=0.000e+00 (0.1s) ✗(3 errs)
+13:47:40    15 (reflect     ): E=5.866e-01 (0.3s)
+13:47:40    16 (flip        ): E=4.794e-03 (0.4s)
+13:47:41    17 (shift_worst ): E=2.822e-01 (0.3s)
+13:47:41    18 (swap        ): E=0.000e+00 (0.1s) ✗(2 errs)
+13:47:41    19 (flip        ): E=1.350e-01 (0.4s)
+13:47:42    20 (flip        ): E=1.017e-01 (0.4s)
+13:47:42    21 (flip        ): E=1.217e+00 (0.4s)
+13:47:43    22 (jitter      ): E=1.233e-32 (0.6s) ✗(1 errs)
+13:47:43    23 (shift_worst ): E=8.979e-03 (0.4s)
+13:47:44    24 (flip        ): E=3.927e-17 (0.2s) ✗(4 errs)
+13:47:45    25 (shift_worst ): E=0.000e+00 (0.5s) ✗(4 errs)
+13:47:45    26 (flip        ): E=8.540e-01 (0.4s)
+13:47:45    27 (swap        ): E=0.000e+00 (0.1s) ✗(2 errs)
+13:47:46    28 (shift_worst ): E=4.354e-02 (0.5s)
+13:47:46    29 (reflect     ): E=0.000e+00 (0.2s) ✗(4 errs)
+13:47:47    30 (jitter      ): E=0.000e+00 (0.1s) ✗(3 errs)
+13:47:47    31 (reflect     ): E=6.208e-01 (0.4s)
+13:47:48    32 (shift_worst ): E=0.000e+00 (0.3s) ✗(3 errs)
+13:47:48    33 (shift_worst ): E=4.131e-06 (0.5s)
+13:47:48    34 (swap        ): E=0.000e+00 (0.1s) ✗(2 errs)
+13:47:49    35 (shift_worst ): E=0.000e+00 (0.2s) ✗(4 errs)
+13:47:49    36 (shift_worst ): E=0.000e+00 (0.1s) ✗(4 errs)
+13:47:50    37 (shift_worst ): E=1.714e-25 (0.2s) ✗(4 errs)
+13:47:50    38 (jitter      ): E=1.484e-25 (0.2s) ✗(1 errs)
+13:47:50    39 (jitter      ): E=0.000e+00 (0.1s) ✗(3 errs)
+13:47:51    40 (jitter      ): E=0.000e+00 (0.1s) ✗(1 errs)
+13:47:51    41 (jitter      ): E=7.743e-04 (0.5s)
+13:47:52    42 (flip        ): E=0.000e+00 (0.2s) ✗(4 errs)
+13:47:52    43 (jitter      ): E=4.095e-18 (0.1s) ✗(1 errs)
+13:47:53    44 (jitter      ): E=0.000e+00 (0.2s) ✗(6 errs)
+13:47:53    45 (jitter      ): E=0.000e+00 (0.3s) ✗(3 errs)
+13:48:34 
+============================================================
+13:48:34 Hybrid Optimizer — 2026-03-27 13:48:34
+13:48:34 ============================================================
+13:48:34 === Validation ===
+13:48:34   Official: valid=True, R=3.0708880056282437
+13:48:34   Shapely energy at R=3.070888: 7.20e-09
+13:48:34   Shapely energy at R=3.080888: 0.00e+00
+13:48:34   hybrid_lbfgs at R=3.0809: E=0.00e+00
+13:48:34   → valid=False, R=None
+13:48:35   hybrid_lbfgs at R=3.06: E=0.00e+00
+13:48:35 === Validation done ===
+
+13:48:35 
+=== Quick test: 20 rounds at R=3.0699 ===
+13:48:35   rnd  1 (reflect     ): E=7.516e-01 (0.3s)
+13:48:35   rnd  2 (jitter      ): E=0.000e+00 (0.2s) shapely:2ov
+13:48:35   rnd  3 (jitter      ): E=0.000e+00 (0.2s) shapely:2ov
+13:48:36   rnd  4 (flip        ): E=3.857e-01 (0.3s)
+13:48:36   rnd  5 (flip        ): E=9.285e-04 (0.6s)
+13:48:37   rnd  6 (reflect     ): E=0.000e+00 (0.6s) shapely:6ov
+13:48:38   rnd  7 (shift_worst ): E=8.313e-03 (0.8s)
+13:48:38   rnd  8 (flip        ): E=9.427e-01 (0.3s)
+13:48:38   rnd  9 (flip        ): E=6.496e-02 (0.3s)
+13:48:38   rnd 10 (flip        ): E=3.018e-02 (0.3s)
+13:48:39   rnd 11 (shift_worst ): E=1.647e-02 (0.4s)
+13:48:39   rnd 12 (jitter      ): E=0.000e+00 (0.2s) shapely:3ov
+13:48:39   rnd 13 (swap        ): E=0.000e+00 (0.1s) shapely:2ov
+13:48:39   rnd 14 (swap        ): E=0.000e+00 (0.1s) shapely:2ov
+13:48:39   rnd 15 (jitter      ): E=0.000e+00 (0.1s) shapely:2ov
+13:48:39   rnd 16 (flip        ): E=8.861e-01 (0.2s)
+13:48:40   rnd 17 (jitter      ): E=0.000e+00 (0.2s) shapely:3ov
+13:48:40   rnd 18 (shift_worst ): E=0.000e+00 (0.3s) shapely:4ov
+13:48:40   rnd 19 (swap        ): E=0.000e+00 (0.1s) shapely:2ov
+13:48:40   rnd 20 (reflect     ): E=0.000e+00 (0.1s) shapely:5ov
+13:48:40   Valid: 0/20
+13:48:40 
+=== Starting full MBH ===
+13:48:40 === MBH started | best R=3.070888 ===
+13:48:40 
+── R = 3.0699 ──
+13:48:40     1 (jitter      ): E=1.335e-15 (0.2s) shapely:1ov
+13:48:40     2 (flip        ): E=0.000e+00 (0.1s) shapely:4ov
+13:48:41     3 (jitter      ): E=7.363e-19 (0.1s) shapely:3ov
+13:48:41     4 (shift_worst ): E=7.232e-01 (0.3s)
+13:48:41     5 (flip        ): E=0.000e+00 (0.2s) shapely:5ov
+13:48:41     6 (shift_worst ): E=1.159e-18 (0.2s) shapely:4ov
+13:48:42     7 (shift_worst ): E=8.201e-02 (0.5s)
+13:48:42     8 (shift_worst ): E=8.647e-05 (0.6s)
+13:48:43     9 (jitter      ): E=0.000e+00 (0.3s) shapely:3ov
+13:48:43    10 (flip        ): E=3.704e-02 (0.3s)
+13:48:43    11 (reflect     ): E=6.942e-02 (0.4s)
+13:48:44    12 (jitter      ): E=0.000e+00 (0.2s) shapely:2ov
+13:48:44    13 (shift_worst ): E=2.117e-03 (0.5s)
+13:48:44    14 (jitter      ): E=0.000e+00 (0.3s) shapely:1ov
+13:48:44    15 (reflect     ): E=0.000e+00 (0.2s) shapely:3ov
+13:48:45    16 (reflect     ): E=1.992e-01 (0.2s)
+13:48:45    17 (jitter      ): E=0.000e+00 (0.3s) shapely:2ov
+13:48:45    18 (reflect     ): E=1.854e-01 (0.3s)
+13:48:45    19 (jitter      ): E=0.000e+00 (0.2s) shapely:2ov
+13:48:46    20 (jitter      ): E=0.000e+00 (0.3s) shapely:3ov
+13:48:46    21 (shift_worst ): E=5.133e-03 (0.4s)
+13:48:46    22 (shift_worst ): E=0.000e+00 (0.2s) shapely:3ov
+13:48:47    23 (shift_worst ): E=9.020e-01 (0.2s)
+13:48:47    24 (jitter      ): E=1.209e-01 (0.7s)
+13:48:47    25 (swap        ): E=0.000e+00 (0.1s) shapely:2ov
+13:48:48    26 (flip        ): E=1.439e-02 (0.5s)
+13:48:48    27 (reflect     ): E=1.339e-01 (0.3s)
+13:48:48    28 (jitter      ): E=0.000e+00 (0.3s) shapely:3ov
+13:48:49    29 (reflect     ): E=0.000e+00 (0.2s) shapely:4ov
+13:48:49    30 (jitter      ): E=1.026e-15 (0.2s) shapely:3ov
+13:48:49    31 (flip        ): E=0.000e+00 (0.1s) shapely:3ov
+13:48:49    32 (jitter      ): E=4.487e-17 (0.1s) shapely:3ov
+13:48:49    33 (jitter      ): E=0.000e+00 (0.3s) shapely:3ov
+13:48:50    34 (jitter      ): E=0.000e+00 (0.1s) shapely:3ov
+13:48:50    35 (reflect     ): E=0.000e+00 (0.2s) shapely:2ov
+13:48:50    36 (flip        ): E=1.431e-01 (0.3s)
+13:48:50    37 (jitter      ): E=0.000e+00 (0.1s) shapely:3ov
+13:48:50    38 (shift_worst ): E=1.084e-01 (0.3s)
+13:48:51    39 (flip        ): E=0.000e+00 (0.2s) shapely:3ov
+13:48:51    40 (jitter      ): E=0.000e+00 (0.2s) shapely:1ov
+13:48:51    41 (shift_worst ): E=0.000e+00 (0.3s) shapely:4ov
+13:48:51    42 (reflect     ): E=1.277e-01 (0.2s)
+13:48:51    43 (swap        ): E=0.000e+00 (0.1s) shapely:2ov
+13:48:52    44 (shift_worst ): E=0.000e+00 (0.2s) shapely:3ov
+13:48:52    45 (swap        ): E=0.000e+00 (0.1s) shapely:2ov
+13:48:52    46 (reflect     ): E=0.000e+00 (0.2s) shapely:2ov
+13:48:52    47 (reflect     ): E=3.112e-01 (0.3s)
+13:48:52    48 (shift_worst ): E=9.519e-01 (0.2s)
+13:48:52    49 (reflect     ): E=0.000e+00 (0.2s) shapely:4ov
+13:48:53    50 (swap        ): E=0.000e+00 (0.1s) shapely:2ov
+13:48:53    51 (flip        ): E=1.286e-01 (0.3s)
+13:48:53    52 (reflect     ): E=6.354e-01 (0.2s)
+13:48:54    53 (shift_worst ): E=8.546e-06 (0.6s)
+13:48:55    54 (shift_worst ): E=1.112e-06 (0.9s)
+13:48:55    55 (reflect     ): E=0.000e+00 (0.1s) shapely:3ov
+13:48:55    56 (shift_worst ): E=0.000e+00 (0.2s) shapely:4ov
+13:48:55    57 (jitter      ): E=0.000e+00 (0.1s) shapely:1ov
+13:48:55    58 (shift_worst ): E=0.000e+00 (0.2s) shapely:5ov
+13:48:56    59 (shift_worst ): E=8.046e-06 (0.7s)
+13:48:56    60 (flip        ): E=5.342e-01 (0.3s)
+13:48:56    61 (jitter      ): E=0.000e+00 (0.2s) shapely:3ov
+13:48:57    62 (jitter      ): E=0.000e+00 (0.1s) shapely:3ov
+13:48:57    63 (flip        ): E=2.003e-01 (0.3s)
+13:48:57    64 (reflect     ): E=7.172e-02 (0.2s)
+13:48:57    65 (jitter      ): E=0.000e+00 (0.4s) shapely:2ov
+13:48:58    66 (jitter      ): E=0.000e+00 (0.1s) shapely:2ov
+13:48:58    67 (jitter      ): E=0.000e+00 (0.1s) shapely:1ov
+13:48:58    68 (flip        ): E=2.186e-01 (0.2s)
+13:48:59    69 (shift_worst ): E=1.170e-06 (1.1s)
+13:48:59    70 (jitter      ): E=0.000e+00 (0.4s) shapely:3ov
+13:48:59    71 (swap        ): E=0.000e+00 (0.1s) shapely:2ov
+13:49:00    72 (shift_worst ): E=2.212e-16 (0.3s) shapely:3ov
+13:49:00    73 (jitter      ): E=0.000e+00 (0.2s) shapely:3ov
+13:49:00    74 (flip        ): E=1.076e+00 (0.4s)
+13:49:01    75 (reflect     ): E=0.000e+00 (0.3s) shapely:5ov
+13:49:01    76 (reflect     ): E=7.928e-02 (0.3s)
+13:49:01    77 (reflect     ): E=2.780e-02 (0.5s)
+13:49:02    78 (jitter      ): E=5.593e-20 (0.2s) shapely:5ov
+13:49:02    79 (swap        ): E=0.000e+00 (0.1s) shapely:2ov
+13:49:02    80 (swap        ): E=0.000e+00 (0.1s) shapely:2ov
+13:49:02    81 (jitter      ): E=0.000e+00 (0.8s) shapely:6ov
+13:49:03    82 (reflect     ): E=2.302e-01 (0.3s)
+13:49:03    83 (jitter      ): E=2.407e-18 (0.2s) shapely:3ov
+13:49:03    84 (reflect     ): E=0.000e+00 (0.4s) shapely:3ov
+13:49:04    85 (jitter      ): E=0.000e+00 (0.7s) shapely:3ov
+13:49:05    86 (flip        ): E=1.439e-02 (0.5s)
+13:49:05    87 (shift_worst ): E=8.700e-05 (0.4s)
+13:49:05    88 (reflect     ): E=5.205e-21 (0.3s) shapely:4ov
+13:49:05    89 (swap        ): E=0.000e+00 (0.1s) shapely:2ov
+13:49:06    90 (jitter      ): E=0.000e+00 (0.3s) shapely:4ov
+13:49:06    91 (swap        ): E=0.000e+00 (0.1s) shapely:1ov
+13:49:06    92 (flip        ): E=4.792e-01 (0.5s)
+13:49:07    93 (reflect     ): E=8.154e-03 (0.7s)
+13:49:07    94 (shift_worst ): E=3.346e-05 (0.5s)
+13:49:10    95 (shift_worst ): E=3.258e-06 (2.4s)
+13:49:10    96 (flip        ): E=1.996e-01 (0.4s)
+13:49:10    97 (jitter      ): E=0.000e+00 (0.1s) shapely:3ov
+13:49:11    98 (jitter      ): E=0.000e+00 (0.3s) shapely:3ov
+13:49:11    99 (jitter      ): E=6.708e-17 (0.1s) shapely:2ov
+13:49:11   100 (jitter      ): E=0.000e+00 (0.6s) shapely:2ov
+13:49:11   ✗ Failed at R=3.0699
+13:49:11 
+── R = 3.0724 ──
+13:49:11     1 (swap        ): E=0.000e+00 (0.1s) shapely:2ov
+13:49:12     2 (reflect     ): E=1.124e-02 (0.5s)
+13:49:12     3 (jitter      ): E=3.081e-31 (0.4s) shapely:3ov
+13:49:13     4 (jitter      ): E=0.000e+00 (0.3s) shapely:5ov
+13:49:13     5 (shift_worst ): E=9.001e-02 (0.4s)
+13:49:13     6 (reflect     ): E=5.847e-02 (0.3s)
+13:49:14     7 (shift_worst ): E=4.376e-04 (0.6s)
+13:49:14     8 (jitter      ): E=0.000e+00 (0.1s) shapely:3ov
+13:49:14     9 (jitter      ): E=0.000e+00 (0.3s) shapely:3ov
+13:49:15    10 (reflect     ): E=1.446e-01 (0.4s)
+13:49:15    11 (jitter      ): E=0.000e+00 (0.2s) shapely:3ov
+13:49:15    12 (jitter      ): E=0.000e+00 (0.2s) shapely:3ov
+13:49:15    13 (reflect     ): E=2.036e-01 (0.3s)
+13:49:16    14 (jitter      ): E=0.000e+00 (0.2s) shapely:2ov
+13:49:16    15 (reflect     ): E=5.866e-01 (0.4s)
+13:49:16    16 (flip        ): E=4.794e-03 (0.4s)
+13:49:17    17 (shift_worst ): E=2.822e-01 (0.3s)
+13:49:17    18 (swap        ): E=0.000e+00 (0.2s) shapely:2ov
+13:49:17    19 (flip        ): E=1.350e-01 (0.5s)
+13:49:18    20 (flip        ): E=1.017e-01 (0.3s)
+13:49:18    21 (flip        ): E=1.217e+00 (0.3s)
+13:49:18    22 (jitter      ): E=0.000e+00 (0.3s) shapely:2ov
+13:49:19    23 (shift_worst ): E=8.979e-03 (0.5s)
+13:49:19    24 (flip        ): E=3.927e-17 (0.5s) shapely:4ov
+13:49:20    25 (shift_worst ): E=0.000e+00 (0.7s) shapely:4ov
+13:49:20    26 (flip        ): E=8.540e-01 (0.5s)
+13:49:21    27 (swap        ): E=0.000e+00 (0.2s) shapely:2ov
+13:49:21    28 (shift_worst ): E=4.354e-02 (0.8s)
+13:49:22    29 (reflect     ): E=0.000e+00 (0.2s) shapely:4ov
+13:49:22    30 (jitter      ): E=0.000e+00 (0.1s) shapely:2ov
+13:49:22    31 (reflect     ): E=6.208e-01 (0.6s)
+13:49:23    32 (shift_worst ): E=0.000e+00 (0.3s) shapely:3ov
+13:49:23    33 (shift_worst ): E=4.131e-06 (0.6s)
+13:49:24    34 (swap        ): E=0.000e+00 (0.2s) shapely:2ov
+13:49:24    35 (shift_worst ): E=0.000e+00 (0.4s) shapely:4ov
+13:49:24    36 (shift_worst ): E=0.000e+00 (0.2s) shapely:4ov
+13:49:25    37 (shift_worst ): E=1.714e-25 (0.4s) shapely:4ov
+13:49:25    38 (jitter      ): E=0.000e+00 (0.2s) shapely:4ov
+13:49:25    39 (jitter      ): E=1.104e-24 (0.5s) shapely:3ov
+13:49:25    40 (jitter      ): E=0.000e+00 (0.1s) shapely:1ov
+13:49:25    41 (jitter      ): E=0.000e+00 (0.1s) shapely:3ov
+13:49:26    42 (flip        ): E=0.000e+00 (0.2s) shapely:4ov
+13:49:26    43 (jitter      ): E=0.000e+00 (0.2s) shapely:3ov
+13:49:26    44 (jitter      ): E=0.000e+00 (0.1s) shapely:3ov
+13:49:26    45 (jitter      ): E=0.000e+00 (0.1s) shapely:1ov
+13:49:26    46 (jitter      ): E=0.000e+00 (0.2s) shapely:3ov
+13:49:27    47 (shift_worst ): E=1.240e-01 (0.3s)
+13:49:27    48 (flip        ): E=6.962e-10 (0.4s) shapely:8ov
+13:49:27    49 (flip        ): E=0.000e+00 (0.2s) shapely:4ov
+13:49:27    50 (jitter      ): E=0.000e+00 (0.2s) shapely:3ov
+13:49:28    51 (jitter      ): E=0.000e+00 (0.2s) shapely:3ov
+13:49:28    52 (swap        ): E=6.804e-19 (0.1s) shapely:2ov
+13:49:28    53 (shift_worst ): E=0.000e+00 (0.7s) shapely:5ov
+13:49:29    54 (jitter      ): E=0.000e+00 (0.3s) shapely:3ov
+13:49:29    55 (jitter      ): E=0.000e+00 (0.2s) shapely:3ov
+13:49:29    56 (reflect     ): E=7.984e-01 (0.4s)
+13:49:30    57 (shift_worst ): E=2.889e-04 (0.9s)
+13:49:31    58 (shift_worst ): E=1.043e+00 (0.4s)
+13:49:31    59 (swap        ): E=0.000e+00 (0.1s) shapely:2ov
+13:49:31    60 (reflect     ): E=2.247e-01 (0.4s)
+13:49:31    61 (jitter      ): E=0.000e+00 (0.1s) shapely:2ov
+13:49:32    62 (swap        ): E=0.000e+00 (0.1s) shapely:2ov
+13:49:32    63 (jitter      ): E=0.000e+00 (0.6s) shapely:3ov
+13:49:32    64 (swap        ): E=0.000e+00 (0.2s) shapely:2ov
+13:49:33    65 (jitter      ): E=0.000e+00 (0.2s) shapely:3ov
+13:49:33    66 (flip        ): E=0.000e+00 (0.2s) shapely:3ov
+13:49:33    67 (jitter      ): E=3.994e-30 (0.4s) shapely:3ov
+13:49:33    68 (swap        ): E=0.000e+00 (0.2s) shapely:2ov
+13:49:34    69 (shift_worst ): E=6.199e-02 (0.4s)
+13:49:34    70 (flip        ): E=1.366e-15 (0.8s) shapely:5ov
+13:49:35    71 (flip        ): E=1.217e+00 (0.3s)
+13:49:35    72 (flip        ): E=0.000e+00 (0.2s) shapely:3ov
+13:49:35    73 (reflect     ): E=1.563e-01 (0.3s)
+13:49:36    74 (jitter      ): E=1.639e-16 (0.3s) shapely:3ov
+13:49:36    75 (reflect     ): E=1.410e-01 (0.3s)
+13:49:36    76 (shift_worst ): E=3.983e-04 (0.4s)
+13:49:36    77 (swap        ): E=0.000e+00 (0.1s) shapely:2ov
+13:49:37    78 (reflect     ): E=2.200e-01 (0.2s)
+13:49:37    79 (swap        ): E=4.586e-19 (0.1s) shapely:1ov
+13:49:37    80 (jitter      ): E=1.178e-24 (0.1s) shapely:3ov
+13:49:37    81 (jitter      ): E=0.000e+00 (0.1s) shapely:3ov
+13:49:37    82 (jitter      ): E=0.000e+00 (0.2s) shapely:3ov
+13:49:37    83 (reflect     ): E=1.930e-01 (0.3s)
+13:49:37    84 (jitter      ): E=0.000e+00 (0.1s) shapely:3ov
+13:49:38    85 (shift_worst ): E=9.932e-03 (0.4s)
+13:49:38    86 (flip        ): E=0.000e+00 (0.2s) shapely:4ov
+13:49:38    87 (shift_worst ): E=0.000e+00 (0.5s) shapely:4ov
+13:49:39    88 (jitter      ): E=8.249e-16 (0.3s) shapely:2ov
+13:49:39    89 (jitter      ): E=2.113e-25 (0.2s) shapely:3ov
+13:49:39    90 (jitter      ): E=0.000e+00 (0.1s) shapely:2ov
+13:49:39    91 (reflect     ): E=1.626e-01 (0.4s)
+13:49:40    92 (jitter      ): E=0.000e+00 (0.2s) shapely:3ov
+13:49:40    93 (reflect     ): E=2.829e-01 (0.3s)
+13:49:40    94 (shift_worst ): E=0.000e+00 (0.5s) shapely:6ov
+13:49:41    95 (reflect     ): E=7.497e-02 (0.3s)
+13:49:41    96 (jitter      ): E=0.000e+00 (0.1s) shapely:1ov
+13:49:41    97 (swap        ): E=4.586e-19 (0.1s) shapely:1ov
+13:49:41    98 (jitter      ): E=0.000e+00 (0.2s) shapely:2ov
+13:49:41    99 (reflect     ): E=0.000e+00 (0.2s) shapely:5ov
+13:49:41   100 (swap        ): E=0.000e+00 (0.1s) shapely:2ov
+13:49:41   ✗ Failed at R=3.0724
+13:49:41 
+── R = 3.0749 ──
+13:49:41     1 (jitter      ): E=0.000e+00 (0.1s) shapely:3ov
+13:49:42     2 (jitter      ): E=3.263e-24 (0.2s) shapely:3ov
+13:49:42     3 (flip        ): E=0.000e+00 (0.1s) shapely:4ov
+13:49:42     4 (flip        ): E=7.929e-02 (0.2s)
+13:49:42     5 (jitter      ): E=0.000e+00 (0.1s) shapely:1ov
+13:49:43     6 (shift_worst ): E=1.268e-06 (0.5s)
+13:49:43     7 (shift_worst ): E=0.000e+00 (0.2s) shapely:3ov
+13:49:43     8 (reflect     ): E=0.000e+00 (0.1s) shapely:2ov
+13:49:43     9 (flip        ): E=4.634e-02 (0.4s)
+13:49:44    10 (shift_worst ): E=2.333e-02 (0.4s)
+13:49:44    11 (jitter      ): E=0.000e+00 (0.2s) shapely:3ov
+13:49:44    12 (jitter      ): E=0.000e+00 (0.2s) shapely:2ov
+13:49:44    13 (jitter      ): E=4.890e-18 (0.3s) shapely:3ov
+13:49:45    14 (shift_worst ): E=2.168e-01 (0.3s)
+13:49:45    15 (jitter      ): E=0.000e+00 (0.2s) shapely:1ov
+13:49:45    16 (shift_worst ): E=1.098e-01 (0.3s)
+13:49:45    17 (jitter      ): E=0.000e+00 (0.2s) shapely:2ov
+13:49:45    18 (jitter      ): E=2.083e-30 (0.1s) shapely:2ov
+13:49:46    19 (flip        ): E=2.595e-02 (0.3s)
+13:49:46    20 (flip        ): E=0.000e+00 (0.2s) shapely:7ov
+13:49:46    21 (swap        ): E=0.000e+00 (0.1s) shapely:1ov
+13:49:46    22 (flip        ): E=2.001e-02 (0.5s)
+13:49:47    23 (swap        ): E=0.000e+00 (0.1s) shapely:1ov
+13:49:47    24 (swap        ): E=0.000e+00 (0.1s) shapely:1ov
+13:49:47    25 (jitter      ): E=0.000e+00 (0.1s) shapely:2ov
+13:49:47    26 (shift_worst ): E=0.000e+00 (0.2s) shapely:3ov
+13:49:47    27 (jitter      ): E=0.000e+00 (0.3s) shapely:3ov
+13:49:47    28 (shift_worst ): E=0.000e+00 (0.1s) shapely:4ov
+13:49:48    29 (reflect     ): E=4.905e-01 (0.2s)
+13:49:48    30 (flip        ): E=4.500e-01 (0.2s)
+13:49:48    31 (flip        ): E=0.000e+00 (0.1s) shapely:3ov
+13:49:48    32 (jitter      ): E=0.000e+00 (0.2s) shapely:3ov
+13:49:48    33 (flip        ): E=4.062e-01 (0.4s)
+13:49:49    34 (shift_worst ): E=6.594e-01 (0.5s)
+13:49:49    35 (flip        ): E=0.000e+00 (0.2s) shapely:4ov
+13:49:49    36 (flip        ): E=3.437e-02 (0.4s)
+13:49:50    37 (reflect     ): E=1.988e-01 (0.4s)
+13:49:50    38 (jitter      ): E=7.499e-29 (0.1s) shapely:1ov
+13:49:50    39 (swap        ): E=0.000e+00 (0.1s) shapely:1ov
+13:49:50    40 (jitter      ): E=0.000e+00 (0.2s) shapely:3ov
+13:49:51    41 (jitter      ): E=0.000e+00 (0.3s) shapely:3ov
+13:49:51    42 (jitter      ): E=3.323e-04 (0.5s)
+13:49:51    43 (jitter      ): E=0.000e+00 (0.1s) shapely:2ov
+13:49:51    44 (swap        ): E=0.000e+00 (0.1s) shapely:1ov
+13:49:52    45 (jitter      ): E=0.000e+00 (0.2s) shapely:2ov
+13:49:52    46 (shift_worst ): E=0.000e+00 (0.2s) shapely:4ov
+13:49:52    47 (flip        ): E=9.958e-02 (0.4s)
+13:49:52    48 (swap        ): E=0.000e+00 (0.1s) shapely:1ov
+13:49:53    49 (flip        ): E=5.833e-01 (0.4s)
+13:49:53    50 (jitter      ): E=0.000e+00 (0.1s) shapely:1ov
+13:49:53    51 (jitter      ): E=0.000e+00 (0.4s) shapely:2ov
+13:49:53    52 (shift_worst ): E=1.749e-05 (0.4s)
+13:49:54    53 (swap        ): E=0.000e+00 (0.1s) shapely:1ov
+13:49:54    54 (jitter      ): E=0.000e+00 (0.2s) shapely:2ov
+13:49:54    55 (reflect     ): E=1.643e-01 (0.4s)
+13:49:54    56 (swap        ): E=0.000e+00 (0.1s) shapely:1ov
+13:49:55    57 (reflect     ): E=0.000e+00 (0.4s) shapely:5ov
+13:49:55    58 (shift_worst ): E=2.745e-03 (0.5s)
+13:49:55    59 (swap        ): E=0.000e+00 (0.1s) shapely:1ov
+13:49:56    60 (shift_worst ): E=6.115e-01 (0.3s)
+13:49:57    61 (shift_worst ): E=1.233e-32 (0.9s) shapely:4ov
+13:49:57    62 (jitter      ): E=0.000e+00 (0.1s) shapely:2ov
+13:51:04 
+============================================================
+13:51:04 Hybrid Optimizer — 2026-03-27 13:51:04
+13:51:04 ============================================================
+13:51:04 === Validation ===
+13:51:05   Official: valid=True, R=3.0708880056282437
+13:51:05   Shapely energy at R=3.070888: 7.20e-09
+13:51:05   Shapely energy at R=3.080888: 0.00e+00
+13:51:05   hybrid_lbfgs at R=3.0809: n_ov=0
+13:51:05   → valid=False, R=None
+13:51:06   hybrid_lbfgs at R=3.0659: n_ov=0
+13:51:06 === Validation done ===
+
+13:51:06 
+=== Quick test: 20 rounds at R=3.0699 ===
+13:51:06   rnd  1 (reflect     ): ov=-1 (0.3s)
+13:51:08   rnd  2 (jitter      ): ov=13 (2.1s) (13ov)
+13:51:11   rnd  3 (jitter      ): ov=11 (2.3s) (11ov)
+13:51:11   rnd  4 (flip        ): ov=-1 (0.3s)
+13:51:11   rnd  5 (flip        ): ov=14 (0.4s) (14ov)
+13:51:14   rnd  6 (reflect     ): ov=16 (3.0s) (16ov)
+13:51:15   rnd  7 (shift_worst ): ov=23 (0.6s) (23ov)
+13:51:15   rnd  8 (flip        ): ov=-1 (0.2s)
+13:51:15   rnd  9 (flip        ): ov=-1 (0.3s)
+13:51:16   rnd 10 (flip        ): ov=-1 (0.3s)
+13:51:16   rnd 11 (shift_worst ): ov=-1 (0.4s)
+13:51:19   rnd 12 (jitter      ): ov=13 (2.6s) (13ov)
+13:51:19   rnd 13 (swap        ): ov=0 (0.5s) ✗(2)
+13:51:20   rnd 14 (swap        ): ov=0 (0.6s) ✗(2)
+13:51:23   rnd 15 (jitter      ): ov=13 (2.8s) (13ov)
+13:51:23   rnd 16 (flip        ): ov=-1 (0.2s)
+13:51:25   rnd 17 (jitter      ): ov=6 (2.0s) (6ov)
+13:51:28   rnd 18 (shift_worst ): ov=13 (2.4s) (13ov)
+13:51:29   rnd 19 (swap        ): ov=0 (0.8s) ✗(2)
+13:51:32   rnd 20 (reflect     ): ov=17 (3.5s) (17ov)
+13:51:32   Valid: 0/20
+13:51:32 
+=== Starting full MBH ===
+13:51:32 === MBH started | best R=3.070888 ===
+13:51:32 
+── R = 3.0699 ──
+13:51:36     1 (jitter      ): ov=11 (3.9s) (11ov)
+13:51:39     2 (flip        ): ov=15 (3.2s) (15ov)
+13:51:41     3 (jitter      ): ov=7 (2.1s) (7ov)
+13:51:42     4 (shift_worst ): ov=-1 (0.5s)
+13:51:45     5 (flip        ): ov=20 (3.7s) (20ov)
+13:51:48     6 (shift_worst ): ov=18 (3.0s) (18ov)
+13:51:49     7 (shift_worst ): ov=-1 (0.6s)
+13:51:50     8 (shift_worst ): ov=21 (0.5s) (21ov)
+13:51:54     9 (jitter      ): ov=13 (4.1s) (13ov)
+13:51:54    10 (flip        ): ov=-1 (0.3s)
+13:51:54    11 (reflect     ): ov=-1 (0.4s)
+13:51:56    12 (jitter      ): ov=3 (1.9s) (3ov)
+13:51:57    13 (shift_worst ): ov=18 (0.5s) (18ov)
+13:51:59    14 (jitter      ): ov=7 (2.5s) (7ov)
+13:52:01    15 (reflect     ): ov=9 (1.9s) (9ov)
+13:52:01    16 (reflect     ): ov=-1 (0.2s)
+13:52:02    17 (jitter      ): ov=17 (0.6s) (17ov)
+13:52:02    18 (reflect     ): ov=-1 (0.3s)
+13:52:03    19 (jitter      ): ov=0 (1.0s) ✗official(3)
+13:52:06    20 (jitter      ): ov=11 (2.4s) (11ov)
+13:52:06    21 (shift_worst ): ov=14 (0.3s) (14ov)
+13:52:10    22 (shift_worst ): ov=12 (4.4s) (12ov)
+13:52:11    23 (shift_worst ): ov=-1 (0.2s)
+13:52:13    24 (jitter      ): ov=13 (1.9s) (13ov)
+13:52:13    25 (swap        ): ov=0 (0.5s) ✗official(2)
+13:52:14    26 (flip        ): ov=-1 (0.5s)
+13:52:14    27 (reflect     ): ov=-1 (0.2s)
+13:52:17    28 (jitter      ): ov=12 (2.7s) (12ov)
+13:52:19    29 (reflect     ): ov=15 (2.5s) (15ov)
+13:52:20    30 (jitter      ): ov=0 (0.6s) ✗official(2)
+13:52:22    31 (flip        ): ov=13 (1.9s) (13ov)
+13:52:24    32 (jitter      ): ov=12 (2.3s) (12ov)
+13:52:25    33 (jitter      ): ov=22 (0.6s) (22ov)
+13:52:28    34 (jitter      ): ov=11 (2.8s) (11ov)
+13:52:30    35 (reflect     ): ov=8 (2.0s) (8ov)
+13:52:30    36 (flip        ): ov=-1 (0.3s)
+13:52:34    37 (jitter      ): ov=10 (4.0s) (10ov)
+13:52:34    38 (shift_worst ): ov=-1 (0.2s)
+13:52:36    39 (flip        ): ov=13 (1.7s) (13ov)
+13:52:39    40 (jitter      ): ov=13 (2.9s) (13ov)
+13:52:41    41 (shift_worst ): ov=18 (2.5s) (18ov)
+13:52:41    42 (reflect     ): ov=-1 (0.2s)
+13:52:42    43 (swap        ): ov=0 (0.5s) ✗official(2)
+13:52:44    44 (shift_worst ): ov=14 (1.9s) (14ov)
+13:52:45    45 (swap        ): ov=0 (0.5s) ✗official(2)
+13:52:46    46 (reflect     ): ov=10 (1.4s) (10ov)
+13:52:46    47 (reflect     ): ov=-1 (0.3s)
+13:52:47    48 (shift_worst ): ov=-1 (0.2s)
+13:52:49    49 (reflect     ): ov=14 (2.8s) (14ov)
+13:52:50    50 (swap        ): ov=0 (0.5s) ✗official(2)
+13:52:50    51 (flip        ): ov=-1 (0.3s)
+13:52:51    52 (reflect     ): ov=-1 (0.2s)
+13:52:54    53 (shift_worst ): ov=17 (3.7s) (17ov)
+13:52:58    54 (shift_worst ): ov=14 (4.1s) (14ov)
+13:53:00    55 (reflect     ): ov=13 (1.6s) (13ov)
+13:53:02    56 (shift_worst ): ov=13 (1.9s) (13ov)
+13:55:25 
+============================================================
+13:55:25 Hybrid Optimizer — 2026-03-27 13:55:25
+13:55:25 ============================================================
+13:55:25 === Validation ===
+13:55:25   Official: valid=True, R=3.0708880056282437
+13:55:25   Shapely energy at R=3.070888: 7.20e-09
+13:55:25   Shapely energy at R=3.080888: 0.00e+00
+13:55:26   hybrid_lbfgs at R=3.0809: n_ov=0
+13:55:26   → valid=True, R=3.0914391301894586
+13:55:27   hybrid_lbfgs at R=3.0659: n_ov=0
+13:55:27 === Validation done ===
+
+13:55:27 
+=== Quick test: 20 rounds at R=3.0699 ===
+13:55:29   rnd  1 (reflect     ): ov=0 (1.5s) ✓ R=3.242086
+13:55:30   rnd  2 (reflect     ): ov=0 (1.0s) ✓ R=3.242086
+13:55:32   rnd  3 (reflect     ): ov=0 (1.6s) ✓ R=3.242086
+13:55:33   rnd  4 (reflect     ): ov=0 (1.3s) ✓ R=3.242086
+13:55:35   rnd  5 (reflect     ): ov=0 (1.7s) ✓ R=3.242086
+13:55:37   rnd  6 (reflect     ): ov=0 (1.5s) ✓ R=3.242086
+13:55:39   rnd  7 (reflect     ): ov=0 (1.4s) ✓ R=3.242086
+13:55:41   rnd  8 (reflect     ): ov=0 (1.8s) ✓ R=3.242086
+13:55:42   rnd  9 (reflect     ): ov=0 (0.9s) ✓ R=3.242086
+13:55:43   rnd 10 (reflect     ): ov=0 (1.3s) ✓ R=3.242086
+13:55:44   rnd 11 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:55:45   rnd 12 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:55:46   rnd 13 (reflect     ): ov=0 (0.9s) ✓ R=3.242086
+13:55:48   rnd 14 (reflect     ): ov=0 (1.7s) ✓ R=3.242086
+13:55:50   rnd 15 (reflect     ): ov=0 (1.2s) ✓ R=3.242086
+13:55:51   rnd 16 (reflect     ): ov=0 (1.3s) ✓ R=3.242086
+13:55:52   rnd 17 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:55:53   rnd 18 (reflect     ): ov=0 (0.9s) ✓ R=3.242086
+13:55:55   rnd 19 (reflect     ): ov=0 (1.0s) ✓ R=3.242086
+13:55:56   rnd 20 (reflect     ): ov=0 (0.9s) ✓ R=3.242086
+13:55:56   Valid: 20/20
+13:55:56 
+=== Starting full MBH ===
+13:55:56 === MBH started | best R=3.070888 ===
+13:55:56 
+── R = 3.0699 ──
+13:55:58     1 (reflect     ): ov=0 (1.7s) ✓ R=3.242086
+13:55:58 
+── R = 3.0659 ──
+13:56:01     1 (reflect     ): ov=12 (3.0s) (12ov)
+13:56:02     2 (jitter      ): ov=0 (0.7s) ✓ R=3.099974
+13:56:02 
+── R = 3.0659 ──
+13:56:04     1 (reflect     ): ov=12 (1.7s) (12ov)
+13:56:05     2 (jitter      ): ov=27 (1.2s) (27ov)
+13:56:06     3 (jitter      ): ov=0 (1.1s) ✓ R=3.198284
+13:56:07 
+── R = 3.0659 ──
+13:56:08     1 (reflect     ): ov=12 (1.4s) (12ov)
+13:56:09     2 (jitter      ): ov=0 (0.6s) ✓ R=3.194147
+13:56:09 
+── R = 3.0659 ──
+13:56:10     1 (reflect     ): ov=12 (1.3s) (12ov)
+13:56:12     2 (jitter      ): ov=-1 (1.2s)
+13:56:12     3 (jitter      ): ov=0 (0.5s) ✓ R=3.194618
+13:56:13 
+── R = 3.0659 ──
+13:56:14     1 (reflect     ): ov=12 (1.4s) (12ov)
+13:56:15     2 (jitter      ): ov=23 (1.2s) (23ov)
+13:56:16     3 (jitter      ): ov=0 (0.5s) ✓ R=3.197950
+13:56:16 
+── R = 3.0659 ──
+13:56:17     1 (reflect     ): ov=12 (1.3s) (12ov)
+13:56:18     2 (jitter      ): ov=-1 (0.3s)
+13:56:19     3 (jitter      ): ov=0 (1.0s) ✓ R=3.101299
+13:56:19 
+── R = 3.0659 ──
+13:56:21     1 (reflect     ): ov=12 (1.6s) (12ov)
+13:56:22     2 (jitter      ): ov=0 (1.1s) ✓ R=3.155096
+13:56:22 
+── R = 3.0659 ──
+13:56:24     1 (reflect     ): ov=12 (1.3s) (12ov)
+13:56:24     2 (jitter      ): ov=-1 (0.1s)
+13:56:25     3 (jitter      ): ov=-1 (1.2s)
+13:56:26     4 (flip        ): ov=-1 (0.6s)
+13:56:26     5 (flip        ): ov=-1 (0.3s)
+13:56:27     6 (reflect     ): ov=16 (1.4s) (16ov)
+13:56:28     7 (shift_worst ): ov=0 (0.6s) ✓ R=3.247754
+13:56:28 
+── R = 3.0659 ──
+13:56:29     1 (jitter      ): ov=0 (0.8s) ✓ R=3.190616
+13:56:30 
+── R = 3.0659 ──
+13:56:31     1 (reflect     ): ov=12 (1.3s) (12ov)
+13:56:32     2 (jitter      ): ov=0 (0.9s) ✓ R=3.098793
+13:56:32 
+── R = 3.0659 ──
+13:56:35     1 (reflect     ): ov=12 (3.1s) (12ov)
+13:56:37     2 (jitter      ): ov=21 (1.9s) (21ov)
+13:56:39     3 (jitter      ): ov=0 (1.1s) ✓ R=3.258238
+13:56:39 
+── R = 3.0659 ──
+13:56:40     1 (reflect     ): ov=12 (1.5s) (12ov)
+13:56:41     2 (jitter      ): ov=0 (0.8s) ✓ R=3.151502
+13:56:42 
+── R = 3.0659 ──
+13:56:43     1 (reflect     ): ov=12 (1.7s) (12ov)
+13:56:45     2 (jitter      ): ov=-1 (1.3s)
+13:56:46     3 (jitter      ): ov=0 (0.7s) ✓ R=3.214714
+13:56:46 
+── R = 3.0659 ──
+13:56:47     1 (reflect     ): ov=12 (1.6s) (12ov)
+13:56:48     2 (jitter      ): ov=-1 (0.7s)
+13:56:49     3 (jitter      ): ov=0 (0.5s) ✓ R=3.169084
+13:56:49 
+── R = 3.0659 ──
+13:56:50     1 (reflect     ): ov=12 (1.4s) (12ov)
+13:56:52     2 (jitter      ): ov=22 (1.3s) (22ov)
+13:56:53     3 (jitter      ): ov=0 (1.0s) ✓ R=3.275704
+13:56:53 
+── R = 3.0659 ──
+13:56:54     1 (jitter      ): ov=-1 (1.2s)
+13:56:54     2 (flip        ): ov=-1 (0.2s)
+13:56:56     3 (jitter      ): ov=-1 (1.1s)
+13:56:56     4 (reflect     ): ov=-1 (0.3s)
+13:56:57     5 (flip        ): ov=24 (0.7s) (24ov)
+13:56:57     6 (shift_worst ): ov=-1 (0.1s)
+13:56:58     7 (swap        ): ov=0 (1.0s) ✓ R=3.095734
+13:56:58 
+── R = 3.0659 ──
+13:57:00     1 (reflect     ): ov=12 (1.7s) (12ov)
+13:57:01     2 (jitter      ): ov=-1 (1.1s)
+13:57:02     3 (jitter      ): ov=0 (0.9s) ✓ R=3.151102
+13:57:02 
+── R = 3.0659 ──
+13:57:04     1 (reflect     ): ov=12 (1.6s) (12ov)
+13:57:05     2 (jitter      ): ov=-1 (1.1s)
+13:57:06     3 (jitter      ): ov=-1 (1.2s)
+13:57:07     4 (flip        ): ov=-1 (0.6s)
+13:57:07     5 (flip        ): ov=-1 (0.2s)
+13:57:08     6 (reflect     ): ov=16 (1.3s) (16ov)
+13:57:09     7 (shift_worst ): ov=0 (0.6s) ✓ R=3.247754
+13:57:09 
+── R = 3.0659 ──
+13:57:11     1 (jitter      ): ov=0 (1.2s) ✓ R=3.166655
+13:57:11 
+── R = 3.0659 ──
+13:57:12     1 (reflect     ): ov=12 (1.3s) (12ov)
+13:57:13     2 (jitter      ): ov=24 (0.8s) (24ov)
+13:57:14     3 (jitter      ): ov=0 (0.6s) ✓ R=3.211466
+13:57:14 
+── R = 3.0659 ──
+13:57:15     1 (reflect     ): ov=12 (1.4s) (12ov)
+13:57:17     2 (jitter      ): ov=-1 (1.2s)
+13:57:18     3 (jitter      ): ov=0 (0.9s) ✓ R=3.251522
+13:57:18 
+── R = 3.0659 ──
+13:57:19     1 (reflect     ): ov=12 (1.3s) (12ov)
+13:57:20     2 (jitter      ): ov=21 (1.0s) (21ov)
+13:57:22     3 (jitter      ): ov=0 (1.6s) ✓ R=3.106107
+13:57:22 
+── R = 3.0659 ──
+13:57:24     1 (reflect     ): ov=12 (1.6s) (12ov)
+13:57:25     2 (jitter      ): ov=-1 (1.1s)
+13:57:26     3 (jitter      ): ov=0 (0.3s) ✓ R=3.203766
+13:57:26 
+── R = 3.0659 ──
+13:57:27     1 (reflect     ): ov=12 (1.4s) (12ov)
+13:57:29     2 (jitter      ): ov=0 (1.1s) ✓ R=3.171147
+13:57:29 
+── R = 3.0659 ──
+13:57:30     1 (reflect     ): ov=12 (1.2s) (12ov)
+13:57:31     2 (jitter      ): ov=0 (0.6s) ✓ R=3.206381
+13:57:31 
+── R = 3.0659 ──
+13:57:33     1 (reflect     ): ov=12 (1.8s) (12ov)
+13:57:34     2 (jitter      ): ov=0 (0.8s) ✓ R=3.241214
+13:57:34 
+── R = 3.0659 ──
+13:57:35     1 (reflect     ): ov=12 (1.4s) (12ov)
+13:57:37     2 (jitter      ): ov=20 (1.2s) (20ov)
+13:57:38     3 (jitter      ): ov=0 (0.7s) ✓ R=3.162783
+13:57:38 
+── R = 3.0659 ──
+13:57:39     1 (reflect     ): ov=12 (1.4s) (12ov)
+13:57:40     2 (jitter      ): ov=24 (1.1s) (24ov)
+13:57:41     3 (jitter      ): ov=0 (0.7s) ✓ R=3.084770
+13:57:41 
+── R = 3.0659 ──
+13:57:43     1 (reflect     ): ov=12 (1.4s) (12ov)
+13:57:43     2 (jitter      ): ov=-1 (0.6s)
+13:57:44     3 (jitter      ): ov=22 (1.1s) (22ov)
+13:57:45     4 (flip        ): ov=-1 (0.8s)
+13:57:46     5 (flip        ): ov=-1 (0.3s)
+13:57:47     6 (reflect     ): ov=16 (1.2s) (16ov)
+13:58:13 
+============================================================
+13:58:13 Hybrid Optimizer — 2026-03-27 13:58:13
+13:58:13 ============================================================
+13:58:13 === Validation ===
+13:58:13   Official: valid=True, R=3.0708880056282437
+13:58:13   Shapely energy at R=3.070888: 7.20e-09
+13:58:13   Shapely energy at R=3.080888: 0.00e+00
+13:58:13   hybrid_lbfgs at R=3.0809: n_ov=0
+13:58:13   → valid=True, R=3.0914391301894586
+13:58:14   hybrid_lbfgs at R=3.0659: n_ov=0
+13:58:14 === Validation done ===
+
+13:58:14 
+=== Quick test: 20 rounds at R=3.0699 ===
+13:58:15   rnd  1 (reflect     ): ov=0 (0.9s) ✓ R=3.242086
+13:58:17   rnd  2 (reflect     ): ov=0 (0.9s) ✓ R=3.242086
+13:58:18   rnd  3 (reflect     ): ov=0 (1.1s) ✓ R=3.242086
+13:58:19   rnd  4 (reflect     ): ov=0 (1.2s) ✓ R=3.242086
+13:58:21   rnd  5 (reflect     ): ov=0 (1.1s) ✓ R=3.242086
+13:58:21   rnd  6 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:58:22   rnd  7 (reflect     ): ov=0 (0.7s) ✓ R=3.242086
+13:58:23   rnd  8 (reflect     ): ov=0 (0.7s) ✓ R=3.242086
+13:58:24   rnd  9 (reflect     ): ov=0 (0.9s) ✓ R=3.242086
+13:58:25   rnd 10 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:58:26   rnd 11 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:58:27   rnd 12 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:58:28   rnd 13 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:58:29   rnd 14 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:58:30   rnd 15 (reflect     ): ov=0 (0.7s) ✓ R=3.242086
+13:58:31   rnd 16 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:58:32   rnd 17 (reflect     ): ov=0 (0.7s) ✓ R=3.242086
+13:58:34   rnd 18 (reflect     ): ov=0 (1.7s) ✓ R=3.242086
+13:58:35   rnd 19 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:58:36   rnd 20 (reflect     ): ov=0 (0.7s) ✓ R=3.242086
+13:58:36   Valid: 20/20
+13:58:36 
+=== Starting full MBH ===
+13:58:36 === MBH started | best R=3.070888 ===
+13:58:36 
+── R = 3.0699 ──
+13:58:37     1 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:58:37     1 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:58:38     2 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:58:38     2 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:58:39     3 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:58:39     3 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:58:40     4 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:58:40     4 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:58:41     5 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:58:41     5 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:58:42     6 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:58:42     6 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:58:43     7 (reflect     ): ov=0 (1.1s) ✓ R=3.242086
+13:58:43     7 (reflect     ): ov=0 (1.1s) ✓ R=3.242086
+13:58:44     8 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:58:44     8 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:58:45     9 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:58:45     9 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:58:47    10 (reflect     ): ov=0 (1.3s) ✓ R=3.242086
+13:58:47    10 (reflect     ): ov=0 (1.3s) ✓ R=3.242086
+13:58:48    11 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:58:48    11 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:58:49    12 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:58:49    12 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:58:50    13 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:58:50    13 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:58:51    14 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:58:51    14 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:58:52    15 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:58:52    15 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:58:53    16 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:58:53    16 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:58:54    17 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:58:54    17 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:58:55    18 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:58:55    18 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:58:56    19 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:58:56    19 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:58:57    20 (reflect     ): ov=0 (1.1s) ✓ R=3.242086
+13:58:57    20 (reflect     ): ov=0 (1.1s) ✓ R=3.242086
+13:58:58    21 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:58:58    21 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:58:59    22 (reflect     ): ov=0 (1.1s) ✓ R=3.242086
+13:58:59    22 (reflect     ): ov=0 (1.1s) ✓ R=3.242086
+13:59:00    23 (reflect     ): ov=0 (0.9s) ✓ R=3.242086
+13:59:00    23 (reflect     ): ov=0 (0.9s) ✓ R=3.242086
+13:59:01    24 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:01    24 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:03    25 (reflect     ): ov=0 (0.9s) ✓ R=3.242086
+13:59:03    25 (reflect     ): ov=0 (0.9s) ✓ R=3.242086
+13:59:04    26 (reflect     ): ov=0 (1.1s) ✓ R=3.242086
+13:59:04    26 (reflect     ): ov=0 (1.1s) ✓ R=3.242086
+13:59:05    27 (reflect     ): ov=0 (1.0s) ✓ R=3.242086
+13:59:05    27 (reflect     ): ov=0 (1.0s) ✓ R=3.242086
+13:59:06    28 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:06    28 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:07    29 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:07    29 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:08    30 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:08    30 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:09    31 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:09    31 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:10    32 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:10    32 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:11    33 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:11    33 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:12    34 (reflect     ): ov=0 (0.7s) ✓ R=3.242086
+13:59:12    34 (reflect     ): ov=0 (0.7s) ✓ R=3.242086
+13:59:13    35 (reflect     ): ov=0 (1.3s) ✓ R=3.242086
+13:59:13    35 (reflect     ): ov=0 (1.3s) ✓ R=3.242086
+13:59:14    36 (reflect     ): ov=0 (0.9s) ✓ R=3.242086
+13:59:14    36 (reflect     ): ov=0 (0.9s) ✓ R=3.242086
+13:59:15    37 (reflect     ): ov=0 (0.9s) ✓ R=3.242086
+13:59:15    37 (reflect     ): ov=0 (0.9s) ✓ R=3.242086
+13:59:17    38 (reflect     ): ov=0 (1.2s) ✓ R=3.242086
+13:59:17    38 (reflect     ): ov=0 (1.2s) ✓ R=3.242086
+13:59:18    39 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:18    39 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:19    40 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:19    40 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:20    41 (reflect     ): ov=0 (1.1s) ✓ R=3.242086
+13:59:20    41 (reflect     ): ov=0 (1.1s) ✓ R=3.242086
+13:59:21    42 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:21    42 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:22    43 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:22    43 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:23    44 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:23    44 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:24    45 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:24    45 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:25    46 (reflect     ): ov=0 (1.2s) ✓ R=3.242086
+13:59:25    46 (reflect     ): ov=0 (1.2s) ✓ R=3.242086
+13:59:27    47 (reflect     ): ov=0 (1.0s) ✓ R=3.242086
+13:59:27    47 (reflect     ): ov=0 (1.0s) ✓ R=3.242086
+13:59:28    48 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:28    48 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:28    49 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:28    49 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:29    50 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:29    50 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:31    51 (reflect     ): ov=0 (1.0s) ✓ R=3.242086
+13:59:31    51 (reflect     ): ov=0 (1.0s) ✓ R=3.242086
+13:59:32    52 (reflect     ): ov=0 (0.7s) ✓ R=3.242086
+13:59:32    52 (reflect     ): ov=0 (0.7s) ✓ R=3.242086
+13:59:33    53 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:33    53 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:33    54 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:33    54 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:35    55 (reflect     ): ov=0 (0.9s) ✓ R=3.242086
+13:59:35    55 (reflect     ): ov=0 (0.9s) ✓ R=3.242086
+13:59:36    56 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:36    56 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:36    57 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:36    57 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:37    58 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:37    58 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:39    59 (reflect     ): ov=0 (0.9s) ✓ R=3.242086
+13:59:39    59 (reflect     ): ov=0 (0.9s) ✓ R=3.242086
+13:59:40    60 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:40    60 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:40    61 (reflect     ): ov=0 (0.7s) ✓ R=3.242086
+13:59:40    61 (reflect     ): ov=0 (0.7s) ✓ R=3.242086
+13:59:41    62 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:41    62 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:42    63 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:42    63 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:43    64 (reflect     ): ov=0 (0.7s) ✓ R=3.242086
+13:59:43    64 (reflect     ): ov=0 (0.7s) ✓ R=3.242086
+13:59:44    65 (reflect     ): ov=0 (0.7s) ✓ R=3.242086
+13:59:44    65 (reflect     ): ov=0 (0.7s) ✓ R=3.242086
+13:59:45    66 (reflect     ): ov=0 (0.7s) ✓ R=3.242086
+13:59:45    66 (reflect     ): ov=0 (0.7s) ✓ R=3.242086
+13:59:46    67 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:46    67 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:47    68 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:47    68 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:48    69 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:48    69 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:49    70 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:49    70 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:50    71 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:50    71 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:51    72 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:51    72 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:52    73 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:52    73 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:53    74 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:53    74 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:54    75 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:54    75 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:55    76 (reflect     ): ov=0 (1.0s) ✓ R=3.242086
+13:59:55    76 (reflect     ): ov=0 (1.0s) ✓ R=3.242086
+13:59:56    77 (reflect     ): ov=0 (0.7s) ✓ R=3.242086
+13:59:56    77 (reflect     ): ov=0 (0.7s) ✓ R=3.242086
+13:59:57    78 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:57    78 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:58    79 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:58    79 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:59    80 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+13:59:59    80 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+14:00:01    81 (reflect     ): ov=0 (1.0s) ✓ R=3.242086
+14:00:01    81 (reflect     ): ov=0 (1.0s) ✓ R=3.242086
+14:00:02    82 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+14:00:02    82 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+14:00:03    83 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+14:00:03    83 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+14:00:04    84 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+14:00:04    84 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+14:00:05    85 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+14:00:05    85 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+14:00:06    86 (reflect     ): ov=0 (1.3s) ✓ R=3.242086
+14:00:06    86 (reflect     ): ov=0 (1.3s) ✓ R=3.242086
+14:00:07    87 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+14:00:07    87 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+14:00:08    88 (reflect     ): ov=0 (0.9s) ✓ R=3.242086
+14:00:08    88 (reflect     ): ov=0 (0.9s) ✓ R=3.242086
+14:00:09    89 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+14:00:09    89 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+14:00:10    90 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+14:00:10    90 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+14:00:11    91 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+14:00:11    91 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+14:00:12    92 (reflect     ): ov=0 (0.9s) ✓ R=3.242086
+14:00:12    92 (reflect     ): ov=0 (0.9s) ✓ R=3.242086
+14:00:13    93 (reflect     ): ov=0 (0.9s) ✓ R=3.242086
+14:00:13    93 (reflect     ): ov=0 (0.9s) ✓ R=3.242086
+14:00:14    94 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+14:00:14    94 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+14:00:15    95 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+14:00:15    95 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+14:00:16    96 (reflect     ): ov=0 (1.0s) ✓ R=3.242086
+14:00:16    96 (reflect     ): ov=0 (1.0s) ✓ R=3.242086
+14:00:17    97 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+14:00:17    97 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+14:00:18    98 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+14:00:18    98 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+14:00:19    99 (reflect     ): ov=0 (0.7s) ✓ R=3.242086
+14:00:19    99 (reflect     ): ov=0 (0.7s) ✓ R=3.242086
+14:00:20   100 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+14:00:20   100 (reflect     ): ov=0 (0.8s) ✓ R=3.242086
+14:00:20   ✗ Failed at R=3.0699
+14:00:20 
+── R = 3.0724 ──
+14:00:21     1 (reflect     ): ov=0 (0.9s) ✓ R=3.272483
+14:00:21     1 (reflect     ): ov=0 (0.9s) ✓ R=3.272483
+14:00:22     2 (reflect     ): ov=0 (0.7s) ✓ R=3.272483
+14:00:22     2 (reflect     ): ov=0 (0.7s) ✓ R=3.272483
+14:00:23     3 (reflect     ): ov=0 (0.7s) ✓ R=3.272483
+14:00:23     3 (reflect     ): ov=0 (0.7s) ✓ R=3.272483
+14:00:24     4 (reflect     ): ov=0 (0.7s) ✓ R=3.272483
+14:00:24     4 (reflect     ): ov=0 (0.7s) ✓ R=3.272483
+14:00:25     5 (reflect     ): ov=0 (0.8s) ✓ R=3.272483
+14:00:25     5 (reflect     ): ov=0 (0.8s) ✓ R=3.272483
+14:00:26     6 (reflect     ): ov=0 (1.0s) ✓ R=3.272483
+14:00:26     6 (reflect     ): ov=0 (1.0s) ✓ R=3.272483
+14:00:27     7 (reflect     ): ov=0 (0.7s) ✓ R=3.272483
+14:00:27     7 (reflect     ): ov=0 (0.7s) ✓ R=3.272483
+14:00:28     8 (reflect     ): ov=0 (0.7s) ✓ R=3.272483
+14:00:28     8 (reflect     ): ov=0 (0.7s) ✓ R=3.272483
+14:00:29     9 (reflect     ): ov=0 (0.7s) ✓ R=3.272483
+14:00:29     9 (reflect     ): ov=0 (0.7s) ✓ R=3.272483
+14:00:30    10 (reflect     ): ov=0 (0.7s) ✓ R=3.272483
+14:00:30    10 (reflect     ): ov=0 (0.7s) ✓ R=3.272483
+14:00:31    11 (reflect     ): ov=0 (1.0s) ✓ R=3.272483
+14:00:31    11 (reflect     ): ov=0 (1.0s) ✓ R=3.272483
+14:00:32    12 (reflect     ): ov=0 (0.8s) ✓ R=3.272483
+14:00:32    12 (reflect     ): ov=0 (0.8s) ✓ R=3.272483
+14:00:34    13 (reflect     ): ov=0 (1.8s) ✓ R=3.272483
+14:00:34    13 (reflect     ): ov=0 (1.8s) ✓ R=3.272483
+14:00:36    14 (reflect     ): ov=0 (1.0s) ✓ R=3.272483
+14:00:36    14 (reflect     ): ov=0 (1.0s) ✓ R=3.272483
+14:00:37    15 (reflect     ): ov=0 (1.0s) ✓ R=3.272483
+14:00:37    15 (reflect     ): ov=0 (1.0s) ✓ R=3.272483
+14:00:38    16 (reflect     ): ov=0 (1.0s) ✓ R=3.272483
+14:00:38    16 (reflect     ): ov=0 (1.0s) ✓ R=3.272483
+14:00:39    17 (reflect     ): ov=0 (0.7s) ✓ R=3.272483
+14:00:39    17 (reflect     ): ov=0 (0.7s) ✓ R=3.272483
+14:01:46 
+============================================================
+14:01:46 Hybrid Optimizer — 2026-03-27 14:01:46
+14:01:46 ============================================================
+14:01:46 === Validation ===
+14:01:46   Official: valid=True, R=3.0708880056282437
+14:01:46   Shapely energy at R=3.070888: 7.20e-09
+14:01:46   Shapely energy at R=3.080888: 0.00e+00
+14:01:47   hybrid_lbfgs at R=3.0809: n_ov=0
+14:01:47   → valid=True, R=3.080886404276971
+14:01:48   hybrid_lbfgs at R=3.0659: n_ov=0
+14:01:48 === Validation done ===
+
+14:01:48 
+=== Quick test: 20 rounds at R=3.0699 ===
+14:01:49   rnd  1 (reflect     ): ov=-1 (0.2s)
+14:01:49   rnd  2 (jitter      ): ov=-1 (0.1s)
+14:01:49   rnd  3 (jitter      ): ov=-1 (0.2s)
+14:01:49   rnd  4 (flip        ): ov=-1 (0.4s)
+14:01:50   rnd  5 (flip        ): ov=-1 (0.2s)
+14:01:50   rnd  6 (reflect     ): ov=-1 (0.1s)
+14:01:50   rnd  7 (shift_worst ): ov=26 (0.3s) (26ov)
+14:01:50   rnd  8 (flip        ): ov=-1 (0.4s)
+14:01:51   rnd  9 (flip        ): ov=-1 (0.2s)
+14:01:51   rnd 10 (flip        ): ov=-1 (0.3s)
+14:01:51   rnd 11 (shift_worst ): ov=-1 (0.2s)
+14:01:51   rnd 12 (jitter      ): ov=-1 (0.3s)
+14:01:52   rnd 13 (swap        ): ov=19 (0.2s) (19ov)
+14:01:52   rnd 14 (swap        ): ov=19 (0.2s) (19ov)
+14:01:52   rnd 15 (jitter      ): ov=-1 (0.2s)
+14:01:52   rnd 16 (flip        ): ov=-1 (0.3s)
+14:01:53   rnd 17 (jitter      ): ov=-1 (0.3s)
+14:01:53   rnd 18 (shift_worst ): ov=-1 (0.2s)
+14:01:53   rnd 19 (swap        ): ov=19 (0.2s) (19ov)
+14:01:53   rnd 20 (reflect     ): ov=-1 (0.2s)
+14:01:53   Valid: 0/20
+14:01:53 
+=== Starting full MBH ===
+14:01:53 === MBH started | best R=3.070888 ===
+14:01:53 
+── R = 3.0699 ──
+14:01:54     1 (jitter      ): ov=-1 (0.3s)
+14:01:54     2 (flip        ): ov=-1 (0.2s)
+14:01:54     3 (jitter      ): ov=-1 (0.4s)
+14:01:54     4 (shift_worst ): ov=25 (0.3s) (25ov)
+14:01:55     5 (flip        ): ov=-1 (0.4s)
+14:01:55     6 (shift_worst ): ov=-1 (0.5s)
+14:01:56     7 (shift_worst ): ov=-1 (0.2s)
+14:01:56     8 (shift_worst ): ov=27 (0.4s) (27ov)
+14:01:56     9 (jitter      ): ov=-1 (0.3s)
+14:01:57    10 (flip        ): ov=20 (0.4s) (20ov)
+14:01:57    11 (reflect     ): ov=-1 (0.2s)
+14:01:57    12 (jitter      ): ov=-1 (0.2s)
+14:01:57    13 (shift_worst ): ov=-1 (0.1s)
+14:01:57    14 (jitter      ): ov=-1 (0.2s)
+14:01:58    15 (reflect     ): ov=27 (0.5s) (27ov)
+14:01:58    16 (reflect     ): ov=24 (0.4s) (24ov)
+14:01:59    17 (jitter      ): ov=-1 (0.3s)
+14:01:59    18 (reflect     ): ov=-1 (0.1s)
+14:01:59    19 (jitter      ): ov=-1 (0.2s)
+14:01:59    20 (jitter      ): ov=-1 (0.3s)
+14:01:59    21 (shift_worst ): ov=-1 (0.2s)
+14:02:00    22 (shift_worst ): ov=0 (0.8s) ✓ R=3.069876
+14:02:00   ★ NEW BEST: R = 3.069876
+14:02:01     Squeeze ★ R = 3.067864
+14:02:01 
+── R = 3.0629 ──
+14:02:02     1 (reflect     ): ov=-1 (0.2s)
+14:02:02     2 (jitter      ): ov=-1 (0.2s)
+14:02:02     3 (jitter      ): ov=-1 (0.1s)
+14:02:02     4 (flip        ): ov=-1 (0.4s)
+14:02:03     5 (flip        ): ov=-1 (0.4s)
+14:02:03     6 (reflect     ): ov=-1 (0.1s)
+14:02:03     7 (shift_worst ): ov=-1 (0.2s)
+14:02:03     8 (flip        ): ov=22 (0.5s) (22ov)
+14:02:04     9 (flip        ): ov=-1 (0.2s)
+14:02:04    10 (flip        ): ov=-1 (0.1s)
+14:02:04    11 (shift_worst ): ov=23 (0.5s) (23ov)
+14:02:05    12 (jitter      ): ov=-1 (0.3s)
+14:02:05    13 (swap        ): ov=24 (0.1s) (24ov)
+14:02:05    14 (swap        ): ov=24 (0.2s) (24ov)
+14:02:05    15 (jitter      ): ov=-1 (0.2s)
+14:02:05    16 (flip        ): ov=-1 (0.2s)
+14:02:06    17 (jitter      ): ov=24 (0.7s) (24ov)
+14:02:06    18 (shift_worst ): ov=-1 (0.3s)
+14:02:06    19 (swap        ): ov=24 (0.1s) (24ov)
+14:02:07    20 (reflect     ): ov=-1 (0.2s)
+14:02:07    21 (jitter      ): ov=18 (0.2s) (18ov)
+14:02:07    22 (flip        ): ov=-1 (0.2s)
+14:02:07    23 (jitter      ): ov=-1 (0.3s)
+14:02:07    24 (shift_worst ): ov=-1 (0.3s)
+14:02:08    25 (flip        ): ov=-1 (0.3s)
+14:02:08    26 (shift_worst ): ov=-1 (0.2s)
+14:02:08    27 (shift_worst ): ov=-1 (0.2s)
+14:02:08    28 (shift_worst ): ov=-1 (0.3s)
+14:02:09    29 (jitter      ): ov=-1 (0.1s)
+14:02:09    30 (flip        ): ov=-1 (0.3s)
+14:02:09    31 (reflect     ): ov=-1 (0.4s)
+14:02:09    32 (jitter      ): ov=-1 (0.2s)
+14:02:10    33 (shift_worst ): ov=20 (0.2s) (20ov)
+14:02:10    34 (jitter      ): ov=23 (0.4s) (23ov)
+14:02:10    35 (reflect     ): ov=19 (0.4s) (19ov)
+14:02:11    36 (reflect     ): ov=24 (0.3s) (24ov)
+14:02:11    37 (jitter      ): ov=-1 (0.2s)
+14:02:11    38 (reflect     ): ov=-1 (0.2s)
+14:02:12    39 (jitter      ): ov=-1 (1.0s)
+14:02:12    40 (jitter      ): ov=23 (0.2s) (23ov)
+14:02:13    41 (shift_worst ): ov=-1 (0.2s)
+14:02:13    42 (shift_worst ): ov=22 (0.5s) (22ov)
+14:02:13    43 (shift_worst ): ov=-1 (0.2s)
+14:02:13    44 (jitter      ): ov=-1 (0.2s)
+14:02:14    45 (swap        ): ov=24 (0.1s) (24ov)
+14:02:14    46 (flip        ): ov=-1 (0.3s)
+14:02:14    47 (reflect     ): ov=-1 (0.3s)
+14:02:14    48 (jitter      ): ov=-1 (0.2s)
+14:02:15    49 (reflect     ): ov=26 (0.4s) (26ov)
+14:02:15    50 (jitter      ): ov=-1 (0.2s)
+14:02:15    51 (flip        ): ov=-1 (0.4s)
+14:02:16    52 (jitter      ): ov=-1 (0.2s)
+14:02:16    53 (jitter      ): ov=-1 (0.2s)
+14:02:16    54 (jitter      ): ov=-1 (0.2s)
+14:02:16    55 (reflect     ): ov=27 (0.6s) (27ov)
+14:02:17    56 (flip        ): ov=-1 (0.2s)
+14:02:17    57 (jitter      ): ov=-1 (0.3s)
+14:02:17    58 (shift_worst ): ov=22 (0.5s) (22ov)
+14:02:18    59 (flip        ): ov=24 (0.3s) (24ov)
+14:02:18    60 (jitter      ): ov=22 (0.2s) (22ov)
+14:02:18    61 (shift_worst ): ov=-1 (0.3s)
+14:02:19    62 (reflect     ): ov=-1 (0.3s)
+14:02:19    63 (swap        ): ov=24 (0.2s) (24ov)
+14:02:19    64 (shift_worst ): ov=-1 (0.2s)
+14:02:19    65 (swap        ): ov=24 (0.1s) (24ov)
+14:02:19    66 (reflect     ): ov=-1 (0.3s)
+14:02:20    67 (reflect     ): ov=-1 (0.2s)
+14:02:20    68 (shift_worst ): ov=-1 (0.4s)
+14:02:20    69 (reflect     ): ov=25 (0.3s) (25ov)
+14:02:20    70 (swap        ): ov=24 (0.2s) (24ov)
+14:02:21    71 (flip        ): ov=-1 (0.2s)
+14:02:21    72 (reflect     ): ov=-1 (0.2s)
+14:02:21    73 (shift_worst ): ov=26 (0.4s) (26ov)
+14:02:22    74 (shift_worst ): ov=25 (0.3s) (25ov)
+14:02:22    75 (reflect     ): ov=-1 (0.3s)
+14:02:22    76 (shift_worst ): ov=25 (0.2s) (25ov)
+14:02:22    77 (jitter      ): ov=17 (0.1s) (17ov)
+14:02:22    78 (shift_worst ): ov=-1 (0.3s)
+14:02:23    79 (shift_worst ): ov=-1 (0.1s)
+14:02:23    80 (flip        ): ov=-1 (0.3s)
+14:02:23    81 (jitter      ): ov=-1 (0.2s)
+14:02:23    82 (jitter      ): ov=-1 (0.1s)
+14:02:24    83 (flip        ): ov=-1 (0.3s)
+14:02:24    84 (reflect     ): ov=-1 (0.3s)
+14:02:24    85 (jitter      ): ov=-1 (0.2s)
+14:02:24    86 (jitter      ): ov=-1 (0.2s)
+14:02:24    87 (jitter      ): ov=-1 (0.2s)
+14:02:25    88 (flip        ): ov=-1 (0.3s)
+14:02:25    89 (shift_worst ): ov=-1 (0.1s)
+14:02:25    90 (jitter      ): ov=-1 (0.2s)
+14:02:25    91 (swap        ): ov=24 (0.2s) (24ov)
+14:02:25    92 (shift_worst ): ov=-1 (0.1s)
+14:02:26    93 (jitter      ): ov=-1 (0.2s)
+14:02:26    94 (flip        ): ov=20 (0.5s) (20ov)
+14:02:26    95 (reflect     ): ov=20 (0.4s) (20ov)
+14:02:27    96 (reflect     ): ov=-1 (0.2s)
+14:02:27    97 (reflect     ): ov=-1 (0.3s)
+14:02:27    98 (jitter      ): ov=-1 (0.2s)
+14:02:27    99 (swap        ): ov=24 (0.1s) (24ov)
+14:02:27   100 (swap        ): ov=24 (0.1s) (24ov)
+14:02:27   ✗ Failed at R=3.0629
+14:02:27 
+── R = 3.0654 ──
+14:02:28     1 (jitter      ): ov=-1 (0.2s)
+14:02:28     2 (reflect     ): ov=-1 (0.3s)
+14:02:28     3 (jitter      ): ov=17 (0.1s) (17ov)
+14:02:29     4 (reflect     ): ov=-1 (0.4s)
+14:02:29     5 (jitter      ): ov=27 (0.3s) (27ov)
+14:02:29     6 (flip        ): ov=-1 (0.3s)
+14:02:29     7 (shift_worst ): ov=-1 (0.3s)
+14:02:30     8 (reflect     ): ov=25 (0.3s) (25ov)
+14:02:31     9 (swap        ): ov=0 (0.6s) ✓ R=3.065363
+14:02:31   ★ NEW BEST: R = 3.065363
+14:02:31 
+── R = 3.0604 ──
+14:02:31     1 (reflect     ): ov=-1 (0.4s)
+14:02:32     2 (jitter      ): ov=-1 (0.5s)
+14:02:32     3 (jitter      ): ov=25 (0.3s) (25ov)
+14:02:33     4 (flip        ): ov=-1 (0.5s)
+14:02:33     5 (flip        ): ov=-1 (0.2s)
+14:02:33     6 (reflect     ): ov=-1 (0.1s)
+14:02:33     7 (shift_worst ): ov=26 (0.3s) (26ov)
+14:02:33     8 (flip        ): ov=-1 (0.1s)
+14:02:33     9 (flip        ): ov=-1 (0.2s)
+14:02:34    10 (flip        ): ov=-1 (0.3s)
+14:02:34    11 (shift_worst ): ov=20 (0.2s) (20ov)
+14:02:34    12 (jitter      ): ov=-1 (0.2s)
+14:02:34    13 (swap        ): ov=24 (0.3s) (24ov)
+14:02:35    14 (swap        ): ov=24 (0.3s) (24ov)
+14:02:35    15 (jitter      ): ov=-1 (0.2s)
+14:02:35    16 (flip        ): ov=20 (0.6s) (20ov)
+14:02:36    17 (jitter      ): ov=-1 (0.2s)
+14:02:36    18 (shift_worst ): ov=24 (0.4s) (24ov)
+14:02:36    19 (swap        ): ov=24 (0.3s) (24ov)
+14:02:37    20 (reflect     ): ov=-1 (0.3s)
+14:02:37    21 (jitter      ): ov=-1 (0.3s)
+14:02:37    22 (flip        ): ov=-1 (0.3s)
+14:02:37    23 (jitter      ): ov=-1 (0.1s)
+14:02:38    24 (shift_worst ): ov=-1 (0.2s)
+14:02:38    25 (flip        ): ov=-1 (0.4s)
+14:02:38    26 (shift_worst ): ov=-1 (0.1s)
+14:02:38    27 (shift_worst ): ov=-1 (0.3s)
+14:02:39    28 (shift_worst ): ov=-1 (0.3s)
+14:02:39    29 (jitter      ): ov=-1 (0.2s)
+14:02:39    30 (flip        ): ov=-1 (0.3s)
+14:02:39    31 (reflect     ): ov=-1 (0.2s)
+14:02:40    32 (jitter      ): ov=-1 (0.2s)
+14:02:40    33 (shift_worst ): ov=-1 (0.1s)
+14:02:40    34 (jitter      ): ov=-1 (0.1s)
+14:02:40    35 (reflect     ): ov=22 (0.3s) (22ov)
+14:02:41    36 (reflect     ): ov=-1 (0.6s)
+14:02:41    37 (jitter      ): ov=-1 (0.2s)
+14:02:41    38 (reflect     ): ov=-1 (0.2s)
+14:02:41    39 (jitter      ): ov=-1 (0.2s)
+14:02:42    40 (jitter      ): ov=-1 (0.6s)
+14:02:42    41 (shift_worst ): ov=-1 (0.5s)
+14:02:43    42 (shift_worst ): ov=19 (0.9s) (19ov)
+14:02:44    43 (shift_worst ): ov=-1 (0.3s)
+14:02:44    44 (jitter      ): ov=-1 (0.2s)
+14:02:44    45 (swap        ): ov=24 (0.2s) (24ov)
+14:02:44    46 (flip        ): ov=-1 (0.3s)
+14:02:45    47 (reflect     ): ov=-1 (0.2s)
+14:02:45    48 (jitter      ): ov=-1 (0.3s)
+14:02:45    49 (reflect     ): ov=26 (0.4s) (26ov)
+14:02:45    50 (jitter      ): ov=-1 (0.2s)
+14:02:46    51 (flip        ): ov=-1 (0.4s)
+14:02:46    52 (jitter      ): ov=-1 (0.2s)
+14:02:46    53 (jitter      ): ov=-1 (0.3s)
+14:02:47    54 (jitter      ): ov=-1 (0.4s)
+14:02:47    55 (reflect     ): ov=-1 (0.2s)
+14:02:47    56 (flip        ): ov=-1 (0.4s)
+14:02:48    57 (jitter      ): ov=-1 (0.2s)
+14:02:48    58 (shift_worst ): ov=23 (0.3s) (23ov)
+14:02:48    59 (flip        ): ov=-1 (0.3s)
+14:02:48    60 (jitter      ): ov=-1 (0.2s)
+14:02:49    61 (shift_worst ): ov=26 (0.4s) (26ov)
+14:02:49    62 (reflect     ): ov=-1 (0.2s)
+14:02:49    63 (swap        ): ov=24 (0.3s) (24ov)
+14:02:50    64 (shift_worst ): ov=-1 (0.4s)
+14:02:50    65 (swap        ): ov=24 (0.2s) (24ov)
+14:02:50    66 (reflect     ): ov=-1 (0.3s)
+14:02:50    67 (reflect     ): ov=-1 (0.2s)
+14:02:50    68 (shift_worst ): ov=-1 (0.2s)
+14:02:51    69 (reflect     ): ov=-1 (0.2s)
+14:02:51    70 (swap        ): ov=24 (0.3s) (24ov)
+14:02:51    71 (flip        ): ov=-1 (0.3s)
+14:02:51    72 (reflect     ): ov=-1 (0.2s)
+14:02:52    73 (shift_worst ): ov=-1 (0.3s)
+14:02:52    74 (shift_worst ): ov=-1 (0.2s)
+14:02:52    75 (reflect     ): ov=-1 (0.2s)
+14:02:52    76 (shift_worst ): ov=-1 (0.2s)
+14:02:52    77 (jitter      ): ov=-1 (0.3s)
+14:02:53    78 (shift_worst ): ov=26 (0.4s) (26ov)
+14:02:53    79 (shift_worst ): ov=-1 (0.2s)
+14:02:53    80 (flip        ): ov=-1 (0.4s)
+14:02:54    81 (jitter      ): ov=-1 (0.2s)
+14:02:54    82 (jitter      ): ov=-1 (0.3s)
+14:02:54    83 (flip        ): ov=-1 (0.1s)
+14:02:54    84 (reflect     ): ov=-1 (0.2s)
+14:02:54    85 (jitter      ): ov=-1 (0.2s)
+14:02:55    86 (jitter      ): ov=-1 (0.2s)
+14:02:55    87 (jitter      ): ov=-1 (0.2s)
+14:02:55    88 (flip        ): ov=-1 (0.2s)
+14:02:55    89 (shift_worst ): ov=-1 (0.2s)
+14:02:55    90 (jitter      ): ov=-1 (0.4s)
+14:02:56    91 (swap        ): ov=24 (0.3s) (24ov)
+14:02:56    92 (shift_worst ): ov=-1 (0.1s)
+14:02:56    93 (jitter      ): ov=-1 (0.2s)
+14:02:56    94 (flip        ): ov=-1 (0.3s)
+14:02:56    95 (reflect     ): ov=-1 (0.1s)
+14:02:57    96 (reflect     ): ov=-1 (0.3s)
+14:02:57    97 (reflect     ): ov=-1 (0.3s)
+14:02:57    98 (jitter      ): ov=-1 (0.3s)
+14:02:58    99 (swap        ): ov=24 (0.2s) (24ov)
+14:02:58   100 (swap        ): ov=24 (0.3s) (24ov)
+14:02:58   ✗ Failed at R=3.0604
+14:02:58 
+── R = 3.0629 ──
+14:02:58     1 (jitter      ): ov=-1 (0.2s)
+14:02:58     2 (reflect     ): ov=-1 (0.2s)
+14:02:58     3 (jitter      ): ov=-1 (0.2s)
+14:02:59     4 (reflect     ): ov=-1 (0.3s)
+14:02:59     5 (jitter      ): ov=22 (0.4s) (22ov)
+14:03:00     6 (flip        ): ov=-1 (0.4s)
+14:03:00     7 (shift_worst ): ov=-1 (0.2s)
+14:03:00     8 (reflect     ): ov=-1 (0.3s)
+14:03:00     9 (swap        ): ov=24 (0.2s) (24ov)
+14:03:01    10 (jitter      ): ov=-1 (0.2s)
+14:03:01    11 (swap        ): ov=24 (0.2s) (24ov)
+14:03:01    12 (flip        ): ov=-1 (0.3s)
+14:03:01    13 (reflect     ): ov=-1 (0.1s)
+14:03:02    14 (shift_worst ): ov=-1 (0.3s)
+14:03:02    15 (shift_worst ): ov=-1 (0.3s)
+14:03:03    16 (flip        ): ov=20 (0.8s) (20ov)
+14:03:03    17 (jitter      ): ov=-1 (0.2s)
+14:03:03    18 (jitter      ): ov=-1 (0.2s)
+14:03:03    19 (jitter      ): ov=-1 (0.2s)
+14:03:04    20 (jitter      ): ov=-1 (0.3s)
+14:03:04    21 (swap        ): ov=24 (0.2s) (24ov)
+14:03:04    22 (reflect     ): ov=-1 (0.2s)
+14:03:04    23 (jitter      ): ov=-1 (0.2s)
+14:03:05    24 (jitter      ): ov=25 (0.7s) (25ov)
+14:03:05    25 (shift_worst ): ov=-1 (0.3s)
+14:03:06    26 (reflect     ): ov=-1 (0.4s)
+14:03:06    27 (shift_worst ): ov=-1 (0.2s)
+14:03:06    28 (jitter      ): ov=23 (0.4s) (23ov)
+14:03:07    29 (jitter      ): ov=-1 (0.2s)
+14:03:07    30 (reflect     ): ov=-1 (0.3s)
+14:03:07    31 (jitter      ): ov=-1 (0.2s)
+14:03:07    32 (jitter      ): ov=-1 (0.2s)
+14:03:08    33 (reflect     ): ov=23 (0.4s) (23ov)
+14:03:08    34 (jitter      ): ov=-1 (0.2s)
+14:03:08    35 (reflect     ): ov=-1 (0.3s)
+14:03:09    36 (flip        ): ov=-1 (0.5s)
+14:03:09    37 (shift_worst ): ov=-1 (0.3s)
+14:03:09    38 (swap        ): ov=24 (0.3s) (24ov)
+14:03:10    39 (flip        ): ov=21 (0.7s) (21ov)
+14:03:10    40 (flip        ): ov=-1 (0.3s)
+14:03:10    41 (flip        ): ov=-1 (0.3s)
+14:03:11    42 (jitter      ): ov=-1 (0.3s)
+14:03:11    43 (shift_worst ): ov=-1 (0.3s)
+14:03:11    44 (flip        ): ov=-1 (0.3s)
+14:03:12    45 (shift_worst ): ov=-1 (0.3s)
+14:03:12    46 (flip        ): ov=25 (0.3s) (25ov)
+14:03:12    47 (swap        ): ov=24 (0.3s) (24ov)
+14:03:12    48 (shift_worst ): ov=22 (0.3s) (22ov)
+14:03:13    49 (reflect     ): ov=-1 (0.4s)
+14:03:13    50 (jitter      ): ov=-1 (0.3s)
+14:03:13    51 (reflect     ): ov=-1 (0.3s)
+14:03:14    52 (shift_worst ): ov=-1 (0.2s)
+14:03:14    53 (shift_worst ): ov=25 (0.4s) (25ov)
+14:03:14    54 (swap        ): ov=24 (0.2s) (24ov)
+14:03:14    55 (shift_worst ): ov=-1 (0.2s)
+14:03:15    56 (shift_worst ): ov=-1 (0.4s)
+14:03:15    57 (shift_worst ): ov=21 (0.3s) (21ov)
+14:03:15    58 (jitter      ): ov=-1 (0.4s)
+14:03:16    59 (jitter      ): ov=-1 (0.2s)
+14:03:16    60 (jitter      ): ov=-1 (0.2s)
+14:03:16    61 (jitter      ): ov=-1 (0.3s)
+14:03:17    62 (flip        ): ov=-1 (0.3s)
+14:03:17    63 (jitter      ): ov=-1 (0.2s)
+14:03:17    64 (jitter      ): ov=-1 (0.2s)
+14:03:17    65 (jitter      ): ov=24 (0.3s) (24ov)
+14:03:17    66 (jitter      ): ov=-1 (0.2s)
+14:03:18    67 (shift_worst ): ov=-1 (0.2s)
+14:03:19    68 (flip        ): ov=0 (0.7s) ✓ R=3.062856
+14:03:19   ★ NEW BEST: R = 3.062856
+14:03:19 
+── R = 3.0579 ──
+14:03:19     1 (reflect     ): ov=24 (0.3s) (24ov)
+14:03:19     2 (jitter      ): ov=19 (0.4s) (19ov)
+14:03:20     3 (jitter      ): ov=19 (0.5s) (19ov)
+14:03:20     4 (flip        ): ov=-1 (0.5s)
+14:03:21     5 (flip        ): ov=-1 (0.2s)
+14:03:21     6 (reflect     ): ov=23 (0.6s) (23ov)
+14:03:22     7 (shift_worst ): ov=21 (0.4s) (21ov)
+14:03:22     8 (flip        ): ov=22 (0.5s) (22ov)
+14:03:23     9 (flip        ): ov=19 (1.0s) (19ov)
+14:03:23    10 (flip        ): ov=-1 (0.2s)
+14:03:24    11 (shift_worst ): ov=23 (0.4s) (23ov)
+14:03:24    12 (jitter      ): ov=0 (0.4s) ✓ R=3.057856
+14:03:24   ★ NEW BEST: R = 3.057856
+14:03:25     Squeeze ★ R = 3.055836
+14:03:26     Squeeze ★ R = 3.053823
+14:03:26     Squeeze ★ R = 3.051819
+14:03:26 
+── R = 3.0468 ──
+14:03:27     1 (reflect     ): ov=24 (0.4s) (24ov)
+14:03:27     2 (jitter      ): ov=22 (0.4s) (22ov)
+14:03:28     3 (jitter      ): ov=19 (0.6s) (19ov)
+14:03:28     4 (flip        ): ov=-1 (0.5s)
+14:03:29     5 (flip        ): ov=-1 (0.3s)
+14:03:29     6 (reflect     ): ov=-1 (0.2s)
+14:04:00 
+============================================================
+14:04:00 Hybrid Optimizer — 2026-03-27 14:04:00
+14:04:00 ============================================================
+14:04:00 === Validation ===
+14:04:00   Official: valid=True, R=3.05181859933108
+14:04:00   Shapely energy at R=3.051819: 4.55e-11
+14:04:00   Shapely energy at R=3.061819: 0.00e+00
+14:04:00   hybrid_lbfgs at R=3.0618: n_ov=0
+14:04:00   → valid=True, R=3.05181859933108
+14:04:02   hybrid_lbfgs at R=3.0468: n_ov=19
+14:04:02 === Validation done ===
+
+14:04:02 
+=== Quick test: 20 rounds at R=3.0508 ===
+14:04:04   rnd  1 (reflect     ): ov=23 (2.0s) (23ov)
+14:04:07   rnd  2 (jitter      ): ov=17 (2.4s) (17ov)
+14:04:09   rnd  3 (jitter      ): ov=0 (1.8s) ✓ R=3.050720
+14:04:11   rnd  4 (reflect     ): ov=23 (2.0s) (23ov)
+14:04:13   rnd  5 (jitter      ): ov=14 (2.0s) (14ov)
+14:04:15   rnd  6 (jitter      ): ov=17 (2.1s) (17ov)
+14:04:16   rnd  7 (flip        ): ov=-1 (0.8s)
+14:04:16   rnd  8 (flip        ): ov=-1 (0.2s)
+14:04:19   rnd  9 (reflect     ): ov=23 (3.2s) (23ov)
+14:04:22   rnd 10 (shift_worst ): ov=16 (3.2s) (16ov)
+14:04:25   rnd 11 (flip        ): ov=22 (3.0s) (22ov)
+14:04:26   rnd 12 (flip        ): ov=10 (1.1s) (10ov)
+14:04:29   rnd 13 (flip        ): ov=20 (2.3s) (20ov)
+14:04:33   rnd 14 (shift_worst ): ov=19 (4.0s) (19ov)
+14:04:35   rnd 15 (jitter      ): ov=17 (2.1s) (17ov)
+14:04:38   rnd 16 (swap        ): ov=0 (2.9s) ✓ R=3.050911
+14:04:40   rnd 17 (reflect     ): ov=23 (2.0s) (23ov)
+14:04:42   rnd 18 (jitter      ): ov=0 (2.1s) ✓ R=3.050801
+14:04:44   rnd 19 (reflect     ): ov=23 (1.9s) (23ov)
+14:04:46   rnd 20 (jitter      ): ov=0 (1.3s) ✓ R=3.049947
+14:04:46   Valid: 4/20
+14:04:46 
+=== Starting full MBH ===
+14:04:46 === MBH started | best R=3.051819 ===
+14:04:46 
+── R = 3.0508 ──
+14:04:48     1 (reflect     ): ov=23 (2.0s) (23ov)
+14:04:50     2 (jitter      ): ov=18 (2.2s) (18ov)
+14:04:52     3 (jitter      ): ov=18 (2.2s) (18ov)
+14:04:52     4 (flip        ): ov=-1 (0.7s)
+14:04:53     5 (flip        ): ov=-1 (0.2s)
+14:04:55     6 (reflect     ): ov=23 (2.7s) (23ov)
+14:04:58     7 (shift_worst ): ov=16 (3.1s) (16ov)
+14:05:02     8 (flip        ): ov=22 (3.2s) (22ov)
+14:05:03     9 (flip        ): ov=10 (1.1s) (10ov)
+14:05:05    10 (flip        ): ov=20 (2.4s) (20ov)
+14:05:09    11 (shift_worst ): ov=19 (4.1s) (19ov)
+14:05:13    12 (jitter      ): ov=15 (3.4s) (15ov)
+14:05:16    13 (swap        ): ov=0 (2.8s) ✓ R=3.050911
+14:05:16   ★ NEW BEST: R = 3.050911
+14:05:18 
+── R = 3.0459 ──
+14:05:20     1 (reflect     ): ov=21 (2.6s) (21ov)
+14:05:23     2 (jitter      ): ov=18 (2.5s) (18ov)
+14:05:25     3 (jitter      ): ov=19 (2.0s) (19ov)
+14:05:27     4 (flip        ): ov=-1 (2.6s)
+14:05:30     5 (flip        ): ov=18 (2.2s) (18ov)
+14:05:34     6 (reflect     ): ov=22 (3.8s) (22ov)
+14:05:36     7 (shift_worst ): ov=18 (2.4s) (18ov)
+14:05:39     8 (flip        ): ov=23 (3.3s) (23ov)
+14:05:40     9 (flip        ): ov=-1 (0.5s)
+14:05:42    10 (flip        ): ov=20 (2.4s) (20ov)
+14:05:44    11 (shift_worst ): ov=21 (2.2s) (21ov)
+14:05:46    12 (jitter      ): ov=15 (2.1s) (15ov)
+14:05:48    13 (swap        ): ov=16 (1.7s) (16ov)
+14:05:50    14 (swap        ): ov=16 (1.7s) (16ov)
+14:05:52    15 (jitter      ): ov=20 (2.1s) (20ov)
+14:05:52    16 (flip        ): ov=-1 (0.3s)
+14:05:54    17 (jitter      ): ov=20 (2.1s) (20ov)
+14:05:56    18 (shift_worst ): ov=20 (2.2s) (20ov)
+14:05:58    19 (swap        ): ov=16 (1.8s) (16ov)
+14:05:59    20 (reflect     ): ov=-1 (0.3s)
+14:06:01    21 (jitter      ): ov=18 (1.9s) (18ov)
+14:06:03    22 (flip        ): ov=23 (2.9s) (23ov)
+14:06:06    23 (jitter      ): ov=18 (2.2s) (18ov)
+14:06:09    24 (shift_worst ): ov=20 (3.0s) (20ov)
+14:06:09    25 (flip        ): ov=-1 (0.7s)
+14:06:12    26 (shift_worst ): ov=21 (2.4s) (21ov)
+14:06:14    27 (shift_worst ): ov=22 (2.4s) (22ov)
+14:06:16    28 (shift_worst ): ov=18 (2.2s) (18ov)
+14:06:19    29 (jitter      ): ov=20 (2.8s) (20ov)
+14:06:22    30 (flip        ): ov=23 (2.9s) (23ov)
+14:06:25    31 (reflect     ): ov=20 (3.4s) (20ov)
+14:06:29    32 (jitter      ): ov=17 (3.1s) (17ov)
+14:06:32    33 (shift_worst ): ov=20 (3.1s) (20ov)
+14:06:34    34 (jitter      ): ov=19 (2.5s) (19ov)
+14:06:38    35 (reflect     ): ov=-1 (3.6s)
+14:06:41    36 (reflect     ): ov=19 (3.0s) (19ov)
+14:06:43    37 (jitter      ): ov=18 (2.6s) (18ov)
+14:06:47    38 (reflect     ): ov=23 (4.1s) (23ov)
+14:06:50    39 (jitter      ): ov=18 (2.3s) (18ov)
+14:06:52    40 (jitter      ): ov=15 (2.3s) (15ov)
+14:06:54    41 (shift_worst ): ov=19 (2.2s) (19ov)
+14:06:57    42 (shift_worst ): ov=21 (2.3s) (21ov)
+14:06:59    43 (shift_worst ): ov=22 (2.7s) (22ov)
+14:07:02    44 (jitter      ): ov=18 (2.5s) (18ov)
+14:07:04    45 (swap        ): ov=16 (2.1s) (16ov)
+14:07:07    46 (flip        ): ov=22 (2.8s) (22ov)
+14:07:09    47 (reflect     ): ov=-1 (2.5s)
+14:07:11    48 (jitter      ): ov=17 (2.2s) (17ov)
+14:07:14    49 (reflect     ): ov=-1 (3.0s)
+14:07:16    50 (jitter      ): ov=18 (2.2s) (18ov)
+14:07:19    51 (flip        ): ov=22 (2.1s) (22ov)
+14:07:21    52 (jitter      ): ov=18 (2.7s) (18ov)
+14:07:23    53 (jitter      ): ov=19 (2.0s) (19ov)
+14:07:26    54 (jitter      ): ov=19 (2.3s) (19ov)
+14:07:29    55 (reflect     ): ov=21 (2.9s) (21ov)
+14:07:31    56 (flip        ): ov=-1 (2.3s)
+14:07:33    57 (jitter      ): ov=11 (2.2s) (11ov)
+14:07:35    58 (shift_worst ): ov=19 (2.1s) (19ov)
+14:07:40    59 (flip        ): ov=25 (4.7s) (25ov)
+14:07:42    60 (jitter      ): ov=20 (2.3s) (20ov)
+14:07:44    61 (shift_worst ): ov=18 (2.2s) (18ov)
+14:07:47    62 (reflect     ): ov=23 (2.8s) (23ov)
+14:07:49    63 (swap        ): ov=16 (2.3s) (16ov)
+14:07:53    64 (shift_worst ): ov=23 (3.4s) (23ov)
+14:07:55    65 (swap        ): ov=16 (2.1s) (16ov)
+14:07:59    66 (reflect     ): ov=18 (3.6s) (18ov)
+14:08:02    67 (reflect     ): ov=21 (3.4s) (21ov)
+14:08:04    68 (shift_worst ): ov=21 (2.1s) (21ov)
+14:08:07    69 (reflect     ): ov=24 (2.7s) (24ov)
+14:08:09    70 (swap        ): ov=16 (2.1s) (16ov)
+14:08:09    71 (flip        ): ov=-1 (0.4s)
+14:08:12    72 (reflect     ): ov=23 (3.0s) (23ov)
+14:08:14    73 (shift_worst ): ov=20 (2.2s) (20ov)
+14:08:17    74 (shift_worst ): ov=21 (2.6s) (21ov)
+14:08:20    75 (reflect     ): ov=24 (3.2s) (24ov)
+14:08:22    76 (shift_worst ): ov=0 (1.1s) ✓ R=3.045910
+14:08:22   ★ NEW BEST: R = 3.045910
+14:08:22     Squeeze ★ R = 3.043864
+14:08:24     Squeeze ★ R = 3.041848
+14:08:24     Squeeze ★ R = 3.039817
+14:08:26     Squeeze ★ R = 3.037650
+14:08:28     Squeeze ★ R = 3.035649
+14:08:29     Squeeze ★ R = 3.033613
+14:08:30     Squeeze ★ R = 3.031519
+14:08:31     Squeeze ★ R = 3.029518
+14:08:32     Squeeze ★ R = 3.027516
+14:08:34     Squeeze ★ R = 3.025516
+14:08:34 
+── R = 3.0205 ──
+14:08:37     1 (reflect     ): ov=22 (3.4s) (22ov)
+14:08:39     2 (jitter      ): ov=8 (2.3s) (8ov)
+14:08:43     3 (jitter      ): ov=0 (4.0s) ✗official(2)
+14:08:47     4 (flip        ): ov=22 (3.6s) (22ov)
+14:08:49     5 (flip        ): ov=-1 (2.4s)
+14:08:53     6 (reflect     ): ov=26 (3.6s) (26ov)
+14:08:55     7 (shift_worst ): ov=20 (2.6s) (20ov)
+14:08:59     8 (flip        ): ov=23 (3.2s) (23ov)
+14:09:01     9 (flip        ): ov=-1 (2.6s)
+14:09:05    10 (flip        ): ov=21 (3.3s) (21ov)
+14:09:07    11 (shift_worst ): ov=21 (2.4s) (21ov)
+14:09:09    12 (jitter      ): ov=0 (2.0s) ✓ R=3.020486
+14:09:09   ★ NEW BEST: R = 3.020486
+14:09:11     Squeeze ★ R = 3.018484
+14:09:12     Squeeze ★ R = 3.016367
+14:09:15     Squeeze ★ R = 3.014301
+14:09:17 
+── R = 3.0093 ──
+14:09:20     1 (reflect     ): ov=21 (2.5s) (21ov)
+14:09:22     2 (jitter      ): ov=18 (1.8s) (18ov)
+14:09:24     3 (jitter      ): ov=19 (2.0s) (19ov)
+14:09:26     4 (flip        ): ov=19 (2.9s) (19ov)
+14:09:29     5 (flip        ): ov=-1 (2.2s)
+14:09:31     6 (reflect     ): ov=26 (2.7s) (26ov)
+14:09:34     7 (shift_worst ): ov=23 (2.7s) (23ov)
+14:09:37     8 (flip        ): ov=-1 (3.0s)
+14:09:40     9 (flip        ): ov=-1 (2.7s)
+14:09:40    10 (flip        ): ov=-1 (0.2s)
+14:09:42    11 (shift_worst ): ov=24 (2.0s) (24ov)
+14:09:44    12 (jitter      ): ov=19 (2.2s) (19ov)
+14:09:46    13 (swap        ): ov=18 (1.9s) (18ov)
+14:09:48    14 (swap        ): ov=18 (1.9s) (18ov)
+14:09:50    15 (jitter      ): ov=16 (2.3s) (16ov)
+14:09:51    16 (flip        ): ov=-1 (0.4s)
+14:09:53    17 (jitter      ): ov=20 (2.0s) (20ov)
+14:09:55    18 (shift_worst ): ov=24 (2.4s) (24ov)
+14:09:57    19 (swap        ): ov=18 (1.9s) (18ov)
+14:10:00    20 (reflect     ): ov=22 (2.9s) (22ov)
+14:10:02    21 (jitter      ): ov=20 (2.2s) (20ov)
+14:10:05    22 (flip        ): ov=24 (3.1s) (24ov)
+14:10:07    23 (jitter      ): ov=18 (2.1s) (18ov)
+14:10:09    24 (shift_worst ): ov=19 (2.1s) (19ov)
+14:10:13    25 (flip        ): ov=16 (3.4s) (16ov)
+14:10:15    26 (shift_worst ): ov=20 (2.1s) (20ov)
+14:10:17    27 (shift_worst ): ov=23 (2.2s) (23ov)
+14:10:20    28 (shift_worst ): ov=22 (2.4s) (22ov)
+14:10:22    29 (jitter      ): ov=19 (2.0s) (19ov)
+14:10:25    30 (flip        ): ov=23 (3.9s) (23ov)
+14:10:28    31 (reflect     ): ov=23 (2.3s) (23ov)
+14:10:30    32 (jitter      ): ov=19 (1.9s) (19ov)
+14:10:33    33 (shift_worst ): ov=24 (3.1s) (24ov)
+14:10:35    34 (jitter      ): ov=20 (2.2s) (20ov)
+14:10:38    35 (reflect     ): ov=25 (2.6s) (25ov)
+14:10:40    36 (reflect     ): ov=22 (2.4s) (22ov)
+14:10:42    37 (jitter      ): ov=18 (2.1s) (18ov)
+14:10:45    38 (reflect     ): ov=22 (2.7s) (22ov)
+14:10:47    39 (jitter      ): ov=17 (2.1s) (17ov)
+14:10:49    40 (jitter      ): ov=18 (2.1s) (18ov)
+14:10:52    41 (shift_worst ): ov=22 (2.8s) (22ov)
+14:10:54    42 (shift_worst ): ov=22 (2.4s) (22ov)
+14:10:57    43 (shift_worst ): ov=22 (2.8s) (22ov)
+14:10:59    44 (jitter      ): ov=12 (2.1s) (12ov)
+14:11:01    45 (swap        ): ov=18 (1.9s) (18ov)
+14:11:03    46 (flip        ): ov=23 (2.4s) (23ov)
+14:11:06    47 (reflect     ): ov=23 (3.0s) (23ov)
+14:11:08    48 (jitter      ): ov=20 (2.1s) (20ov)
+14:11:11    49 (reflect     ): ov=23 (2.6s) (23ov)
+14:11:13    50 (jitter      ): ov=19 (1.9s) (19ov)
+14:11:15    51 (flip        ): ov=23 (1.9s) (23ov)
+14:11:17    52 (jitter      ): ov=21 (1.8s) (21ov)
+14:11:19    53 (jitter      ): ov=20 (1.9s) (20ov)
+14:11:21    54 (jitter      ): ov=20 (2.0s) (20ov)
+14:11:24    55 (reflect     ): ov=24 (3.8s) (24ov)
+14:11:27    56 (flip        ): ov=22 (2.7s) (22ov)
+14:11:29    57 (jitter      ): ov=19 (1.9s) (19ov)
+14:11:31    58 (shift_worst ): ov=23 (2.3s) (23ov)
+14:11:34    59 (flip        ): ov=22 (2.4s) (22ov)
+14:11:36    60 (jitter      ): ov=20 (1.9s) (20ov)
+14:11:38    61 (shift_worst ): ov=21 (2.2s) (21ov)
+14:11:40    62 (reflect     ): ov=24 (2.4s) (24ov)
+14:11:42    63 (swap        ): ov=18 (1.9s) (18ov)
+14:11:44    64 (shift_worst ): ov=23 (2.2s) (23ov)
+14:11:46    65 (swap        ): ov=18 (1.8s) (18ov)
+14:11:49    66 (reflect     ): ov=21 (2.4s) (21ov)
+14:11:50    67 (reflect     ): ov=19 (0.9s) (19ov)
+14:11:52    68 (shift_worst ): ov=23 (2.2s) (23ov)
+14:11:52    69 (reflect     ): ov=-1 (0.4s)
+14:11:54    70 (swap        ): ov=18 (1.8s) (18ov)
+14:11:58    71 (flip        ): ov=-1 (4.1s)
+14:12:01    72 (reflect     ): ov=19 (2.6s) (19ov)
+14:12:03    73 (shift_worst ): ov=25 (2.4s) (25ov)
+14:12:08    74 (shift_worst ): ov=23 (5.0s) (23ov)
+14:12:11    75 (reflect     ): ov=22 (3.3s) (22ov)
+14:12:13    76 (shift_worst ): ov=20 (1.9s) (20ov)
+14:12:15    77 (jitter      ): ov=21 (2.3s) (21ov)
+14:12:18    78 (shift_worst ): ov=22 (2.5s) (22ov)
+14:12:20    79 (shift_worst ): ov=24 (2.2s) (24ov)
+14:12:21    80 (flip        ): ov=-1 (0.7s)
+14:12:23    81 (jitter      ): ov=18 (2.2s) (18ov)
+14:12:25    82 (jitter      ): ov=19 (1.8s) (19ov)
+14:12:25    83 (flip        ): ov=-1 (0.4s)
+14:12:29    84 (reflect     ): ov=23 (3.5s) (23ov)
+14:12:31    85 (jitter      ): ov=20 (1.9s) (20ov)
+14:12:33    86 (jitter      ): ov=19 (2.7s) (19ov)
+14:12:37    87 (jitter      ): ov=16 (3.5s) (16ov)
+14:12:37    88 (flip        ): ov=-1 (0.2s)
+14:12:39    89 (shift_worst ): ov=21 (2.3s) (21ov)
+14:12:41    90 (jitter      ): ov=19 (1.9s) (19ov)
+14:12:43    91 (swap        ): ov=18 (2.0s) (18ov)
+14:12:46    92 (shift_worst ): ov=25 (2.5s) (25ov)
+14:12:48    93 (jitter      ): ov=25 (2.3s) (25ov)
+14:12:51    94 (flip        ): ov=19 (2.5s) (19ov)
+14:12:53    95 (reflect     ): ov=-1 (2.3s)
+14:12:56    96 (reflect     ): ov=24 (3.0s) (24ov)
+14:12:58    97 (reflect     ): ov=-1 (2.3s)
+14:13:00    98 (jitter      ): ov=19 (1.9s) (19ov)
+14:13:02    99 (swap        ): ov=18 (1.8s) (18ov)
+14:13:04   100 (swap        ): ov=18 (1.8s) (18ov)
+14:13:04   ✗ Failed at R=3.0093
+14:13:04 
+── R = 3.0118 ──
+14:13:06     1 (jitter      ): ov=19 (1.8s) (19ov)
+14:13:08     2 (reflect     ): ov=23 (2.3s) (23ov)
+14:13:10     3 (jitter      ): ov=18 (1.7s) (18ov)
+14:13:13     4 (reflect     ): ov=24 (3.7s) (24ov)
+14:13:15     5 (jitter      ): ov=17 (2.0s) (17ov)
+14:13:17     6 (flip        ): ov=24 (2.1s) (24ov)
+14:13:20     7 (shift_worst ): ov=23 (2.8s) (23ov)
+14:13:23     8 (reflect     ): ov=23 (2.9s) (23ov)
+14:13:25     9 (swap        ): ov=19 (2.2s) (19ov)
+14:13:27    10 (jitter      ): ov=18 (2.1s) (18ov)
+14:13:30    11 (swap        ): ov=19 (2.8s) (19ov)
+14:13:38    12 (flip        ): ov=20 (7.8s) (20ov)
+14:13:42    13 (reflect     ): ov=23 (3.8s) (23ov)
+14:13:42    14 (shift_worst ): ov=-1 (0.2s)
+14:13:45    15 (shift_worst ): ov=22 (3.0s) (22ov)
+14:13:48    16 (flip        ): ov=-1 (2.9s)
+14:13:50    17 (jitter      ): ov=18 (2.4s) (18ov)
+14:13:52    18 (jitter      ): ov=13 (1.9s) (13ov)
+14:13:54    19 (jitter      ): ov=20 (1.9s) (20ov)
+14:13:56    20 (jitter      ): ov=16 (2.0s) (16ov)
+14:13:58    21 (swap        ): ov=19 (2.1s) (19ov)
+14:14:01    22 (reflect     ): ov=25 (3.0s) (25ov)
+14:14:03    23 (jitter      ): ov=18 (2.0s) (18ov)
+14:14:05    24 (jitter      ): ov=16 (1.8s) (16ov)
+14:14:07    25 (shift_worst ): ov=22 (1.9s) (22ov)
+14:14:10    26 (reflect     ): ov=23 (2.9s) (23ov)
+14:14:12    27 (shift_worst ): ov=23 (2.0s) (23ov)
+14:14:14    28 (jitter      ): ov=17 (1.9s) (17ov)
+14:14:16    29 (jitter      ): ov=19 (2.0s) (19ov)
+14:14:18    30 (reflect     ): ov=21 (2.6s) (21ov)
+14:14:20    31 (jitter      ): ov=18 (2.0s) (18ov)
+14:14:23    32 (jitter      ): ov=19 (2.3s) (19ov)
+14:14:25    33 (reflect     ): ov=18 (2.7s) (18ov)
+14:14:28    34 (jitter      ): ov=20 (2.1s) (20ov)
+14:14:30    35 (reflect     ): ov=21 (2.1s) (21ov)
+14:14:38    36 (flip        ): ov=-1 (8.5s)
+14:14:40    37 (shift_worst ): ov=21 (1.9s) (21ov)
+14:14:42    38 (swap        ): ov=19 (2.2s) (19ov)
+14:14:43    39 (flip        ): ov=20 (1.1s) (20ov)
+14:14:47    40 (flip        ): ov=22 (3.2s) (22ov)
+14:14:50    41 (flip        ): ov=24 (2.9s) (24ov)
+14:14:51    42 (jitter      ): ov=17 (1.8s) (17ov)
+14:14:55    43 (shift_worst ): ov=17 (3.1s) (17ov)
+14:14:57    44 (flip        ): ov=22 (2.5s) (22ov)
+14:14:59    45 (shift_worst ): ov=16 (2.3s) (16ov)
+14:15:02    46 (flip        ): ov=22 (2.9s) (22ov)
+14:15:04    47 (swap        ): ov=18 (2.0s) (18ov)
+14:15:06    48 (shift_worst ): ov=24 (1.9s) (24ov)
+14:15:06    49 (reflect     ): ov=-1 (0.3s)
+14:15:09    50 (jitter      ): ov=15 (2.1s) (15ov)
+14:15:11    51 (reflect     ): ov=21 (2.6s) (21ov)
+14:15:13    52 (shift_worst ): ov=16 (2.0s) (16ov)
+14:15:15    53 (shift_worst ): ov=23 (2.2s) (23ov)
+14:15:18    54 (swap        ): ov=18 (2.2s) (18ov)
+14:15:20    55 (shift_worst ): ov=26 (2.9s) (26ov)
+14:15:21    56 (shift_worst ): ov=19 (0.8s) (19ov)
+14:15:23    57 (shift_worst ): ov=17 (2.0s) (17ov)
+14:15:25    58 (jitter      ): ov=18 (1.8s) (18ov)
+14:15:27    59 (jitter      ): ov=19 (2.0s) (19ov)
+14:15:29    60 (jitter      ): ov=17 (2.0s) (17ov)
+14:15:31    61 (jitter      ): ov=18 (1.9s) (18ov)
+14:15:34    62 (flip        ): ov=22 (3.4s) (22ov)
+14:15:36    63 (jitter      ): ov=18 (2.2s) (18ov)
+14:15:39    64 (jitter      ): ov=19 (2.1s) (19ov)
+14:15:41    65 (jitter      ): ov=18 (2.1s) (18ov)
+14:15:43    66 (jitter      ): ov=18 (2.3s) (18ov)
+14:15:45    67 (shift_worst ): ov=18 (2.1s) (18ov)
+14:15:46    68 (flip        ): ov=-1 (0.7s)
+14:15:48    69 (flip        ): ov=22 (2.5s) (22ov)
+14:15:50    70 (jitter      ): ov=8 (1.9s) (8ov)
+14:15:52    71 (jitter      ): ov=17 (2.0s) (17ov)
+14:15:54    72 (swap        ): ov=19 (2.0s) (19ov)
+14:15:56    73 (shift_worst ): ov=15 (2.1s) (15ov)
+14:15:58    74 (jitter      ): ov=17 (2.0s) (17ov)
+14:16:00    75 (jitter      ): ov=17 (2.0s) (17ov)
+14:16:04    76 (reflect     ): ov=21 (3.2s) (21ov)
+14:16:06    77 (shift_worst ): ov=23 (2.4s) (23ov)
+14:16:08    78 (shift_worst ): ov=25 (2.2s) (25ov)
+14:16:11    79 (swap        ): ov=18 (2.2s) (18ov)
+14:16:13    80 (reflect     ): ov=21 (2.1s) (21ov)
+14:16:15    81 (jitter      ): ov=15 (2.1s) (15ov)
+14:16:17    82 (swap        ): ov=19 (2.2s) (19ov)
+14:16:19    83 (jitter      ): ov=19 (2.0s) (19ov)
+14:16:21    84 (swap        ): ov=19 (2.2s) (19ov)
+14:16:23    85 (jitter      ): ov=19 (1.8s) (19ov)
+14:16:25    86 (flip        ): ov=23 (2.0s) (23ov)
+14:16:27    87 (jitter      ): ov=18 (2.1s) (18ov)
+14:16:29    88 (swap        ): ov=19 (2.1s) (19ov)
+14:16:32    89 (shift_worst ): ov=24 (2.5s) (24ov)
+14:16:35    90 (flip        ): ov=23 (2.9s) (23ov)
+14:16:38    91 (flip        ): ov=24 (3.0s) (24ov)
+14:16:38    92 (flip        ): ov=-1 (0.8s)
+14:16:44    93 (reflect     ): ov=23 (5.6s) (23ov)
+14:16:47    94 (jitter      ): ov=18 (2.9s) (18ov)
+14:16:50    95 (reflect     ): ov=21 (2.7s) (21ov)
+14:16:52    96 (shift_worst ): ov=22 (2.3s) (22ov)
+14:16:54    97 (swap        ): ov=19 (2.4s) (19ov)
+14:16:58    98 (reflect     ): ov=22 (3.4s) (22ov)
+14:17:00    99 (swap        ): ov=19 (2.2s) (19ov)
+14:17:02   100 (jitter      ): ov=19 (2.2s) (19ov)
+14:17:02   ✗ Failed at R=3.0118
+14:17:02 
+── R = 3.0143 ──
+14:17:04     1 (jitter      ): ov=18 (2.0s) (18ov)
+14:17:06     2 (jitter      ): ov=20 (2.1s) (20ov)
+14:17:09     3 (reflect     ): ov=25 (2.2s) (25ov)
+14:17:14     4 (jitter      ): ov=3 (5.0s) (3ov)
+14:17:16     5 (shift_worst ): ov=21 (2.1s) (21ov)
+14:17:19     6 (flip        ): ov=22 (3.0s) (22ov)
+14:17:21     7 (shift_worst ): ov=20 (2.4s) (20ov)
+14:17:23     8 (jitter      ): ov=15 (1.8s) (15ov)
+14:17:25     9 (jitter      ): ov=18 (1.9s) (18ov)
+14:17:27    10 (jitter      ): ov=13 (1.8s) (13ov)
+14:17:29    11 (reflect     ): ov=-1 (2.6s)
+14:17:44    12 (jitter      ): ov=8 (14.4s) (8ov)
+14:17:46    13 (reflect     ): ov=-1 (2.7s)
+14:17:49    14 (shift_worst ): ov=21 (2.6s) (21ov)
+14:17:52    15 (reflect     ): ov=22 (3.4s) (22ov)
+14:17:55    16 (jitter      ): ov=0 (2.2s) ✓ R=3.014303
+14:17:55    16 (jitter      ): ov=0 (2.2s) ✓ R=3.014303
+14:17:59    17 (reflect     ): ov=20 (4.1s) (20ov)
+14:18:01    18 (jitter      ): ov=13 (2.0s) (13ov)
+14:18:03    19 (jitter      ): ov=0 (2.3s) ✓ R=3.014249
+14:18:03   ★ NEW BEST: R = 3.014249
+14:18:06     Squeeze ★ R = 3.012251
+14:18:08 
+── R = 3.0073 ──
+14:18:11     1 (reflect     ): ov=22 (3.1s) (22ov)
+14:18:14     2 (jitter      ): ov=22 (2.1s) (22ov)
+14:18:16     3 (jitter      ): ov=22 (2.5s) (22ov)
+14:18:20     4 (flip        ): ov=-1 (3.4s)
+14:18:23     5 (flip        ): ov=20 (3.0s) (20ov)
+14:18:25     6 (reflect     ): ov=19 (2.0s) (19ov)
+14:18:27     7 (shift_worst ): ov=22 (2.1s) (22ov)
+14:18:29     8 (flip        ): ov=25 (2.6s) (25ov)
+14:18:30     9 (flip        ): ov=-1 (0.3s)
+14:18:34    10 (flip        ): ov=25 (4.2s) (25ov)
+14:18:36    11 (shift_worst ): ov=22 (2.2s) (22ov)
+14:18:38    12 (jitter      ): ov=20 (2.5s) (20ov)
+14:18:40    13 (swap        ): ov=20 (2.0s) (20ov)
+14:18:42    14 (swap        ): ov=20 (2.1s) (20ov)
+14:18:45    15 (jitter      ): ov=21 (2.2s) (21ov)
+14:18:45    16 (flip        ): ov=-1 (0.4s)
+14:18:47    17 (jitter      ): ov=21 (2.1s) (21ov)
+14:18:50    18 (shift_worst ): ov=20 (2.6s) (20ov)
+14:18:53    19 (swap        ): ov=21 (2.7s) (21ov)
+14:18:53    20 (reflect     ): ov=-1 (0.6s)
+14:18:55    21 (jitter      ): ov=20 (1.9s) (20ov)
+14:18:58    22 (flip        ): ov=21 (2.4s) (21ov)
+14:19:00    23 (jitter      ): ov=22 (2.1s) (22ov)
+14:19:02    24 (shift_worst ): ov=21 (2.9s) (21ov)
+14:19:05    25 (flip        ): ov=23 (2.5s) (23ov)
+14:19:07    26 (shift_worst ): ov=21 (2.4s) (21ov)
+14:19:10    27 (shift_worst ): ov=22 (2.4s) (22ov)
+14:19:12    28 (shift_worst ): ov=22 (2.4s) (22ov)
+14:19:14    29 (jitter      ): ov=22 (2.1s) (22ov)
+14:19:17    30 (flip        ): ov=22 (3.2s) (22ov)
+14:19:21    31 (reflect     ): ov=24 (3.4s) (24ov)
+14:19:23    32 (jitter      ): ov=20 (2.1s) (20ov)
+14:19:25    33 (shift_worst ): ov=22 (2.0s) (22ov)
+14:19:28    34 (jitter      ): ov=20 (2.6s) (20ov)
+14:19:30    35 (reflect     ): ov=-1 (3.0s)
+14:19:34    36 (reflect     ): ov=22 (3.7s) (22ov)
+14:19:37    37 (jitter      ): ov=20 (2.5s) (20ov)
+14:19:40    38 (reflect     ): ov=26 (2.9s) (26ov)
+14:19:42    39 (jitter      ): ov=22 (2.3s) (22ov)
+14:19:44    40 (jitter      ): ov=19 (2.2s) (19ov)
+14:19:46    41 (shift_worst ): ov=21 (2.3s) (21ov)
+14:19:49    42 (shift_worst ): ov=25 (2.9s) (25ov)
+14:19:52    43 (shift_worst ): ov=21 (2.8s) (21ov)
+14:19:54    44 (jitter      ): ov=23 (2.0s) (23ov)
+14:19:56    45 (swap        ): ov=21 (2.0s) (21ov)
+14:19:58    46 (flip        ): ov=23 (2.4s) (23ov)
+14:20:01    47 (reflect     ): ov=-1 (2.8s)
+14:20:03    48 (jitter      ): ov=21 (1.9s) (21ov)
+14:20:06    49 (reflect     ): ov=22 (2.8s) (22ov)
+14:20:08    50 (jitter      ): ov=20 (2.0s) (20ov)
+14:20:10    51 (flip        ): ov=23 (2.2s) (23ov)
+14:20:12    52 (jitter      ): ov=22 (2.2s) (22ov)
+14:20:14    53 (jitter      ): ov=21 (2.0s) (21ov)
+14:20:16    54 (jitter      ): ov=22 (2.1s) (22ov)
+14:20:20    55 (reflect     ): ov=23 (3.3s) (23ov)
+14:20:23    56 (flip        ): ov=20 (2.7s) (20ov)
+14:20:25    57 (jitter      ): ov=22 (2.3s) (22ov)
+14:20:27    58 (shift_worst ): ov=22 (2.3s) (22ov)
+14:20:30    59 (flip        ): ov=26 (2.9s) (26ov)
+14:20:32    60 (jitter      ): ov=19 (2.2s) (19ov)
+14:20:34    61 (shift_worst ): ov=22 (2.1s) (22ov)
+14:20:35    62 (reflect     ): ov=-1 (0.4s)
+14:20:37    63 (swap        ): ov=21 (1.8s) (21ov)
+14:20:39    64 (shift_worst ): ov=21 (2.3s) (21ov)
+14:20:41    65 (swap        ): ov=21 (1.9s) (21ov)
+14:20:43    66 (reflect     ): ov=21 (2.6s) (21ov)
+14:20:49    67 (reflect     ): ov=23 (5.5s) (23ov)
+14:20:52    68 (shift_worst ): ov=21 (2.9s) (21ov)
+14:20:54    69 (reflect     ): ov=24 (2.7s) (24ov)
+14:20:57    70 (swap        ): ov=20 (2.2s) (20ov)
+14:20:59    71 (flip        ): ov=-1 (2.6s)
+14:21:01    72 (reflect     ): ov=22 (2.1s) (22ov)
+14:21:04    73 (shift_worst ): ov=22 (2.4s) (22ov)
+14:21:06    74 (shift_worst ): ov=22 (2.0s) (22ov)
+14:21:09    75 (reflect     ): ov=22 (3.0s) (22ov)
+14:21:11    76 (shift_worst ): ov=22 (2.3s) (22ov)
+14:21:14    77 (jitter      ): ov=22 (2.4s) (22ov)
+14:21:16    78 (shift_worst ): ov=22 (2.6s) (22ov)
+14:21:18    79 (shift_worst ): ov=21 (2.1s) (21ov)
+14:21:21    80 (flip        ): ov=-1 (2.4s)
+14:21:23    81 (jitter      ): ov=19 (2.5s) (19ov)
+14:21:26    82 (jitter      ): ov=21 (2.4s) (21ov)
+14:21:28    83 (flip        ): ov=23 (2.6s) (23ov)
+14:21:29    84 (reflect     ): ov=16 (1.1s) (16ov)
+14:21:31    85 (jitter      ): ov=20 (2.2s) (20ov)
+14:21:34    86 (jitter      ): ov=21 (2.1s) (21ov)
+14:21:36    87 (jitter      ): ov=21 (2.7s) (21ov)
+14:21:39    88 (flip        ): ov=-1 (2.6s)
+14:21:41    89 (shift_worst ): ov=21 (2.2s) (21ov)
+14:21:43    90 (jitter      ): ov=21 (2.0s) (21ov)
+14:21:45    91 (swap        ): ov=20 (2.2s) (20ov)
+14:21:48    92 (shift_worst ): ov=25 (2.6s) (25ov)
+14:21:50    93 (jitter      ): ov=23 (2.3s) (23ov)
+14:21:53    94 (flip        ): ov=19 (2.4s) (19ov)
+14:21:56    95 (reflect     ): ov=23 (3.0s) (23ov)
+14:21:59    96 (reflect     ): ov=25 (3.1s) (25ov)
+14:22:01    97 (reflect     ): ov=-1 (2.3s)
+14:22:04    98 (jitter      ): ov=18 (2.6s) (18ov)
+14:22:06    99 (swap        ): ov=21 (1.9s) (21ov)
+14:22:08   100 (swap        ): ov=21 (2.1s) (21ov)
+14:22:08   ✗ Failed at R=3.0073
+14:22:08 
+── R = 3.0098 ──
+14:22:10     1 (jitter      ): ov=13 (2.6s) (13ov)
+14:22:14     2 (reflect     ): ov=22 (3.4s) (22ov)
+14:22:16     3 (jitter      ): ov=20 (2.0s) (20ov)
+14:22:19     4 (reflect     ): ov=26 (3.1s) (26ov)
+14:22:21     5 (jitter      ): ov=21 (2.2s) (21ov)
+14:22:24     6 (flip        ): ov=23 (3.1s) (23ov)
+14:22:25     7 (shift_worst ): ov=15 (1.1s) (15ov)
+14:22:26     8 (reflect     ): ov=22 (1.4s) (22ov)
+14:22:28     9 (swap        ): ov=17 (1.9s) (17ov)
+14:22:30    10 (jitter      ): ov=18 (1.9s) (18ov)
+14:22:32    11 (swap        ): ov=17 (2.1s) (17ov)
+14:22:37    12 (flip        ): ov=19 (5.0s) (19ov)
+14:22:41    13 (reflect     ): ov=-1 (3.9s)
+14:22:43    14 (shift_worst ): ov=23 (2.2s) (23ov)
+14:22:48    15 (shift_worst ): ov=21 (5.1s) (21ov)
+14:22:52    16 (flip        ): ov=23 (3.8s) (23ov)
+14:22:55    17 (jitter      ): ov=17 (2.7s) (17ov)
+14:22:57    18 (jitter      ): ov=21 (2.3s) (21ov)
+14:22:59    19 (jitter      ): ov=21 (2.3s) (21ov)
+14:23:02    20 (jitter      ): ov=20 (2.1s) (20ov)
+14:23:04    21 (swap        ): ov=17 (2.0s) (17ov)
+14:23:08    22 (reflect     ): ov=25 (4.1s) (25ov)
+14:23:10    23 (jitter      ): ov=19 (2.4s) (19ov)
+14:23:12    24 (jitter      ): ov=19 (2.1s) (19ov)
+14:23:15    25 (shift_worst ): ov=24 (2.7s) (24ov)
+14:23:18    26 (reflect     ): ov=22 (3.5s) (22ov)
+14:23:21    27 (shift_worst ): ov=22 (2.8s) (22ov)
+14:23:23    28 (jitter      ): ov=21 (2.2s) (21ov)
+14:23:26    29 (jitter      ): ov=21 (2.2s) (21ov)
+14:23:28    30 (reflect     ): ov=22 (2.9s) (22ov)
+14:23:31    31 (jitter      ): ov=19 (2.3s) (19ov)
+14:23:33    32 (jitter      ): ov=19 (2.4s) (19ov)
+14:23:37    33 (reflect     ): ov=20 (3.7s) (20ov)
+14:23:39    34 (jitter      ): ov=22 (2.2s) (22ov)
+14:23:42    35 (reflect     ): ov=22 (2.7s) (22ov)
+14:23:42    36 (flip        ): ov=-1 (0.5s)
+14:23:45    37 (shift_worst ): ov=19 (2.4s) (19ov)
+14:23:47    38 (swap        ): ov=17 (2.0s) (17ov)
+14:23:49    39 (flip        ): ov=-1 (2.2s)
+14:23:53    40 (flip        ): ov=20 (4.1s) (20ov)
+14:23:58    41 (flip        ): ov=22 (5.3s) (22ov)
+14:24:01    42 (jitter      ): ov=16 (2.5s) (16ov)
+14:24:04    43 (shift_worst ): ov=22 (2.9s) (22ov)
+14:24:07    44 (flip        ): ov=24 (3.3s) (24ov)
+14:24:08    45 (shift_worst ): ov=17 (0.8s) (17ov)
+14:24:11    46 (flip        ): ov=22 (3.4s) (22ov)
+14:24:13    47 (swap        ): ov=17 (1.9s) (17ov)
+14:24:15    48 (shift_worst ): ov=14 (2.0s) (14ov)
+14:24:17    49 (reflect     ): ov=24 (2.2s) (24ov)
+14:24:19    50 (jitter      ): ov=21 (1.7s) (21ov)
+14:24:21    51 (reflect     ): ov=23 (2.1s) (23ov)
+14:24:23    52 (shift_worst ): ov=23 (2.1s) (23ov)
+14:24:25    53 (shift_worst ): ov=22 (2.1s) (22ov)
+14:24:27    54 (swap        ): ov=17 (1.9s) (17ov)
+14:24:30    55 (shift_worst ): ov=23 (2.6s) (23ov)
+14:24:32    56 (shift_worst ): ov=21 (2.4s) (21ov)
+14:24:35    57 (shift_worst ): ov=20 (2.4s) (20ov)
+14:24:37    58 (jitter      ): ov=16 (2.4s) (16ov)
+14:24:39    59 (jitter      ): ov=19 (2.0s) (19ov)
+14:24:41    60 (jitter      ): ov=20 (2.3s) (20ov)
+14:24:43    61 (jitter      ): ov=21 (2.0s) (21ov)
+14:24:46    62 (flip        ): ov=26 (3.1s) (26ov)
+14:24:48    63 (jitter      ): ov=18 (2.2s) (18ov)
+14:24:50    64 (jitter      ): ov=17 (1.8s) (17ov)
+14:24:52    65 (jitter      ): ov=18 (1.9s) (18ov)
+14:24:54    66 (jitter      ): ov=17 (2.2s) (17ov)
+14:24:56    67 (shift_worst ): ov=26 (2.0s) (26ov)
+14:24:57    68 (flip        ): ov=-1 (0.4s)
+14:25:00    69 (flip        ): ov=26 (3.1s) (26ov)
+14:25:02    70 (jitter      ): ov=19 (2.2s) (19ov)
+14:25:04    71 (jitter      ): ov=16 (1.9s) (16ov)
+14:25:06    72 (swap        ): ov=17 (2.0s) (17ov)
+14:25:08    73 (shift_worst ): ov=24 (2.4s) (24ov)
+14:25:10    74 (jitter      ): ov=21 (2.1s) (21ov)
+14:25:12    75 (jitter      ): ov=22 (2.0s) (22ov)
+14:25:16    76 (reflect     ): ov=23 (3.5s) (23ov)
+14:25:19    77 (shift_worst ): ov=21 (3.7s) (21ov)
+14:25:22    78 (shift_worst ): ov=20 (2.8s) (20ov)
+14:25:25    79 (swap        ): ov=17 (2.3s) (17ov)
+14:25:27    80 (reflect     ): ov=22 (2.3s) (22ov)
+14:25:29    81 (jitter      ): ov=12 (2.1s) (12ov)
+14:25:31    82 (swap        ): ov=17 (1.9s) (17ov)
+14:25:33    83 (jitter      ): ov=15 (2.5s) (15ov)
+14:25:35    84 (swap        ): ov=17 (1.8s) (17ov)
+14:25:37    85 (jitter      ): ov=21 (1.9s) (21ov)
+14:25:39    86 (flip        ): ov=23 (2.2s) (23ov)
+14:25:41    87 (jitter      ): ov=19 (1.9s) (19ov)
+14:25:43    88 (swap        ): ov=17 (1.9s) (17ov)
+14:25:45    89 (shift_worst ): ov=19 (2.0s) (19ov)
+14:25:48    90 (flip        ): ov=23 (2.6s) (23ov)
+14:25:51    91 (flip        ): ov=22 (3.1s) (22ov)
+14:25:53    92 (flip        ): ov=21 (2.5s) (21ov)
+14:25:56    93 (reflect     ): ov=22 (2.7s) (22ov)
+14:25:58    94 (jitter      ): ov=19 (2.0s) (19ov)
+14:26:01    95 (reflect     ): ov=22 (2.7s) (22ov)
+14:26:03    96 (shift_worst ): ov=25 (2.0s) (25ov)
+14:26:05    97 (swap        ): ov=17 (1.9s) (17ov)
+14:26:06    98 (reflect     ): ov=16 (1.1s) (16ov)
+14:26:08    99 (swap        ): ov=17 (1.9s) (17ov)
+14:26:10   100 (jitter      ): ov=19 (2.5s) (19ov)
+14:26:10   ✗ Failed at R=3.0098
+14:26:10 
+── R = 3.0123 ──
+14:26:12     1 (jitter      ): ov=20 (2.0s) (20ov)
+14:26:14     2 (jitter      ): ov=20 (1.9s) (20ov)
+14:26:16     3 (reflect     ): ov=24 (2.4s) (24ov)
+14:26:18     4 (jitter      ): ov=16 (1.9s) (16ov)
+14:26:21     5 (shift_worst ): ov=0 (2.3s) ✓ R=3.012227
+14:26:21   ★ NEW BEST: R = 3.012227
+14:26:23 
+── R = 3.0072 ──
+14:26:28     1 (reflect     ): ov=23 (4.5s) (23ov)
+14:26:29     2 (jitter      ): ov=21 (2.0s) (21ov)
+14:26:32     3 (jitter      ): ov=21 (2.1s) (21ov)
+14:26:35     4 (flip        ): ov=22 (3.0s) (22ov)
+14:26:35     5 (flip        ): ov=-1 (0.2s)
+14:26:38     6 (reflect     ): ov=23 (2.9s) (23ov)
+14:26:39     7 (shift_worst ): ov=16 (1.0s) (16ov)
+14:26:41     8 (flip        ): ov=25 (2.8s) (25ov)
+14:26:44     9 (flip        ): ov=-1 (2.4s)
+14:26:49    10 (flip        ): ov=23 (5.4s) (23ov)
+14:26:50    11 (shift_worst ): ov=13 (0.9s) (13ov)
+14:26:52    12 (jitter      ): ov=22 (1.9s) (22ov)
+14:26:54    13 (swap        ): ov=19 (1.7s) (19ov)
+14:26:56    14 (swap        ): ov=20 (1.9s) (20ov)
+14:26:58    15 (jitter      ): ov=21 (2.3s) (21ov)
+14:26:58    16 (flip        ): ov=-1 (0.5s)
+14:27:01    17 (jitter      ): ov=23 (2.3s) (23ov)
+14:27:03    18 (shift_worst ): ov=20 (1.9s) (20ov)
+14:27:04    19 (swap        ): ov=19 (1.7s) (19ov)
+14:27:07    20 (reflect     ): ov=25 (2.9s) (25ov)
+14:27:10    21 (jitter      ): ov=19 (2.2s) (19ov)
+14:27:12    22 (flip        ): ov=21 (2.3s) (21ov)
+14:27:14    23 (jitter      ): ov=21 (2.2s) (21ov)
+14:27:16    24 (shift_worst ): ov=22 (1.8s) (22ov)
+14:27:18    25 (flip        ): ov=23 (2.4s) (23ov)
+14:27:20    26 (shift_worst ): ov=24 (2.3s) (24ov)
+14:27:22    27 (shift_worst ): ov=21 (2.0s) (21ov)
+14:27:25    28 (shift_worst ): ov=21 (2.4s) (21ov)
+14:27:27    29 (jitter      ): ov=20 (1.9s) (20ov)
+14:27:31    30 (flip        ): ov=23 (4.4s) (23ov)
+14:27:35    31 (reflect     ): ov=21 (4.2s) (21ov)
+14:27:38    32 (jitter      ): ov=15 (2.5s) (15ov)
+14:27:40    33 (shift_worst ): ov=23 (2.3s) (23ov)
+14:27:42    34 (jitter      ): ov=21 (2.0s) (21ov)
+14:27:46    35 (reflect     ): ov=-1 (3.4s)
+14:27:48    36 (reflect     ): ov=23 (2.7s) (23ov)
+14:27:51    37 (jitter      ): ov=21 (2.6s) (21ov)
+14:27:52    38 (reflect     ): ov=-1 (1.4s)
+14:27:55    39 (jitter      ): ov=19 (2.4s) (19ov)
+14:27:57    40 (jitter      ): ov=21 (2.1s) (21ov)
+14:27:59    41 (shift_worst ): ov=21 (2.4s) (21ov)
+14:28:01    42 (shift_worst ): ov=23 (1.9s) (23ov)
+14:28:05    43 (shift_worst ): ov=21 (4.0s) (21ov)
+14:28:08    44 (jitter      ): ov=20 (2.6s) (20ov)
+14:28:10    45 (swap        ): ov=20 (2.0s) (20ov)
+14:28:12    46 (flip        ): ov=23 (2.4s) (23ov)
+14:28:15    47 (reflect     ): ov=22 (2.9s) (22ov)
+14:28:17    48 (jitter      ): ov=21 (2.1s) (21ov)
+14:28:22    49 (reflect     ): ov=-1 (4.3s)
+14:28:23    50 (jitter      ): ov=22 (1.9s) (22ov)
+14:28:26    51 (flip        ): ov=23 (2.1s) (23ov)
+14:28:28    52 (jitter      ): ov=22 (1.9s) (22ov)
+14:28:30    53 (jitter      ): ov=21 (2.3s) (21ov)
+14:28:32    54 (jitter      ): ov=22 (2.6s) (22ov)
+14:28:35    55 (reflect     ): ov=23 (3.0s) (23ov)
+14:28:38    56 (flip        ): ov=20 (2.4s) (20ov)
+14:28:41    57 (jitter      ): ov=19 (2.9s) (19ov)
+14:28:43    58 (shift_worst ): ov=22 (2.3s) (22ov)
+14:28:47    59 (flip        ): ov=26 (3.8s) (26ov)
+14:28:49    60 (jitter      ): ov=18 (2.2s) (18ov)
+14:28:52    61 (shift_worst ): ov=19 (3.0s) (19ov)
+14:28:55    62 (reflect     ): ov=-1 (2.9s)
+14:28:57    63 (swap        ): ov=19 (1.9s) (19ov)
+14:28:59    64 (shift_worst ): ov=21 (2.2s) (21ov)
+14:29:01    65 (swap        ): ov=20 (1.8s) (20ov)
+14:29:01    66 (reflect     ): ov=-1 (0.2s)
+14:29:05    67 (reflect     ): ov=23 (3.6s) (23ov)
+14:29:07    68 (shift_worst ): ov=22 (2.3s) (22ov)
+14:29:09    69 (reflect     ): ov=24 (2.4s) (24ov)
+14:29:11    70 (swap        ): ov=19 (1.8s) (19ov)
+14:29:14    71 (flip        ): ov=-1 (2.4s)
+14:29:14    72 (reflect     ): ov=-1 (0.9s)
+14:29:17    73 (shift_worst ): ov=20 (2.6s) (20ov)
+14:29:19    74 (shift_worst ): ov=21 (2.1s) (21ov)
+14:29:22    75 (reflect     ): ov=23 (3.1s) (23ov)
+14:29:25    76 (shift_worst ): ov=23 (2.3s) (23ov)
+14:29:26    77 (jitter      ): ov=19 (1.9s) (19ov)
+14:29:29    78 (shift_worst ): ov=20 (3.0s) (20ov)
+14:29:32    79 (shift_worst ): ov=22 (2.6s) (22ov)
+14:29:35    80 (flip        ): ov=-1 (2.5s)
+14:29:37    81 (jitter      ): ov=19 (2.4s) (19ov)
+14:29:39    82 (jitter      ): ov=22 (1.9s) (22ov)
+14:29:41    83 (flip        ): ov=-1 (2.5s)
+14:29:45    84 (reflect     ): ov=17 (3.2s) (17ov)
+14:29:47    85 (jitter      ): ov=20 (2.9s) (20ov)
+14:29:50    86 (jitter      ): ov=21 (2.3s) (21ov)
+14:29:52    87 (jitter      ): ov=20 (2.1s) (20ov)
+14:29:55    88 (flip        ): ov=23 (2.8s) (23ov)
+14:29:57    89 (shift_worst ): ov=18 (2.2s) (18ov)
+14:29:59    90 (jitter      ): ov=22 (2.2s) (22ov)
+14:30:01    91 (swap        ): ov=19 (1.9s) (19ov)
+14:30:03    92 (shift_worst ): ov=24 (1.9s) (24ov)
+14:30:05    93 (jitter      ): ov=21 (1.9s) (21ov)
+14:30:07    94 (flip        ): ov=19 (2.5s) (19ov)
+14:30:10    95 (reflect     ): ov=23 (3.0s) (23ov)
+14:30:13    96 (reflect     ): ov=21 (2.8s) (21ov)
+14:30:16    97 (reflect     ): ov=-1 (2.9s)
+14:30:18    98 (jitter      ): ov=20 (2.2s) (20ov)
+14:30:20    99 (swap        ): ov=19 (2.4s) (19ov)
+14:30:23   100 (swap        ): ov=19 (2.2s) (19ov)
+14:30:23   ✗ Failed at R=3.0072
+14:30:23 
+── R = 3.0097 ──
+14:30:25     1 (jitter      ): ov=19 (2.2s) (19ov)
+14:30:28     2 (reflect     ): ov=22 (3.1s) (22ov)
+14:30:30     3 (jitter      ): ov=20 (1.9s) (20ov)
+14:30:32     4 (reflect     ): ov=23 (2.5s) (23ov)
+14:30:34     5 (jitter      ): ov=19 (2.1s) (19ov)
+14:30:37     6 (flip        ): ov=22 (2.7s) (22ov)
+14:30:40     7 (shift_worst ): ov=14 (2.6s) (14ov)
+14:30:43     8 (reflect     ): ov=24 (2.9s) (24ov)
+14:30:45     9 (swap        ): ov=17 (2.2s) (17ov)
+14:30:47    10 (jitter      ): ov=19 (1.8s) (19ov)
+14:30:49    11 (swap        ): ov=17 (2.2s) (17ov)
+14:30:52    12 (flip        ): ov=23 (3.1s) (23ov)
+14:30:55    13 (reflect     ): ov=23 (3.6s) (23ov)
+14:30:58    14 (shift_worst ): ov=23 (2.8s) (23ov)
+14:31:01    15 (shift_worst ): ov=22 (3.2s) (22ov)
+14:31:02    16 (flip        ): ov=-1 (0.8s)
+14:31:04    17 (jitter      ): ov=20 (1.8s) (20ov)
+14:31:06    18 (jitter      ): ov=16 (2.3s) (16ov)
+14:31:09    19 (jitter      ): ov=13 (2.1s) (13ov)
+14:31:11    20 (jitter      ): ov=20 (2.3s) (20ov)
+14:31:13    21 (swap        ): ov=17 (2.3s) (17ov)
+14:31:17    22 (reflect     ): ov=25 (3.4s) (25ov)
+14:31:19    23 (jitter      ): ov=20 (2.3s) (20ov)
+14:31:21    24 (jitter      ): ov=20 (2.5s) (20ov)
+14:31:24    25 (shift_worst ): ov=23 (2.3s) (23ov)
+14:31:27    26 (reflect     ): ov=22 (2.9s) (22ov)
+14:31:29    27 (shift_worst ): ov=16 (2.0s) (16ov)
+14:31:32    28 (jitter      ): ov=20 (3.3s) (20ov)
+14:31:34    29 (jitter      ): ov=20 (2.5s) (20ov)
+14:31:38    30 (reflect     ): ov=-1 (3.1s)
+14:31:40    31 (jitter      ): ov=20 (2.4s) (20ov)
+14:31:43    32 (jitter      ): ov=22 (2.6s) (22ov)
+14:31:48    33 (reflect     ): ov=23 (4.9s) (23ov)
+14:31:50    34 (jitter      ): ov=18 (2.1s) (18ov)
+14:31:52    35 (reflect     ): ov=20 (2.7s) (20ov)
+14:31:53    36 (flip        ): ov=-1 (0.5s)
+14:31:55    37 (shift_worst ): ov=21 (2.4s) (21ov)
+14:31:58    38 (swap        ): ov=17 (2.4s) (17ov)
+14:32:00    39 (flip        ): ov=-1 (2.5s)
+14:32:04    40 (flip        ): ov=20 (3.6s) (20ov)
+14:32:07    41 (flip        ): ov=21 (3.4s) (21ov)
+14:32:10    42 (jitter      ): ov=17 (2.9s) (17ov)
+14:32:13    43 (shift_worst ): ov=20 (3.4s) (20ov)
+14:32:16    44 (flip        ): ov=22 (2.9s) (22ov)
+14:32:19    45 (shift_worst ): ov=23 (3.0s) (23ov)
+14:32:23    46 (flip        ): ov=23 (3.9s) (23ov)
+14:32:26    47 (swap        ): ov=17 (2.6s) (17ov)
+14:32:28    48 (shift_worst ): ov=19 (2.4s) (19ov)
+14:32:29    49 (reflect     ): ov=18 (1.4s) (18ov)
+14:32:31    50 (jitter      ): ov=21 (2.1s) (21ov)
+14:32:34    51 (reflect     ): ov=22 (2.5s) (22ov)
+14:32:36    52 (shift_worst ): ov=20 (2.4s) (20ov)
+14:32:39    53 (shift_worst ): ov=20 (2.4s) (20ov)
+14:32:41    54 (swap        ): ov=17 (2.6s) (17ov)
+14:32:44    55 (shift_worst ): ov=21 (2.5s) (21ov)
+14:32:46    56 (shift_worst ): ov=21 (2.5s) (21ov)
+14:32:49    57 (shift_worst ): ov=21 (2.2s) (21ov)
+14:32:51    58 (jitter      ): ov=19 (2.3s) (19ov)
+14:32:53    59 (jitter      ): ov=20 (2.5s) (20ov)
+14:32:55    60 (jitter      ): ov=22 (2.0s) (22ov)
+14:32:57    61 (jitter      ): ov=19 (2.0s) (19ov)
+14:33:01    62 (flip        ): ov=26 (3.2s) (26ov)
+14:33:03    63 (jitter      ): ov=18 (2.3s) (18ov)
+14:33:06    64 (jitter      ): ov=17 (3.1s) (17ov)
+14:33:08    65 (jitter      ): ov=22 (2.1s) (22ov)
+14:33:11    66 (jitter      ): ov=17 (2.7s) (17ov)
+14:33:14    67 (shift_worst ): ov=17 (3.1s) (17ov)
+14:33:15    68 (flip        ): ov=-1 (0.7s)
+14:33:18    69 (flip        ): ov=26 (3.9s) (26ov)
+14:33:21    70 (jitter      ): ov=21 (2.1s) (21ov)
+14:33:23    71 (jitter      ): ov=15 (2.8s) (15ov)
+14:33:26    72 (swap        ): ov=17 (2.9s) (17ov)
+14:33:29    73 (shift_worst ): ov=20 (2.6s) (20ov)
+14:33:31    74 (jitter      ): ov=21 (2.2s) (21ov)
+14:33:34    75 (jitter      ): ov=21 (2.8s) (21ov)
+14:33:34    76 (reflect     ): ov=-1 (0.6s)
+14:33:37    77 (shift_worst ): ov=22 (2.3s) (22ov)
+14:33:40    78 (shift_worst ): ov=23 (3.6s) (23ov)
+14:33:44    79 (swap        ): ov=17 (3.2s) (17ov)
+14:33:48    80 (reflect     ): ov=21 (4.5s) (21ov)
+14:33:51    81 (jitter      ): ov=20 (2.8s) (20ov)
+14:33:53    82 (swap        ): ov=17 (2.5s) (17ov)
+14:33:56    83 (jitter      ): ov=19 (3.1s) (19ov)
+14:33:59    84 (swap        ): ov=17 (2.9s) (17ov)
+14:34:02    85 (jitter      ): ov=19 (3.2s) (19ov)
+14:34:05    86 (flip        ): ov=23 (2.7s) (23ov)
+14:34:08    87 (jitter      ): ov=21 (2.6s) (21ov)
+14:34:10    88 (swap        ): ov=17 (2.4s) (17ov)
+14:34:13    89 (shift_worst ): ov=22 (2.7s) (22ov)
+14:34:16    90 (flip        ): ov=23 (3.3s) (23ov)
+14:34:19    91 (flip        ): ov=21 (3.3s) (21ov)
+14:34:22    92 (flip        ): ov=21 (3.0s) (21ov)
+14:34:26    93 (reflect     ): ov=23 (3.3s) (23ov)
+14:34:28    94 (jitter      ): ov=21 (1.9s) (21ov)
+14:34:32    95 (reflect     ): ov=22 (4.9s) (22ov)
+14:34:35    96 (shift_worst ): ov=22 (2.1s) (22ov)
+14:34:37    97 (swap        ): ov=17 (2.3s) (17ov)
+14:34:40    98 (reflect     ): ov=20 (3.6s) (20ov)
+14:34:43    99 (swap        ): ov=17 (2.3s) (17ov)
+14:34:45   100 (jitter      ): ov=21 (2.4s) (21ov)
+14:34:45   ✗ Failed at R=3.0097
+14:34:45 
+── R = 3.0122 ──
+14:35:00     1 (jitter      ): ov=10 (14.7s) (10ov)
+14:35:02     2 (jitter      ): ov=20 (2.3s) (20ov)
+14:35:05     3 (reflect     ): ov=25 (3.2s) (25ov)
+14:35:07     4 (jitter      ): ov=0 (2.0s) ✓ R=3.012197
+14:35:07   ★ NEW BEST: R = 3.012197
+14:35:10     Squeeze ★ R = 3.010195
+14:35:13 
+── R = 3.0052 ──
+14:35:16     1 (reflect     ): ov=23 (3.0s) (23ov)
+14:35:18     2 (jitter      ): ov=20 (2.0s) (20ov)
+14:35:20     3 (jitter      ): ov=20 (2.3s) (20ov)
+14:35:20     4 (flip        ): ov=-1 (0.2s)
+14:35:21     5 (flip        ): ov=-1 (0.4s)
+14:35:24     6 (reflect     ): ov=27 (2.8s) (27ov)
+14:35:26     7 (shift_worst ): ov=21 (2.2s) (21ov)
+14:35:29     8 (flip        ): ov=25 (3.1s) (25ov)
+14:35:29     9 (flip        ): ov=-1 (0.5s)
+14:35:36    10 (flip        ): ov=25 (6.9s) (25ov)
+14:35:39    11 (shift_worst ): ov=23 (2.4s) (23ov)
+14:35:41    12 (jitter      ): ov=22 (2.3s) (22ov)
+14:35:43    13 (swap        ): ov=22 (2.4s) (22ov)
+14:35:46    14 (swap        ): ov=22 (2.7s) (22ov)
+14:35:48    15 (jitter      ): ov=20 (2.0s) (20ov)
+14:35:49    16 (flip        ): ov=-1 (0.8s)
+14:35:51    17 (jitter      ): ov=21 (2.1s) (21ov)
+14:35:54    18 (shift_worst ): ov=23 (2.7s) (23ov)
+14:35:57    19 (swap        ): ov=22 (3.1s) (22ov)
+14:36:00    20 (reflect     ): ov=22 (3.1s) (22ov)
+14:36:02    21 (jitter      ): ov=20 (2.1s) (20ov)
+14:36:05    22 (flip        ): ov=21 (2.4s) (21ov)
+14:36:07    23 (jitter      ): ov=22 (2.0s) (22ov)
+14:36:08    24 (shift_worst ): ov=21 (1.9s) (21ov)
+14:36:12    25 (flip        ): ov=22 (3.8s) (22ov)
+14:36:15    26 (shift_worst ): ov=22 (2.9s) (22ov)
+14:36:18    27 (shift_worst ): ov=22 (2.6s) (22ov)
+14:36:21    28 (shift_worst ): ov=23 (3.6s) (23ov)
+14:36:24    29 (jitter      ): ov=22 (2.7s) (22ov)
+14:36:27    30 (flip        ): ov=23 (3.4s) (23ov)
+14:36:32    31 (reflect     ): ov=24 (4.6s) (24ov)
+14:36:36    32 (jitter      ): ov=22 (3.6s) (22ov)
+14:36:38    33 (shift_worst ): ov=23 (2.8s) (23ov)
+14:36:41    34 (jitter      ): ov=22 (2.8s) (22ov)
+14:36:44    35 (reflect     ): ov=-1 (3.0s)
+14:36:47    36 (reflect     ): ov=21 (3.2s) (21ov)
+14:36:50    37 (jitter      ): ov=22 (2.3s) (22ov)
+14:36:53    38 (reflect     ): ov=26 (3.1s) (26ov)
+14:36:55    39 (jitter      ): ov=22 (2.4s) (22ov)
+14:36:58    40 (jitter      ): ov=22 (2.4s) (22ov)
+14:37:01    41 (shift_worst ): ov=22 (3.6s) (22ov)
+14:37:04    42 (shift_worst ): ov=25 (3.2s) (25ov)
+14:37:08    43 (shift_worst ): ov=24 (3.5s) (24ov)
+14:37:11    44 (jitter      ): ov=19 (3.5s) (19ov)
+14:37:15    45 (swap        ): ov=22 (3.8s) (22ov)
+14:37:20    46 (flip        ): ov=23 (4.9s) (23ov)
+14:37:21    47 (reflect     ): ov=-1 (1.0s)
+14:37:23    48 (jitter      ): ov=21 (2.5s) (21ov)
+14:37:29    49 (reflect     ): ov=23 (5.2s) (23ov)
+14:37:32    50 (jitter      ): ov=22 (3.2s) (22ov)
+14:37:35    51 (flip        ): ov=23 (3.4s) (23ov)
+14:37:38    52 (jitter      ): ov=21 (2.7s) (21ov)
+14:37:40    53 (jitter      ): ov=21 (2.0s) (21ov)
+14:37:42    54 (jitter      ): ov=21 (2.1s) (21ov)
+14:37:45    55 (reflect     ): ov=24 (3.4s) (24ov)
+14:37:49    56 (flip        ): ov=24 (3.7s) (24ov)
+14:37:52    57 (jitter      ): ov=22 (2.8s) (22ov)
+14:37:54    58 (shift_worst ): ov=23 (2.4s) (23ov)
+14:37:59    59 (flip        ): ov=26 (4.6s) (26ov)
+14:38:01    60 (jitter      ): ov=22 (2.2s) (22ov)
+14:38:03    61 (shift_worst ): ov=23 (2.4s) (23ov)
+14:38:06    62 (reflect     ): ov=-1 (2.8s)
+14:38:09    63 (swap        ): ov=22 (2.8s) (22ov)
+14:38:12    64 (shift_worst ): ov=25 (2.7s) (25ov)
+14:38:14    65 (swap        ): ov=22 (2.7s) (22ov)
+14:38:17    66 (reflect     ): ov=23 (2.8s) (23ov)
+14:38:20    67 (reflect     ): ov=24 (2.7s) (24ov)
+14:38:22    68 (shift_worst ): ov=23 (2.3s) (23ov)
+14:38:26    69 (reflect     ): ov=22 (3.7s) (22ov)
+14:38:28    70 (swap        ): ov=22 (2.5s) (22ov)
+14:38:31    71 (flip        ): ov=-1 (3.0s)
+14:38:34    72 (reflect     ): ov=22 (3.2s) (22ov)
+14:38:37    73 (shift_worst ): ov=23 (3.0s) (23ov)
+14:38:40    74 (shift_worst ): ov=24 (2.7s) (24ov)
+14:38:41    75 (reflect     ): ov=-1 (0.5s)
+14:38:43    76 (shift_worst ): ov=21 (2.3s) (21ov)
+14:38:45    77 (jitter      ): ov=22 (2.1s) (22ov)
+14:38:47    78 (shift_worst ): ov=21 (2.3s) (21ov)
+14:38:50    79 (shift_worst ): ov=23 (2.1s) (23ov)
+14:38:53    80 (flip        ): ov=-1 (3.7s)
+14:38:56    81 (jitter      ): ov=21 (3.0s) (21ov)
+14:38:59    82 (jitter      ): ov=22 (2.9s) (22ov)
+14:39:02    83 (flip        ): ov=23 (3.1s) (23ov)
+14:39:04    84 (reflect     ): ov=-1 (2.3s)
+14:39:07    85 (jitter      ): ov=21 (2.2s) (21ov)
+14:39:09    86 (jitter      ): ov=23 (2.2s) (23ov)
+14:39:11    87 (jitter      ): ov=20 (2.2s) (20ov)
+14:39:14    88 (flip        ): ov=-1 (2.8s)
+14:39:16    89 (shift_worst ): ov=25 (2.3s) (25ov)
+14:39:18    90 (jitter      ): ov=22 (1.9s) (22ov)
+14:39:20    91 (swap        ): ov=22 (2.3s) (22ov)
+14:39:23    92 (shift_worst ): ov=24 (2.4s) (24ov)
+14:39:25    93 (jitter      ): ov=21 (2.2s) (21ov)
+14:39:28    94 (flip        ): ov=19 (2.7s) (19ov)
+14:39:30    95 (reflect     ): ov=23 (2.4s) (23ov)
+14:39:30    96 (reflect     ): ov=-1 (0.2s)
+14:39:33    97 (reflect     ): ov=-1 (2.6s)
+14:39:36    98 (jitter      ): ov=22 (2.7s) (22ov)
+14:39:39    99 (swap        ): ov=22 (3.1s) (22ov)
+14:39:42   100 (swap        ): ov=22 (2.9s) (22ov)
+14:39:42   ✗ Failed at R=3.0052
+14:39:42 
+── R = 3.0077 ──
+14:39:44     1 (jitter      ): ov=20 (2.7s) (20ov)
+14:39:48     2 (reflect     ): ov=22 (3.2s) (22ov)
+14:39:50     3 (jitter      ): ov=20 (2.4s) (20ov)
+14:39:53     4 (reflect     ): ov=25 (2.9s) (25ov)
+14:39:56     5 (jitter      ): ov=15 (2.7s) (15ov)
+14:39:58     6 (flip        ): ov=23 (2.9s) (23ov)
+14:40:01     7 (shift_worst ): ov=23 (2.9s) (23ov)
+14:40:04     8 (reflect     ): ov=25 (3.1s) (25ov)
+14:40:07     9 (swap        ): ov=21 (2.3s) (21ov)
+14:40:10    10 (jitter      ): ov=19 (2.9s) (19ov)
+14:40:12    11 (swap        ): ov=21 (2.5s) (21ov)
+14:40:18    12 (flip        ): ov=22 (5.7s) (22ov)
+14:40:21    13 (reflect     ): ov=23 (3.2s) (23ov)
+14:40:23    14 (shift_worst ): ov=23 (2.3s) (23ov)
+14:40:26    15 (shift_worst ): ov=22 (2.6s) (22ov)
+14:40:29    16 (flip        ): ov=-1 (3.0s)
+14:40:31    17 (jitter      ): ov=22 (2.3s) (22ov)
+14:40:33    18 (jitter      ): ov=17 (2.1s) (17ov)
+14:40:36    19 (jitter      ): ov=21 (2.9s) (21ov)
+14:40:39    20 (jitter      ): ov=22 (2.5s) (22ov)
+14:40:41    21 (swap        ): ov=21 (2.4s) (21ov)
+14:40:45    22 (reflect     ): ov=25 (3.8s) (25ov)
+14:40:47    23 (jitter      ): ov=22 (2.2s) (22ov)
+14:40:49    24 (jitter      ): ov=20 (2.1s) (20ov)
+14:40:52    25 (shift_worst ): ov=23 (2.7s) (23ov)
+14:40:57    26 (reflect     ): ov=22 (5.1s) (22ov)
+14:40:59    27 (shift_worst ): ov=15 (1.4s) (15ov)
+14:41:01    28 (jitter      ): ov=20 (2.1s) (20ov)
+14:41:03    29 (jitter      ): ov=23 (2.8s) (23ov)
+14:41:07    30 (reflect     ): ov=-1 (3.2s)
+14:41:09    31 (jitter      ): ov=21 (2.1s) (21ov)
+14:41:11    32 (jitter      ): ov=18 (2.1s) (18ov)
+14:41:12    33 (reflect     ): ov=15 (1.4s) (15ov)
+14:41:15    34 (jitter      ): ov=21 (2.5s) (21ov)
+14:41:17    35 (reflect     ): ov=19 (2.7s) (19ov)
+14:41:21    36 (flip        ): ov=-1 (3.4s)
+14:41:23    37 (shift_worst ): ov=22 (2.6s) (22ov)
+14:41:26    38 (swap        ): ov=21 (2.5s) (21ov)
+14:41:28    39 (flip        ): ov=-1 (2.4s)
+14:41:32    40 (flip        ): ov=20 (3.3s) (20ov)
+14:41:35    41 (flip        ): ov=23 (3.5s) (23ov)
+14:41:38    42 (jitter      ): ov=21 (2.7s) (21ov)
+14:41:41    43 (shift_worst ): ov=24 (2.8s) (24ov)
+14:41:44    44 (flip        ): ov=24 (3.1s) (24ov)
+14:41:46    45 (shift_worst ): ov=23 (2.3s) (23ov)
+14:41:51    46 (flip        ): ov=23 (5.4s) (23ov)
+14:41:54    47 (swap        ): ov=21 (2.8s) (21ov)
+14:41:57    48 (shift_worst ): ov=21 (2.9s) (21ov)
+14:42:00    49 (reflect     ): ov=23 (3.3s) (23ov)
+14:42:03    50 (jitter      ): ov=21 (2.8s) (21ov)
+14:42:06    51 (reflect     ): ov=24 (3.4s) (24ov)
+14:42:09    52 (shift_worst ): ov=21 (2.3s) (21ov)
+14:42:12    53 (shift_worst ): ov=22 (2.8s) (22ov)
+14:42:14    54 (swap        ): ov=21 (2.4s) (21ov)
+14:42:16    55 (shift_worst ): ov=26 (2.4s) (26ov)
+14:42:19    56 (shift_worst ): ov=24 (2.3s) (24ov)
+14:42:21    57 (shift_worst ): ov=19 (2.3s) (19ov)
+14:42:24    58 (jitter      ): ov=19 (2.7s) (19ov)
+14:42:27    59 (jitter      ): ov=21 (2.9s) (21ov)
+14:42:30    60 (jitter      ): ov=22 (3.0s) (22ov)
+14:42:32    61 (jitter      ): ov=22 (2.2s) (22ov)
+14:42:35    62 (flip        ): ov=26 (3.5s) (26ov)
+14:42:37    63 (jitter      ): ov=23 (2.1s) (23ov)
+14:42:40    64 (jitter      ): ov=21 (2.2s) (21ov)
+14:42:43    65 (jitter      ): ov=20 (3.4s) (20ov)
+14:42:46    66 (jitter      ): ov=20 (2.7s) (20ov)
+14:42:48    67 (shift_worst ): ov=26 (2.3s) (26ov)
+14:42:49    68 (flip        ): ov=-1 (0.6s)
+14:42:53    69 (flip        ): ov=26 (4.6s) (26ov)
+14:42:56    70 (jitter      ): ov=20 (2.9s) (20ov)
+14:42:59    71 (jitter      ): ov=22 (2.6s) (22ov)
+14:43:02    72 (swap        ): ov=21 (3.9s) (21ov)
+14:43:05    73 (shift_worst ): ov=20 (2.5s) (20ov)
+14:43:08    74 (jitter      ): ov=18 (2.8s) (18ov)
+14:43:10    75 (jitter      ): ov=21 (2.5s) (21ov)
+14:43:15    76 (reflect     ): ov=23 (4.8s) (23ov)
+14:43:18    77 (shift_worst ): ov=23 (2.7s) (23ov)
+14:43:20    78 (shift_worst ): ov=20 (2.6s) (20ov)
+14:43:23    79 (swap        ): ov=21 (2.2s) (21ov)
+14:43:25    80 (reflect     ): ov=22 (2.4s) (22ov)
+14:43:28    81 (jitter      ): ov=20 (2.9s) (20ov)
+14:43:30    82 (swap        ): ov=21 (2.4s) (21ov)
+14:43:33    83 (jitter      ): ov=22 (2.4s) (22ov)
+14:43:35    84 (swap        ): ov=21 (2.3s) (21ov)
+14:43:37    85 (jitter      ): ov=23 (2.0s) (23ov)
+14:43:40    86 (flip        ): ov=23 (3.0s) (23ov)
+14:43:43    87 (jitter      ): ov=21 (2.4s) (21ov)
+14:43:45    88 (swap        ): ov=21 (2.4s) (21ov)
+14:43:47    89 (shift_worst ): ov=22 (2.3s) (22ov)
+14:43:48    90 (flip        ): ov=18 (1.2s) (18ov)
+14:43:51    91 (flip        ): ov=23 (3.1s) (23ov)
+14:43:54    92 (flip        ): ov=22 (2.8s) (22ov)
+14:43:57    93 (reflect     ): ov=21 (2.6s) (21ov)
+14:43:59    94 (jitter      ): ov=21 (2.3s) (21ov)
+14:44:06    95 (reflect     ): ov=22 (6.7s) (22ov)
+14:44:08    96 (shift_worst ): ov=24 (2.6s) (24ov)
+14:44:11    97 (swap        ): ov=21 (2.4s) (21ov)
+14:44:14    98 (reflect     ): ov=22 (3.6s) (22ov)
+14:44:17    99 (swap        ): ov=21 (2.5s) (21ov)
+14:44:19   100 (jitter      ): ov=22 (2.0s) (22ov)
+14:44:19   ✗ Failed at R=3.0077
+14:44:19 
+── R = 3.0102 ──
+14:44:21     1 (jitter      ): ov=15 (2.2s) (15ov)
+14:44:24     2 (jitter      ): ov=21 (2.5s) (21ov)
+14:44:27     3 (reflect     ): ov=24 (2.9s) (24ov)
+14:44:29     4 (jitter      ): ov=11 (2.7s) (11ov)
+14:44:32     5 (shift_worst ): ov=24 (2.3s) (24ov)
+14:44:35     6 (flip        ): ov=26 (3.1s) (26ov)
+14:44:37     7 (shift_worst ): ov=21 (2.7s) (21ov)
+14:44:41     8 (jitter      ): ov=17 (3.3s) (17ov)
+14:44:44     9 (jitter      ): ov=19 (3.2s) (19ov)
+14:44:46    10 (jitter      ): ov=16 (2.3s) (16ov)
+14:44:47    11 (reflect     ): ov=-1 (0.5s)
+14:44:49    12 (jitter      ): ov=21 (2.1s) (21ov)
+14:44:52    13 (reflect     ): ov=22 (3.0s) (22ov)
+14:44:54    14 (shift_worst ): ov=20 (2.6s) (20ov)
+14:44:58    15 (reflect     ): ov=22 (3.3s) (22ov)
+14:45:00    16 (jitter      ): ov=19 (2.3s) (19ov)
+14:45:00    17 (swap        ): ov=0 (0.0s) ✓ R=3.010196
+14:45:00    17 (swap        ): ov=0 (0.0s) ✓ R=3.010196
+14:45:05    18 (reflect     ): ov=23 (4.2s) (23ov)
+14:45:07    19 (jitter      ): ov=18 (2.3s) (18ov)
+14:45:09    20 (jitter      ): ov=19 (2.0s) (19ov)
+14:45:09    21 (flip        ): ov=-1 (0.4s)
+14:45:10    22 (flip        ): ov=-1 (0.3s)
+14:45:13    23 (reflect     ): ov=25 (3.5s) (25ov)
+14:45:15    24 (shift_worst ): ov=22 (2.2s) (22ov)
+14:45:16    25 (flip        ): ov=-1 (0.4s)
+14:45:16    26 (flip        ): ov=-1 (0.3s)
+14:45:21    27 (flip        ): ov=23 (5.0s) (23ov)
+14:45:23    28 (shift_worst ): ov=23 (2.3s) (23ov)
+14:45:36    29 (jitter      ): ov=2 (12.4s) (2ov)
+14:45:36    30 (swap        ): ov=0 (0.0s) ✓ R=3.010196
+14:45:36    30 (swap        ): ov=0 (0.0s) ✓ R=3.010196
+14:45:40    31 (reflect     ): ov=23 (3.4s) (23ov)
+14:45:42    32 (jitter      ): ov=18 (2.7s) (18ov)
+14:45:44    33 (jitter      ): ov=15 (2.0s) (15ov)
+14:45:45    34 (flip        ): ov=-1 (0.4s)
+14:45:45    35 (flip        ): ov=-1 (0.3s)
+14:45:48    36 (reflect     ): ov=25 (3.4s) (25ov)
+14:45:50    37 (shift_worst ): ov=22 (2.1s) (22ov)
+14:45:51    38 (flip        ): ov=-1 (0.3s)
+14:45:51    39 (flip        ): ov=-1 (0.3s)
+14:45:56    40 (flip        ): ov=23 (5.1s) (23ov)
+14:45:58    41 (shift_worst ): ov=23 (2.3s) (23ov)
+14:46:01    42 (jitter      ): ov=24 (2.7s) (24ov)
+14:46:01    43 (swap        ): ov=0 (0.0s) ✓ R=3.010196
+14:46:01    43 (swap        ): ov=0 (0.0s) ✓ R=3.010196
+14:46:05    44 (reflect     ): ov=23 (3.9s) (23ov)
+14:46:07    45 (jitter      ): ov=19 (1.9s) (19ov)
+14:46:09    46 (jitter      ): ov=21 (1.7s) (21ov)
+14:46:09    47 (flip        ): ov=-1 (0.4s)
+14:46:10    48 (flip        ): ov=-1 (0.3s)
+14:46:13    49 (reflect     ): ov=25 (3.3s) (25ov)
+14:46:15    50 (shift_worst ): ov=22 (2.2s) (22ov)
+14:46:15    51 (flip        ): ov=-1 (0.3s)
+14:46:16    52 (flip        ): ov=-1 (0.3s)
+14:46:20    53 (flip        ): ov=23 (4.9s) (23ov)
+14:46:23    54 (shift_worst ): ov=23 (2.2s) (23ov)
+14:46:25    55 (jitter      ): ov=21 (1.9s) (21ov)
+14:46:25    56 (swap        ): ov=0 (0.0s) ✓ R=3.010196
+14:46:25    56 (swap        ): ov=0 (0.0s) ✓ R=3.010196
+14:46:29    57 (reflect     ): ov=23 (3.7s) (23ov)
+14:46:31    58 (jitter      ): ov=17 (2.4s) (17ov)
+14:46:34    59 (jitter      ): ov=22 (2.7s) (22ov)
+14:46:34    60 (flip        ): ov=-1 (0.8s)
+14:46:35    61 (flip        ): ov=-1 (0.3s)
+14:46:38    62 (reflect     ): ov=25 (3.5s) (25ov)
+14:46:40    63 (shift_worst ): ov=22 (2.3s) (22ov)
+14:46:41    64 (flip        ): ov=-1 (0.4s)
+14:46:41    65 (flip        ): ov=-1 (0.3s)
+14:46:46    66 (flip        ): ov=23 (5.2s) (23ov)
+14:46:48    67 (shift_worst ): ov=23 (2.2s) (23ov)
+14:46:50    68 (jitter      ): ov=19 (2.0s) (19ov)
+14:46:51    69 (swap        ): ov=0 (0.0s) ✓ R=3.010196
+14:46:51    69 (swap        ): ov=0 (0.0s) ✓ R=3.010196
+14:46:54    70 (reflect     ): ov=23 (3.6s) (23ov)
+14:46:56    71 (jitter      ): ov=18 (2.1s) (18ov)
+14:46:59    72 (jitter      ): ov=21 (2.2s) (21ov)
+14:46:59    73 (flip        ): ov=-1 (0.5s)
+14:46:59    74 (flip        ): ov=-1 (0.4s)
+14:47:04    75 (reflect     ): ov=25 (4.2s) (25ov)
+14:47:06    76 (shift_worst ): ov=22 (2.2s) (22ov)
+14:47:06    77 (flip        ): ov=-1 (0.3s)
+14:47:06    78 (flip        ): ov=-1 (0.3s)
+14:47:11    79 (flip        ): ov=23 (5.0s) (23ov)
+14:47:14    80 (shift_worst ): ov=23 (2.3s) (23ov)
+14:47:20    81 (jitter      ): ov=0 (6.4s) ✗official(1)
+14:47:21    82 (swap        ): ov=0 (0.0s) ✓ R=3.010196
+14:47:21    82 (swap        ): ov=0 (0.0s) ✓ R=3.010196
+14:47:24    83 (reflect     ): ov=23 (3.8s) (23ov)
+14:47:27    84 (jitter      ): ov=15 (2.6s) (15ov)
+14:47:29    85 (jitter      ): ov=16 (2.2s) (16ov)
+14:47:30    86 (flip        ): ov=-1 (0.6s)
+14:47:30    87 (flip        ): ov=-1 (0.3s)
+14:47:34    88 (reflect     ): ov=25 (3.8s) (25ov)
+14:47:36    89 (shift_worst ): ov=22 (2.3s) (22ov)
+14:47:36    90 (flip        ): ov=-1 (0.3s)
+14:47:37    91 (flip        ): ov=-1 (0.3s)
+14:47:43    92 (flip        ): ov=23 (6.0s) (23ov)
+14:47:45    93 (shift_worst ): ov=23 (2.3s) (23ov)
+14:47:47    94 (jitter      ): ov=19 (2.3s) (19ov)
+14:47:48    95 (swap        ): ov=0 (0.0s) ✓ R=3.010196
+14:47:48    95 (swap        ): ov=0 (0.0s) ✓ R=3.010196
+14:47:51    96 (reflect     ): ov=23 (3.3s) (23ov)
+14:47:53    97 (jitter      ): ov=19 (2.1s) (19ov)
+14:47:55    98 (jitter      ): ov=21 (1.9s) (21ov)
+14:47:55    99 (flip        ): ov=-1 (0.4s)
+14:47:56   100 (flip        ): ov=-1 (0.3s)
+14:47:56   ✗ Failed at R=3.0102
+14:47:56 
+=== MBH done | best R = 3.010195 ===
+14:47:56 
+Done at 14:47:56
