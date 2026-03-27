@@ -60,15 +60,57 @@ def load_best():
 
 
 def save_best(xs, ys, ts, R, log=True):
-    data = [{'x': float(xs[i]), 'y': float(ys[i]), 'theta': float(ts[i])}
-            for i in range(N)]
-    with open(BEST_FILE, 'w') as f:
-        json.dump(data, f, indent=2)
-    msg = f"[NEW BEST] R = {R:.6f}"
-    print(msg, flush=True)
-    if log:
-        with open(LOG_FILE, 'a') as f:
-            f.write(f"{time.strftime('%Y-%m-%dT%H:%M:%S')} {msg}\n")
+    """Write to BEST_FILE only if R is strictly better than what's on disk.
+    Uses a file-level lock (lockfile) to coordinate with optimize_all.py workers.
+    """
+    import fcntl
+    lock_path = BEST_FILE + '.lock'
+    with open(lock_path, 'w') as lf:
+        try:
+            fcntl.flock(lf, fcntl.LOCK_EX)
+            # Read current disk value under lock
+            try:
+                with open(BEST_FILE) as f:
+                    disk_raw = json.load(f)
+                disk_xs = [s['x'] for s in disk_raw]
+                disk_ys = [s['y'] for s in disk_raw]
+                # Quick proxy: MEC radius ≈ max distance from centroid + 1
+                import math as _math
+                cx = sum(disk_xs)/len(disk_xs); cy = sum(disk_ys)/len(disk_ys)
+                disk_R_approx = max(_math.hypot(x-cx, y-cy) for x,y in zip(disk_xs,disk_ys)) + 1.0
+                if disk_R_approx < R - 1e-6:
+                    # Disk has something better already — skip write, but log
+                    msg = f"[SKIP WRITE] disk R≈{disk_R_approx:.6f} < candidate R={R:.6f}"
+                    print(msg, flush=True)
+                    if log:
+                        with open(LOG_FILE, 'a') as f:
+                            f.write(f"{time.strftime('%Y-%m-%dT%H:%M:%S')} {msg}\n")
+                    return
+            except Exception:
+                pass  # no existing file or parse error — proceed with write
+
+            data = [{'x': float(xs[i]), 'y': float(ys[i]), 'theta': float(ts[i])}
+                    for i in range(N)]
+            with open(BEST_FILE, 'w') as f:
+                json.dump(data, f, indent=2)
+            msg = f"[NEW BEST] R = {R:.6f}"
+            print(msg, flush=True)
+            if log:
+                with open(LOG_FILE, 'a') as f:
+                    f.write(f"{time.strftime('%Y-%m-%dT%H:%M:%S')} {msg}\n")
+            # Telegram alert via openclaw CLI
+            try:
+                import subprocess
+                subprocess.Popen([
+                    'openclaw', 'message', 'send',
+                    '--channel', 'telegram',
+                    '--target', '1602537663',
+                    '--message', f'🎯 Packing new best (PBH): R={R:.6f}'
+                ])
+            except Exception:
+                pass
+        finally:
+            fcntl.flock(lf, fcntl.LOCK_UN)
 
 
 def pack(xs, ys, ts):

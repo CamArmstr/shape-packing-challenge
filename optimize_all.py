@@ -74,29 +74,63 @@ def load_best():
     return bx, by, bt, val.score if val.valid else float('inf')
 
 
+import fcntl as _fcntl
+BEST_FILE_LOCK_PATH = BEST_FILE + '.lock'
+
 def save_if_better(rx, ry, rt, score, global_best_ref):
-    """Save centered solution if better than global best. Thread-safe via file lock."""
+    """Save centered solution if better than global best.
+    
+    Uses fcntl file locking so this coordinates with mbh.py/pbh.py (separate processes).
+    Re-reads disk value under lock so external writes are respected before deciding to save.
+    """
     if score >= global_best_ref.value:
         return False
-    raw = [{'x': float(rx[i]), 'y': float(ry[i]), 'theta': float(rt[i])} for i in range(N)]
-    sol = [Semicircle(d['x'], d['y'], d['theta']) for d in raw]
-    result = validate_and_score(sol)
-    if not result.valid:
-        return False
-    cx, cy = result.mec[0], result.mec[1]
-    centered = [{'x': round(d['x']-cx,6), 'y': round(d['y']-cy,6), 'theta': round(d['theta'],6)} for d in raw]
-    if result.score < global_best_ref.value:
-        global_best_ref.value = result.score
-        with open(BEST_FILE, 'w') as f:
-            json.dump(centered, f, indent=2)
+
+    with open(BEST_FILE_LOCK_PATH, 'w') as lf:
         try:
-            sol_v = [Semicircle(d['x'],d['y'],d['theta']) for d in centered]
-            r_v = validate_and_score(sol_v)
-            from src.semicircle_packing.visualization import plot_packing
-            plot_packing(sol_v, r_v.mec, save_path='best_solution.png')
-        except: pass
-        return True
-    return False
+            _fcntl.flock(lf, _fcntl.LOCK_EX)
+
+            # Re-read disk under lock — catch improvements from external processes
+            try:
+                with open(BEST_FILE) as f:
+                    disk_raw = json.load(f)
+                disk_val = mod.official_validate(
+                    np.array([s['x'] for s in disk_raw]),
+                    np.array([s['y'] for s in disk_raw]),
+                    np.array([s['theta'] for s in disk_raw])
+                )
+                disk_R = disk_val.score if disk_val.valid else float('inf')
+                if disk_R < global_best_ref.value:
+                    global_best_ref.value = disk_R
+                    print(f"[sync] external best R={disk_R:.6f} loaded from disk", flush=True)
+            except Exception:
+                disk_R = float('inf')
+
+            if score >= global_best_ref.value:
+                return False  # worse than disk after sync
+
+            raw = [{'x': float(rx[i]), 'y': float(ry[i]), 'theta': float(rt[i])} for i in range(N)]
+            sol = [Semicircle(d['x'], d['y'], d['theta']) for d in raw]
+            result = validate_and_score(sol)
+            if not result.valid:
+                return False
+            if result.score >= global_best_ref.value:
+                return False
+
+            cx, cy = result.mec[0], result.mec[1]
+            centered = [{'x': round(d['x']-cx,6), 'y': round(d['y']-cy,6), 'theta': round(d['theta'],6)} for d in raw]
+            global_best_ref.value = result.score
+            with open(BEST_FILE, 'w') as f:
+                json.dump(centered, f, indent=2)
+            try:
+                sol_v = [Semicircle(d['x'],d['y'],d['theta']) for d in centered]
+                r_v = validate_and_score(sol_v)
+                from src.semicircle_packing.visualization import plot_packing
+                plot_packing(sol_v, r_v.mec, save_path='best_solution.png')
+            except: pass
+            return True
+        finally:
+            _fcntl.flock(lf, _fcntl.LOCK_UN)
 
 
 # ─── Starting geometries ───────────────────────────────────────────
@@ -350,6 +384,45 @@ def worker(worker_id, global_best, result_queue, stop_event):
                                      T_start, T_end, lam_start, lam_end, n_steps)
 
 
+def send_telegram(msg):
+    """Send Telegram alert via openclaw CLI."""
+    try:
+        import subprocess
+        subprocess.Popen([
+            'openclaw', 'message', 'send',
+            '--channel', 'telegram',
+            '--target', TELEGRAM_TARGET,
+            '--message', msg
+        ])
+    except Exception as e:
+        print(f"[telegram] failed: {e}", flush=True)
+
+
+def sync_from_disk(global_best):
+    """Check best_solution.json for improvements from external processes (e.g. pbh.py)."""
+    try:
+        with open(BEST_FILE_LOCK_PATH, 'w') as lf:
+            _fcntl.flock(lf, _fcntl.LOCK_SH)
+            try:
+                with open(BEST_FILE) as f:
+                    disk_raw = json.load(f)
+            finally:
+                _fcntl.flock(lf, _fcntl.LOCK_UN)
+        disk_val = mod.official_validate(
+            np.array([s['x'] for s in disk_raw]),
+            np.array([s['y'] for s in disk_raw]),
+            np.array([s['theta'] for s in disk_raw])
+        )
+        if disk_val.valid and disk_val.score < global_best.value:
+            old = global_best.value
+            global_best.value = disk_val.score
+            msg = f"[sync] disk improved: {old:.6f} → {disk_val.score:.6f}"
+            print(f"\n{msg}\n", flush=True)
+            send_telegram(f"🎯 Packing external improvement: R={disk_val.score:.6f}")
+    except Exception as e:
+        print(f"[sync] error: {e}", flush=True)
+
+
 def main():
     _, _, _, initial_best = load_best()
     print(f"Starting best: {initial_best:.6f}")
@@ -368,10 +441,14 @@ def main():
 
     t_start = time.time()
     max_runtime = 3600 * 8
+    last_disk_sync = time.time()
+    DISK_SYNC_INTERVAL = 30  # check disk every 30s for external improvements
 
     try:
         while time.time() - t_start < max_runtime:
             time.sleep(5)
+
+            # Drain result queue
             while not result_queue.empty():
                 score, rx, ry, rt, label = result_queue.get_nowait()
                 if score < global_best.value:
@@ -380,20 +457,15 @@ def main():
                     if improved:
                         msg = f"*** NEW BEST: {global_best.value:.6f} (from {label}) ***"
                         print(f"\n{msg}\n", flush=True)
-                        # Telegram alert
-                        try:
-                            import subprocess
-                            # Use openclaw to send Telegram
-                            subprocess.Popen(['node', '-e', f'''
-const {{OpenClaw}} = require("/usr/lib/node_modules/openclaw");
-// simple HTTP to gateway
-const http = require("http");
-const data = JSON.stringify({{channel:"telegram",target:"{TELEGRAM_TARGET}",message:"🎯 Packing: {msg}"}});
-const opts = {{hostname:"localhost",port:3001,path:"/api/send-message",method:"POST",headers:{{"Content-Type":"application/json","Content-Length":data.length}}}};
-'''])
-                        except: pass
+                        send_telegram(f"🎯 Packing new best: R={global_best.value:.6f} (worker: {label})")
 
-            elapsed = time.time() - t_start
+            # Periodic disk sync — catch improvements from pbh.py and other external processes
+            now = time.time()
+            if now - last_disk_sync >= DISK_SYNC_INTERVAL:
+                sync_from_disk(global_best)
+                last_disk_sync = now
+
+            elapsed = now - t_start
             alive = sum(1 for p in workers if p.is_alive())
             print(f"[{elapsed:.0f}s] Best={global_best.value:.6f} Workers={alive}/{len(STRATEGIES)}", flush=True)
 
