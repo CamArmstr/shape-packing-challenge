@@ -438,6 +438,8 @@ def run_mbh(r_start=3.07, r_min=2.85, r_step=0.01, rounds_per_R=30,
                 is_valid = shapely_result is not None and shapely_result.valid
                 official_R = float(shapely_result.score) if (is_valid and shapely_result.score) else float('inf')
                 if not is_valid:
+                    errs = shapely_result.errors[:2] if shapely_result else []
+                    logprint(f"  ✗ Shapely reject R={R:.4f} E={E:.2e} R_fast={actual_R:.4f}: {errs}")
                     continue  # Shapely says still overlapping, keep trying
                 logprint(f"  ✓ FEASIBLE at R={R:.4f}! Official R={official_R:.6f}")
                 feasible_found = True

@@ -272,11 +272,72 @@ def semicircle_signed_dist(xi, yi, ti, xj, yj, tj):
             # Overlapping — return negative minimum boundary distance
             pass  # fall through to compute unsigned dist, return negative
 
-    # Also sample a few arc interior points
+    # --- Analytical lens interior check (catches thin sliver arc-arc overlaps) ---
+    # The lens D1 ∩ D2 (intersection of two unit disks) has interior points.
+    # S1 ∩ S2 = (D1 ∩ H1) ∩ (D2 ∩ H2). Non-empty iff some point is in all four.
+    # 
+    # Key candidates:
+    # 1. Circle-circle intersection points (on boundary of lens)
+    # 2. Points along chord between intersection points (interior of lens)
+    # 3. Interior samples along c1→c2 axis and perpendiculars
+    # 4. c2+n1 and c1+n2: analytically derived sliver-overlap detectors
+    overlapping = False
+    if dc < 1e-9:
+        # Coincident centers — definitely overlapping
+        overlapping = True
+    hat_x = dx / dc if dc >= 1e-9 else 1.0
+    hat_y = dy / dc if dc >= 1e-9 else 0.0
+    perp_x, perp_y = -hat_y, hat_x   # perpendicular
+
+    # Circle-circle intersection points (boundary of lens)
+    a_ = dc / 2.0
+    h_ = math.sqrt(max(0.0, 1.0 - a_ * a_))
+    midx = (xi + xj) / 2.0
+    midy = (yi + yj) / 2.0
+    cc_ints = [
+        (midx + h_ * perp_x, midy + h_ * perp_y),
+        (midx - h_ * perp_x, midy - h_ * perp_y),
+    ]
+
+    # Lens interior samples: interpolate along the lens axis and perpendiculars
+    # Lens axis: from (xi+hat) to (xj-hat), both inside the other disk
+    lens_pts = list(cc_ints)  # boundary
+    # Points on the chord between the two intersection points (all inside both disks)
+    for t_ in [0.25, 0.5, 0.75]:
+        lx = cc_ints[0][0] + t_ * (cc_ints[1][0] - cc_ints[0][0])
+        ly = cc_ints[0][1] + t_ * (cc_ints[1][1] - cc_ints[0][1])
+        lens_pts.append((lx, ly))
+    # Points moving toward each arc center from the midpoint of c1-c2
+    for r_ in [0.3, 0.6, 0.9]:
+        lens_pts.append((midx + r_ * hat_x, midy + r_ * hat_y))
+        lens_pts.append((midx - r_ * hat_x, midy - r_ * hat_y))
+        lens_pts.append((midx + r_ * perp_x, midy + r_ * perp_y))
+        lens_pts.append((midx - r_ * perp_x, midy - r_ * perp_y))
+    # Key analytically-derived candidates:
+    # c2 + n1: point on circle C2 facing in the arc-normal direction of S1
+    #          If inside D1 ∩ H1 ∩ H2, the semicircles definitely overlap.
+    # c1 + n2: point on circle C1 facing in the arc-normal direction of S2 (symmetric)
+    lens_pts.append((xj + nx1, yj + ny1))
+    lens_pts.append((xi + nx2, yi + ny2))
+
+    for (px, py) in lens_pts:
+        # Must be inside both disks
+        in_d1 = (px - xi)**2 + (py - yi)**2 <= 1.0 + 1e-9
+        in_d2 = (px - xj)**2 + (py - yj)**2 <= 1.0 + 1e-9
+        if not (in_d1 and in_d2):
+            continue
+        on_h1 = nx1 * (px - xi) + ny1 * (py - yi) >= -1e-9
+        on_h2 = nx2 * (px - xj) + ny2 * (py - yj) >= -1e-9
+        if on_h1 and on_h2:
+            overlapping = True
+            break
+
+    # Also check critical points and directional samples
     def arc_sample(cx, cy, nax, nay, tgt_x, tgt_y):
         """A few arc samples in the direction of the other semicircle."""
         results = []
-        for angle_offset in [0, math.pi/6, -math.pi/6, math.pi/4, -math.pi/4]:
+        for angle_offset in [0, math.pi/6, -math.pi/6, math.pi/4, -math.pi/4,
+                              math.pi/3, -math.pi/3, math.pi/2, -math.pi/2]:
             base = math.atan2(tgt_y - cy, tgt_x - cx)
             a = base + angle_offset
             px, py = cx + math.cos(a), cy + math.sin(a)
@@ -284,11 +345,11 @@ def semicircle_signed_dist(xi, yi, ti, xj, yj, tj):
                 results.append((px, py))
         return results
 
-    overlapping = False
-    samples_i = arc_sample(xi, yi, nx1, ny1, xj, yj)
-    for (px, py) in samples_i:
-        if _point_in_semicircle(px, py, xj, yj, nx2, ny2):
-            overlapping = True; break
+    if not overlapping:
+        samples_i = arc_sample(xi, yi, nx1, ny1, xj, yj)
+        for (px, py) in samples_i:
+            if _point_in_semicircle(px, py, xj, yj, nx2, ny2):
+                overlapping = True; break
 
     if not overlapping:
         samples_j = arc_sample(xj, yj, nx2, ny2, xi, yi)
