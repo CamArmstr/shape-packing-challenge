@@ -172,6 +172,56 @@ def start_boundary_biased(seed=None):
     return None
 
 
+def start_double_lattice(seed=None):
+    """
+    Double-lattice start: two semicircles per cell, rotated ~60-90° relative to each other
+    (NOT flat-to-flat conjugates). Based on Kallus pessimal packing theory —
+    optimal non-centrally-symmetric packing uses non-conjugate double-lattice cells.
+    Try hexagonal arrangement of 7-8 double-lattice cells.
+    """
+    if seed: random.seed(seed)
+    # Cell relative angle: try 60°, 90°, 120° (not 180° = conjugate)
+    cell_angle = random.choice([math.pi/3, math.pi/2, 2*math.pi/3, math.pi*0.4])
+    scale = random.uniform(1.05, 1.15)
+
+    centers = [(0.0, 0.0)]
+    for i in range(6):
+        a = i * math.pi/3
+        centers.append((scale*2*math.cos(a), scale*2*math.sin(a)))
+
+    xs, ys, ts = [], [], []
+    placed = []
+
+    for cx, cy in centers[:7]:  # 7 cells × 2 = 14
+        cx += random.gauss(0, 0.05); cy += random.gauss(0, 0.05)
+        base_angle = random.uniform(0, 2*math.pi)
+        t1 = base_angle
+        t2 = base_angle + cell_angle  # NOT +pi, that's conjugate
+        if not overlaps_any(cx, cy, t1, placed):
+            xs.append(cx); ys.append(cy); ts.append(t1)
+            placed.append((cx, cy, t1))
+        if not overlaps_any(cx, cy, t2, placed):
+            xs.append(cx); ys.append(cy); ts.append(t2)
+            placed.append((cx, cy, t2))
+
+    # Fill to 15
+    for _ in range(N - len(xs)):
+        for _ in range(200):
+            r = random.uniform(0.3, 3.0)
+            a = random.uniform(0, 2*math.pi)
+            x, y = r*math.cos(a), r*math.sin(a)
+            t = random.uniform(0, 2*math.pi)
+            if not overlaps_any(x, y, t, placed):
+                xs.append(x); ys.append(y); ts.append(t)
+                placed.append((x, y, t)); break
+
+    if len(xs) == N:
+        sol = [Semicircle(xs[i],ys[i],ts[i]) for i in range(N)]
+        if validate_and_score(sol).valid:
+            return np.array(xs), np.array(ys), np.array(ts)
+    return None
+
+
 def start_d1_symmetric(seed=None):
     """
     D1 symmetry: reflection axis = x-axis.
@@ -249,6 +299,7 @@ STRATEGIES = [
     ('pairs_tight',       lambda: start_pairs(1.02, 0.0, None),   0.5,  0.0005, 100,    5000,   2000000),
     ('random_medium',     lambda: start_random_valid(2.6),        1.5,  0.001,  5,      3000,   2000000),
     ('from_best_large',   lambda: start_from_best(0.20),          1.0,  0.001,  50,     3000,   2000000),
+    ('double_lattice',    lambda: start_double_lattice() or start_random_valid(2.8), 1.2, 0.001, 8, 3000, 2000000),
 ]
 
 
