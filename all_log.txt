@@ -940,104 +940,53 @@ NameError: name 'overlaps_any' is not defined
   [w1_d1_symmetric_25]  500000/2000000: r=3.7379 ovlp=0.055585 lam=35 best_feas=3.5930 imp=10
   [w2_pairs_tight_2]  800000/2000000: r=3.4076 ovlp=0.000000 lam=478 best_feas=3.1690 imp=21
   [w0_from_best_tight_2]  800000/2000000: r=3.3038 ovlp=0.000000 lam=1256 best_feas=3.1143 imp=26
-elf._target(*self._args, **self._kwargs)
-  File "/home/camcore/.openclaw/workspace/shape-packing-challenge/optimize_all.py", line 357, in worker
-    init = builder()
-  File "/home/camcore/.openclaw/workspace/shape-packing-challenge/optimize_all.py", line 333, in <lambda>
-    ('double_lattice',    lambda: start_double_lattice() or start_random_valid(2.8), 1.2, 0.001, 8, 3000, 2000000),
-  File "/home/camcore/.openclaw/workspace/shape-packing-challenge/optimize_all.py", line 234, in start_double_lattice
-    if not overlaps_any(cx, cy, t1, placed):
-NameError: name 'overlaps_any' is not defined
-  [w5_boundary_biased_1] starting
-[5s] Best=3.010195 Workers=5/6
-  [w5_boundary_biased_1] failed to build start, retrying
-  [w5_boundary_biased_2] starting
-[10s] Best=3.010195 Workers=5/6
-  [w1_d1_symmetric_1] failed to build start, retrying
-  [w1_d1_symmetric_2] starting
-[15s] Best=3.010195 Workers=5/6
-  [w2_pairs_tight_1]       0/2000000: r=3.4219 ovlp=0.000000 lam=100 best_feas=inf imp=0
-  [w5_boundary_biased_2] failed to build start, retrying
-  [w5_boundary_biased_3] starting
-  [w1_d1_symmetric_2]       0/2000000: r=3.8215 ovlp=0.000000 lam=8 best_feas=3.8215 imp=1
-[20s] Best=3.010195 Workers=5/6
-[25s] Best=3.010195 Workers=5/6
-  [w5_boundary_biased_3] failed to build start, retrying
-  [w5_boundary_biased_4] starting
-[30s] Best=3.010195 Workers=5/6
-[35s] Best=3.010195 Workers=5/6
-  [w5_boundary_biased_4] failed to build start, retrying
-  [w5_boundary_biased_5] starting
-[40s] Best=3.010195 Workers=5/6
-  [w5_boundary_biased_5] failed to build start, retrying
-[45s] Best=3.010195 Workers=5/6
-  [w5_boundary_biased_6] starting
-[50s] Best=3.010195 Workers=5/6
-  [w5_boundary_biased_6] failed to build start, retrying
-  [w5_boundary_biased_7] starting
-[55s] Best=3.010195 Workers=5/6
-[60s] Best=3.010195 Workers=5/6
-  [w5_boundary_biased_7] failed to build start, retrying
-  [w5_boundary_biased_8] starting
-[66s] Best=3.010195 Workers=5/6
-[71s] Best=3.010195 Workers=5/6
-  [w5_boundary_biased_8] failed to build start, retrying
-  [w5_boundary_biased_9] starting
-[76s] Best=3.010195 Workers=5/6
-[81s] Best=3.010195 Workers=5/6
-  [w5_boundary_biased_9] failed to build start, retrying
-  [w5_boundary_biased_10] starting
-[86s] Best=3.010195 Workers=5/6
-[91s] Best=3.010195 Workers=5/6
-  [w0_from_best_tight_1]  100000/2000000: r=3.9447 ovlp=-0.000000 lam=561 best_feas=3.5011 imp=11
-  [w5_boundary_biased_10] failed to build start, retrying
-[96s] Best=3.010195 Workers=5/6
-  [w5_boundary_biased_11] starting
-[101s] Best=3.010195 Workers=5/6
-  [w3_from_best_large_1]  100000/2000000: r=4.4275 ovlp=0.052932 lam=61 best_feas=3.8875 imp=4
-[106s] Best=3.010195 Workers=5/6
-  [w5_boundary_biased_11] failed to build start, retrying
-  [w5_boundary_biased_12] starting
-[111s] Best=3.010195 Workers=5/6
-  [w2_pairs_tight_1]  100000/2000000: r=4.2016 ovlp=0.004060 lam=122 best_feas=3.5381 imp=4
-[116s] Best=3.010195 Workers=5/6
-  [w5_boundary_biased_12] failed to build start, retrying
-  [w5_boundary_biased_13] starting
-[121s] Best=3.010195 Workers=5/6
-[127s] Best=3.010195 Workers=5/6
-  [w5_boundary_biased_13] failed to build start, retrying
-  [w5_boundary_biased_14] starting
-[132s] Best=3.010195 Workers=5/6
-[137s] Best=3.010195 Workers=5/6
-[142s] Best=3.010195 Workers=5/6
-  [w5_boundary_biased_14] failed to build start, retrying
-  [w1_d1_symmetric_2]  100000/2000000: r=3.6451 ovlp=0.296386 lam=11 best_feas=3.8208 imp=3
-  [w5_boundary_biased_15] starting
-[147s] Best=3.010195 Workers=5/6
-[152s] Best=3.010195 Workers=5/6
-  [w5_boundary_biased_15] failed to build start, retrying
-  [w5_boundary_biased_16] starting
-[157s] Best=3.010195 Workers=5/6
-[162s] Best=3.010195 Workers=5/6
-[167s] Best=3.010195 Workers=5/6
-  [w5_boundary_biased_16] failed to build start, retrying
-  [w5_boundary_biased_17] starting
-[172s] Best=3.010195 Workers=5/6
-[177s] Best=3.010195 Workers=5/6
-  [w5_boundary_biased_17] failed to build start, retrying
-  [w5_boundary_biased_18] starting
-[182s] Best=3.010195 Workers=5/6
-[187s] Best=3.010195 Workers=5/6
-  [w5_boundary_biased_18] failed to build start, retrying
-  [w5_boundary_biased_19] starting
-[192s] Best=3.010195 Workers=5/6
-[197s] Best=3.010195 Workers=5/6
-[203s] Best=3.010195 Workers=5/6
-  [w5_boundary_biased_19] failed to build start, retrying
-  [w5_boundary_biased_20] starting
-[208s] Best=3.010195 Workers=5/6
-[213s] Best=3.010195 Workers=5/6
-  [w5_boundary_biased_20] failed to build start, retrying
+  [w3_from_best_large_2]  900000/2000000: r=3.4840 ovlp=0.000001 lam=316 best_feas=3.1869 imp=32
+  [w5_boundary_biased_75]  100000/2000000: r=3.8831 ovlp=2.291404 lam=7 best_feas=inf imp=0
+  [w1_d1_symmetric_25]  600000/2000000: r=3.4946 ovlp=0.003741 lam=47 best_feas=3.5102 imp=14
+  [w2_pairs_tight_2]  900000/2000000: r=3.2267 ovlp=0.000001 lam=581 best_feas=3.1334 imp=24
+  [w0_from_best_tight_2]  900000/2000000: r=3.2197 ovlp=0.000002 lam=1409 best_feas=3.1143 imp=26
+  [w3_from_best_large_2] 1000000/2000000: r=3.2571 ovlp=0.000016 lam=387 best_feas=3.1493 imp=33
+  [w5_boundary_biased_75]  200000/2000000: r=3.9603 ovlp=0.881438 lam=9 best_feas=inf imp=0
+  [w1_d1_symmetric_25]  700000/2000000: r=3.4595 ovlp=0.006192 lam=64 best_feas=3.4306 imp=16
+  [w2_pairs_tight_2] 1000000/2000000: r=3.2295 ovlp=0.000018 lam=707 best_feas=3.1334 imp=24
+  [w0_from_best_tight_2] 1000000/2000000: r=3.1465 ovlp=0.000000 lam=1581 best_feas=3.1143 imp=26
+  [w5_boundary_biased_75]  300000/2000000: r=4.2184 ovlp=0.773487 lam=13 best_feas=inf imp=0
+  [w3_from_best_large_2] 1100000/2000000: r=3.3491 ovlp=0.000001 lam=475 best_feas=3.1271 imp=36
+  [w1_d1_symmetric_25]  800000/2000000: r=3.6020 ovlp=0.001868 lam=86 best_feas=3.2402 imp=24
+  [w0_from_best_tight_2] 1100000/2000000: r=3.1256 ovlp=0.000000 lam=1774 best_feas=3.1143 imp=26
+  [w2_pairs_tight_2] 1100000/2000000: r=3.1645 ovlp=0.000016 lam=860 best_feas=3.1334 imp=24
+  [w5_boundary_biased_75]  400000/2000000: r=4.1335 ovlp=0.033890 lam=18 best_feas=3.9903 imp=3
+  [w3_from_best_large_2] 1200000/2000000: r=3.1752 ovlp=0.000000 lam=583 best_feas=3.0923 imp=39
+  [w1_d1_symmetric_25]  900000/2000000: r=3.5778 ovlp=0.000614 lam=115 best_feas=3.2402 imp=24
+  [w0_from_best_tight_2] 1200000/2000000: r=3.1199 ovlp=0.000000 lam=1991 best_feas=3.1143 imp=26
+  [w2_pairs_tight_2] 1200000/2000000: r=3.1483 ovlp=0.000000 lam=1046 best_feas=3.1334 imp=24
+  [w5_boundary_biased_75]  500000/2000000: r=3.8202 ovlp=0.085437 lam=25 best_feas=3.9903 imp=3
+  [w3_from_best_large_2] 1300000/2000000: r=3.0925 ovlp=0.000000 lam=716 best_feas=3.0785 imp=40
+  [w1_d1_symmetric_25] 1000000/2000000: r=3.3043 ovlp=0.000021 lam=155 best_feas=3.1816 imp=27
+  [w0_from_best_tight_2] 1300000/2000000: r=3.1199 ovlp=0.000000 lam=2233 best_feas=3.1143 imp=26
+  [w2_pairs_tight_2] 1300000/2000000: r=3.1114 ovlp=0.000000 lam=1272 best_feas=3.1114 imp=25
+  [w5_boundary_biased_75]  600000/2000000: r=3.9445 ovlp=0.020860 lam=34 best_feas=3.5884 imp=9
+  [w3_from_best_large_2] 1400000/2000000: r=3.0925 ovlp=0.000000 lam=878 best_feas=3.0785 imp=40
+  [w1_d1_symmetric_25] 1100000/2000000: r=3.2474 ovlp=0.000035 lam=208 best_feas=3.1751 imp=28
+  [w5_boundary_biased_75]  700000/2000000: r=3.7334 ovlp=0.000964 lam=47 best_feas=3.3777 imp=13
+  [w0_from_best_tight_2] 1400000/2000000: r=3.1199 ovlp=0.000000 lam=2506 best_feas=3.1143 imp=26
+  [w2_pairs_tight_2] 1400000/2000000: r=3.1114 ovlp=0.000000 lam=1546 best_feas=3.1114 imp=25
+  [w3_from_best_large_2] 1500000/2000000: r=3.0925 ovlp=0.000000 lam=1078 best_feas=3.0785 imp=40
+  [w1_d1_symmetric_25] 1200000/2000000: r=3.1228 ovlp=-0.000000 lam=280 best_feas=3.1228 imp=36
+  [w5_boundary_biased_75]  800000/2000000: r=3.7118 ovlp=0.002564 lam=65 best_feas=3.3777 imp=13
+  [w0_from_best_tight_2] 1500000/2000000: r=3.1199 ovlp=0.000000 lam=2812 best_feas=3.1143 imp=26
+  [w2_pairs_tight_2] 1500000/2000000: r=3.1114 ovlp=0.000000 lam=1880 best_feas=3.1114 imp=25
+  [w3_from_best_large_2] 1600000/2000000: r=3.0925 ovlp=0.000000 lam=1323 best_feas=3.0785 imp=40
+  [w1_d1_symmetric_25] 1300000/2000000: r=3.1938 ovlp=0.000007 lam=377 best_feas=3.1228 imp=36
+  [w5_boundary_biased_75]  900000/2000000: r=3.5584 ovlp=0.000462 lam=89 best_feas=3.3205 imp=20
+  [w0_from_best_tight_2] 1600000/2000000: r=3.1199 ovlp=0.000000 lam=3155 best_feas=3.1143 imp=26
+  [w2_pairs_tight_2] 1600000/2000000: r=3.1114 ovlp=0.000000 lam=2287 best_feas=3.1114 imp=25
+  [w3_from_best_large_2] 1700000/2000000: r=3.0925 ovlp=0.000000 lam=1623 best_feas=3.0785 imp=40
+  [w1_d1_symmetric_25] 1400000/2000000: r=3.1537 ovlp=0.000000 lam=507 best_feas=3.1143 imp=37
+  [w5_boundary_biased_75] 1000000/2000000: r=3.3572 ovlp=0.000189 lam=122 best_feas=3.2319 imp=24
+  [w0_from_best_tight_2] 1700000/2000000: r=3.1199 ovlp=0.000000 lam=3540 best_feas=3.1143 imp=26
+  [w2_pairs_tight_2] 1700000/2000000: r=3.1114 ovlp=0.000000 lam=2781 best_feas=3.1114 imp=25
+ed_20] failed to build start, retrying
 [218s] Best=3.010195 Workers=5/6
   [w5_boundary_biased_21] starting
 [223s] Best=3.010195 Workers=5/6
@@ -1050,3 +999,608 @@ NameError: name 'overlaps_any' is not defined
   [w5_boundary_biased_22] failed to build start, retrying
 [238s] Best=3.010195 Workers=5/6
   [w5_boundary_biased_23] starting
+[243s] Best=3.010195 Workers=5/6
+  [w2_pairs_tight_1]  200000/2000000: r=3.9942 ovlp=0.002384 lam=148 best_feas=3.5381 imp=4
+  [w5_boundary_biased_23] failed to build start, retrying
+  [w5_boundary_biased_24] starting
+[248s] Best=3.010195 Workers=5/6
+[253s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_24] failed to build start, retrying
+  [w5_boundary_biased_25] starting
+[258s] Best=3.010195 Workers=5/6
+[263s] Best=3.010195 Workers=5/6
+  [w1_d1_symmetric_2]  200000/2000000: r=3.9509 ovlp=0.323937 lam=14 best_feas=3.8208 imp=3
+  [w5_boundary_biased_25] failed to build start, retrying
+  [w5_boundary_biased_26] starting
+[268s] Best=3.010195 Workers=5/6
+[273s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_26] failed to build start, retrying
+  [w5_boundary_biased_27] starting
+[279s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_27] failed to build start, retrying
+[284s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_28] starting
+[289s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_28] failed to build start, retrying
+  [w5_boundary_biased_29] starting
+[294s] Best=3.010195 Workers=5/6
+[299s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_29] failed to build start, retrying
+  [w5_boundary_biased_30] starting
+[304s] Best=3.010195 Workers=5/6
+[309s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_30] failed to build start, retrying
+  [w5_boundary_biased_31] starting
+[314s] Best=3.010195 Workers=5/6
+[319s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_31] failed to build start, retrying
+  [w5_boundary_biased_32] starting
+[324s] Best=3.010195 Workers=5/6
+  [w3_from_best_large_1]  300000/2000000: r=3.9958 ovlp=0.003879 lam=92 best_feas=3.7064 imp=9
+[329s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_32] failed to build start, retrying
+  [w0_from_best_tight_1]  300000/2000000: r=3.7137 ovlp=-0.000000 lam=706 best_feas=3.3214 imp=17
+  [w5_boundary_biased_33] starting
+[334s] Best=3.010195 Workers=5/6
+[339s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_33] failed to build start, retrying
+  [w5_boundary_biased_34] starting
+[344s] Best=3.010195 Workers=5/6
+  [w2_pairs_tight_1]  300000/2000000: r=3.9484 ovlp=0.000119 lam=180 best_feas=3.5381 imp=4
+[349s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_34] failed to build start, retrying
+  [w5_boundary_biased_35] starting
+[354s] Best=3.010195 Workers=5/6
+[359s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_35] failed to build start, retrying
+  [w5_boundary_biased_36] starting
+[364s] Best=3.010195 Workers=5/6
+  [w1_d1_symmetric_2]  300000/2000000: r=3.9993 ovlp=0.091434 lam=19 best_feas=3.8208 imp=3
+  [w5_boundary_biased_36] failed to build start, retrying
+[370s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_37] starting
+[375s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_37] failed to build start, retrying
+[380s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_38] starting
+[385s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_38] failed to build start, retrying
+  [w5_boundary_biased_39] starting
+[390s] Best=3.010195 Workers=5/6
+[395s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_39] failed to build start, retrying
+  [w5_boundary_biased_40] starting
+[400s] Best=3.010195 Workers=5/6
+[405s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_40] failed to build start, retrying
+  [w5_boundary_biased_41] starting
+[410s] Best=3.010195 Workers=5/6
+[415s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_41] failed to build start, retrying
+  [w5_boundary_biased_42] starting
+  [w3_from_best_large_1]  400000/2000000: r=3.9193 ovlp=0.004643 lam=113 best_feas=3.5503 imp=16
+[420s] Best=3.010195 Workers=5/6
+[425s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_42] failed to build start, retrying
+  [w5_boundary_biased_43] starting
+[430s] Best=3.010195 Workers=5/6
+  [w0_from_best_tight_1]  400000/2000000: r=3.5486 ovlp=-0.000000 lam=792 best_feas=3.3200 imp=18
+  [w5_boundary_biased_43] failed to build start, retrying
+[435s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_44] starting
+[440s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_44] failed to build start, retrying
+[446s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_45] starting
+  [w2_pairs_tight_1]  400000/2000000: r=4.0846 ovlp=0.000000 lam=219 best_feas=3.3866 imp=12
+[451s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_45] failed to build start, retrying
+  [w5_boundary_biased_46] starting
+[456s] Best=3.010195 Workers=5/6
+[461s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_46] failed to build start, retrying
+  [w5_boundary_biased_47] starting
+[466s] Best=3.010195 Workers=5/6
+[471s] Best=3.010195 Workers=5/6
+  [w1_d1_symmetric_2]  400000/2000000: r=4.2688 ovlp=0.034637 lam=26 best_feas=3.8208 imp=3
+  [w5_boundary_biased_47] failed to build start, retrying
+  [w5_boundary_biased_48] starting
+[476s] Best=3.010195 Workers=5/6
+[481s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_48] failed to build start, retrying
+  [w5_boundary_biased_49] starting
+[486s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_49] failed to build start, retrying
+[491s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_50] starting
+[496s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_50] failed to build start, retrying
+[501s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_51] starting
+[506s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_51] failed to build start, retrying
+  [w5_boundary_biased_52] starting
+[511s] Best=3.010195 Workers=5/6
+  [w3_from_best_large_1]  500000/2000000: r=4.1092 ovlp=0.001051 lam=139 best_feas=3.5503 imp=16
+[516s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_52] failed to build start, retrying
+  [w5_boundary_biased_53] starting
+[522s] Best=3.010195 Workers=5/6
+[527s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_53] failed to build start, retrying
+  [w5_boundary_biased_54] starting
+[532s] Best=3.010195 Workers=5/6
+[537s] Best=3.010195 Workers=5/6
+  [w0_from_best_tight_1]  500000/2000000: r=3.8192 ovlp=-0.000000 lam=889 best_feas=3.1832 imp=21
+  [w5_boundary_biased_54] failed to build start, retrying
+  [w5_boundary_biased_55] starting
+[542s] Best=3.010195 Workers=5/6
+[547s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_55] failed to build start, retrying
+  [w5_boundary_biased_56] starting
+  [w2_pairs_tight_1]  500000/2000000: r=3.6401 ovlp=0.000000 lam=266 best_feas=3.3688 imp=14
+[552s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_56] failed to build start, retrying
+[557s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_57] starting
+[562s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_57] failed to build start, retrying
+[567s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_58] starting
+[572s] Best=3.010195 Workers=5/6
+  [w1_d1_symmetric_2]  500000/2000000: r=3.5675 ovlp=0.049695 lam=35 best_feas=3.6330 imp=5
+  [w5_boundary_biased_58] failed to build start, retrying
+  [w5_boundary_biased_59] starting
+[577s] Best=3.010195 Workers=5/6
+[582s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_59] failed to build start, retrying
+  [w5_boundary_biased_60] starting
+[587s] Best=3.010195 Workers=5/6
+[592s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_60] failed to build start, retrying
+  [w5_boundary_biased_61] starting
+[597s] Best=3.010195 Workers=5/6
+[602s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_61] failed to build start, retrying
+  [w5_boundary_biased_62] starting
+[607s] Best=3.010195 Workers=5/6
+  [w3_from_best_large_1]  600000/2000000: r=3.7476 ovlp=0.000663 lam=171 best_feas=3.4004 imp=23
+  [w5_boundary_biased_62] failed to build start, retrying
+[613s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_63] starting
+[618s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_63] failed to build start, retrying
+  [w5_boundary_biased_64] starting
+[623s] Best=3.010195 Workers=5/6
+[628s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_64] failed to build start, retrying
+  [w5_boundary_biased_65] starting
+[633s] Best=3.010195 Workers=5/6
+[638s] Best=3.010195 Workers=5/6
+  [w0_from_best_tight_1]  600000/2000000: r=3.4791 ovlp=-0.000000 lam=998 best_feas=3.1508 imp=25
+  [w5_boundary_biased_65] failed to build start, retrying
+  [w5_boundary_biased_66] starting
+[643s] Best=3.010195 Workers=5/6
+[648s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_66] failed to build start, retrying
+  [w5_boundary_biased_67] starting
+[653s] Best=3.010195 Workers=5/6
+  [w2_pairs_tight_1]  600000/2000000: r=3.4761 ovlp=0.000382 lam=323 best_feas=3.2624 imp=25
+  [w5_boundary_biased_67] failed to build start, retrying
+[658s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_68] starting
+[663s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_68] failed to build start, retrying
+  [w5_boundary_biased_69] starting
+[668s] Best=3.010195 Workers=5/6
+[674s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_69] failed to build start, retrying
+  [w1_d1_symmetric_2]  600000/2000000: r=3.8225 ovlp=0.021599 lam=47 best_feas=3.6330 imp=5
+  [w5_boundary_biased_70] starting
+[679s] Best=3.010195 Workers=5/6
+[684s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_70] failed to build start, retrying
+  [w5_boundary_biased_71] starting
+[689s] Best=3.010195 Workers=5/6
+[694s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_71] failed to build start, retrying
+  [w5_boundary_biased_72] starting
+[699s] Best=3.010195 Workers=5/6
+[704s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_72] failed to build start, retrying
+  [w5_boundary_biased_73] starting
+[709s] Best=3.010195 Workers=5/6
+  [w3_from_best_large_1]  700000/2000000: r=3.5722 ovlp=0.000766 lam=210 best_feas=3.3570 imp=24
+[714s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_73] failed to build start, retrying
+  [w5_boundary_biased_74] starting
+[719s] Best=3.010195 Workers=5/6
+[724s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_74] failed to build start, retrying
+  [w5_boundary_biased_75] starting
+[729s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_75] failed to build start, retrying
+[734s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_76] starting
+  [w0_from_best_tight_1]  700000/2000000: r=3.6287 ovlp=-0.000000 lam=1119 best_feas=3.1508 imp=25
+[739s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_76] failed to build start, retrying
+  [w5_boundary_biased_77] starting
+[744s] Best=3.010195 Workers=5/6
+[749s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_77] failed to build start, retrying
+  [w5_boundary_biased_78] starting
+[754s] Best=3.010195 Workers=5/6
+[759s] Best=3.010195 Workers=5/6
+  [w2_pairs_tight_1]  700000/2000000: r=3.4066 ovlp=0.000113 lam=393 best_feas=3.2568 imp=26
+  [w5_boundary_biased_78] failed to build start, retrying
+  [w5_boundary_biased_79] starting
+[765s] Best=3.010195 Workers=5/6
+[770s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_79] failed to build start, retrying
+  [w5_boundary_biased_80] starting
+[775s] Best=3.010195 Workers=5/6
+[780s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_80] failed to build start, retrying
+  [w1_d1_symmetric_2]  700000/2000000: r=3.6369 ovlp=0.000560 lam=64 best_feas=3.4081 imp=16
+  [w5_boundary_biased_81] starting
+[785s] Best=3.010195 Workers=5/6
+[790s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_81] failed to build start, retrying
+  [w5_boundary_biased_82] starting
+[795s] Best=3.010195 Workers=5/6
+[800s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_82] failed to build start, retrying
+  [w5_boundary_biased_83] starting
+[805s] Best=3.010195 Workers=5/6
+[810s] Best=3.010195 Workers=5/6
+  [w3_from_best_large_1]  800000/2000000: r=3.6712 ovlp=0.000022 lam=257 best_feas=3.2916 imp=27
+  [w5_boundary_biased_83] failed to build start, retrying
+  [w5_boundary_biased_84] starting
+[815s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_84] failed to build start, retrying
+[820s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_85] starting
+[825s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_85] failed to build start, retrying
+[830s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_86] starting
+[835s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_86] failed to build start, retrying
+[840s] Best=3.010195 Workers=5/6
+  [w0_from_best_tight_1]  800000/2000000: r=3.3497 ovlp=0.000001 lam=1256 best_feas=3.1508 imp=25
+  [w5_boundary_biased_87] starting
+[845s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_87] failed to build start, retrying
+  [w5_boundary_biased_88] starting
+[851s] Best=3.010195 Workers=5/6
+[856s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_88] failed to build start, retrying
+  [w5_boundary_biased_89] starting
+[861s] Best=3.010195 Workers=5/6
+[866s] Best=3.010195 Workers=5/6
+  [w2_pairs_tight_1]  800000/2000000: r=3.3106 ovlp=0.000144 lam=478 best_feas=3.2081 imp=30
+  [w5_boundary_biased_89] failed to build start, retrying
+  [w5_boundary_biased_90] starting
+[871s] Best=3.010195 Workers=5/6
+[876s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_90] failed to build start, retrying
+  [w5_boundary_biased_91] starting
+[881s] Best=3.010195 Workers=5/6
+  [w1_d1_symmetric_2]  800000/2000000: r=3.3302 ovlp=0.001603 lam=86 best_feas=3.2634 imp=20
+[886s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_91] failed to build start, retrying
+  [w5_boundary_biased_92] starting
+[891s] Best=3.010195 Workers=5/6
+[896s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_92] failed to build start, retrying
+  [w5_boundary_biased_93] starting
+[901s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_93] failed to build start, retrying
+[906s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_94] starting
+[911s] Best=3.010195 Workers=5/6
+  [w3_from_best_large_1]  900000/2000000: r=3.3534 ovlp=0.000332 lam=316 best_feas=3.2740 imp=28
+  [w5_boundary_biased_94] failed to build start, retrying
+  [w5_boundary_biased_95] starting
+[917s] Best=3.010195 Workers=5/6
+[922s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_95] failed to build start, retrying
+  [w5_boundary_biased_96] starting
+[927s] Best=3.010195 Workers=5/6
+[932s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_96] failed to build start, retrying
+  [w5_boundary_biased_97] starting
+[937s] Best=3.010195 Workers=5/6
+[942s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_97] failed to build start, retrying
+  [w5_boundary_biased_98] starting
+[947s] Best=3.010195 Workers=5/6
+  [w0_from_best_tight_1]  900000/2000000: r=3.1508 ovlp=-0.000000 lam=1409 best_feas=3.1279 imp=30
+  [w5_boundary_biased_98] failed to build start, retrying
+[952s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_99] starting
+[957s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_99] failed to build start, retrying
+  [w5_boundary_biased_100] starting
+[962s] Best=3.010195 Workers=5/6
+[967s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_100] failed to build start, retrying
+  [w5_boundary_biased_101] starting
+[972s] Best=3.010195 Workers=5/6
+  [w2_pairs_tight_1]  900000/2000000: r=3.4518 ovlp=0.000000 lam=581 best_feas=3.1288 imp=31
+[977s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_101] failed to build start, retrying
+  [w5_boundary_biased_102] starting
+[982s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_102] failed to build start, retrying
+[987s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_103] starting
+[992s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_103] failed to build start, retrying
+  [w5_boundary_biased_104] starting
+[997s] Best=3.010195 Workers=5/6
+[1002s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_104] failed to build start, retrying
+  [w5_boundary_biased_105] starting
+[1008s] Best=3.010195 Workers=5/6
+  [w3_from_best_large_1] 1000000/2000000: r=3.2049 ovlp=0.000000 lam=387 best_feas=3.1760 imp=35
+[1013s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_105] failed to build start, retrying
+  [w1_d1_symmetric_2]  900000/2000000: r=3.4042 ovlp=0.000026 lam=115 best_feas=3.2634 imp=20
+  [w5_boundary_biased_106] starting
+[1018s] Best=3.010195 Workers=5/6
+[1023s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_106] failed to build start, retrying
+  [w5_boundary_biased_107] starting
+[1028s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_107] failed to build start, retrying
+[1033s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_108] starting
+[1038s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_108] failed to build start, retrying
+  [w5_boundary_biased_109] starting
+[1043s] Best=3.010195 Workers=5/6
+[1048s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_109] failed to build start, retrying
+  [w5_boundary_biased_110] starting
+[1053s] Best=3.010195 Workers=5/6
+[1058s] Best=3.010195 Workers=5/6
+  [w0_from_best_tight_1] 1000000/2000000: r=3.2086 ovlp=0.000001 lam=1581 best_feas=3.0861 imp=33
+  [w5_boundary_biased_110] failed to build start, retrying
+  [w5_boundary_biased_111] starting
+[1063s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_111] failed to build start, retrying
+[1068s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_112] starting
+[1073s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_112] failed to build start, retrying
+  [w5_boundary_biased_113] starting
+[1079s] Best=3.010195 Workers=5/6
+  [w2_pairs_tight_1] 1000000/2000000: r=3.1457 ovlp=0.000049 lam=707 best_feas=3.1288 imp=31
+[1084s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_113] failed to build start, retrying
+  [w5_boundary_biased_114] starting
+[1089s] Best=3.010195 Workers=5/6
+[1094s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_114] failed to build start, retrying
+  [w5_boundary_biased_115] starting
+[1099s] Best=3.010195 Workers=5/6
+[1104s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_115] failed to build start, retrying
+  [w5_boundary_biased_116] starting
+[1109s] Best=3.010195 Workers=5/6
+  [w3_from_best_large_1] 1100000/2000000: r=3.3512 ovlp=0.000005 lam=475 best_feas=3.1549 imp=38
+  [w5_boundary_biased_116] failed to build start, retrying
+[1114s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_117] starting
+[1119s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_117] failed to build start, retrying
+  [w5_boundary_biased_118] starting
+[1124s] Best=3.010195 Workers=5/6
+[1129s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_118] failed to build start, retrying
+  [w5_boundary_biased_119] starting
+[1134s] Best=3.010195 Workers=5/6
+[1139s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_119] failed to build start, retrying
+  [w5_boundary_biased_120] starting
+[1144s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_120] failed to build start, retrying
+[1149s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_121] starting
+  [w1_d1_symmetric_2] 1000000/2000000: r=3.3539 ovlp=0.000421 lam=155 best_feas=3.2137 imp=26
+[1154s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_121] failed to build start, retrying
+  [w5_boundary_biased_122] starting
+[1160s] Best=3.010195 Workers=5/6
+[1165s] Best=3.010195 Workers=5/6
+  [w0_from_best_tight_1] 1100000/2000000: r=3.0964 ovlp=-0.000000 lam=1774 best_feas=3.0861 imp=33
+  [w5_boundary_biased_122] failed to build start, retrying
+  [w5_boundary_biased_123] starting
+[1170s] Best=3.010195 Workers=5/6
+[1175s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_123] failed to build start, retrying
+  [w5_boundary_biased_124] starting
+[1180s] Best=3.010195 Workers=5/6
+[1185s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_124] failed to build start, retrying
+  [w5_boundary_biased_125] starting
+[1190s] Best=3.010195 Workers=5/6
+  [w2_pairs_tight_1] 1100000/2000000: r=3.1350 ovlp=0.000002 lam=860 best_feas=3.1282 imp=32
+  [w5_boundary_biased_125] failed to build start, retrying
+[1195s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_126] starting
+[1200s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_126] failed to build start, retrying
+[1205s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_127] starting
+[1210s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_127] failed to build start, retrying
+  [w5_boundary_biased_128] starting
+[1215s] Best=3.010195 Workers=5/6
+  [w3_from_best_large_1] 1200000/2000000: r=3.2651 ovlp=0.000000 lam=583 best_feas=3.1188 imp=40
+[1220s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_128] failed to build start, retrying
+  [w5_boundary_biased_129] starting
+[1225s] Best=3.010195 Workers=5/6
+[1230s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_129] failed to build start, retrying
+  [w5_boundary_biased_130] starting
+[1235s] Best=3.010195 Workers=5/6
+[1240s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_130] failed to build start, retrying
+  [w5_boundary_biased_131] starting
+[1245s] Best=3.010195 Workers=5/6
+[1251s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_131] failed to build start, retrying
+  [w5_boundary_biased_132] starting
+[1256s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_132] failed to build start, retrying
+[1261s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_133] starting
+[1266s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_133] failed to build start, retrying
+  [w5_boundary_biased_134] starting
+[1271s] Best=3.010195 Workers=5/6
+  [w0_from_best_tight_1] 1200000/2000000: r=3.0964 ovlp=-0.000000 lam=1991 best_feas=3.0861 imp=33
+[1276s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_134] failed to build start, retrying
+  [w5_boundary_biased_135] starting
+[1281s] Best=3.010195 Workers=5/6
+[1286s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_135] failed to build start, retrying
+  [w5_boundary_biased_136] starting
+  [w1_d1_symmetric_2] 1100000/2000000: r=3.4048 ovlp=0.000000 lam=208 best_feas=3.1331 imp=38
+[1291s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_136] failed to build start, retrying
+[1296s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_137] starting
+  [w2_pairs_tight_1] 1200000/2000000: r=3.1366 ovlp=0.000003 lam=1046 best_feas=3.1239 imp=33
+[1301s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_137] failed to build start, retrying
+  [w5_boundary_biased_138] starting
+[1306s] Best=3.010195 Workers=5/6
+[1311s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_138] failed to build start, retrying
+  [w5_boundary_biased_139] starting
+[1317s] Best=3.010195 Workers=5/6
+[1322s] Best=3.010195 Workers=5/6
+  [w3_from_best_large_1] 1300000/2000000: r=3.1763 ovlp=0.000009 lam=716 best_feas=3.1188 imp=40
+  [w5_boundary_biased_139] failed to build start, retrying
+  [w5_boundary_biased_140] starting
+[1327s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_140] failed to build start, retrying
+[1332s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_141] starting
+[1337s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_141] failed to build start, retrying
+  [w5_boundary_biased_142] starting
+[1342s] Best=3.010195 Workers=5/6
+[1347s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_142] failed to build start, retrying
+  [w5_boundary_biased_143] starting
+[1352s] Best=3.010195 Workers=5/6
+[1357s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_143] failed to build start, retrying
+  [w5_boundary_biased_144] starting
+[1362s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_144] failed to build start, retrying
+[1367s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_145] starting
+[1372s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_145] failed to build start, retrying
+  [w5_boundary_biased_146] starting
+[1377s] Best=3.010195 Workers=5/6
+[1382s] Best=3.010195 Workers=5/6
+  [w0_from_best_tight_1] 1300000/2000000: r=3.0964 ovlp=-0.000000 lam=2233 best_feas=3.0861 imp=33
+  [w5_boundary_biased_146] failed to build start, retrying
+  [w5_boundary_biased_147] starting
+[1387s] Best=3.010195 Workers=5/6
+[1392s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_147] failed to build start, retrying
+  [w5_boundary_biased_148] starting
+[1397s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_148] failed to build start, retrying
+[1403s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_149] starting
+[1408s] Best=3.010195 Workers=5/6
+  [w2_pairs_tight_1] 1300000/2000000: r=3.0847 ovlp=0.000006 lam=1272 best_feas=3.0847 imp=36
+  [w5_boundary_biased_149] failed to build start, retrying
+  [w5_boundary_biased_150] starting
+[1413s] Best=3.010195 Workers=5/6
+  [w1_d1_symmetric_2] 1200000/2000000: r=3.2419 ovlp=0.000118 lam=280 best_feas=3.1271 imp=39
+[1418s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_150] failed to build start, retrying
+  [w5_boundary_biased_151] starting
+[1423s] Best=3.010195 Workers=5/6
+[1428s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_151] failed to build start, retrying
+[1433s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_152] starting
+  [w3_from_best_large_1] 1400000/2000000: r=3.1381 ovlp=0.000006 lam=878 best_feas=3.1177 imp=41
+[1438s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_152] failed to build start, retrying
+  [w5_boundary_biased_153] starting
+[1443s] Best=3.010195 Workers=5/6
+[1448s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_153] failed to build start, retrying
+  [w5_boundary_biased_154] starting
+[1453s] Best=3.010195 Workers=5/6
+[1458s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_154] failed to build start, retrying
+  [w5_boundary_biased_155] starting
+[1464s] Best=3.010195 Workers=5/6
+[1469s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_155] failed to build start, retrying
+  [w5_boundary_biased_156] starting
+[1474s] Best=3.010195 Workers=5/6
+[1479s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_156] failed to build start, retrying
+  [w5_boundary_biased_157] starting
+[1484s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_157] failed to build start, retrying
+[1489s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_158] starting
+[1494s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_158] failed to build start, retrying
+  [w5_boundary_biased_159] starting
+[1499s] Best=3.010195 Workers=5/6
+[1504s] Best=3.010195 Workers=5/6
+  [w0_from_best_tight_1] 1400000/2000000: r=3.0964 ovlp=-0.000000 lam=2506 best_feas=3.0861 imp=33
+  [w5_boundary_biased_159] failed to build start, retrying
+  [w5_boundary_biased_160] starting
+[1509s] Best=3.010195 Workers=5/6
+[1514s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_160] failed to build start, retrying
+  [w5_boundary_biased_161] starting
+[1519s] Best=3.010195 Workers=5/6
+  [w1_d1_symmetric_2] 1300000/2000000: r=3.2281 ovlp=0.000090 lam=377 best_feas=3.1268 imp=41
+[1524s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_161] failed to build start, retrying
+  [w5_boundary_biased_162] starting
+[1529s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_162] failed to build start, retrying
+  [w5_boundary_biased_163] starting
+[1534s] Best=3.010195 Workers=5/6
+[1539s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_163] failed to build start, retrying
+  [w5_boundary_biased_164] starting
+[1544s] Best=3.010195 Workers=5/6
+[1549s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_164] failed to build start, retrying
+  [w2_pairs_tight_1] 1400000/2000000: r=3.1160 ovlp=0.000006 lam=1546 best_feas=3.0847 imp=36
+  [w5_boundary_biased_165] starting
+[1555s] Best=3.010195 Workers=5/6
+[1560s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_165] failed to build start, retrying
+  [w5_boundary_biased_166] starting
+[1565s] Best=3.010195 Workers=5/6
+[1570s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_166] failed to build start, retrying
+  [w5_boundary_biased_167] starting
+  [w3_from_best_large_1] 1500000/2000000: r=3.1315 ovlp=0.000000 lam=1078 best_feas=3.1153 imp=43
+[1575s] Best=3.010195 Workers=5/6
+[1580s] Best=3.010195 Workers=5/6
+  [w5_boundary_biased_167] failed to build start, retrying
+  [w5_boundary_biased_168] starting
