@@ -18,6 +18,10 @@ from phi import (
     penalty_energy_flat, penalty_gradient_flat,
     is_feasible, penalty_energy, phi_all_pairs, phi_containment
 )
+from exact_dist import (
+    semicircle_signed_dist, all_pairs_signed_dist,
+    is_feasible_exact, penalty_energy_exact, containment_signed_dist
+)
 
 # Load Shapely-based official scorer for final validation
 def _load_official_scorer():
@@ -101,26 +105,30 @@ def score_R(xs, ys, ts):
 
 def lbfgs_refine(xs, ys, ts, R, max_iter=500, ftol=1e-15, gtol=1e-10):
     """
-    Minimize penalty energy at fixed R using L-BFGS-B with analytical gradients.
-    Two-pass: coarse then fine, to push phi well past zero.
-    Returns (xs, ys, ts, energy) at local minimum.
+    Minimize penalty energy at fixed R.
+    Uses phi gradients (fast, directionally correct) for optimization direction,
+    but final energy check uses exact_dist (no false positives/negatives).
+    Returns (xs, ys, ts, exact_energy) at local minimum.
     """
     p0 = pack(xs, ys, ts)
 
     def f(p):
-        return penalty_energy_flat(p, R)
+        return penalty_energy_flat(p, R)  # phi-based (fast, for optimization)
 
     def g(p):
-        return penalty_gradient_flat(p, R)
+        return penalty_gradient_flat(p, R)  # phi gradient (directionally correct)
 
-    # Pass 1: coarse convergence
+    # Pass 1: coarse convergence with phi
     result = minimize(f, p0, jac=g, method='L-BFGS-B',
                       options={'maxiter': max_iter, 'ftol': 1e-12, 'gtol': 1e-8})
-    # Pass 2: tight convergence from pass 1 result
+    # Pass 2: tight convergence
     result = minimize(f, result.x, jac=g, method='L-BFGS-B',
                       options={'maxiter': max_iter, 'ftol': ftol, 'gtol': gtol})
     rxs, rys, rts = unpack(result.x)
-    return rxs, rys, rts, result.fun
+
+    # Report exact energy (no false positives — 0 = truly feasible)
+    exact_E = penalty_energy_exact(rxs, rys, rts, R)
+    return rxs, rys, rts, exact_E
 
 
 # ── Perturbation operators ────────────────────────────────────────────────────
@@ -202,7 +210,73 @@ def perturb_random_jitter(xs, ys, ts, sigma=0.15):
     return xs, ys, ts
 
 
-PERTURBATIONS = ['flip', 'swap', 'shift_worst', 'reflect', 'jitter']
+def perturb_lns(xs, ys, ts, R, n_remove=3):
+    """
+    Large Neighborhood Search (Destroy-and-Repair):
+    Remove the n_remove worst-placed semicircles (highest overlap penalty),
+    then greedily re-insert them at the best available gap positions.
+    This creates genuinely large topological jumps while preserving
+    the good structure of the remaining 12-13 semicircles.
+    """
+    xs, ys, ts = xs.copy(), ys.copy(), ts.copy()
+
+    # Score each semicircle by its contribution to overlap/containment penalty
+    scores = np.zeros(N)
+    for i in range(N):
+        for j in range(N):
+            if i == j: continue
+            d = semicircle_signed_dist(xs[i], ys[i], ts[i], xs[j], ys[j], ts[j])
+            if d < 0: scores[i] += d * d
+        c = containment_signed_dist(xs[i], ys[i], ts[i], R)
+        if c < 0: scores[i] += c * c
+
+    # Remove worst n_remove
+    worst_idxs = np.argsort(scores)[-n_remove:]
+
+    # Greedily re-insert at positions that maximize minimum clearance
+    for idx in worst_idxs:
+        best_pos = None; best_score = -np.inf
+        for _ in range(120):
+            r = random.uniform(0, R - 1.0)
+            angle = random.uniform(0, 2 * math.pi)
+            nx, ny = r * math.cos(angle), r * math.sin(angle)
+            nt = random.uniform(0, 2 * math.pi)
+
+            # Check containment
+            if containment_signed_dist(nx, ny, nt, R) < 0:
+                continue
+
+            # Score = minimum clearance from all other semicircles
+            min_clearance = float('inf')
+            for j in range(N):
+                if j == idx: continue
+                d = semicircle_signed_dist(nx, ny, nt, xs[j], ys[j], ts[j])
+                if d < min_clearance:
+                    min_clearance = d
+
+            if min_clearance > best_score:
+                best_score = min_clearance
+                best_pos = (nx, ny, nt)
+
+        if best_pos:
+            xs[idx], ys[idx], ts[idx] = best_pos
+
+    return xs, ys, ts
+
+
+def perturb_scale_expand(xs, ys, ts, factor=1.08):
+    """
+    Scale all positions outward by factor, then let L-BFGS compress back.
+    Creates a large hop that can escape tight local minima by first
+    relaxing all overlap constraints, then re-optimizing.
+    """
+    xs = xs * factor
+    ys = ys * factor
+    # Keep orientations — they encode topology, not scale
+    return xs, ys, ts.copy()
+
+
+PERTURBATIONS = ['flip', 'swap', 'shift_worst', 'reflect', 'jitter', 'lns', 'expand']
 
 def apply_perturbation(xs, ys, ts, R, kind=None):
     if kind is None:
@@ -216,6 +290,12 @@ def apply_perturbation(xs, ys, ts, R, kind=None):
         return perturb_shift_worst(xs, ys, ts, R)
     elif kind == 'reflect':
         return perturb_cluster_reflect(xs, ys, ts)
+    elif kind == 'lns':
+        n = random.choice([2, 3, 4])
+        return perturb_lns(xs, ys, ts, R, n_remove=n)
+    elif kind == 'expand':
+        factor = random.uniform(1.04, 1.15)
+        return perturb_scale_expand(xs, ys, ts, factor)
     else:
         return perturb_random_jitter(xs, ys, ts)
 
@@ -312,7 +392,7 @@ def run_mbh(r_start=3.07, r_min=2.85, r_step=0.01, rounds_per_R=30,
             actual_R = score_R_fast(rxs, rys, rts)
             logprint(f"  Round {rnd+1:3d} ({kind:12s}): E={E:.3e}, R_fast={actual_R:.5f}")
 
-            if E < 0.01 and shapely_valid(rxs, rys, rts):
+            if E < 1e-6 and is_feasible_exact(rxs, rys, rts, R):
                 official_R = score_R(rxs, rys, rts)
                 logprint(f"  ✓ FEASIBLE at R={R:.4f}! Official R={official_R:.6f}")
                 feasible_found = True
@@ -333,7 +413,7 @@ def run_mbh(r_start=3.07, r_min=2.85, r_step=0.01, rounds_per_R=30,
                     tighter_R = actual_R - 0.005
                     if tighter_R < r_min: break
                     sx, sy, st, sE = lbfgs_refine(rxs, rys, rts, tighter_R)
-                    if sE < 0.01 and shapely_valid(sx, sy, st):
+                    if sE < 1e-6 and is_feasible_exact(sx, sy, st, tighter_R):
                         s_R = score_R(sx, sy, st)
                         logprint(f"    Squeezed to R={s_R:.6f}")
                         if s_R < global_best_R:
