@@ -335,13 +335,15 @@ def semicircle_signed_dist(xi, yi, ti, xj, yj, tj):
             # so check the OTHER disk is strictly interior (d < 1-eps)
             d1sq = (px - xi)**2 + (py - yi)**2
             d2sq = (px - xj)**2 + (py - yj)**2
-            # The point is on C1 (d1=1) or C2 (d2=1); other must be strictly inside
-            if not ((d1sq <= 1.0 + 1e-9 and d2sq < 1.0 - 1e-5) or
-                    (d2sq <= 1.0 + 1e-9 and d1sq < 1.0 - 1e-5)):
+            # The point is on C1 (d1=1) or C2 (d2=1); other must be clearly inside
+            if not ((d1sq <= 1.0 + 1e-9 and d2sq < 1.0 - 5e-5) or
+                    (d2sq <= 1.0 + 1e-9 and d1sq < 1.0 - 5e-5)):
                 continue
-            # Both half-plane conditions must be clearly satisfied (not just touching boundary)
-            on_h1 = nx1 * (px - xi) + ny1 * (py - yi) >= 1e-4
-            on_h2 = nx2 * (px - xj) + ny2 * (py - yj) >= 1e-4
+            # Both half-plane dot products must be clearly positive
+            # Threshold 5e-6 chosen to correspond to ~OVERLAP_TOL=1e-6 area.
+            # Below this, shapes are touching-but-not-overlapping per official scorer.
+            on_h1 = nx1 * (px - xi) + ny1 * (py - yi) >= 5e-6
+            on_h2 = nx2 * (px - xj) + ny2 * (py - yj) >= 5e-6
             if on_h1 and on_h2:
                 overlapping = True
                 break

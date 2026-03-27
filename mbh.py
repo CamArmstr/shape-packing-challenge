@@ -105,70 +105,54 @@ def score_R(xs, ys, ts):
 
 def lbfgs_refine(xs, ys, ts, R, max_iter=500, ftol=1e-15, gtol=1e-10):
     """
-    Minimize: score_R_fast(X) + λ * penalty(X, R_target)
-    This directly minimizes the actual packing radius while enforcing feasibility.
-    Uses phi gradients for penalty direction + numerical gradient for R objective.
+    Minimize phi penalty only at fixed R (feasibility problem).
+    The score gradient is NOT included — it causes thin-sliver traps.
+    Instead, the MBH outer loop controls R via binary search.
     Returns (xs, ys, ts, exact_energy).
     """
     p0 = pack(xs, ys, ts)
-    lam = 500.0  # penalty weight — must dominate R gradient to enforce feasibility
+    lam = 500.0
 
     def f(p):
-        rxs, rys, rts = unpack(p)
-        # Score: actual MEC fast estimate (what we really want to minimize)
-        r = score_R_fast(rxs, rys, rts)
-        # Penalty: feasibility at R_target
-        pen = penalty_energy_flat(p, R)
-        return r + lam * pen
+        return lam * penalty_energy_flat(p, R)
 
     def g(p):
-        rxs, rys, rts = unpack(p)
-        # Gradient of penalty (analytic)
-        gpen = penalty_gradient_flat(p, R)
+        return lam * penalty_gradient_flat(p, R)
 
-        # Gradient of score_R_fast: d/d(param) of max over critical points
-        # score_R_fast = max over i of max of 3 critical points of |pt|
-        # d(|pt|)/d(xi) = pt.x / |pt|, d(|pt|)/d(yi) = pt.y / |pt|, etc.
-        gscore = np.zeros_like(p)
-        best_dist = 0.0
-        best_k = -1; best_i = -1
-        for i in range(N):
-            xi, yi, ti = rxs[i], rys[i], rts[i]
-            pts = np.array([
-                [xi + np.cos(ti), yi + np.sin(ti)],
-                [xi - np.cos(ti), yi - np.sin(ti)],
-                [xi - np.sin(ti), yi + np.cos(ti)],
-            ])
-            dists = np.sqrt(pts[:,0]**2 + pts[:,1]**2)
-            k = int(np.argmax(dists))
-            if dists[k] > best_dist:
-                best_dist = dists[k]; best_k = k; best_i = i
-
-        if best_dist > 1e-9:
-            xi, yi, ti = rxs[best_i], rys[best_i], rts[best_i]
-            px, py = {
-                0: (xi + np.cos(ti), yi + np.sin(ti)),
-                1: (xi - np.cos(ti), yi - np.sin(ti)),
-                2: (xi - np.sin(ti), yi + np.cos(ti)),
-            }[best_k]
-            # d(|p|)/d(xi) = px/|p|, d(|p|)/d(yi) = py/|p|
-            inv_d = 1.0 / best_dist
-            gscore[best_i*3]   = px * inv_d       # d/d(xi)
-            gscore[best_i*3+1] = py * inv_d       # d/d(yi)
-            # d(|p|)/d(ti) depends on which point
-            if best_k == 0:    dti = (-np.sin(ti)*px + np.cos(ti)*py) * inv_d
-            elif best_k == 1:  dti = ( np.sin(ti)*px - np.cos(ti)*py) * inv_d
-            else:              dti = (-np.cos(ti)*px - np.sin(ti)*py) * inv_d
-            gscore[best_i*3+2] = dti
-
-        return gscore + lam * gpen
-
-    # Single pass — the combined objective converges well
     result = minimize(f, p0, jac=g, method='L-BFGS-B',
                       options={'maxiter': max_iter, 'ftol': 1e-12, 'gtol': 1e-8})
     rxs, rys, rts = unpack(result.x)
     exact_E = penalty_energy_exact(rxs, rys, rts, R)
     return rxs, rys, rts, exact_E
+
+
+def repair_thin_slivers(xs, ys, ts, R, n_passes=10, push=0.003):
+    """
+    Identify pairs where exact_dist < 0 (thin-sliver overlap)
+    and push them apart slightly along the center-to-center direction.
+    """
+    xs, ys, ts = xs.copy(), ys.copy(), ts.copy()
+    for _ in range(n_passes):
+        moved = False
+        for i in range(N):
+            for j in range(i+1, N):
+                dc2 = (xs[i]-xs[j])**2 + (ys[i]-ys[j])**2
+                if dc2 >= 4.0:
+                    continue
+                d = semicircle_signed_dist(xs[i], ys[i], ts[i], xs[j], ys[j], ts[j])
+                if d < -1e-6:
+                    # Push apart along c_i → c_j direction
+                    dc = math.sqrt(dc2) + 1e-12
+                    dx_n = (xs[j]-xs[i])/dc
+                    dy_n = (ys[j]-ys[i])/dc
+                    xs[i] -= push * dx_n
+                    ys[i] -= push * dy_n
+                    xs[j] += push * dx_n
+                    ys[j] += push * dy_n
+                    moved = True
+        if not moved:
+            break
+    return xs, ys, ts
 
 
 # ── Perturbation operators ────────────────────────────────────────────────────
