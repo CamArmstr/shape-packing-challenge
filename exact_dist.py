@@ -317,15 +317,28 @@ def semicircle_signed_dist(xi, yi, ti, xj, yj, tj):
     f2ax, f2ay = xj - tx2, yj - ty2
     f2bx, f2by = xj + tx2, yj + ty2
 
-    # Minimum unsigned boundary-to-boundary distance
+    # Compute separation measure
     d_aa = _dist_arc_arc(xi, yi, nx1, ny1, xj, yj, nx2, ny2)
     d_af = _dist_arc_flat(xi, yi, nx1, ny1, f2ax, f2ay, f2bx, f2by)
     d_fa = _dist_arc_flat(xj, yj, nx2, ny2, f1ax, f1ay, f1bx, f1by)
     d_ff = _dist_flat_flat(f1ax, f1ay, f1bx, f1by, f2ax, f2ay, f2bx, f2by)
 
-    min_dist = min(abs(d_aa), abs(d_af), abs(d_fa), abs(d_ff))
-
-    return -min_dist if overlapping else min_dist
+    if not overlapping:
+        # Non-overlapping: return minimum boundary-to-boundary distance (positive)
+        return min(d_aa, d_af, d_fa, d_ff)
+    else:
+        # Overlapping: return negative penetration depth.
+        # For overlapping shapes, the "separation" measures (arc-arc, arc-flat, flat-flat)
+        # can be zero or positive (features outside each other).
+        # Use the Shapely-like proxy: penetration depth ≈ -sqrt(overlap_area).
+        # Since we don't have area here, estimate via the disk-disk overlap as a proxy:
+        # The deepest penetrating direction for circle-circle gives -(2 - dc) when dc < 2.
+        # For semicircles, use the arc-arc signed distance (negative = overlapping disks)
+        # as the best single-number penetration estimate.
+        # d_aa is already computed as center_dist^2 - 4, divided by... wait, no:
+        # d_aa = _dist_arc_arc which is unsigned (no sign returned). Use disk overlap:
+        overlap_depth = max(0.0, 2.0 - dc)  # disk penetration depth
+        return -overlap_depth
 
 
 def semicircle_signed_dist_vec(xi, yi, ti, xj, yj, tj):
