@@ -1,0 +1,24 @@
+Start generator running. Pool file: start_pool.jsonl
+  [random_3.0] score=3.7270 (0.5s) pool=2 rate=0.18/s
+  [pairs_loose] score=3.4770 (35.6s) pool=3 rate=0.04/s
+  [pairs_loose] score=3.4770 (36.3s) pool=1 rate=0.03/s
+  [pairs_loose] score=3.4770 (34.8s) pool=1 rate=0.03/s
+  [pairs_loose] score=3.4770 (38.3s) pool=2 rate=0.03/s
+  failures=10
+  [pairs_loose] score=3.4770 (33.8s) pool=4 rate=0.03/s
+  [pairs_loose] score=3.4770 (34.9s) pool=6 rate=0.03/s
+  [pairs_loose] score=3.4770 (33.5s) pool=7 rate=0.03/s
+  [pairs_loose] score=3.4770 (36.3s) pool=9 rate=0.03/s
+  [pairs_loose] score=3.4770 (36.7s) pool=11 rate=0.03/s
+  failures=20
+  [pairs_loose] score=3.4770 (35.3s) pool=12 rate=0.03/s
+  [pairs_loose] score=3.4770 (34.8s) pool=14 rate=0.03/s
+ score=3.4234 (35.2s) pool=1 rate=0.02/s
+  failures=60
+  [pairs_tight] score=3.4234 (35.8s) pool=3 rate=0.02/s
+  [pairs_tight] score=3.4234 (33.2s) pool=6 rate=0.02/s
+  failures=70
+  [pairs_tight] score=3.4234 (34.4s) pool=8 rate=0.02/s
+  [pairs_tight] score=3.4234 (36.1s) pool=11 rate=0.02/s
+  failures=80
+  [pairs_tight] score=3.4234 (32.8s) pool=14 rate=0.02/s

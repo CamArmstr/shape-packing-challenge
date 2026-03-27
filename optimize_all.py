@@ -30,6 +30,7 @@ from src.semicircle_packing.geometry import Semicircle, semicircles_overlap
 from shapely.geometry import Polygon
 
 BEST_FILE = 'best_solution.json'
+POOL_FILE = 'start_pool.jsonl'
 N = 15
 ARC = 64
 TELEGRAM_TARGET = '1602537663'
@@ -40,6 +41,27 @@ def make_poly(x, y, theta):
     pts = list(zip(x + np.cos(angles), y + np.sin(angles)))
     pts.append((x, y))
     return Polygon(pts)
+
+
+def pop_from_pool(preferred_strategy=None):
+    """Pop one entry from the start pool. Returns (xs, ys, ts) or None."""
+    if not os.path.exists(POOL_FILE):
+        return None
+    try:
+        with open(POOL_FILE, 'r+') as f:
+            lines = f.readlines()
+            if not lines:
+                return None
+            # Pick matching strategy if possible, else any
+            candidates = [i for i, l in enumerate(lines)
+                          if preferred_strategy and preferred_strategy in l]
+            idx = candidates[0] if candidates else 0
+            entry = json.loads(lines[idx])
+            remaining = [l for i, l in enumerate(lines) if i != idx]
+            f.seek(0); f.writelines(remaining); f.truncate()
+        return np.array(entry['xs']), np.array(entry['ys']), np.array(entry['ts'])
+    except:
+        return None
 
 
 def load_best():
@@ -242,11 +264,18 @@ def worker(worker_id, global_best, result_queue, stop_event):
         label = f"w{worker_id}_{name}_{run}"
         print(f"  [{label}] starting", flush=True)
 
-        init = builder()
-        if init is None:
-            print(f"  [{label}] failed to build start, retrying", flush=True)
-            time.sleep(2)
-            continue
+        # Try pool first, fall back to inline builder
+        pool_result = pop_from_pool(name)
+        if pool_result is not None:
+            xs, ys, ts = pool_result
+            print(f"  [{label}] using pool start", flush=True)
+        else:
+            init = builder()
+            if init is None:
+                print(f"  [{label}] failed to build start, retrying", flush=True)
+                time.sleep(1)
+                continue
+            xs, ys, ts = init
 
         xs, ys, ts = init
         result, _ = mod.sa_run(xs, ys, ts,
