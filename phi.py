@@ -44,14 +44,19 @@ def phi_PC(xi, yi, ti, xj, yj):
 def phi_PP(xi, yi, ti, xj, yj, tj):
     """
     HalfPlane i vs HalfPlane j.
-    Correct condition: H_i and H_j (the arc-side half-planes) are disjoint,
-    meaning their intersection is empty. For near-anti-parallel normals
-    (conjugate pair geometry), the separating condition is:
-    n_i . (ci - cj) > 0  i.e. the arc normal of S_i points away from S_j's center.
-    This generalizes correctly across all orientation relationships:
-    φ_PP = cos(ti)*(xi-xj) + sin(ti)*(yi-yj)
-    >= 0 means the arc normal of i points away from j (flat sides face each other).
+
+    Correct formula (from second report, Helly analysis):
+    - Non-antiparallel normals (n_dot > -(1-ε)): return -inf.
+      Two non-opposing half-planes always share an infinite wedge region,
+      so they always "overlap" — phi_PP contributes nothing useful here.
+    - Antiparallel normals (n_dot ≈ -1): return γ₁ + γ₂.
+      When n_j = -n_i, H_i = {n_i·p ≥ n_i·ci} and H_j = {-n_i·p ≥ n_j·cj},
+      these are separated iff n_i·ci + n_j·cj > 0, i.e.:
+      φ_PP = (n_i·ci - n_i·cj) = cos(ti)*(xi-xj) + sin(ti)*(yi-yj) ≥ 0.
     """
+    n_dot = np.cos(ti) * np.cos(tj) + np.sin(ti) * np.sin(tj)
+    if n_dot > -(1 - 1e-4):  # not antiparallel — half-planes always overlap
+        return -np.inf
     return np.cos(ti) * (xi - xj) + np.sin(ti) * (yi - yj)
 
 
@@ -76,15 +81,9 @@ def phi_pair(xi, yi, ti, xj, yj, tj):
     pc = phi_PC(xi, yi, ti, xj, yj)
     phi = max(cc, cp, pc)
 
-    # Damped phi_PP: scale by max(0, -n_dot) so it only contributes for anti-parallel normals.
-    # At n_dot=-1 (conjugate): full weight. At n_dot=0 (perpendicular): zero. At n_dot>0: zero.
-    # This is smooth and differentiable — no discontinuous threshold.
-    n_dot = np.cos(ti) * np.cos(tj) + np.sin(ti) * np.sin(tj)
-    damping = max(0.0, -n_dot)
-    if damping > 0:
-        pp_damped = phi_PP(xi, yi, ti, xj, yj, tj) * damping
-        phi = max(phi, pp_damped)
-
+    # phi_PP: only valid for near-antiparallel normals (n_dot ≈ -1).
+    # phi_PP() returns -inf for non-antiparallel, so max() ignores it automatically.
+    phi = max(phi, phi_PP(xi, yi, ti, xj, yj, tj))
     return phi
 
 
@@ -206,12 +205,8 @@ def penalty_gradient(xs, ys, ts, R):
             cc = phi_CC(xi, yi, xj, yj)
             cp = phi_CP(xi, yi, xj, yj, tj)
             pc = phi_PC(xi, yi, ti, xj, yj)
-            pp = phi_PP(xi, yi, ti, xj, yj, tj)
 
-                        # Damped phi_PP
-            n_dot = np.cos(ti)*np.cos(tj) + np.sin(ti)*np.sin(tj)
-            damping = max(0.0, -n_dot)
-            pp_val = phi_PP(xi, yi, ti, xj, yj, tj) * damping if damping > 0 else -np.inf
+            pp_val = phi_PP(xi, yi, ti, xj, yj, tj)  # -inf for non-antiparallel
             phi = max(cc, cp, pc, pp_val)
 
             if phi >= 0:
@@ -236,16 +231,13 @@ def penalty_gradient(xs, ys, ts, R):
                 gx[j] += coeff * (-cti); gy[j] += coeff * (-sti)
                 gt[i] += coeff * (np.sin(ti)*(xj-xi) - np.cos(ti)*(yj-yi))
 
-            else:  # pp_damped = phi_PP(xi,yi,ti,xj,yj,tj) * damping
-                # d(pp_damped)/d(param) = damping * d(phi_PP)/d(param)
-                # (d(damping)/d(ti) term is zero because damping = max(0,-n_dot) is treated
-                #  as a constant wrt the active branch — subgradient approximation)
+            else:  # pp — antiparallel case only: phi_PP = cos(ti)*(xi-xj)+sin(ti)*(yi-yj)
                 cti = np.cos(ti); sti = np.sin(ti)
-                gx[i] += coeff * damping * cti
-                gy[i] += coeff * damping * sti
-                gx[j] += coeff * damping * (-cti)
-                gy[j] += coeff * damping * (-sti)
-                gt[i] += coeff * damping * (-sti*(xi-xj) + cti*(yi-yj))
+                gx[i] += coeff * cti
+                gy[i] += coeff * sti
+                gx[j] += coeff * (-cti)
+                gy[j] += coeff * (-sti)
+                gt[i] += coeff * (-sti*(xi-xj) + cti*(yi-yj))
 
     # Containment gradients
     for i in range(n):

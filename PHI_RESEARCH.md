@@ -188,3 +188,56 @@ Convention: n_i = (cos θ_i, sin θ_i), half-plane P_i: n_i · (p − c_i) ≥ 0
 
 Φ(S_i, S_j) = max(Φ_CC, Φ_CP, Φ_PC, [Φ_PP if applicable])
 ```
+
+---
+
+## Second Report: Decomposition is Provably Incomplete + O(1) Direct Distance
+
+### Key Theoretical Findings
+
+1. **False negatives are caused by buggy phi_PP** (confirmed — our implementation applied the antiparallel formula to non-antiparallel cases). The correct phi_PP:
+   - Non-antiparallel normals: Φ_PP = **-∞** (two non-opposing half-planes always overlap)
+   - Antiparallel (n_dot ≈ -1): Φ_PP = γ₁ + γ₂ where γ is the half-plane offset term
+
+2. **False positives are inherent and unfixable** within the max decomposition — Helly's theorem requires checking *triples* of convex sets, not just pairs. The decomposition is provably conservative (never false negatives if phi_PP is correct) but not exact (false positives are unavoidable for non-antiparallel semicircle pairs).
+
+3. **The Chernov paper explicitly says phi "roughly approximates" distance** when objects are disjoint — it's not a tight characterization for the intersection-intersection case.
+
+4. **Semicircles are a degenerate case**: The bounded-triangle approach from the paper doesn't apply to 180° arcs because the tangent lines at the arc endpoints are parallel — the bounded triangle can't be formed.
+
+### The Fix for phi_PP (eliminates false negatives)
+
+```python
+def phi_PP(xi, yi, ti, xj, yj, tj):
+    n_dot = cos(ti)*cos(tj) + sin(ti)*sin(tj)
+    if n_dot > -1 + 1e-6:  # non-antiparallel: always overlap
+        return -float('inf')
+    # Antiparallel case: γ₁ + γ₂
+    # γ₁ = -(n₁ · c₁) = -(cos(ti)*xi + sin(ti)*yi)  [signed offset of P₁ boundary]
+    # γ₂ = -(n₂ · c₂) ... but n₂ = -n₁ so: γ₂ = cos(ti)*xj + sin(ti)*yj
+    # Φ_PP = γ₁ + γ₂ = cos(ti)*(xj-xi) + sin(ti)*(yj-yi)
+    return cos(ti)*(xj-xi) + sin(ti)*(yj-yi)
+```
+
+This is exactly our current formula — but only applied when n_dot < -(1-ε). The damping approach was wrong; it should be a hard threshold at n_dot ≈ -1.
+
+### The Correct Solution: O(1) Direct Geometric Distance
+
+Abandons phi decomposition entirely. Computes exact signed distance by checking all boundary feature pairs:
+
+**Boundary features per semicircle:**
+- Arc: semicircular arc of radius 1
+- Flat: diameter segment (line segment)
+
+**Four feature pairs to check:** arc-arc, arc-flat, flat-arc, flat-flat.
+
+For each pair, compute the minimum distance analytically. The support function approach gives ~18 candidate evaluations total → O(1), ~100 FLOPs.
+
+**Why this matters for our optimizer:**
+- Zero false positives (exact)
+- Zero false negatives (exact, if phi_PP is -∞ for non-antiparallel)
+- ~100 FLOPs vs Shapely's ~10,000+ FLOPs
+- Differentiable almost everywhere → can compute analytical gradients
+
+### Status
+The report is cut off before the boundary feature decomposition details. Need the rest to implement.
