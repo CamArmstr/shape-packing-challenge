@@ -313,24 +313,38 @@ def semicircle_signed_dist(xi, yi, ti, xj, yj, tj):
         lens_pts.append((midx - r_ * hat_x, midy - r_ * hat_y))
         lens_pts.append((midx + r_ * perp_x, midy + r_ * perp_y))
         lens_pts.append((midx - r_ * perp_x, midy - r_ * perp_y))
-    # Key analytically-derived candidates:
-    # c2 + n1: point on circle C2 facing in the arc-normal direction of S1
-    #          If inside D1 ∩ H1 ∩ H2, the semicircles definitely overlap.
-    # c1 + n2: point on circle C1 facing in the arc-normal direction of S2 (symmetric)
-    lens_pts.append((xj + nx1, yj + ny1))
-    lens_pts.append((xi + nx2, yi + ny2))
-
     for (px, py) in lens_pts:
-        # Must be inside both disks
-        in_d1 = (px - xi)**2 + (py - yi)**2 <= 1.0 + 1e-9
-        in_d2 = (px - xj)**2 + (py - yj)**2 <= 1.0 + 1e-9
+        # Must be strictly inside both disks (not just touching boundary)
+        in_d1 = (px - xi)**2 + (py - yi)**2 <= 1.0 - 1e-7
+        in_d2 = (px - xj)**2 + (py - yj)**2 <= 1.0 - 1e-7
         if not (in_d1 and in_d2):
             continue
-        on_h1 = nx1 * (px - xi) + ny1 * (py - yi) >= -1e-9
-        on_h2 = nx2 * (px - xj) + ny2 * (py - yj) >= -1e-9
+        on_h1 = nx1 * (px - xi) + ny1 * (py - yi) >= 1e-7
+        on_h2 = nx2 * (px - xj) + ny2 * (py - yj) >= 1e-7
         if on_h1 and on_h2:
             overlapping = True
             break
+
+    # Key analytically-derived candidates (check with looser disk tolerance):
+    # c2 + n1: point on circle C2 facing in the arc-normal direction of S1
+    #          If strictly inside D1, in H1, and in H2, the semicircles overlap.
+    # c1 + n2: symmetric candidate on circle C1 facing direction n2
+    if not overlapping:
+        for (px, py) in [(xj + nx1, yj + ny1), (xi + nx2, yi + ny2)]:
+            # For these candidates: one disk contains the point on its boundary (d=1),
+            # so check the OTHER disk is strictly interior (d < 1-eps)
+            d1sq = (px - xi)**2 + (py - yi)**2
+            d2sq = (px - xj)**2 + (py - yj)**2
+            # The point is on C1 (d1=1) or C2 (d2=1); other must be strictly inside
+            if not ((d1sq <= 1.0 + 1e-9 and d2sq < 1.0 - 1e-5) or
+                    (d2sq <= 1.0 + 1e-9 and d1sq < 1.0 - 1e-5)):
+                continue
+            # Both half-plane conditions must be clearly satisfied (not just touching boundary)
+            on_h1 = nx1 * (px - xi) + ny1 * (py - yi) >= 1e-4
+            on_h2 = nx2 * (px - xj) + ny2 * (py - yj) >= 1e-4
+            if on_h1 and on_h2:
+                overlapping = True
+                break
 
     # Also check critical points and directional samples
     def arc_sample(cx, cy, nax, nay, tgt_x, tgt_y):
