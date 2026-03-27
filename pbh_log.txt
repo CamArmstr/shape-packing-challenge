@@ -1,0 +1,113 @@
+17:40:21 === PBH | start R=3.010195 | pop=15 | d_cut=Seeding p17:40:21 Seed  Seed via wall_sl17:40:22   Seed via wa  Seed via expand: R=3.112417:40:22   Seed via jitter: R=3.1276 (pop=4)
+  Seed via shift_worst: R=3.2175 (pop=5)
+  Seed via flip: R=3.1999 (pop=6)
+  Seed via wall_slide: R=3.1111 (pop=7)
+  Seed via jitter: R=3.1209 (pop=8)
+Initial population: 8 members, best R=3.010196
+[   1] swap         E=0.00e+00 → R=3.0102 dup
+[   4] swap         E=0.00e+00 → R=3.0947 dup
+[   7] swap         E=0.00e+00 → R=3.0102 dup
+[  10] swap         E=0.00e+00 → R=3.0102 dup
+[  13] swap         E=0.00e+00 → R=3.0102 dup
+[  16] swap         E=0.00e+00 → R=3.0102 dup
+[  19] swap         E=0.00e+00 → R=3.1038 dup
+[  20] flip         E=1.22e+01
+[  22] swap         E=0.00e+00 → R=3.1280 dup
+[  25] swap         E=0.00e+00 → R=3.1038 dup
+[  28] swap         E=0.00e+00 → R=3.0102 dup
+[  33] swap         E=0.00e+00 → R=3.0102 dup
+[  36] swap         E=0.00e+00 → R=3.0102 dup
+[  38] herringbone  E=0.00e+00 → R=3.1923 (pop=9 basins=12)
+[  40] herringbone  E=1.48e+01
+[  41] swap         E=0.00e+00 → R=3.0102 dup
+[  43] herringbone  E=0.00e+00 → R=3.1923 dup
+[  45] herringbone  E=0.00e+00 → R=3.1923 dup
+[  47] herringbone  E=0.00e+00 → R=3.1923 dup
+[  49] herringbone  E=0.00e+00 → R=3.1923 dup
+  --- Round 50: basins=12 found=30 conf=0.40 best_R=3.010195 ---
+[  52] swap         E=0.00e+00 → R=3.0928 dup
+[  54] herringbone  E=0.00e+00 → R=3.1923 dup
+[  56] herringbone  E=0.00e+00 → R=3.1923 dup
+[  58] herringbone  E=0.00e+00 → R=3.1923 dup
+[  60] herringbone  E=0.00e+00 → R=3.2061 (pop=10 basins=14)
+[  62] jitter       E=0.00e+00 → R=3.1549 (pop=11 basins=15)
+[  65] swap         E=0.00e+00 → R=3.0102 dup
+[  66] flip         E=0.00e+00 → R=3.2160 (pop=12 basins=16)
+[  69] swap         E=0.00e+00 → R=3.0102 dup
+[  70] flip         E=0.00e+00 → R=3.1985 (pop=13 basins=17)
+[  73] swap         E=0.00e+00 → R=3.1209 dup
+[  76] swap         E=0.00e+00 → R=3.0102 dup
+[  79] swap         E=0.00e+00 → R=3.1209 dup
+[  80] flip         E=1.31e+01
+[  81] herringbone  E=0.00e+00 → R=3.1801 (pop=14 basins=18)
+[  84] swap         E=0.00e+00 → R=3.1124 dup
+[  86] herringbone  E=0.00e+00 → R=3.2042 dup
+[  89] swap         E=0.00e+00 → R=3.1276 dup
+[  93] herringbone  E=0.00e+00 → R=3.2192 (pop=15 basins=20)
+[  96] swap         E=0.00e+00 → R=3.0102 dup
+[  99] swap         E=0.00e+00 → R=3.0102 dup
+[ 100] flip         E=1.29e+01
+  --- Round 100: basins=20 found=50 conf=0.34 best_R=3.010195 ---
+[ 101] herringbone  E=4.77e-26 → R=3.1821 dup
+[ 104] swap         E=0.00e+00 → R=3.1111 dup
+[ 107] swap         E=0.00e+00 → R=3.2061 dup
+[ 108] wall_slide   E=0.00e+00 → R=3.1808 (pop=15 basins=22)
+[ 111] swap         E=0.00e+00 → R=3.2160 dup
+[ 114] swap         E=0.00e+00 → R=3.0102 dup
+[ 117] swap         E=0.00e+00 → R=3.0102 dup
+[ 120] swap         E=0.00e+00 → R=3.0102 dup
+[ 121] expand       E=0.00e+00 → R=3.1606 (pop=15 basins=23)
+[ 124] swap         E=0.00e+00 → R=3.0102 dup
+[ 126] herringbone  E=0.00e+00 → R=3.2243 dup
+[ 129] swap         E=0.00e+00 → R=3.0975 dup
+[ 130] flip         E=0.00e+00 → R=3.1884 (pop=15 basins=25)
+[ 133] swap         E=0.00e+00 → R=3.1923 dup
+[ 135] herringbone  E=0.00e+00 → R=3.2243 dup
+[ 138] swap         E=0.00e+00 → R=3.0102 dup
+[ 140] herringbone  E=1.41e+01
+[ 141] swap         E=0.00e+00 → R=3.0102 dup
+[ 144] swap         E=0.00e+00 → R=3.1209 dup
+[ 146] herringbone  E=0.00e+00 → R=3.2243 dup
+[ 149] swap         E=0.00e+00 → R=3.0102 dup
+  --- Round 150: basins=25 found=70 conf=0.34 best_R=3.010195 ---
+[ 153] herringbone  E=0.00e+00 → R=3.2210 dup
+[ 156] swap         E=0.00e+00 → R=3.0102 dup
+[ 157] flip         E=0.00e+00 → R=3.1942 (pop=15 basins=27)
+[ 160] swap         E=0.00e+00 → R=3.1124 dup
+[ 163] swap         E=0.00e+00 → R=3.0102 dup
+[ 166] swap         E=0.00e+00 → R=3.1923 dup
+[ 169] swap         E=0.00e+00 → R=3.1606 dup
+[ 172] swap         E=0.00e+00 → R=3.0102 dup
+[ 175] swap         E=0.00e+00 → R=3.0102 dup
+[ 178] swap         E=0.00e+00 → R=3.0102 dup
+[ 180] herringbone  E=0.00e+00 → R=3.2126 dup
+[ 181] expand       E=0.00e+00 → R=3.1746 (pop=15 basins=30)
+[ 183] herringbone  E=0.00e+00 → R=3.2357 dup
+[ 184] flip         E=0.00e+00 → R=3.2370 dup
+[ 187] swap         E=0.00e+00 → R=3.1549 dup
+[ 189] herringbone  E=0.00e+00 → R=3.2048 dup
+[ 192] swap         E=0.00e+00 → R=3.0102 dup
+[ 193] flip         E=0.00e+00 → R=3.2370 dup
+[ 196] swap         E=0.00e+00 → R=3.1111 dup
+[ 199] swap         E=0.00e+00 → R=3.0975 dup
+[ 200] flip         E=1.44e+01
+  --- Round 200: basins=33 found=90 conf=0.33 best_R=3.010195 ---
+
+=== PBH done | best R=3.010195 | distinct basins=33 | total found=90 ===
+Symmetry of best: C2=2.318, C3=1.953, C5=1.345, C7=2.152
+58 [ 178] swap         E=0.00e+00 → R=3.0102 dup
+17:43:01 [ 180] herringbone  E=0.00e+00 → R=3.2126 dup
+17:43:01 [ 181] expand       E=0.00e+00 → R=3.1746 (pop=15 basins=30)
+17:43:04 [ 183] herringbone  E=0.00e+00 → R=3.2357 dup
+17:43:05 [ 184] flip         E=0.00e+00 → R=3.2370 dup
+17:43:08 [ 187] swap         E=0.00e+00 → R=3.1549 dup
+17:43:10 [ 189] herringbone  E=0.00e+00 → R=3.2048 dup
+17:43:14 [ 192] swap         E=0.00e+00 → R=3.0102 dup
+17:43:15 [ 193] flip         E=0.00e+00 → R=3.2370 dup
+17:43:18 [ 196] swap         E=0.00e+00 → R=3.1111 dup
+17:43:20 [ 199] swap         E=0.00e+00 → R=3.0975 dup
+17:43:22 [ 200] flip         E=1.44e+01
+17:43:22   --- Round 200: basins=33 found=90 conf=0.33 best_R=3.010195 ---
+17:43:22 
+=== PBH done | best R=3.010195 | distinct basins=33 | total found=90 ===
+17:43:22 Symmetry of best: C2=2.318, C3=1.953, C5=1.345, C7=2.152
