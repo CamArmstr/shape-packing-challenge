@@ -111,7 +111,7 @@ def lbfgs_refine(xs, ys, ts, R, max_iter=500, ftol=1e-15, gtol=1e-10):
     Returns (xs, ys, ts, exact_energy).
     """
     p0 = pack(xs, ys, ts)
-    lam = 50.0  # penalty weight — high enough to enforce feasibility
+    lam = 500.0  # penalty weight — must dominate R gradient to enforce feasibility
 
     def f(p):
         rxs, rys, rts = unpack(p)
@@ -432,7 +432,8 @@ def run_mbh(r_start=3.07, r_min=2.85, r_step=0.01, rounds_per_R=30,
             actual_R = score_R_fast(rxs, rys, rts)
             logprint(f"  Round {rnd+1:3d} ({kind:12s}): E={E:.3e}, R_fast={actual_R:.5f}")
 
-            if E < 1e-6 and is_feasible_exact(rxs, rys, rts, R):
+            # Accept if either: exactly feasible, or very close (let Shapely be final gate)
+            if E < 1e-4 and (is_feasible_exact(rxs, rys, rts, R) or shapely_valid(rxs, rys, rts)):
                 official_R = score_R(rxs, rys, rts)
                 logprint(f"  ✓ FEASIBLE at R={R:.4f}! Official R={official_R:.6f}")
                 feasible_found = True
@@ -458,7 +459,7 @@ def run_mbh(r_start=3.07, r_min=2.85, r_step=0.01, rounds_per_R=30,
                     for n_iter in [300, 500, 1000]:
                         sx, sy, st, sE = lbfgs_refine(sx, sy, st, mid_R, max_iter=n_iter)
                         if sE < 1e-6: break
-                    if sE < 1e-6 and is_feasible_exact(sx, sy, st, mid_R):
+                    if sE < 1e-4 and (is_feasible_exact(sx, sy, st, mid_R) or shapely_valid(sx, sy, st)):
                         s_R = score_R(sx, sy, st)
                         logprint(f"    Squeeze R={mid_R:.4f} → feasible (R={s_R:.6f})")
                         if s_R < global_best_R:
