@@ -1,0 +1,551 @@
+Warming up Numba JIT...
+Numba JIT ready.
+Starting best: 3.010195
+Launching 6 workers for up to 3600s
+  [w0_best_tight_1] starting
+  [w1_topo_5_10_1] starting
+  [w2_topo_3_5_7_1] starting
+  [w3_topo_2_5_8_1] starting
+  [w4_topo_3_4_8_1] starting
+  [w5_best_large_1] starting
+[10s] Best=3.010195 Workers=6/6
+[20s] Best=3.010195 Workers=6/6
+[30s] Best=3.010195 Workers=6/6
+[40s] Best=3.010195 Workers=6/6
+[50s] Best=3.010195 Workers=6/6
+[60s] Best=3.010195 Workers=6/6
+  [w0_best_tight_1] VALID: 3.372846 (best: 3.010195)
+  [w0_best_tight_2] starting
+  [w1_topo_5_10_1] VALID: 3.990866 (best: 3.010195)
+  [w1_topo_5_10_2] starting
+  [w5_best_large_1] VALID: 3.552154 (best: 3.010195)
+  [w5_best_large_2] starting
+[71s] Best=3.010195 Workers=6/6
+  [w4_topo_3_4_8_1] VALID: 4.368224 (best: 3.010195)
+  [w4_topo_3_4_8_2] starting
+  [w3_topo_2_5_8_1] VALID: 3.770615 (best: 3.010195)
+  [w3_topo_2_5_8_2] starting
+  [w2_topo_3_5_7_1] VALID: 3.227692 (best: 3.010195)
+  [w2_topo_3_5_7_2] starting
+[81s] Best=3.010195 Workers=6/6
+[91s] Best=3.010195 Workers=6/6
+[101s] Best=3.010195 Workers=6/6
+[111s] Best=3.010195 Workers=6/6
+[121s] Best=3.010195 Workers=6/6
+[131s] Best=3.010195 Workers=6/6
+  [w0_best_tight_2] VALID: 3.134679 (best: 3.010195)
+  [w0_best_tight_3] starting
+  [w5_best_large_2] VALID: 3.341198 (best: 3.010195)
+  [w5_best_large_3] starting
+[141s] Best=3.010195 Workers=6/6
+  [w1_topo_5_10_2] VALID: 3.983266 (best: 3.010195)
+  [w1_topo_5_10_3] starting
+  [w4_topo_3_4_8_2] VALID: 3.161474 (best: 3.010195)
+  [w4_topo_3_4_8_3] starting
+  [w3_topo_2_5_8_2] VALID: 4.072872 (best: 3.010195)
+  [w3_topo_2_5_8_3] starting
+  [w2_topo_3_5_7_2] VALID: 4.063034 (best: 3.010195)
+  [w2_topo_3_5_7_3] starting
+[151s] Best=3.010195 Workers=6/6
+[162s] Best=3.010195 Workers=6/6
+[172s] Best=3.010195 Workers=6/6
+[182s] Best=3.010195 Workers=6/6
+[192s] Best=3.010195 Workers=6/6
+[202s] Best=3.010195 Workers=6/6
+  [w0_best_tight_3] VALID: 3.132206 (best: 3.010195)
+  [w0_best_tight_4] starting
+  [w5_best_large_3] VALID: 3.836964 (best: 3.010195)
+  [w5_best_large_4] starting
+[212s] Best=3.010195 Workers=6/6
+  [w1_topo_5_10_3] VALID: 4.559752 (best: 3.010195)
+  [w1_topo_5_10_4] starting
+  [w4_topo_3_4_8_3] VALID: 4.004008 (best: 3.010195)
+  [w4_topo_3_4_8_4] starting
+  [w3_topo_2_5_8_3] VALID: 5.091966 (best: 3.010195)
+  [w3_topo_2_5_8_4] starting
+[222s] Best=3.010195 Workers=6/6
+  [w2_topo_3_5_7_3] VALID: 3.130946 (best: 3.010195)
+  [w2_topo_3_5_7_4] starting
+[232s] Best=3.010195 Workers=6/6
+[242s] Best=3.010195 Workers=6/6
+[253s] Best=3.010195 Workers=6/6
+[263s] Best=3.010195 Workers=6/6
+[273s] Best=3.010195 Workers=6/6
+  [w0_best_tight_4] VALID: 3.098037 (best: 3.010195)
+  [w0_best_tight_5] starting
+  [w5_best_large_4] VALID: 3.179997 (best: 3.010195)
+  [w5_best_large_5] starting
+[283s] Best=3.010195 Workers=6/6
+  [w1_topo_5_10_4] VALID: 3.593940 (best: 3.010195)
+  [w1_topo_5_10_5] starting
+  [w4_topo_3_4_8_4] VALID: 4.802780 (best: 3.010195)
+  [w4_topo_3_4_8_5] starting
+[293s] Best=3.010195 Workers=6/6
+  [w3_topo_2_5_8_4] VALID: 3.207357 (best: 3.010195)
+  [w3_topo_2_5_8_5] starting
+  [w2_topo_3_5_7_4] VALID: 3.110162 (best: 3.010195)
+  [w2_topo_3_5_7_5] starting
+[303s] Best=3.010195 Workers=6/6
+[313s] Best=3.010195 Workers=6/6
+[323s] Best=3.010195 Workers=6/6
+[333s] Best=3.010195 Workers=6/6
+[344s] Best=3.010195 Workers=6/6
+  [w0_best_tight_5] VALID: 3.177324 (best: 3.010195)
+  [w0_best_tight_6] starting
+  [w5_best_large_5] VALID: 3.268012 (best: 3.010195)
+  [w5_best_large_6] starting
+[354s] Best=3.010195 Workers=6/6
+  [w1_topo_5_10_5] VALID: 3.155361 (best: 3.010195)
+  [w1_topo_5_10_6] starting
+[364s] Best=3.010195 Workers=6/6
+  [w3_topo_2_5_8_5] VALID: 5.087193 (best: 3.010195)
+  [w3_topo_2_5_8_6] starting
+  [w4_topo_3_4_8_5] VALID: 5.157505 (best: 3.010195)
+  [w4_topo_3_4_8_6] starting
+  [w2_topo_3_5_7_5] VALID: 3.103443 (best: 3.010195)
+  [w2_topo_3_5_7_6] starting
+[374s] Best=3.010195 Workers=6/6
+[384s] Best=3.010195 Workers=6/6
+[394s] Best=3.010195 Workers=6/6
+[404s] Best=3.010195 Workers=6/6
+[414s] Best=3.010195 Workers=6/6
+  [w0_best_tight_6] VALID: 3.071720 (best: 3.010195)
+  [w0_best_tight_7] starting
+  [w5_best_large_6] VALID: 4.520201 (best: 3.010195)
+  [w5_best_large_7] starting
+[424s] Best=3.010195 Workers=6/6
+[434s] Best=3.010195 Workers=6/6
+  [w1_topo_5_10_6] VALID: 3.292340 (best: 3.010195)
+  [w1_topo_5_10_7] starting
+  [w4_topo_3_4_8_6] VALID: 3.219014 (best: 3.010195)
+  [w4_topo_3_4_8_7] starting
+  [w3_topo_2_5_8_6] VALID: 3.174753 (best: 3.010195)
+  [w3_topo_2_5_8_7] starting
+  [w2_topo_3_5_7_6] VALID: 4.422132 (best: 3.010195)
+  [w2_topo_3_5_7_7] starting
+[445s] Best=3.010195 Workers=6/6
+[455s] Best=3.010195 Workers=6/6
+[465s] Best=3.010195 Workers=6/6
+[475s] Best=3.010195 Workers=6/6
+  [w0_best_tight_7] VALID: 3.150179 (best: 3.010195)
+  [w0_best_tight_8] starting
+[485s] Best=3.010195 Workers=6/6
+  [w5_best_large_7] VALID: 3.689876 (best: 3.010195)
+  [w5_best_large_8] starting
+[495s] Best=3.010195 Workers=6/6
+[505s] Best=3.010195 Workers=6/6
+  [w1_topo_5_10_7] VALID: 3.174831 (best: 3.010195)
+  [w1_topo_5_10_8] starting
+  [w4_topo_3_4_8_7] VALID: 4.210926 (best: 3.010195)
+  [w4_topo_3_4_8_8] starting
+  [w2_topo_3_5_7_7] VALID: 5.029845 (best: 3.010195)
+  [w2_topo_3_5_7_8] starting
+[515s] Best=3.010195 Workers=6/6
+  [w3_topo_2_5_8_7] VALID: 3.165958 (best: 3.010195)
+  [w3_topo_2_5_8_8] starting
+[525s] Best=3.010195 Workers=6/6
+[535s] Best=3.010195 Workers=6/6
+[545s] Best=3.010195 Workers=6/6
+  [w0_best_tight_8] VALID: 3.244807 (best: 3.010195)
+  [w0_best_tight_9] starting
+[556s] Best=3.010195 Workers=6/6
+  [w5_best_large_8] VALID: 3.458979 (best: 3.010195)
+  [w5_best_large_9] starting
+[566s] Best=3.010195 Workers=6/6
+[576s] Best=3.010195 Workers=6/6
+  [w1_topo_5_10_8] VALID: 3.972359 (best: 3.010195)
+  [w1_topo_5_10_9] starting
+[586s] Best=3.010195 Workers=6/6
+  [w4_topo_3_4_8_8] VALID: 4.165801 (best: 3.010195)
+  [w4_topo_3_4_8_9] starting
+  [w2_topo_3_5_7_8] VALID: 4.595297 (best: 3.010195)
+  [w2_topo_3_5_7_9] starting
+  [w3_topo_2_5_8_8] VALID: 3.594425 (best: 3.010195)
+  [w3_topo_2_5_8_9] starting
+[596s] Best=3.010195 Workers=6/6
+[606s] Best=3.010195 Workers=6/6
+[616s] Best=3.010195 Workers=6/6
+  [w0_best_tight_9] VALID: 3.101159 (best: 3.010195)
+  [w0_best_tight_10] starting
+[626s] Best=3.010195 Workers=6/6
+  [w5_best_large_9] VALID: 3.834058 (best: 3.010195)
+  [w5_best_large_10] starting
+[636s] Best=3.010195 Workers=6/6
+[647s] Best=3.010195 Workers=6/6
+  [w1_topo_5_10_9] VALID: 3.729012 (best: 3.010195)
+  [w1_topo_5_10_10] starting
+[657s] Best=3.010195 Workers=6/6
+  [w2_topo_3_5_7_9] VALID: 3.226875 (best: 3.010195)
+  [w2_topo_3_5_7_10] starting
+  [w3_topo_2_5_8_9] VALID: 4.756161 (best: 3.010195)
+  [w3_topo_2_5_8_10] starting
+  [w4_topo_3_4_8_9] VALID: 3.174774 (best: 3.010195)
+  [w4_topo_3_4_8_10] starting
+[667s] Best=3.010195 Workers=6/6
+[677s] Best=3.010195 Workers=6/6
+[687s] Best=3.010195 Workers=6/6
+  [w0_best_tight_10] VALID: 3.102798 (best: 3.010195)
+  [w0_best_tight_11] starting
+  [w5_best_large_10] VALID: 3.790545 (best: 3.010195)
+  [w5_best_large_11] starting
+[697s] Best=3.010195 Workers=6/6
+[707s] Best=3.010195 Workers=6/6
+[717s] Best=3.010195 Workers=6/6
+  [w1_topo_5_10_10] VALID: 3.179805 (best: 3.010195)
+  [w1_topo_5_10_11] starting
+[727s] Best=3.010195 Workers=6/6
+  [w2_topo_3_5_7_10] VALID: 4.068877 (best: 3.010195)
+  [w2_topo_3_5_7_11] starting
+  [w4_topo_3_4_8_10] VALID: 4.206976 (best: 3.010195)
+  [w4_topo_3_4_8_11] starting
+  [w3_topo_2_5_8_10] VALID: 4.012505 (best: 3.010195)
+  [w3_topo_2_5_8_11] starting
+[738s] Best=3.010195 Workers=6/6
+[748s] Best=3.010195 Workers=6/6
+[758s] Best=3.010195 Workers=6/6
+  [w0_best_tight_11] no feasible result
+  [w0_best_tight_12] starting
+  [w5_best_large_11] VALID: 4.278064 (best: 3.010195)
+  [w5_best_large_12] starting
+[768s] Best=3.010195 Workers=6/6
+[778s] Best=3.010195 Workers=6/6
+[788s] Best=3.010195 Workers=6/6
+  [w1_topo_5_10_11] VALID: 3.796240 (best: 3.010195)
+  [w1_topo_5_10_12] starting
+[798s] Best=3.010195 Workers=6/6
+  [w2_topo_3_5_7_11] VALID: 3.198291 (best: 3.010195)
+  [w2_topo_3_5_7_12] starting
+  [w4_topo_3_4_8_11] VALID: 3.157854 (best: 3.010195)
+  [w4_topo_3_4_8_12] starting
+  [w3_topo_2_5_8_11] VALID: 4.296924 (best: 3.010195)
+  [w3_topo_2_5_8_12] starting
+[808s] Best=3.010195 Workers=6/6
+[818s] Best=3.010195 Workers=6/6
+[829s] Best=3.010195 Workers=6/6
+  [w0_best_tight_12] no feasible result
+  [w0_best_tight_13] starting
+  [w5_best_large_12] VALID: 3.300053 (best: 3.010195)
+  [w5_best_large_13] starting
+[839s] Best=3.010195 Workers=6/6
+[849s] Best=3.010195 Workers=6/6
+[859s] Best=3.010195 Workers=6/6
+  [w1_topo_5_10_12] VALID: 3.128027 (best: 3.010195)
+  [w1_topo_5_10_13] starting
+[869s] Best=3.010195 Workers=6/6
+  [w2_topo_3_5_7_12] VALID: 3.490854 (best: 3.010195)
+  [w2_topo_3_5_7_13] starting
+[879s] Best=3.010195 Workers=6/6
+  [w4_topo_3_4_8_12] VALID: 3.183815 (best: 3.010195)
+  [w4_topo_3_4_8_13] starting
+  [w3_topo_2_5_8_12] VALID: 3.187418 (best: 3.010195)
+  [w3_topo_2_5_8_13] starting
+[889s] Best=3.010195 Workers=6/6
+  [w0_best_tight_13] VALID: 3.173738 (best: 3.010195)
+  [w0_best_tight_14] starting
+[899s] Best=3.010195 Workers=6/6
+  [w5_best_large_13] VALID: 3.274684 (best: 3.010195)
+  [w5_best_large_14] starting
+[909s] Best=3.010195 Workers=6/6
+[919s] Best=3.010195 Workers=6/6
+[930s] Best=3.010195 Workers=6/6
+[940s] Best=3.010195 Workers=6/6
+  [w1_topo_5_10_13] VALID: 3.133778 (best: 3.010195)
+  [w1_topo_5_10_14] starting
+[950s] Best=3.010195 Workers=6/6
+  [w2_topo_3_5_7_13] VALID: 4.328994 (best: 3.010195)
+  [w2_topo_3_5_7_14] starting
+  [w3_topo_2_5_8_13] VALID: 4.974609 (best: 3.010195)
+  [w3_topo_2_5_8_14] starting
+  [w4_topo_3_4_8_13] VALID: 3.101452 (best: 3.010195)
+  [w4_topo_3_4_8_14] starting
+[960s] Best=3.010195 Workers=6/6
+  [w0_best_tight_14] no feasible result
+  [w0_best_tight_15] starting
+[970s] Best=3.010195 Workers=6/6
+  [w5_best_large_14] VALID: 4.596913 (best: 3.010195)
+  [w5_best_large_15] starting
+[980s] Best=3.010195 Workers=6/6
+[990s] Best=3.010195 Workers=6/6
+[1000s] Best=3.010195 Workers=6/6
+[1010s] Best=3.010195 Workers=6/6
+  [w1_topo_5_10_14] VALID: 3.374565 (best: 3.010195)
+  [w1_topo_5_10_15] starting
+[1020s] Best=3.010195 Workers=6/6
+  [w2_topo_3_5_7_14] VALID: 3.164078 (best: 3.010195)
+  [w2_topo_3_5_7_15] starting
+  [w3_topo_2_5_8_14] VALID: 3.119961 (best: 3.010195)
+  [w3_topo_2_5_8_15] starting
+  [w4_topo_3_4_8_14] VALID: 3.961394 (best: 3.010195)
+  [w4_topo_3_4_8_15] starting
+[1031s] Best=3.010195 Workers=6/6
+  [w0_best_tight_15] VALID: 3.095988 (best: 3.010195)
+  [w0_best_tight_16] starting
+[1041s] Best=3.010195 Workers=6/6
+  [w5_best_large_15] no feasible result
+  [w5_best_large_16] starting
+[1051s] Best=3.010195 Workers=6/6
+[1061s] Best=3.010195 Workers=6/6
+[1071s] Best=3.010195 Workers=6/6
+[1081s] Best=3.010195 Workers=6/6
+  [w1_topo_5_10_15] VALID: 3.181777 (best: 3.010195)
+  [w1_topo_5_10_16] starting
+[1091s] Best=3.010195 Workers=6/6
+  [w2_topo_3_5_7_15] VALID: 3.130965 (best: 3.010195)
+  [w2_topo_3_5_7_16] starting
+  [w3_topo_2_5_8_15] VALID: 3.560332 (best: 3.010195)
+  [w3_topo_2_5_8_16] starting
+  [w4_topo_3_4_8_15] VALID: 3.214837 (best: 3.010195)
+  [w4_topo_3_4_8_16] starting
+[1101s] Best=3.010195 Workers=6/6
+  [w0_best_tight_16] VALID: 3.066303 (best: 3.010195)
+  [w0_best_tight_17] starting
+[1111s] Best=3.010195 Workers=6/6
+  [w5_best_large_16] VALID: 3.362846 (best: 3.010195)
+  [w5_best_large_17] starting
+[1122s] Best=3.010195 Workers=6/6
+[1132s] Best=3.010195 Workers=6/6
+[1142s] Best=3.010195 Workers=6/6
+[1152s] Best=3.010195 Workers=6/6
+  [w1_topo_5_10_16] VALID: 3.182436 (best: 3.010195)
+  [w1_topo_5_10_17] starting
+[1162s] Best=3.010195 Workers=6/6
+  [w2_topo_3_5_7_16] VALID: 4.081504 (best: 3.010195)
+  [w2_topo_3_5_7_17] starting
+  [w3_topo_2_5_8_16] VALID: 3.254812 (best: 3.010195)
+  [w3_topo_2_5_8_17] starting
+  [w4_topo_3_4_8_16] no feasible result
+  [w4_topo_3_4_8_17] starting
+[1172s] Best=3.010195 Workers=6/6
+  [w0_best_tight_17] VALID: 3.082842 (best: 3.010195)
+  [w0_best_tight_18] starting
+[1182s] Best=3.010195 Workers=6/6
+  [w5_best_large_17] VALID: 4.388616 (best: 3.010195)
+  [w5_best_large_18] starting
+[1192s] Best=3.010195 Workers=6/6
+[1202s] Best=3.010195 Workers=6/6
+[1212s] Best=3.010195 Workers=6/6
+[1223s] Best=3.010195 Workers=6/6
+  [w1_topo_5_10_17] VALID: 3.944249 (best: 3.010195)
+  [w1_topo_5_10_18] starting
+[1233s] Best=3.010195 Workers=6/6
+  [w2_topo_3_5_7_17] VALID: 4.465844 (best: 3.010195)
+  [w2_topo_3_5_7_18] starting
+  [w3_topo_2_5_8_17] VALID: 5.067324 (best: 3.010195)
+  [w3_topo_2_5_8_18] starting
+[1243s] Best=3.010195 Workers=6/6
+  [w4_topo_3_4_8_17] VALID: 4.405294 (best: 3.010195)
+  [w4_topo_3_4_8_18] starting
+  [w0_best_tight_18] VALID: 3.126616 (best: 3.010195)
+  [w0_best_tight_19] starting
+[1253s] Best=3.010195 Workers=6/6
+  [w5_best_large_18] VALID: 4.469266 (best: 3.010195)
+  [w5_best_large_19] starting
+[1263s] Best=3.010195 Workers=6/6
+[1273s] Best=3.010195 Workers=6/6
+[1283s] Best=3.010195 Workers=6/6
+[1293s] Best=3.010195 Workers=6/6
+[1303s] Best=3.010195 Workers=6/6
+  [w1_topo_5_10_18] VALID: 4.217757 (best: 3.010195)
+  [w1_topo_5_10_19] starting
+[1314s] Best=3.010195 Workers=6/6
+  [w3_topo_2_5_8_18] VALID: 5.298466 (best: 3.010195)
+  [w3_topo_2_5_8_19] starting
+  [w2_topo_3_5_7_18] VALID: 3.167472 (best: 3.010195)
+  [w2_topo_3_5_7_19] starting
+  [w0_best_tight_19] VALID: 3.085246 (best: 3.010195)
+  [w0_best_tight_20] starting
+  [w4_topo_3_4_8_18] VALID: 3.139744 (best: 3.010195)
+  [w4_topo_3_4_8_19] starting
+[1324s] Best=3.010195 Workers=6/6
+  [w5_best_large_19] VALID: 4.857136 (best: 3.010195)
+  [w5_best_large_20] starting
+[1334s] Best=3.010195 Workers=6/6
+[1344s] Best=3.010195 Workers=6/6
+[1354s] Best=3.010195 Workers=6/6
+[1364s] Best=3.010195 Workers=6/6
+[1374s] Best=3.010195 Workers=6/6
+  [w1_topo_5_10_19] VALID: 3.459744 (best: 3.010195)
+  [w1_topo_5_10_20] starting
+[1384s] Best=3.010195 Workers=6/6
+  [w0_best_tight_20] VALID: 3.105415 (best: 3.010195)
+  [w0_best_tight_21] starting
+  [w2_topo_3_5_7_19] VALID: 3.945186 (best: 3.010195)
+  [w2_topo_3_5_7_20] starting
+  [w3_topo_2_5_8_19] VALID: 3.373772 (best: 3.010195)
+  [w3_topo_2_5_8_20] starting
+  [w4_topo_3_4_8_19] VALID: 3.444347 (best: 3.010195)
+  [w4_topo_3_4_8_20] starting
+  [w5_best_large_20] VALID: 3.716251 (best: 3.010195)
+  [w5_best_large_21] starting
+[1394s] Best=3.010195 Workers=6/6
+[1405s] Best=3.010195 Workers=6/6
+[1415s] Best=3.010195 Workers=6/6
+[1425s] Best=3.010195 Workers=6/6
+[1435s] Best=3.010195 Workers=6/6
+[1445s] Best=3.010195 Workers=6/6
+  [w1_topo_5_10_20] VALID: 3.172236 (best: 3.010195)
+  [w1_topo_5_10_21] starting
+  [w0_best_tight_21] VALID: 3.226835 (best: 3.010195)
+  [w0_best_tight_22] starting
+[1455s] Best=3.010195 Workers=6/6
+  [w3_topo_2_5_8_20] VALID: 3.228340 (best: 3.010195)
+  [w3_topo_2_5_8_21] starting
+  [w2_topo_3_5_7_20] VALID: 3.146298 (best: 3.010195)
+  [w2_topo_3_5_7_21] starting
+  [w4_topo_3_4_8_20] VALID: 3.838074 (best: 3.010195)
+  [w4_topo_3_4_8_21] starting
+  [w5_best_large_21] VALID: 3.693302 (best: 3.010195)
+  [w5_best_large_22] starting
+[1465s] Best=3.010195 Workers=6/6
+[1475s] Best=3.010195 Workers=6/6
+[1485s] Best=3.010195 Workers=6/6
+[1496s] Best=3.010195 Workers=6/6
+[1506s] Best=3.010195 Workers=6/6
+[1516s] Best=3.010195 Workers=6/6
+  [w1_topo_5_10_21] VALID: 6.465302 (best: 3.010195)
+  [w1_topo_5_10_22] starting
+  [w0_best_tight_22] VALID: 3.197742 (best: 3.010195)
+  [w0_best_tight_23] starting
+[1526s] Best=3.010195 Workers=6/6
+  [w3_topo_2_5_8_21] VALID: 3.631308 (best: 3.010195)
+  [w3_topo_2_5_8_22] starting
+  [w2_topo_3_5_7_21] VALID: 4.821712 (best: 3.010195)
+  [w2_topo_3_5_7_22] starting
+  [w5_best_large_22] no feasible result
+  [w5_best_large_23] starting
+[1536s] Best=3.010195 Workers=6/6
+  [w4_topo_3_4_8_21] VALID: 4.714467 (best: 3.010195)
+  [w4_topo_3_4_8_22] starting
+[1546s] Best=3.010195 Workers=6/6
+[1556s] Best=3.010195 Workers=6/6
+[1566s] Best=3.010195 Workers=6/6
+[1576s] Best=3.010195 Workers=6/6
+[1587s] Best=3.010195 Workers=6/6
+  [w1_topo_5_10_22] VALID: 4.414730 (best: 3.010195)
+  [w1_topo_5_10_23] starting
+  [w0_best_tight_23] no feasible result
+  [w0_best_tight_24] starting
+[1597s] Best=3.010195 Workers=6/6
+  [w5_best_large_23] VALID: 3.984514 (best: 3.010195)
+  [w5_best_large_24] starting
+  [w3_topo_2_5_8_22] VALID: 3.156567 (best: 3.010195)
+  [w3_topo_2_5_8_23] starting
+  [w2_topo_3_5_7_22] VALID: 4.640616 (best: 3.010195)
+  [w2_topo_3_5_7_23] starting
+[1607s] Best=3.010195 Workers=6/6
+  [w4_topo_3_4_8_22] VALID: 3.590567 (best: 3.010195)
+  [w4_topo_3_4_8_23] starting
+[1617s] Best=3.010195 Workers=6/6
+[1627s] Best=3.010195 Workers=6/6
+[1637s] Best=3.010195 Workers=6/6
+[1647s] Best=3.010195 Workers=6/6
+[1657s] Best=3.010195 Workers=6/6
+  [w0_best_tight_24] VALID: 3.124750 (best: 3.010195)
+  [w0_best_tight_25] starting
+  [w1_topo_5_10_23] no feasible result
+  [w1_topo_5_10_24] starting
+[1667s] Best=3.010195 Workers=6/6
+  [w5_best_large_24] no feasible result
+  [w5_best_large_25] starting
+[1678s] Best=3.010195 Workers=6/6
+  [w3_topo_2_5_8_23] VALID: 3.945843 (best: 3.010195)
+  [w3_topo_2_5_8_24] starting
+  [w2_topo_3_5_7_23] VALID: 3.563543 (best: 3.010195)
+  [w2_topo_3_5_7_24] starting
+  [w4_topo_3_4_8_23] VALID: 4.645068 (best: 3.010195)
+  [w4_topo_3_4_8_24] starting
+[1688s] Best=3.010195 Workers=6/6
+[1698s] Best=3.010195 Workers=6/6
+[1708s] Best=3.010195 Workers=6/6
+[1718s] Best=3.010195 Workers=6/6
+[1728s] Best=3.010195 Workers=6/6
+  [w0_best_tight_25] VALID: 3.111152 (best: 3.010195)
+  [w0_best_tight_26] starting
+  [w1_topo_5_10_24] VALID: 3.899919 (best: 3.010195)
+  [w1_topo_5_10_25] starting
+[1738s] Best=3.010195 Workers=6/6
+  [w5_best_large_25] no feasible result
+  [w5_best_large_26] starting
+[1748s] Best=3.010195 Workers=6/6
+  [w3_topo_2_5_8_24] VALID: 3.128819 (best: 3.010195)
+  [w3_topo_2_5_8_25] starting
+  [w2_topo_3_5_7_24] VALID: 3.121680 (best: 3.010195)
+  [w2_topo_3_5_7_25] starting
+[1758s] Best=3.010195 Workers=6/6
+  [w4_topo_3_4_8_24] VALID: 4.409415 (best: 3.010195)
+  [w4_topo_3_4_8_25] starting
+[1769s] Best=3.010195 Workers=6/6
+[1779s] Best=3.010195 Workers=6/6
+[1789s] Best=3.010195 Workers=6/6
+[1799s] Best=3.010195 Workers=6/6
+  [w0_best_tight_26] VALID: 3.187173 (best: 3.010195)
+  [w0_best_tight_27] starting
+[1809s] Best=3.010195 Workers=6/6
+  [w1_topo_5_10_25] VALID: 5.255843 (best: 3.010195)
+  [w1_topo_5_10_26] starting
+  [w5_best_large_26] VALID: 3.195670 (best: 3.010195)
+  [w5_best_large_27] starting
+[1819s] Best=3.010195 Workers=6/6
+  [w3_topo_2_5_8_25] VALID: 4.165823 (best: 3.010195)
+  [w3_topo_2_5_8_26] starting
+  [w2_topo_3_5_7_25] VALID: 3.359746 (best: 3.010195)
+  [w2_topo_3_5_7_26] starting
+[1829s] Best=3.010195 Workers=6/6
+  [w4_topo_3_4_8_25] VALID: 3.725668 (best: 3.010195)
+  [w4_topo_3_4_8_26] starting
+[1839s] Best=3.010195 Workers=6/6
+[1849s] Best=3.010195 Workers=6/6
+[1860s] Best=3.010195 Workers=6/6
+[1870s] Best=3.010195 Workers=6/6
+  [w0_best_tight_27] VALID: 3.129379 (best: 3.010195)
+  [w0_best_tight_28] starting
+[1880s] Best=3.010195 Workers=6/6
+  [w1_topo_5_10_26] VALID: 3.116638 (best: 3.010195)
+  [w1_topo_5_10_27] starting
+  [w5_best_large_27] VALID: 4.173165 (best: 3.010195)
+  [w5_best_large_28] starting
+[1890s] Best=3.010195 Workers=6/6
+  [w3_topo_2_5_8_26] VALID: 4.043522 (best: 3.010195)
+  [w3_topo_2_5_8_27] starting
+  [w2_topo_3_5_7_26] VALID: 3.452495 (best: 3.010195)
+  [w2_topo_3_5_7_27] starting
+[1900s] Best=3.010195 Workers=6/6
+[1910s] Best=3.010195 Workers=6/6
+  [w4_topo_3_4_8_26] VALID: 4.060046 (best: 3.010195)
+  [w4_topo_3_4_8_27] starting
+[1920s] Best=3.010195 Workers=6/6
+[1930s] Best=3.010195 Workers=6/6
+[1940s] Best=3.010195 Workers=6/6
+  [w0_best_tight_28] VALID: 3.126029 (best: 3.010195)
+  [w0_best_tight_29] starting
+[1950s] Best=3.010195 Workers=6/6
+  [w5_best_large_28] VALID: 3.460906 (best: 3.010195)
+  [w5_best_large_29] starting
+  [w1_topo_5_10_27] VALID: 3.860769 (best: 3.010195)
+  [w1_topo_5_10_28] starting
+[1961s] Best=3.010195 Workers=6/6
+[1971s] Best=3.010195 Workers=6/6
+  [w2_topo_3_5_7_27] VALID: 3.150930 (best: 3.010195)
+  [w2_topo_3_5_7_28] starting
+  [w3_topo_2_5_8_27] VALID: 3.249005 (best: 3.010195)
+  [w3_topo_2_5_8_28] starting
+[1981s] Best=3.010195 Workers=6/6
+  [w4_topo_3_4_8_27] VALID: 3.149921 (best: 3.010195)
+  [w4_topo_3_4_8_28] starting
+[1991s] Best=3.010195 Workers=6/6
+[2001s] Best=3.010195 Workers=6/6
+[2011s] Best=3.010195 Workers=6/6
+  [w0_best_tight_29] VALID: 3.079639 (best: 3.010195)
+  [w0_best_tight_30] starting
+[2021s] Best=3.010195 Workers=6/6
+  [w5_best_large_29] VALID: 4.673729 (best: 3.010195)
+  [w5_best_large_30] starting
+  [w1_topo_5_10_28] VALID: 3.863300 (best: 3.010195)
+  [w1_topo_5_10_29] starting
+[2031s] Best=3.010195 Workers=6/6
+[2041s] Best=3.010195 Workers=6/6
+  [w2_topo_3_5_7_28] VALID: 4.145188 (best: 3.010195)
+  [w2_topo_3_5_7_29] starting
+  [w3_topo_2_5_8_28] VALID: 4.405349 (best: 3.010195)
+  [w3_topo_2_5_8_29] starting
+[2051s] Best=3.010195 Workers=6/6

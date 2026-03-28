@@ -1,0 +1,162 @@
+Warming up Numba JIT...
+JIT ready.
+Starting best: 3.010195
+TARGET: R ≈ 2.96
+Strategy: Phase1 (hot 20M) → Phase2 (cold 200M) × 5 passes
+Launching 6 workers for 7200s
+  [w0_3-5-7_1] Phase1: hot compress
+  [w1_2-5-8_1] Phase1: hot compress
+  [w2_3-4-8_1] Phase1: hot compress
+  [w3_1-5-9_1] Phase1: hot compress
+  [w4_2-6-7_1] Phase1: hot compress
+  [w5_5-10_1] Phase1: hot compress
+[15s] Best=3.010195 Workers=6/6
+[30s] Best=3.010195 Workers=6/6
+  [w3_1-5-9_1] Phase1: R=3.5394
+  [w3_1-5-9_1] Phase1 too loose (3.539), restarting
+  [w3_1-5-9_2] Phase1: hot compress
+  [w5_5-10_1] Phase1: R=4.1960
+  [w5_5-10_1] Phase1 too loose (4.196), restarting
+  [w5_5-10_2] Phase1: hot compress
+  [w1_2-5-8_1] Phase1: R=4.0374
+  [w1_2-5-8_1] Phase1 too loose (4.037), restarting
+  [w1_2-5-8_2] Phase1: hot compress
+  [w2_3-4-8_1] Phase1: R=3.6373
+  [w2_3-4-8_1] Phase1 too loose (3.637), restarting
+  [w2_3-4-8_2] Phase1: hot compress
+  [w0_3-5-7_1] Phase1: R=3.1896
+  [w0_3-5-7_1] Phase2 pass 1: from R=3.1896
+[45s] Best=3.010195 Workers=6/6
+  [w4_2-6-7_1] Phase1: R=4.8659
+  [w4_2-6-7_1] Phase1 too loose (4.866), restarting
+  [w4_2-6-7_2] Phase1: hot compress
+[60s] Best=3.010195 Workers=6/6
+[75s] Best=3.010195 Workers=6/6
+  [w3_1-5-9_2] Phase1: R=3.5614
+  [w3_1-5-9_2] Phase1 too loose (3.561), restarting
+  [w3_1-5-9_3] Phase1: hot compress
+  [w5_5-10_2] Phase1: R=4.4767
+  [w5_5-10_2] Phase1 too loose (4.477), restarting
+  [w5_5-10_3] Phase1: hot compress
+  [w1_2-5-8_2] Phase1: R=3.1710
+  [w1_2-5-8_2] Phase2 pass 1: from R=3.1710
+  [w2_3-4-8_2] Phase1: R=4.2438
+  [w2_3-4-8_2] Phase1 too loose (4.244), restarting
+  [w2_3-4-8_3] Phase1: hot compress
+[90s] Best=3.010195 Workers=6/6
+  [w4_2-6-7_2] Phase1: R=3.2047
+  [w4_2-6-7_2] Phase2 pass 1: from R=3.2047
+[106s] Best=3.010195 Workers=6/6
+  [w3_1-5-9_3] Phase1: R=3.7505
+  [w3_1-5-9_3] Phase1 too loose (3.751), restarting
+  [w3_1-5-9_4] Phase1: hot compress
+  [w5_5-10_3] Phase1: R=4.5564
+  [w5_5-10_3] Phase1 too loose (4.556), restarting
+  [w5_5-10_4] Phase1: hot compress
+[121s] Best=3.010195 Workers=6/6
+  [w2_3-4-8_3] Phase1: R=3.1811
+  [w2_3-4-8_3] Phase2 pass 1: from R=3.1811
+[136s] Best=3.010195 Workers=6/6
+[151s] Best=3.010195 Workers=6/6
+  [w3_1-5-9_4] Phase1: R=3.2476
+  [w3_1-5-9_4] Phase2 pass 1: from R=3.2476
+  [w5_5-10_4] Phase1: R=4.6348
+  [w5_5-10_4] Phase1 too loose (4.635), restarting
+  [w5_5-10_5] Phase1: hot compress
+[166s] Best=3.010195 Workers=6/6
+[181s] Best=3.010195 Workers=6/6
+[196s] Best=3.010195 Workers=6/6
+  [w5_5-10_5] Phase1: R=6.4312
+  [w5_5-10_5] Phase1 too loose (6.431), restarting
+  [w5_5-10_6] Phase1: hot compress
+[211s] Best=3.010195 Workers=6/6
+[226s] Best=3.010195 Workers=6/6
+[241s] Best=3.010195 Workers=6/6
+  [w5_5-10_6] Phase1: R=4.9732
+  [w5_5-10_6] Phase1 too loose (4.973), restarting
+  [w5_5-10_7] Phase1: hot compress
+[256s] Best=3.010195 Workers=6/6
+[271s] Best=3.010195 Workers=6/6
+  [w5_5-10_7] Phase1: R=3.6148
+  [w5_5-10_7] Phase1 too loose (3.615), restarting
+  [w5_5-10_8] Phase1: hot compress
+[286s] Best=3.010195 Workers=6/6
+[301s] Best=3.010195 Workers=6/6
+[316s] Best=3.010195 Workers=6/6
+  [w5_5-10_8] Phase1: R=4.6447
+  [w5_5-10_8] Phase1 too loose (4.645), restarting
+  [w5_5-10_9] Phase1: hot compress
+  [w0_3-5-7_1] Phase2 pass 1: R=3.094950 (best this chain: 3.189563)
+  [w0_3-5-7_1] Chain improved: R=3.094950
+  [w0_3-5-7_1] Phase2 pass 2: from R=3.0949
+[331s] Best=3.010195 Workers=6/6
+[347s] Best=3.010195 Workers=6/6
+[362s] Best=3.010195 Workers=6/6
+  [w5_5-10_9] Phase1: R=4.0261
+  [w5_5-10_9] Phase1 too loose (4.026), restarting
+  [w5_5-10_10] Phase1: hot compress
+  [w1_2-5-8_2] Phase2 pass 1: R=3.090845 (best this chain: 3.171030)
+  [w1_2-5-8_2] Chain improved: R=3.090845
+  [w1_2-5-8_2] Phase2 pass 2: from R=3.0908
+[377s] Best=3.010195 Workers=6/6
+  [w4_2-6-7_2] Phase2 pass 1: R=3.066787 (best this chain: 3.204677)
+  [w4_2-6-7_2] Chain improved: R=3.066787
+  [w4_2-6-7_2] Phase2 pass 2: from R=3.0668
+[392s] Best=3.010195 Workers=6/6
+  [w5_5-10_10] Phase1: R=3.1907
+  [w5_5-10_10] Phase2 pass 1: from R=3.1907
+[407s] Best=3.010195 Workers=6/6
+  [w2_3-4-8_3] Phase2 pass 1: R=3.063756 (best this chain: 3.181075)
+  [w2_3-4-8_3] Chain improved: R=3.063756
+  [w2_3-4-8_3] Phase2 pass 2: from R=3.0638
+[422s] Best=3.010195 Workers=6/6
+[437s] Best=3.010195 Workers=6/6
+  [w3_1-5-9_4] Phase2 pass 1: R=3.044335 (best this chain: 3.247603)
+  [w3_1-5-9_4] Chain improved: R=3.044335
+  [w3_1-5-9_4] Phase2 pass 2: from R=3.0443
+[452s] Best=3.010195 Workers=6/6
+[467s] Best=3.010195 Workers=6/6
+[482s] Best=3.010195 Workers=6/6
+[497s] Best=3.010195 Workers=6/6
+[512s] Best=3.010195 Workers=6/6
+[527s] Best=3.010195 Workers=6/6
+[542s] Best=3.010195 Workers=6/6
+[558s] Best=3.010195 Workers=6/6
+[573s] Best=3.010195 Workers=6/6
+[588s] Best=3.010195 Workers=6/6
+  [w0_3-5-7_1] Phase2 pass 2: R=3.086874 (best this chain: 3.094950)
+  [w0_3-5-7_1] Chain improved: R=3.086874
+  [w0_3-5-7_1] Phase2 pass 3: from R=3.0869
+[603s] Best=3.010195 Workers=6/6
+[618s] Best=3.010195 Workers=6/6
+[633s] Best=3.010195 Workers=6/6
+  [w1_2-5-8_2] Phase2 pass 2: R=3.090529 (best this chain: 3.090845)
+  [w1_2-5-8_2] Chain improved: R=3.090529
+  [w1_2-5-8_2] Phase2 pass 3: from R=3.0905
+[648s] Best=3.010195 Workers=6/6
+  [w4_2-6-7_2] Phase2 pass 2: R=3.080604 (best this chain: 3.066787)
+  [w4_2-6-7_2] Phase2 pass 3: from R=3.0668
+[663s] Best=3.010195 Workers=6/6
+  [w5_5-10_10] Phase2 pass 1: R=3.108647 (best this chain: 3.190723)
+  [w5_5-10_10] Chain improved: R=3.108647
+  [w5_5-10_10] Phase2 pass 2: from R=3.1086
+  [w2_3-4-8_3] Phase2 pass 2: R=3.075728 (best this chain: 3.063756)
+  [w2_3-4-8_3] Phase2 pass 3: from R=3.0638
+[678s] Best=3.010195 Workers=6/6
+[693s] Best=3.010195 Workers=6/6
+  [w3_1-5-9_4] Phase2 pass 2: R=3.094211 (best this chain: 3.044335)
+  [w3_1-5-9_4] Phase2 pass 3: from R=3.0443
+[708s] Best=3.010195 Workers=6/6
+[723s] Best=3.010195 Workers=6/6
+[738s] Best=3.010195 Workers=6/6
+[753s] Best=3.010195 Workers=6/6
+[768s] Best=3.010195 Workers=6/6
+[784s] Best=3.010195 Workers=6/6
+[799s] Best=3.010195 Workers=6/6
+[814s] Best=3.010195 Workers=6/6
+[829s] Best=3.010195 Workers=6/6
+[844s] Best=3.010195 Workers=6/6
+[859s] Best=3.010195 Workers=6/6
+  [w0_3-5-7_1] Phase2 pass 3: R=3.108800 (best this chain: 3.086874)
+  [w0_3-5-7_2] Phase1: hot compress
+[874s] Best=3.010195 Workers=6/6
