@@ -243,6 +243,167 @@ def seed_6_9(seed=None):
     return _shell_seed(6, 0, 9, 1.3, 0, 3.0, seed=seed)
 
 
+# ── Topology A: Conjugate-pair seeding ────────────────────────────────────────
+
+def _circle_pack_pairs(n_pairs, n_singles, pair_rings, single_rings, seed=None):
+    """
+    Circle-packing approach to conjugate pairs:
+    1. Place n_pairs "full disks" (center + radius 1) using distance > 2 constraint
+    2. Split each disk into 2 antiparallel semicircles at the same center
+    3. Place n_singles individual semicircles in remaining gaps
+    """
+    if seed is not None:
+        random.seed(seed)
+        np.random.seed(seed)
+
+    for attempt in range(80):
+        # Phase 1: place disk centers (simple distance check, no Shapely)
+        disk_xs, disk_ys = [], []
+        ok = True
+
+        for ring_r, ring_n in pair_rings:
+            base_a = random.uniform(0, 2 * math.pi / max(ring_n, 1))
+            angles = np.linspace(0, 2 * math.pi, ring_n, endpoint=False) + base_a
+            for a in angles:
+                placed = False
+                for tri in range(80):
+                    if tri < 20:
+                        r = ring_r + random.gauss(0, 0.1)
+                        ang = a + random.gauss(0, 0.1)
+                    elif tri < 60:
+                        r = ring_r + random.uniform(-0.3, 0.3)
+                        ang = a + random.uniform(-0.3, 0.3)
+                    else:
+                        r = ring_r + random.uniform(-0.6, 0.6)
+                        ang = random.uniform(0, 2 * math.pi)
+                    x = r * math.cos(ang)
+                    y = r * math.sin(ang)
+                    # Check distance > 2.02 from all existing disks
+                    collision = False
+                    for dx, dy in zip(disk_xs, disk_ys):
+                        if (x - dx) ** 2 + (y - dy) ** 2 < 2.02 ** 2:
+                            collision = True
+                            break
+                    if not collision:
+                        disk_xs.append(x)
+                        disk_ys.append(y)
+                        placed = True
+                        break
+                if not placed:
+                    ok = False
+                    break
+            if not ok:
+                break
+
+        if not ok or len(disk_xs) != n_pairs:
+            continue
+
+        # Phase 2: split each disk into antiparallel pair
+        xs, ys, ts = [], [], []
+        polys = []
+        for dx, dy in zip(disk_xs, disk_ys):
+            theta = random.uniform(0, 2 * math.pi)
+            xs.extend([dx, dx])
+            ys.extend([dy, dy])
+            ts.extend([theta, (theta + math.pi) % (2 * math.pi)])
+            polys.append(make_poly(dx, dy, theta))
+            polys.append(make_poly(dx, dy, (theta + math.pi) % (2 * math.pi)))
+
+        # Phase 3: place singles in gaps using Shapely
+        for ring_r, ring_n in single_rings:
+            base_a = random.uniform(0, 2 * math.pi / max(ring_n, 1))
+            angles = np.linspace(0, 2 * math.pi, ring_n, endpoint=False) + base_a
+            for a in angles:
+                placed = False
+                for tri in range(100):
+                    if tri < 20:
+                        r = ring_r + random.gauss(0, 0.15)
+                        ang = a + random.gauss(0, 0.1)
+                    elif tri < 60:
+                        r = ring_r + random.uniform(-0.5, 0.5)
+                        ang = a + random.uniform(-0.4, 0.4)
+                    else:
+                        r = random.uniform(0.2, ring_r + 1.0)
+                        ang = random.uniform(0, 2 * math.pi)
+                    x = r * math.cos(ang)
+                    y = r * math.sin(ang)
+                    t = random.uniform(0, 2 * math.pi)
+                    if _try_place(x, y, t, polys):
+                        xs.append(x); ys.append(y); ts.append(t)
+                        polys.append(make_poly(x, y, t))
+                        placed = True
+                        break
+                if not placed:
+                    ok = False
+                    break
+            if not ok:
+                break
+
+        if not ok or len(xs) != N:
+            continue
+
+        xsa = np.array(xs)
+        ysa = np.array(ys)
+        tsa = np.array(ts)
+
+        if _validate(xsa, ysa, tsa):
+            return xsa, ysa, tsa
+
+    return None
+
+
+def seed_conjugate(seed=None):
+    """
+    Conjugate-pair seeding: 6 pairs + 3 singles = 15.
+    Place 6 full disks via circle packing, split into antiparallel pairs,
+    then place 3 singles in gaps.
+    """
+    return _circle_pack_pairs(
+        n_pairs=6, n_singles=3,
+        pair_rings=[(1.0, 2), (2.5, 4)],
+        single_rings=[(1.8, 3)],
+        seed=seed)
+
+
+def seed_conjugate_7pairs(seed=None):
+    """
+    Conjugate-pair seeding: 7 pairs + 1 singleton = 15.
+    Place 7 full disks, split into antiparallel pairs, place 1 single.
+    1 center + 6 ring at r≈2.5.
+    """
+    return _circle_pack_pairs(
+        n_pairs=7, n_singles=1,
+        pair_rings=[(0.0, 1), (2.5, 6)],
+        single_rings=[(1.5, 1)],
+        seed=seed)
+
+
+# ── Topology B: C5 pentagonal symmetry ────────────────────────────────────────
+
+def seed_c5(seed=None):
+    """
+    C5 pentagonal symmetry: 5 conjugate pairs at 72° intervals + 5 outward singles.
+    Uses circle packing for pairs, then Shapely placement for singles.
+    """
+    return _circle_pack_pairs(
+        n_pairs=5, n_singles=5,
+        pair_rings=[(1.8, 5)],
+        single_rings=[(2.8, 5)],
+        seed=seed)
+
+
+def seed_c5_loose(seed=None):
+    """
+    4 conjugate pairs (1 center + 3 at r≈2.5) + 7 singles at r≈1.8.
+    Different pair topology from seed_conjugate and seed_c5.
+    """
+    return _circle_pack_pairs(
+        n_pairs=4, n_singles=7,
+        pair_rings=[(0.0, 1), (2.5, 3)],
+        single_rings=[(1.5, 4), (2.8, 3)],
+        seed=seed)
+
+
 # All seed generators in priority order
 SEED_GENERATORS = [
     ('4-11', seed_4_11),
@@ -262,6 +423,8 @@ def test_all_seeds():
         ('4-11', seed_4_11), ('5-10', seed_5_10), ('3-5-7', seed_3_5_7),
         ('2-5-8', seed_2_5_8), ('3-4-8', seed_3_4_8), ('1-5-9', seed_1_5_9),
         ('2-6-7', seed_2_6_7), ('6-9', seed_6_9),
+        ('conjugate', seed_conjugate), ('conjugate_7', seed_conjugate_7pairs),
+        ('c5', seed_c5), ('c5_loose', seed_c5_loose),
     ]
     for name, gen in all_gens:
         result = gen(seed=42)

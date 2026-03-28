@@ -67,9 +67,14 @@ def most_similar_idx(xs, ys, population):
 
 # ── Population Basin Hopping ─────────────────────────────────────────────────
 
-def run_pbh(n_pop=8, rounds=1000, verbose=True):
+def run_pbh(n_pop=8, rounds=1000, verbose=True, start=None, save_to_disk=True):
     """
     Population Basin Hopping main loop.
+
+    start: optional (xs, ys, ts) tuple to use as initial solution
+           instead of loading from best_solution.json.
+    save_to_disk: if False, do not save improvements to best_solution.json
+                  (useful for topology testing where start solutions are worse).
     """
     log = open(LOG_FILE, 'a')
     def logprint(msg):
@@ -77,8 +82,11 @@ def run_pbh(n_pop=8, rounds=1000, verbose=True):
         log.write(f"{time.strftime('%H:%M:%S')} {msg}\n")
         log.flush()
 
-    # Load current best
-    xs0, ys0, ts0 = load_best()
+    # Load current best or use provided start
+    if start is not None:
+        xs0, ys0, ts0 = start
+    else:
+        xs0, ys0, ts0 = load_best()
     r0 = official_validate(xs0, ys0, ts0)
     if not r0.valid:
         logprint("WARNING: loaded solution invalid!")
@@ -131,7 +139,8 @@ def run_pbh(n_pop=8, rounds=1000, verbose=True):
                     global_best = nscore
                     R = global_best + 0.01
                     cxs, cys, cts = center_solution(nxs, nys, nts)
-                    save_best(cxs, cys, cts, global_best)
+                    if save_to_disk:
+                        save_best(cxs, cys, cts, global_best)
                     logprint(f"  [{rnd+1:4d}.{mi}] ★ {kind:10s} → R={global_best:.6f}")
             else:
                 # Update member in-place even without global improvement
@@ -151,7 +160,8 @@ def run_pbh(n_pop=8, rounds=1000, verbose=True):
                     global_best = nscore
                     R = global_best + 0.01
                     cxs, cys, cts = center_solution(nxs, nys, nts)
-                    save_best(cxs, cys, cts, global_best)
+                    if save_to_disk:
+                        save_best(cxs, cys, cts, global_best)
                     logprint(f"  [{rnd+1:4d}] ★ FSS_escape → R={global_best:.6f}")
                 fss_counter = 0
 
@@ -164,7 +174,7 @@ def run_pbh(n_pop=8, rounds=1000, verbose=True):
                      f"pop_best={best_pop:.6f} valid={n_valid}/{len(population)} ---")
 
         # Reload from disk periodically (coordination with other workers)
-        if (rnd + 1) % 50 == 0:
+        if save_to_disk and (rnd + 1) % 50 == 0:
             try:
                 dxs, dys, dts = load_best()
                 dr = official_validate(dxs, dys, dts)
