@@ -305,6 +305,142 @@ def start_d1_symmetric(seed=None):
     return None
 
 
+def start_three_shell(seed=None):
+    """
+    3-shell start: ~3 inner (r~0.5-0.9), ~5 mid (r~1.2-1.6), ~7 outer (r~1.9-2.2).
+    Motivated by: current best has 0 mid-shell semicircles — a different topology
+    may have a lower enclosing radius.
+    Orientations: inner arcs point outward, mid arcs tangential, outer arcs inward.
+    """
+    if seed is not None:
+        random.seed(seed)
+    for attempt in range(200):
+        xs, ys, ts = [], [], []
+        polys = []
+
+        # Inner shell: 3 semicircles, arcs pointing outward (toward boundary)
+        inner_n = 3
+        for i in range(inner_n):
+            placed = False
+            for _ in range(200):
+                r = random.uniform(0.3, 0.9)
+                a = random.uniform(0, 2 * math.pi)
+                x, y = r * math.cos(a), r * math.sin(a)
+                t = a + random.gauss(0, 0.3)  # arc mostly outward
+                p = make_poly(x, y, t)
+                if all(p.intersection(ep).area < 1e-6 for ep in polys):
+                    xs.append(x); ys.append(y); ts.append(t)
+                    polys.append(p); placed = True; break
+            if not placed:
+                break
+        if len(xs) < inner_n:
+            continue
+
+        # Mid shell: 5 semicircles, arcs tangential (~90° from radial)
+        mid_n = 5
+        for i in range(mid_n):
+            placed = False
+            for _ in range(300):
+                r = random.uniform(1.1, 1.6)
+                a = random.uniform(0, 2 * math.pi)
+                x, y = r * math.cos(a), r * math.sin(a)
+                t = a + math.pi / 2 + random.gauss(0, 0.4)  # tangential
+                p = make_poly(x, y, t)
+                if all(p.intersection(ep).area < 1e-6 for ep in polys):
+                    xs.append(x); ys.append(y); ts.append(t)
+                    polys.append(p); placed = True; break
+            if not placed:
+                break
+        if len(xs) < inner_n + mid_n:
+            continue
+
+        # Outer shell: 7 semicircles, arcs pointing inward
+        outer_n = N - inner_n - mid_n  # 7
+        for i in range(outer_n):
+            placed = False
+            for _ in range(400):
+                r = random.uniform(1.8, 2.3)
+                a = random.uniform(0, 2 * math.pi)
+                x, y = r * math.cos(a), r * math.sin(a)
+                t = a + math.pi + random.gauss(0, 0.3)  # arc inward
+                p = make_poly(x, y, t)
+                if all(p.intersection(ep).area < 1e-6 for ep in polys):
+                    xs.append(x); ys.append(y); ts.append(t)
+                    polys.append(p); placed = True; break
+            if not placed:
+                break
+        if len(xs) == N:
+            sol = [Semicircle(xs[i], ys[i], ts[i]) for i in range(N)]
+            if validate_and_score(sol).valid:
+                return np.array(xs), np.array(ys), np.array(ts)
+    return None
+
+
+def start_with_conjugate_pairs(seed=None):
+    """
+    Seed with explicit conjugate pairs: two semicircles with antiparallel normals,
+    nested flat-to-flat (d < 2.0, n_dot ≈ -1). Theory suggests optimal packing
+    for non-centrally-symmetric shapes uses conjugate pairs.
+    Try 5 conjugate pairs (10 semicircles) + 5 singles.
+    """
+    if seed is not None:
+        random.seed(seed)
+    for attempt in range(200):
+        xs, ys, ts = [], [], []
+        polys = []
+
+        # Place 5 conjugate pairs
+        n_pairs = 5
+        placed_pairs = 0
+        for _ in range(500):
+            if placed_pairs >= n_pairs:
+                break
+            r = random.uniform(0.5, 2.0)
+            a = random.uniform(0, 2 * math.pi)
+            cx, cy = r * math.cos(a), r * math.sin(a)
+            t1 = random.uniform(0, 2 * math.pi)
+            t2 = (t1 + math.pi) % (2 * math.pi)  # antiparallel = conjugate
+            # Offset the pair slightly so they don't exactly overlap
+            offset = random.uniform(0.05, 0.3)
+            oa = random.uniform(0, 2 * math.pi)
+            x1 = cx + offset * math.cos(oa)
+            y1 = cy + offset * math.sin(oa)
+            x2 = cx - offset * math.cos(oa)
+            y2 = cy - offset * math.sin(oa)
+            p1 = make_poly(x1, y1, t1)
+            p2 = make_poly(x2, y2, t2)
+            if (all(p1.intersection(ep).area < 1e-6 for ep in polys) and
+                    p1.intersection(p2).area < 1e-6 and
+                    all(p2.intersection(ep).area < 1e-6 for ep in polys + [p1])):
+                xs += [x1, x2]; ys += [y1, y2]; ts += [t1, t2]
+                polys += [p1, p2]
+                placed_pairs += 1
+
+        if placed_pairs < 3:
+            continue
+
+        # Fill remaining with random valid
+        for _ in range(N - len(xs)):
+            placed = False
+            for _ in range(300):
+                r = random.uniform(0.3, 2.5)
+                a = random.uniform(0, 2 * math.pi)
+                x, y = r * math.cos(a), r * math.sin(a)
+                t = random.uniform(0, 2 * math.pi)
+                p = make_poly(x, y, t)
+                if all(p.intersection(ep).area < 1e-6 for ep in polys):
+                    xs.append(x); ys.append(y); ts.append(t)
+                    polys.append(p); placed = True; break
+            if not placed:
+                break
+
+        if len(xs) == N:
+            sol = [Semicircle(xs[i], ys[i], ts[i]) for i in range(N)]
+            if validate_and_score(sol).valid:
+                return np.array(xs), np.array(ys), np.array(ts)
+    return None
+
+
 def start_random_valid(r_max=2.8, seed=None):
     if seed: random.seed(seed)
     for _ in range(100):
@@ -334,30 +470,30 @@ def start_random_valid(r_max=2.8, seed=None):
 STRATEGIES = [
     # (name, builder, T_start, T_end, lam_start, lam_end, n_steps)
     # 12 workers on 16-core machine.
-    # Heavy exploitation near best (6 workers), moderate perturbation (4), exploration (2).
+    # Mix: tight exploitation, cluster-move exploitation, 3-shell, conjugate-pair basin.
 
-    # n_steps bumped to 50M — at ~988k steps/sec that's ~50s per run
-    # (vs 37 min with Shapely at 2M steps)
-
-    # --- Tight exploitation: tiny noise, very cold SA, high lam ---
+    # --- Tight exploitation near best (standard single-particle moves) ---
     ('from_best_tight_0', lambda: start_from_best(0.01),  0.10, 0.0002, 2000, 20000, 50_000_000),
     ('from_best_tight_1', lambda: start_from_best(0.02),  0.15, 0.0003, 1000, 15000, 50_000_000),
     ('from_best_tight_2', lambda: start_from_best(0.03),  0.20, 0.0004,  800, 12000, 50_000_000),
-    ('from_best_tight_3', lambda: start_from_best(0.01),  0.08, 0.0002, 3000, 25000, 50_000_000),
 
-    # --- Medium perturbation: escape local basin, still near best ---
+    # --- Cluster-move workers: same starts, higher cluster_prob ---
+    # Flagged with 'cluster' in name so worker can pass cluster_prob=0.30
+    ('from_best_cluster_0', lambda: start_from_best(0.02), 0.15, 0.0003, 1000, 15000, 50_000_000),
+    ('from_best_cluster_1', lambda: start_from_best(0.05), 0.25, 0.0005,  600, 10000, 50_000_000),
+    ('from_best_cluster_2', lambda: start_from_best(0.10), 0.35, 0.0006,  400,  8000, 50_000_000),
+
+    # --- Medium perturbation ---
     ('from_best_med_0',   lambda: start_from_best(0.08),  0.40, 0.0008,  300,  8000, 50_000_000),
-    ('from_best_med_1',   lambda: start_from_best(0.12),  0.50, 0.0008,  200,  6000, 50_000_000),
-    ('from_best_med_2',   lambda: start_from_best(0.06),  0.30, 0.0006,  400, 10000, 50_000_000),
-    ('from_best_med_3',   lambda: start_from_best(0.15),  0.60, 0.001,   150,  5000, 50_000_000),
+    ('from_best_med_1',   lambda: start_from_best(0.15),  0.55, 0.001,   200,  6000, 50_000_000),
 
-    # --- Large perturbation: different basin entirely ---
-    ('from_best_large_0', lambda: start_from_best(0.25),  1.0,  0.001,   50,  3000, 50_000_000),
-    ('from_best_large_1', lambda: start_from_best(0.35),  1.2,  0.001,   30,  2500, 50_000_000),
+    # --- New topologies ---
+    ('three_shell_0',      lambda: start_three_shell() or start_random_valid(2.8),          1.5, 0.001, 10, 3000, 50_000_000),
+    ('three_shell_1',      lambda: start_three_shell() or start_random_valid(2.8),          1.5, 0.001, 10, 3000, 50_000_000),
+    ('conjugate_pairs_0',  lambda: start_with_conjugate_pairs() or start_random_valid(2.8), 1.5, 0.001, 10, 3000, 50_000_000),
 
-    # --- Diverse starts: escape from best-solution basin entirely ---
-    ('d1_symmetric',      lambda: start_d1_symmetric() or start_random_valid(2.8), 1.2, 0.001, 8, 3000, 50_000_000),
-    ('random_valid',      lambda: start_random_valid(2.8), 1.5, 0.001, 5, 3000, 50_000_000),
+    # --- Large perturbation for basin escape ---
+    ('from_best_large_0', lambda: start_from_best(0.30),  1.0,  0.001,   50,  3000, 50_000_000),
 ]
 
 
@@ -387,12 +523,13 @@ def worker(worker_id, global_best, result_queue, stop_event):
                 continue
             xs, ys, ts = init
         run_seed = run * 137 * (worker_id + 1)
+        cluster_prob = 0.30 if 'cluster' in name else 0.15
         if USE_NUMBA:
             rx, ry, rt, r_fast = _sa_numba(
                 xs, ys, ts,
                 n_steps=n_steps, T_start=T_start, T_end=T_end,
                 lam_start=lam_start, lam_end=lam_end,
-                seed=run_seed)
+                seed=run_seed, cluster_prob=cluster_prob)
             if rx is None:
                 print(f"  [{label}] no feasible result", flush=True)
                 continue

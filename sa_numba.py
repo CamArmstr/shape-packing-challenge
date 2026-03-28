@@ -100,28 +100,32 @@ def overlap_energy_for_idx(xs, ys, ts, idx):
 # ── Full SA loop ─────────────────────────────────────────────────────────────
 
 @nb.njit(cache=True)
-def sa_run_numba(xs, ys, ts, n_steps, T_start, T_end, lam_start, lam_end, seed):
+def sa_run_numba(xs, ys, ts, n_steps, T_start, T_end, lam_start, lam_end, seed,
+                 cluster_prob=0.15):
     """
     Simulated annealing loop for semicircle packing — pure Numba.
+
+    Move types:
+    - Single-particle: translate, rotate, squeeze-to-centroid, translate+rotate
+    - Cluster move (cluster_prob): pick 2-4 nearest neighbors, translate/rotate as rigid body
+      This allows correlated motion of tightly packed groups (especially the inner core)
+      without requiring each individual move to be accepted in sequence.
 
     Returns (best_xs, best_ys, best_ts, best_r, found_feasible).
     """
     np.random.seed(seed)
     n = xs.shape[0]
 
-    # Work on copies
     cur_xs = xs.copy()
     cur_ys = ys.copy()
     cur_ts = ts.copy()
 
-    # Best feasible tracking
     best_xs = xs.copy()
     best_ys = ys.copy()
     best_ts = ts.copy()
     best_r = 1e18
     found_feasible = False
 
-    # Current state
     cur_ovlp = overlap_energy_nb(cur_xs, cur_ys, cur_ts)
     cur_rf = r_fast_nb(cur_xs, cur_ys)
     lam = lam_start
@@ -134,79 +138,173 @@ def sa_run_numba(xs, ys, ts, n_steps, T_start, T_end, lam_start, lam_end, seed):
         frac = step / n_steps
         T = T_start * math.exp(log_ratio_T * frac)
         lam = lam_start * math.exp(log_ratio_lam * frac)
-
         scale = 0.25 * (1.0 - 0.85 * frac) + 0.002
 
-        idx = np.random.randint(0, n)
-        old_x = cur_xs[idx]
-        old_y = cur_ys[idx]
-        old_t = cur_ts[idx]
-
-        # Old overlap contribution for this index
-        old_idx_ovlp = overlap_energy_for_idx(cur_xs, cur_ys, cur_ts, idx)
-
-        # Propose move
         m = np.random.random()
-        if m < 0.30:
-            # Translate
-            cur_xs[idx] += np.random.randn() * scale
-            cur_ys[idx] += np.random.randn() * scale
-        elif m < 0.50:
-            # Rotate
-            cur_ts[idx] += np.random.randn() * scale * 3.0
-            cur_ts[idx] = cur_ts[idx] % TWO_PI
-        elif m < 0.80:
-            # Squeeze toward centroid + small rotate
-            cx = 0.0
-            cy = 0.0
+
+        if m < cluster_prob:
+            # ── Cluster move: rigid-body translate+rotate of 2-4 nearest neighbors ──
+            # Pick an anchor particle
+            anchor = np.random.randint(0, n)
+
+            # Find 2-3 nearest neighbors by center distance
+            cluster_size = 2 + np.random.randint(0, 3)  # 2, 3, or 4
+            dists_sq = np.empty(n)
             for k in range(n):
-                cx += cur_xs[k]
-                cy += cur_ys[k]
-            cx /= n
-            cy /= n
-            dx = cx - cur_xs[idx]
-            dy = cy - cur_ys[idx]
-            d = math.sqrt(dx * dx + dy * dy)
-            if d > 0.01:
-                cur_xs[idx] += scale * 0.4 * dx / d
-                cur_ys[idx] += scale * 0.4 * dy / d
-            cur_ts[idx] += np.random.randn() * scale
-            cur_ts[idx] = cur_ts[idx] % TWO_PI
-        else:
-            # Translate + rotate
-            cur_xs[idx] += np.random.randn() * scale * 0.5
-            cur_ys[idx] += np.random.randn() * scale * 0.5
-            cur_ts[idx] += np.random.randn() * scale * 2.0
-            cur_ts[idx] = cur_ts[idx] % TWO_PI
+                dists_sq[k] = (cur_xs[k] - cur_xs[anchor])**2 + (cur_ys[k] - cur_ys[anchor])**2
+            dists_sq[anchor] = 1e18  # exclude self
 
-        # New overlap contribution
-        new_idx_ovlp = overlap_energy_for_idx(cur_xs, cur_ys, cur_ts, idx)
-        new_ovlp = cur_ovlp - old_idx_ovlp + new_idx_ovlp
-
-        new_rf = r_fast_nb(cur_xs, cur_ys)
-        new_obj = new_rf + lam * new_ovlp
-
-        delta = new_obj - cur_obj
-
-        if delta < 0.0 or np.random.random() < math.exp(-delta / max(T, 1e-15)):
-            # Accept
-            cur_ovlp = new_ovlp
-            cur_rf = new_rf
-            cur_obj = new_obj
-
-            # Track best feasible
-            if new_ovlp < 1e-5 and new_rf < best_r:
-                best_r = new_rf
+            # Pick closest cluster_size neighbors
+            cluster = np.empty(cluster_size + 1, dtype=nb.int64)
+            cluster[0] = anchor
+            taken = np.zeros(n, dtype=nb.boolean)
+            taken[anchor] = True
+            for ci in range(cluster_size):
+                best_k = -1
+                best_d = 1e18
                 for k in range(n):
-                    best_xs[k] = cur_xs[k]
-                    best_ys[k] = cur_ys[k]
-                    best_ts[k] = cur_ts[k]
-                found_feasible = True
+                    if not taken[k] and dists_sq[k] < best_d:
+                        best_d = dists_sq[k]
+                        best_k = k
+                if best_k >= 0:
+                    cluster[ci + 1] = best_k
+                    taken[best_k] = True
+                else:
+                    cluster_size = ci
+                    break
+            actual_size = cluster_size + 1
+
+            # Save old state for all cluster members
+            old_xs_c = np.empty(actual_size)
+            old_ys_c = np.empty(actual_size)
+            old_ts_c = np.empty(actual_size)
+            for ci in range(actual_size):
+                k = cluster[ci]
+                old_xs_c[ci] = cur_xs[k]
+                old_ys_c[ci] = cur_ys[k]
+                old_ts_c[ci] = cur_ts[k]
+
+            # Compute old overlap for all cluster members
+            old_cluster_ovlp = 0.0
+            for ci in range(actual_size):
+                old_cluster_ovlp += overlap_energy_for_idx(cur_xs, cur_ys, cur_ts, cluster[ci])
+            # Subtract double-counted intra-cluster pairs
+            for ci in range(actual_size):
+                for cj in range(ci + 1, actual_size):
+                    ii = cluster[ci]; jj = cluster[cj]
+                    p = phi_pair_nb(cur_xs[ii], cur_ys[ii], cur_ts[ii],
+                                    cur_xs[jj], cur_ys[jj], cur_ts[jj])
+                    v = -p if p < 0.0 else 0.0
+                    old_cluster_ovlp -= v * v
+
+            # Propose rigid-body move: translate + optional rotation around centroid
+            dx = np.random.randn() * scale * 0.7
+            dy = np.random.randn() * scale * 0.7
+            dtheta = np.random.randn() * scale * 1.5  # rotation of the whole cluster
+
+            # Compute cluster centroid
+            cx = 0.0; cy = 0.0
+            for ci in range(actual_size):
+                cx += cur_xs[cluster[ci]]
+                cy += cur_ys[cluster[ci]]
+            cx /= actual_size; cy /= actual_size
+
+            # Apply rotation + translation
+            cos_dt = math.cos(dtheta); sin_dt = math.sin(dtheta)
+            for ci in range(actual_size):
+                k = cluster[ci]
+                rx = cur_xs[k] - cx; ry = cur_ys[k] - cy
+                cur_xs[k] = cx + cos_dt * rx - sin_dt * ry + dx
+                cur_ys[k] = cy + sin_dt * rx + cos_dt * ry + dy
+                cur_ts[k] = (cur_ts[k] + dtheta) % TWO_PI
+
+            # Compute new overlap
+            new_cluster_ovlp = 0.0
+            for ci in range(actual_size):
+                new_cluster_ovlp += overlap_energy_for_idx(cur_xs, cur_ys, cur_ts, cluster[ci])
+            for ci in range(actual_size):
+                for cj in range(ci + 1, actual_size):
+                    ii = cluster[ci]; jj = cluster[cj]
+                    p = phi_pair_nb(cur_xs[ii], cur_ys[ii], cur_ts[ii],
+                                    cur_xs[jj], cur_ys[jj], cur_ts[jj])
+                    v = -p if p < 0.0 else 0.0
+                    new_cluster_ovlp -= v * v
+
+            new_ovlp = cur_ovlp - old_cluster_ovlp + new_cluster_ovlp
+            new_rf = r_fast_nb(cur_xs, cur_ys)
+            new_obj = new_rf + lam * new_ovlp
+            delta = new_obj - cur_obj
+
+            if delta < 0.0 or np.random.random() < math.exp(-delta / max(T, 1e-15)):
+                cur_ovlp = new_ovlp
+                cur_rf = new_rf
+                cur_obj = new_obj
+                if new_ovlp < 1e-5 and new_rf < best_r:
+                    best_r = new_rf
+                    for k in range(n):
+                        best_xs[k] = cur_xs[k]
+                        best_ys[k] = cur_ys[k]
+                        best_ts[k] = cur_ts[k]
+                    found_feasible = True
+            else:
+                for ci in range(actual_size):
+                    k = cluster[ci]
+                    cur_xs[k] = old_xs_c[ci]
+                    cur_ys[k] = old_ys_c[ci]
+                    cur_ts[k] = old_ts_c[ci]
+
         else:
-            # Reject — revert
-            cur_xs[idx] = old_x
-            cur_ys[idx] = old_y
-            cur_ts[idx] = old_t
+            # ── Single-particle move ──────────────────────────────────────────────
+            idx = np.random.randint(0, n)
+            old_x = cur_xs[idx]
+            old_y = cur_ys[idx]
+            old_t = cur_ts[idx]
+
+            old_idx_ovlp = overlap_energy_for_idx(cur_xs, cur_ys, cur_ts, idx)
+
+            mv = np.random.random()
+            if mv < 0.30:
+                cur_xs[idx] += np.random.randn() * scale
+                cur_ys[idx] += np.random.randn() * scale
+            elif mv < 0.50:
+                cur_ts[idx] = (cur_ts[idx] + np.random.randn() * scale * 3.0) % TWO_PI
+            elif mv < 0.80:
+                cx = 0.0; cy = 0.0
+                for k in range(n):
+                    cx += cur_xs[k]; cy += cur_ys[k]
+                cx /= n; cy /= n
+                dx = cx - cur_xs[idx]; dy = cy - cur_ys[idx]
+                d = math.sqrt(dx * dx + dy * dy)
+                if d > 0.01:
+                    cur_xs[idx] += scale * 0.4 * dx / d
+                    cur_ys[idx] += scale * 0.4 * dy / d
+                cur_ts[idx] = (cur_ts[idx] + np.random.randn() * scale) % TWO_PI
+            else:
+                cur_xs[idx] += np.random.randn() * scale * 0.5
+                cur_ys[idx] += np.random.randn() * scale * 0.5
+                cur_ts[idx] = (cur_ts[idx] + np.random.randn() * scale * 2.0) % TWO_PI
+
+            new_idx_ovlp = overlap_energy_for_idx(cur_xs, cur_ys, cur_ts, idx)
+            new_ovlp = cur_ovlp - old_idx_ovlp + new_idx_ovlp
+            new_rf = r_fast_nb(cur_xs, cur_ys)
+            new_obj = new_rf + lam * new_ovlp
+            delta = new_obj - cur_obj
+
+            if delta < 0.0 or np.random.random() < math.exp(-delta / max(T, 1e-15)):
+                cur_ovlp = new_ovlp
+                cur_rf = new_rf
+                cur_obj = new_obj
+                if new_ovlp < 1e-5 and new_rf < best_r:
+                    best_r = new_rf
+                    for k in range(n):
+                        best_xs[k] = cur_xs[k]
+                        best_ys[k] = cur_ys[k]
+                        best_ts[k] = cur_ts[k]
+                    found_feasible = True
+            else:
+                cur_xs[idx] = old_x
+                cur_ys[idx] = old_y
+                cur_ts[idx] = old_t
 
     return best_xs, best_ys, best_ts, best_r, found_feasible
 
@@ -229,7 +327,7 @@ def _shapely_validate(xs, ys, ts):
 
 def sa_run_numba_wrapper(xs, ys, ts, n_steps=50_000_000, T_start=0.25, T_end=0.0005,
                          lam_start=500.0, lam_end=5000.0, seed=42,
-                         shapely_check_interval=1_000_000):
+                         shapely_check_interval=1_000_000, cluster_prob=0.15):
     """
     Chunked SA runner with Shapely feasibility gating.
 
@@ -275,7 +373,8 @@ def sa_run_numba_wrapper(xs, ys, ts, n_steps=50_000_000, T_start=0.25, T_end=0.0
 
         bx, by, bt, br, found = sa_run_numba(
             cur_xs, cur_ys, cur_ts,
-            chunk_size, T_s, T_e, lam_s, lam_e, chunk_seed
+            chunk_size, T_s, T_e, lam_s, lam_e, chunk_seed,
+            cluster_prob
         )
 
         # Carry state forward: use the final accepted state (which is cur_xs after
