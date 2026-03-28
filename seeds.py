@@ -404,6 +404,118 @@ def seed_c5_loose(seed=None):
         seed=seed)
 
 
+# ── Topology D: Brick-wall strip seeding ───────────────────────────────────────
+
+def seed_brickwall(seed=None):
+    """
+    3×5 brick-wall grid: even rows at x=0,2.1,...  odd row offset by half-spacing.
+    Even rows arc up (θ=π/2), odd rows arc down (θ=-π/2).
+    """
+    if seed is not None:
+        random.seed(seed)
+        np.random.seed(seed)
+
+    for attempt in range(50):
+        xs, ys, ts = [], [], []
+        for row in range(3):
+            for col in range(5):
+                if row % 2 == 0:
+                    x = col * 2.1 + random.uniform(-0.1, 0.1)
+                    y = row * 2.0 + random.uniform(-0.1, 0.1)
+                    t = math.pi / 2 + random.uniform(-0.2, 0.2)
+                else:
+                    x = col * 2.1 + 1.05 + random.uniform(-0.1, 0.1)
+                    y = row * 2.0 + random.uniform(-0.1, 0.1)
+                    t = -math.pi / 2 + random.uniform(-0.2, 0.2)
+                xs.append(x)
+                ys.append(y)
+                ts.append(t)
+
+        # Center the configuration
+        cx = sum(xs) / len(xs)
+        cy = sum(ys) / len(ys)
+        xs = [x - cx for x in xs]
+        ys = [y - cy for y in ys]
+
+        xsa, ysa, tsa = np.array(xs), np.array(ys), np.array(ts)
+        if _validate(xsa, ysa, tsa):
+            return xsa, ysa, tsa
+
+    return None
+
+
+def seed_brickwall_tight(seed=None):
+    """
+    Tighter brick-wall: spacing 2.05x, 1.8y. Nearly touching semicircles.
+    """
+    if seed is not None:
+        random.seed(seed)
+        np.random.seed(seed)
+
+    for attempt in range(50):
+        xs, ys, ts = [], [], []
+        for row in range(3):
+            for col in range(5):
+                if row % 2 == 0:
+                    x = col * 2.05 + random.uniform(-0.05, 0.05)
+                    y = row * 1.8 + random.uniform(-0.05, 0.05)
+                    t = math.pi / 2 + random.uniform(-0.1, 0.1)
+                else:
+                    x = col * 2.05 + 1.025 + random.uniform(-0.05, 0.05)
+                    y = row * 1.8 + random.uniform(-0.05, 0.05)
+                    t = -math.pi / 2 + random.uniform(-0.1, 0.1)
+                xs.append(x)
+                ys.append(y)
+                ts.append(t)
+
+        cx = sum(xs) / len(xs)
+        cy = sum(ys) / len(ys)
+        xs = [x - cx for x in xs]
+        ys = [y - cy for y in ys]
+
+        xsa, ysa, tsa = np.array(xs), np.array(ys), np.array(ts)
+        if _validate(xsa, ysa, tsa):
+            return xsa, ysa, tsa
+
+    return None
+
+
+def seed_brickwall_random(seed=None):
+    """
+    Brick-wall tight layout but random theta per semicircle (π/2 or -π/2)
+    and larger perturbation.
+    """
+    if seed is not None:
+        random.seed(seed)
+        np.random.seed(seed)
+
+    for attempt in range(50):
+        xs, ys, ts = [], [], []
+        for row in range(3):
+            for col in range(5):
+                if row % 2 == 0:
+                    x = col * 2.05 + random.uniform(-0.15, 0.15)
+                    y = row * 1.8 + random.uniform(-0.15, 0.15)
+                else:
+                    x = col * 2.05 + 1.025 + random.uniform(-0.15, 0.15)
+                    y = row * 1.8 + random.uniform(-0.15, 0.15)
+                t = random.choice([math.pi / 2, -math.pi / 2]) + random.uniform(-0.3, 0.3)
+                xs.append(x)
+                ys.append(y)
+                ts.append(t)
+
+        cx = sum(xs) / len(xs)
+        cy = sum(ys) / len(ys)
+        xs = [x - cx for x in xs]
+        ys = [y - cy for y in ys]
+
+        xsa, ysa, tsa = np.array(xs), np.array(ys), np.array(ts)
+        if _validate(xsa, ysa, tsa):
+            return xsa, ysa, tsa
+
+    return None
+
+
 # All seed generators in priority order
 SEED_GENERATORS = [
     ('4-11', seed_4_11),
@@ -425,6 +537,8 @@ def test_all_seeds():
         ('2-6-7', seed_2_6_7), ('6-9', seed_6_9),
         ('conjugate', seed_conjugate), ('conjugate_7', seed_conjugate_7pairs),
         ('c5', seed_c5), ('c5_loose', seed_c5_loose),
+        ('brickwall', seed_brickwall), ('brickwall_tight', seed_brickwall_tight),
+        ('brickwall_random', seed_brickwall_random),
     ]
     for name, gen in all_gens:
         result = gen(seed=42)

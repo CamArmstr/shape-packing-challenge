@@ -19,7 +19,8 @@ import sys
 import numpy as np
 
 sys.path.insert(0, os.path.dirname(__file__))
-from seeds import seed_conjugate, seed_conjugate_7pairs, seed_c5, seed_c5_loose
+from seeds import (seed_conjugate, seed_conjugate_7pairs, seed_c5, seed_c5_loose,
+                   seed_brickwall, seed_brickwall_tight, seed_brickwall_random)
 from pbh import run_pbh
 from mbh import official_validate, save_best, center_solution, BEST_FILE
 
@@ -96,14 +97,24 @@ def main():
     parser = argparse.ArgumentParser(description='Topology seed testing + PBH optimization')
     parser.add_argument('--trials', type=int, default=20, help='Number of seed trials per topology')
     parser.add_argument('--rounds', type=int, default=500, help='PBH rounds per valid start')
+    parser.add_argument('--topology', type=str, default=None, help='Run only this topology (conjugate/conjugate_7/c5/c5_loose)')
     args = parser.parse_args()
 
     topologies = [
-        ('seed_conjugate',   seed_conjugate),
-        ('seed_conjugate_7', seed_conjugate_7pairs),
-        ('seed_c5',          seed_c5),
-        ('seed_c5_loose',    seed_c5_loose),
+        ('seed_conjugate',        seed_conjugate),
+        ('seed_conjugate_7',      seed_conjugate_7pairs),
+        ('seed_c5',               seed_c5),
+        ('seed_c5_loose',         seed_c5_loose),
+        ('seed_brickwall',        seed_brickwall),
+        ('seed_brickwall_tight',  seed_brickwall_tight),
+        ('seed_brickwall_random', seed_brickwall_random),
     ]
+
+    if args.topology:
+        topologies = [(n, f) for n, f in topologies if n == args.topology]
+        if not topologies:
+            print(f"Unknown topology: {args.topology}. Choose from: conjugate, conjugate_7, c5, c5_loose")
+            sys.exit(1)
 
     results = []
     for name, gen_func in topologies:
