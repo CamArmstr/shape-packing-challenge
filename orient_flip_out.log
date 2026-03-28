@@ -1,0 +1,83 @@
+Total variants: 575 (15 singles + 105 pairs + ... = 575 expected)
+Using 6 workers, 5M steps each
+Start: R=2.975245
+Process Process-4:
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/camcore/.openclaw/workspace/shape-packing-challenge/orient_flip.py", line 62, in worker
+    saved, score = save_if_better(bx, by, bt, label)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/camcore/.openclaw/workspace/shape-packing-challenge/orient_flip.py", line 31, in save_if_better
+    sol = [Semicircle(float(xs[i]),float(ys[i]),float(ts[i])) for i in range(N)]
+                            ~~^^^
+TypeError: 'NoneType' object is not subscriptable
+Process Process-5:
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/camcore/.openclaw/workspace/shape-packing-challenge/orient_flip.py", line 62, in worker
+    saved, score = save_if_better(bx, by, bt, label)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/camcore/.openclaw/workspace/shape-packing-challenge/orient_flip.py", line 31, in save_if_better
+    sol = [Semicircle(float(xs[i]),float(ys[i]),float(ts[i])) for i in range(N)]
+                            ~~^^^
+TypeError: 'NoneType' object is not subscriptable
+Process Process-6:
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/camcore/.openclaw/workspace/shape-packing-challenge/orient_flip.py", line 62, in worker
+    saved, score = save_if_better(bx, by, bt, label)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/camcore/.openclaw/workspace/shape-packing-challenge/orient_flip.py", line 31, in save_if_better
+    sol = [Semicircle(float(xs[i]),float(ys[i]),float(ts[i])) for i in range(N)]
+                            ~~^^^
+TypeError: 'NoneType' object is not subscriptable
+Process Process-2:
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/camcore/.openclaw/workspace/shape-packing-challenge/orient_flip.py", line 62, in worker
+    saved, score = save_if_better(bx, by, bt, label)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/camcore/.openclaw/workspace/shape-packing-challenge/orient_flip.py", line 31, in save_if_better
+    sol = [Semicircle(float(xs[i]),float(ys[i]),float(ts[i])) for i in range(N)]
+                            ~~^^^
+TypeError: 'NoneType' object is not subscriptable
+Process Process-1:
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/camcore/.openclaw/workspace/shape-packing-challenge/orient_flip.py", line 62, in worker
+    saved, score = save_if_better(bx, by, bt, label)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/camcore/.openclaw/workspace/shape-packing-challenge/orient_flip.py", line 31, in save_if_better
+    sol = [Semicircle(float(xs[i]),float(ys[i]),float(ts[i])) for i in range(N)]
+                            ~~^^^
+TypeError: 'NoneType' object is not subscriptable
+Process Process-3:
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/camcore/.openclaw/workspace/shape-packing-challenge/orient_flip.py", line 62, in worker
+    saved, score = save_if_better(bx, by, bt, label)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/camcore/.openclaw/workspace/shape-packing-challenge/orient_flip.py", line 31, in save_if_better
+    sol = [Semicircle(float(xs[i]),float(ys[i]),float(ts[i])) for i in range(N)]
+                            ~~^^^
+TypeError: 'NoneType' object is not subscriptable
+
+Done in 7s. Best: R=2.975245
