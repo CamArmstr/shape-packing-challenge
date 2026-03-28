@@ -117,13 +117,22 @@ def run_pbh(n_pop=8, rounds=1000, verbose=True, start=None, save_to_disk=True):
     fss_counter = 0
 
     for rnd in range(rounds):
+        # Adaptive perturbation schedule: large jumps early, fine-tune late
+        frac = rnd / max(rounds - 1, 1)
+        if frac < 0.15:
+            delta = 2.5   # rounds 0-15%: big kicks, escape starting basin fast
+        elif frac < 0.40:
+            delta = 1.2   # rounds 15-40%: medium kicks, explore basin region
+        else:
+            delta = 0.4   # rounds 40-100%: fine-tune basin floor
+
         # For each population member, run 1 MBH iteration
         for mi in range(len(population)):
             mxs, mys, mts, mscore = population[mi]
             member_R = mscore + 0.01 if mscore < float('inf') else R
 
             nxs, nys, nts, nscore, improved, kind = mbh_iteration(
-                mxs, mys, mts, member_R, mscore
+                mxs, mys, mts, member_R, mscore, delta=delta
             )
 
             if improved:

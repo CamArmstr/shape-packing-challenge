@@ -294,3 +294,15 @@ e+01, R_fast=3.71251
 17:40:06   ✗ Not feasible at R=2.8900 after 200 rounds
 17:40:06 
 === MBH done | best R = 3.010195 ===
+07:13:07 === MBH started | R=2.974679 | max_iters=3 ===
+07:13:08 === MBH done | best R=2.974679 ===
+07:13:12 === MBH started | R=2.974679 | max_iters=5 ===
+07:13:13   [   5] swap       no_imp=5/5
+07:13:13   [   5] MaxNoImp=5 reached
+07:13:13 === MBH done | best R=2.974679 ===
+2026-03-28T10:30:30 [SKIP WRITE] disk R≈3.811899 < candidate R=3.855677
+2026-03-28T10:30:32 [SKIP WRITE] disk R≈3.811899 < candidate R=3.853806
+2026-03-28T10:30:33 [SKIP WRITE] disk R≈3.811899 < candidate R=3.847568
+2026-03-28T10:30:33 [NEW BEST] R = 3.802160
+2026-03-28T10:30:40 [NEW BEST] R = 3.831186
+2026-03-28T10:30:40 [NEW BEST] R = 3.727573

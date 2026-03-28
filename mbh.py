@@ -137,11 +137,11 @@ def lbfgs_minimize(xs, ys, ts, R, lam=500.0, max_iter=2000):
 
 # ── Perturbation operators ───────────────────────────────────────────────────
 
-def perturb_standard(xs, ys, ts):
+def perturb_standard(xs, ys, ts, delta=0.8):
     """Perturb all 15 positions + orientations."""
-    xs = xs + np.random.uniform(-0.8, 0.8, N)
-    ys = ys + np.random.uniform(-0.8, 0.8, N)
-    ts = (ts + np.random.uniform(-0.8, 0.8, N)) % TWO_PI
+    xs = xs + np.random.uniform(-delta, delta, N)
+    ys = ys + np.random.uniform(-delta, delta, N)
+    ts = (ts + np.random.uniform(-delta, delta, N)) % TWO_PI
     return xs, ys, ts
 
 
@@ -204,11 +204,11 @@ def perturb_flat_face(xs, ys, ts):
     return xs, ys, ts
 
 
-def apply_perturbation(xs, ys, ts, R):
+def apply_perturbation(xs, ys, ts, R, delta=0.8):
     """Mixed perturbation: 50% standard, 20% swap, 15% rattler, 15% flat_face."""
     r = random.random()
     if r < 0.50:
-        return perturb_standard(xs, ys, ts), 'standard'
+        return perturb_standard(xs, ys, ts, delta=delta), 'standard'
     elif r < 0.70:
         return perturb_swap(xs, ys, ts), 'swap'
     elif r < 0.85:
@@ -259,12 +259,12 @@ def fss_escape(xs, ys, ts, R, best_score):
 
 # ── Main MBH loop ───────────────────────────────────────────────────────────
 
-def mbh_iteration(xs, ys, ts, R, best_score):
+def mbh_iteration(xs, ys, ts, R, best_score, delta=0.8):
     """
     Single MBH iteration: perturb → minimize → validate → accept if better.
     Returns (xs, ys, ts, score, improved, kind).
     """
-    (pxs, pys, pts), kind = apply_perturbation(xs, ys, ts, R)
+    (pxs, pys, pts), kind = apply_perturbation(xs, ys, ts, R, delta=delta)
 
     # Local minimize
     rxs, rys, rts, energy = lbfgs_minimize(pxs, pys, pts, R)

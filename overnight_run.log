@@ -1,0 +1,478 @@
+run_overnight: 3 PBH + 3 SA explore, 18000s
+Best on disk: R=2.974679
+  [pbh2_1] Starting PBH round (pop=8, rounds=200)
+  [pbh1_1] Starting PBH round (pop=8, rounds=200)
+  [pbh0_1] Starting PBH round (pop=8, rounds=200)
+=== PBH | pop=8 | rounds=200 | start R=2.974679 ===
+=== PBH | pop=8 | rounds=200 | start R=2.974679 ===
+=== PBH | pop=8 | rounds=200 | start R=2.974679 ===
+Population initialized: 8 members
+Population initialized: 8 members
+Population initialized: 8 members
+
+[120s] === Best=2.974679 Workers=6/6 ===
+
+
+[241s] === Best=2.974679 Workers=6/6 ===
+
+  [e3_1-5-9_1] P1: 8.872833646604278
+
+[362s] === Best=2.974679 Workers=6/6 ===
+
+
+[482s] === Best=2.974679 Workers=6/6 ===
+
+
+[603s] === Best=2.974679 Workers=6/6 ===
+
+
+[723s] === Best=2.974679 Workers=6/6 ===
+
+
+[844s] === Best=2.974679 Workers=6/6 ===
+
+
+[965s] === Best=2.974679 Workers=6/6 ===
+
+  [e5_5-10_2] P1: 8.20116570247282
+
+[1085s] === Best=2.974679 Workers=6/6 ===
+
+  [e4_2-6-7_2] P1: 4.449961284244169
+
+[1206s] === Best=2.974679 Workers=6/6 ===
+
+
+[1327s] === Best=2.974679 Workers=6/6 ===
+
+
+[1447s] === Best=2.974679 Workers=6/6 ===
+
+
+[1568s] === Best=2.974679 Workers=6/6 ===
+
+  [e3_1-5-9_3] P1: 5.676527212013961
+
+[1689s] === Best=2.974679 Workers=6/6 ===
+
+
+[1809s] === Best=2.974679 Workers=6/6 ===
+
+
+[1930s] === Best=2.974679 Workers=6/6 ===
+
+  [e4_2-6-7_3] P1: 6.657863045249417
+  --- Round 20: global_best=2.974679 pop_best=2.974679 valid=2/8 ---
+
+[2051s] === Best=2.974679 Workers=6/6 ===
+
+  --- Round 20: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+
+[2171s] === Best=2.974679 Workers=6/6 ===
+
+  --- Round 20: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+
+[2292s] === Best=2.974679 Workers=6/6 ===
+
+
+[2413s] === Best=2.974679 Workers=6/6 ===
+
+  [e4_2-6-7_4] P1: 4.16728017292335
+
+[2533s] === Best=2.974679 Workers=6/6 ===
+
+  [e5_5-10_5] P1: 4.500294307594131
+  [e3_1-5-9_6] P1: 8.137313401162995
+
+[2654s] === Best=2.974679 Workers=6/6 ===
+
+  --- Round 40: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+  --- Round 40: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+  --- Round 40: global_best=2.974679 pop_best=2.974679 valid=2/8 ---
+  [e5_5-10_7] P1: 7.48208722927812
+  [e3_1-5-9_7] P1: 5.924867711693313
+  [e4_2-6-7_6] P1: 6.200201618810913
+
+[2775s] === Best=2.974679 Workers=6/6 ===
+
+  [e5_5-10_9] P1: 7.095863647229819
+
+[2895s] === Best=2.974679 Workers=6/6 ===
+
+  --- Round 60: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+  --- Round 60: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+  [e3_1-5-9_10] P1: 5.513374325167219
+  --- Round 60: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+
+[3016s] === Best=2.974679 Workers=6/6 ===
+
+  [e4_2-6-7_9] P1: 8.546846831899343
+  [e3_1-5-9_12] P1: 6.04219782424583
+
+[3137s] === Best=2.974679 Workers=6/6 ===
+
+  [e3_1-5-9_13] P1: 6.418750081080941
+  [e3_1-5-9_14] P1: 7.311282826432361
+  --- Round 80: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+
+[3257s] === Best=2.974679 Workers=6/6 ===
+
+  --- Round 80: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+  [e5_5-10_13] P1: 5.974743386380421
+  --- Round 80: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+
+[3378s] === Best=2.974679 Workers=6/6 ===
+
+
+[3499s] === Best=2.974679 Workers=6/6 ===
+
+  --- Round 100: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+  [e4_2-6-7_13] P1: 7.694682005211155
+  --- Round 100: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+  [e3_1-5-9_19] P1: 6.403007418656322
+  [e4_2-6-7_14] P1: 6.7919381841606485
+  --- Round 100: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+
+[3619s] === Best=2.974679 Workers=6/6 ===
+
+
+[3740s] === Best=2.974679 Workers=6/6 ===
+
+  [e4_2-6-7_16] P1: 6.355641873411172
+  [e3_1-5-9_21] P1: 6.1714578101165944
+  --- Round 120: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+  --- Round 120: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+  [e3_1-5-9_22] P1: 6.4284181770832785
+
+[3861s] === Best=2.974679 Workers=6/6 ===
+
+  [e5_5-10_20] P1: 4.619038322940098
+  --- Round 120: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+  [e3_1-5-9_23] P1: 6.636040132845
+
+[3981s] === Best=2.974679 Workers=6/6 ===
+
+  --- Round 140: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+  --- Round 140: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+
+[4102s] === Best=2.974679 Workers=6/6 ===
+
+  [e4_2-6-7_20] P1: 5.940336353633839
+  [e3_1-5-9_25] P1: 6.755939275615095
+
+[4223s] === Best=2.974679 Workers=6/6 ===
+
+  --- Round 140: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+  --- Round 160: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+  --- Round 160: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+
+[4343s] === Best=2.974679 Workers=6/6 ===
+
+  [e3_1-5-9_27] P1: 6.880088071126486
+  [e5_5-10_25] P1: 5.858352319678083
+
+[4464s] === Best=2.974679 Workers=6/6 ===
+
+  --- Round 180: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+  --- Round 160: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+  --- Round 180: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+
+[4585s] === Best=2.974679 Workers=6/6 ===
+
+  [e3_1-5-9_29] P1: 6.7996561682535726
+  [e3_1-5-9_30] P1: 6.391222885014383
+  [e5_5-10_28] P1: 6.094463603603615
+
+[4705s] === Best=2.974679 Workers=6/6 ===
+
+  [e4_2-6-7_27] P1: 6.409330710955763
+  --- Round 200: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+
+=== PBH done | best R=2.974679 ===
+  [pbh0_1] PBH done: R=2.974679 (global=2.974679)
+  [pbh0_2] Starting PBH round (pop=8, rounds=200)
+=== PBH | pop=8 | rounds=200 | start R=2.974679 ===
+Population initialized: 8 members
+  [e3_1-5-9_31] P1: 5.992558285501503
+  [e4_2-6-7_28] P1: 6.649909976715208
+  --- Round 200: global_best=2.974679 pop_best=2.974679 valid=5/8 ---
+
+=== PBH done | best R=2.974679 ===
+  [pbh1_1] PBH done: R=2.974679 (global=2.974679)
+  [pbh1_2] Starting PBH round (pop=8, rounds=200)
+=== PBH | pop=8 | rounds=200 | start R=2.974679 ===
+Population initialized: 8 members
+
+[4826s] === Best=2.974679 Workers=6/6 ===
+
+  --- Round 180: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+  [e4_2-6-7_29] P1: 6.937860610333711
+
+[4947s] === Best=2.974679 Workers=6/6 ===
+
+  [e3_1-5-9_33] P1: 6.339074701562587
+  [e4_2-6-7_30] P1: 5.3467939949960135
+  --- Round 20: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+
+[5067s] === Best=2.974679 Workers=6/6 ===
+
+  --- Round 20: global_best=2.974679 pop_best=2.974679 valid=2/8 ---
+  --- Round 200: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+
+=== PBH done | best R=2.974679 ===
+  [pbh2_1] PBH done: R=2.974679 (global=2.974679)
+  [pbh2_2] Starting PBH round (pop=8, rounds=200)
+=== PBH | pop=8 | rounds=200 | start R=2.974679 ===
+Population initialized: 8 members
+
+[5188s] === Best=2.974679 Workers=6/6 ===
+
+  [e4_2-6-7_32] P1: 5.634240263611265
+  [e5_5-10_33] P1: 6.870514063447727
+  --- Round 40: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+
+[5309s] === Best=2.974679 Workers=6/6 ===
+
+  [e5_5-10_35] P1: 6.019456298526988
+  --- Round 40: global_best=2.974679 pop_best=2.974679 valid=2/8 ---
+  [e3_1-5-9_37] P1: 5.929554764411842
+  [e4_2-6-7_34] P1: 7.911858263411725
+
+[5430s] === Best=2.974679 Workers=6/6 ===
+
+  --- Round 20: global_best=2.974679 pop_best=2.974679 valid=2/8 ---
+  [e3_1-5-9_38] P1: 7.016006276456435
+
+[5550s] === Best=2.974679 Workers=6/6 ===
+
+  --- Round 60: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+
+[5671s] === Best=2.974679 Workers=6/6 ===
+
+
+[5792s] === Best=2.974679 Workers=6/6 ===
+
+  [e4_2-6-7_36] P1: 6.255398065171648
+  [e5_5-10_38] P1: 4.201893304299497
+
+[5912s] === Best=2.974679 Workers=6/6 ===
+
+  [e4_2-6-7_37] P1: 6.309780043278403
+  [e5_5-10_39] P1: 6.815940619355759
+
+[6033s] === Best=2.974679 Workers=6/6 ===
+
+  --- Round 40: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+  [e4_2-6-7_38] P1: 3.1474 → P2
+
+[6154s] === Best=2.974679 Workers=6/6 ===
+
+  [e5_5-10_40] P1: 6.590021742939907
+  --- Round 60: global_best=2.974679 pop_best=2.974679 valid=2/8 ---
+  [e3_1-5-9_42] P1: 6.30689484270508
+
+[6274s] === Best=2.974679 Workers=6/6 ===
+
+  --- Round 80: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+  [e3_1-5-9_43] P1: 6.044132584711711
+
+[6395s] === Best=2.974679 Workers=6/6 ===
+
+  [e5_5-10_42] P1: 7.182202799920697
+
+[6516s] === Best=2.974679 Workers=6/6 ===
+
+  [e3_1-5-9_44] P1: 6.553925974135506
+
+[6637s] === Best=2.974679 Workers=6/6 ===
+
+  --- Round 60: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+
+[6757s] === Best=2.974679 Workers=6/6 ===
+
+
+[6878s] === Best=2.974679 Workers=6/6 ===
+
+  --- Round 100: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+
+[6999s] === Best=2.974679 Workers=6/6 ===
+
+  [e3_1-5-9_47] P1: 4.583259287970697
+
+[7119s] === Best=2.974679 Workers=6/6 ===
+
+  --- Round 80: global_best=2.974679 pop_best=2.974679 valid=2/8 ---
+
+[7240s] === Best=2.974679 Workers=6/6 ===
+
+  [e3_1-5-9_49] P1: 4.445478930116343
+
+[7361s] === Best=2.974679 Workers=6/6 ===
+
+  --- Round 80: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+  [e5_5-10_48] P1: 5.671232435080659
+
+[7481s] === Best=2.974679 Workers=6/6 ===
+
+  [e3_1-5-9_50] P1: 6.620353414977573
+
+[7602s] === Best=2.974679 Workers=6/6 ===
+
+  --- Round 120: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+  [e3_1-5-9_51] P1: 4.205023180733453
+
+[7723s] === Best=2.974679 Workers=6/6 ===
+
+
+[7844s] === Best=2.974679 Workers=6/6 ===
+
+
+[7964s] === Best=2.974679 Workers=6/6 ===
+
+
+[8085s] === Best=2.974679 Workers=6/6 ===
+
+
+[8206s] === Best=2.974679 Workers=6/6 ===
+
+
+[8326s] === Best=2.974679 Workers=6/6 ===
+
+
+[8447s] === Best=2.974679 Workers=6/6 ===
+
+  --- Round 100: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+  [e3_1-5-9_53] P1: 6.858210425929872
+
+[8568s] === Best=2.974679 Workers=6/6 ===
+
+  --- Round 100: global_best=2.974679 pop_best=2.974679 valid=2/8 ---
+
+[8688s] === Best=2.974679 Workers=6/6 ===
+
+
+[8809s] === Best=2.974679 Workers=6/6 ===
+
+
+[8930s] === Best=2.974679 Workers=6/6 ===
+
+  [e3_1-5-9_54] P1: 6.398851311602834
+
+[9050s] === Best=2.974679 Workers=6/6 ===
+
+  [e4_2-6-7_38] P2.1: 3.082575 (was 3.147352)
+  [e5_5-10_53] P1: 7.986703897686523
+
+[9171s] === Best=2.974679 Workers=6/6 ===
+
+
+[9292s] === Best=2.974679 Workers=6/6 ===
+
+  [e3_1-5-9_55] P1: 6.652428820670559
+
+[9413s] === Best=2.974679 Workers=6/6 ===
+
+  --- Round 140: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+
+[9533s] === Best=2.974679 Workers=6/6 ===
+
+  [e3_1-5-9_56] P1: 5.408854656639628
+
+[9654s] === Best=2.974679 Workers=6/6 ===
+
+
+[9775s] === Best=2.974679 Workers=6/6 ===
+
+
+[9895s] === Best=2.974679 Workers=6/6 ===
+
+
+[10016s] === Best=2.974679 Workers=6/6 ===
+
+  [e5_5-10_56] P1: 5.546694965079897
+
+[10137s] === Best=2.974679 Workers=6/6 ===
+
+
+[10258s] === Best=2.974679 Workers=6/6 ===
+
+  [e3_1-5-9_58] P1: 6.463073124078409
+  --- Round 120: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+  --- Round 120: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+
+[10378s] === Best=2.974679 Workers=6/6 ===
+
+  --- Round 160: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+  [e3_1-5-9_60] P1: 7.121518787024267
+
+[10499s] === Best=2.974679 Workers=6/6 ===
+
+  --- Round 140: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+  [e3_1-5-9_61] P1: 6.159837175350689
+  --- Round 140: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+  [e5_5-10_60] P1: 6.4982491791891235
+
+[10620s] === Best=2.974679 Workers=6/6 ===
+
+  --- Round 180: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+  [e3_1-5-9_62] P1: 5.573618191925223
+  --- Round 160: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+
+[10740s] === Best=2.974679 Workers=6/6 ===
+
+  --- Round 160: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+
+[10861s] === Best=2.974679 Workers=6/6 ===
+
+  [e3_1-5-9_64] P1: 5.632455699937483
+
+[10982s] === Best=2.974679 Workers=6/6 ===
+
+  [e5_5-10_63] P1: 5.775836479376905
+
+[11102s] === Best=2.974679 Workers=6/6 ===
+
+  [e3_1-5-9_65] P1: 5.814879572630851
+
+[11223s] === Best=2.974679 Workers=6/6 ===
+
+  [e5_5-10_64] P1: 6.093173381357112
+
+[11344s] === Best=2.974679 Workers=6/6 ===
+
+  --- Round 200: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+
+=== PBH done | best R=2.974679 ===
+  [pbh1_2] PBH done: R=2.974679 (global=2.974679)
+  [pbh1_3] Starting PBH round (pop=8, rounds=200)
+=== PBH | pop=8 | rounds=200 | start R=2.975245 ===
+Population initialized: 8 members
+
+[11465s] === Best=2.974679 Workers=6/6 ===
+
+
+[11585s] === Best=2.974679 Workers=6/6 ===
+
+  [e3_1-5-9_67] P1: 4.794219316441326
+
+[11706s] === Best=2.974679 Workers=6/6 ===
+
+  [e4_2-6-7_38] P2.3: 3.114765 (was 3.082575)
+  --- Round 180: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+
+[11827s] === Best=2.974679 Workers=6/6 ===
+
+  [e3_1-5-9_68] P1: 5.594131787231349
+
+[11948s] === Best=2.974679 Workers=6/6 ===
+
+  [e5_5-10_67] P1: 5.7196811945966575
+  --- Round 180: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+
+[12068s] === Best=2.974679 Workers=6/6 ===
+
+  [e3_1-5-9_69] P1: 6.242112881191939
+
+[12189s] === Best=2.974679 Workers=6/6 ===
+
+  [e4_2-6-7_40] P1: 6.823469629088147

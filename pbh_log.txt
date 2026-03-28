@@ -107,3 +107,2010 @@
 18:17:16 
 === PBH done | best R=3.010195 | distinct basins=41 | total found=98 ===
 18:17:16 Symmetry of best: C2=2.318, C3=1.953, C5=1.345, C7=2.152
+07:13:31 === PBH | pop=3 | rounds=3 | start R=2.974679 ===
+07:13:31 Population initialized: 3 members
+07:13:34 
+=== PBH done | best R=2.974679 ===
+08:22:48 === PBH | pop=8 | rounds=2000 | start R=2.974679 ===
+08:22:48 === PBH | pop=8 | rounds=200 | start R=2.974679 ===
+08:22:48 === PBH | pop=8 | rounds=200 | start R=2.974679 ===
+08:22:48 === PBH | pop=8 | rounds=200 | start R=2.974679 ===
+08:22:48 Population initialized: 8 members
+08:22:49 Population initialized: 8 members
+08:22:49 Population initialized: 8 members
+08:22:49 Population initialized: 8 members
+08:23:38   --- Round 20: global_best=2.974679 pop_best=2.974679 valid=2/8 ---
+08:24:24   --- Round 40: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+08:25:09   --- Round 60: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+08:25:52   --- Round 80: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+08:26:38   --- Round 100: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+08:27:26   --- Round 120: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+08:28:21   --- Round 140: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+08:29:05   --- Round 160: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+08:29:49   --- Round 180: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+08:30:35   --- Round 200: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+08:31:19   --- Round 220: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+08:32:03   --- Round 240: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+08:32:48   --- Round 260: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+08:33:35   --- Round 280: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+08:34:24   --- Round 300: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+08:35:07   --- Round 320: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+08:35:29   --- Round 20: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+08:35:50   --- Round 340: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+08:36:29   --- Round 20: global_best=2.974679 pop_best=2.974679 valid=2/8 ---
+08:36:32   --- Round 360: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+08:37:13   --- Round 380: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+08:37:57   --- Round 400: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+08:38:33   --- Round 20: global_best=2.974679 pop_best=2.974679 valid=2/8 ---
+08:38:43   --- Round 420: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+08:39:26   --- Round 440: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+08:40:06   --- Round 460: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+08:40:49   --- Round 480: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+08:41:32   --- Round 500: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+08:42:12   --- Round 520: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+08:42:57   --- Round 540: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+08:43:42   --- Round 560: global_best=2.974679 pop_best=2.974679 valid=5/8 ---
+08:44:25   --- Round 580: global_best=2.974679 pop_best=2.974679 valid=5/8 ---
+08:45:11   --- Round 600: global_best=2.974679 pop_best=2.974679 valid=5/8 ---
+08:45:59   --- Round 620: global_best=2.974679 pop_best=2.974679 valid=5/8 ---
+08:46:42   --- Round 640: global_best=2.974679 pop_best=2.974679 valid=5/8 ---
+08:47:04   --- Round 40: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+08:47:25   --- Round 660: global_best=2.974679 pop_best=2.974679 valid=5/8 ---
+08:48:10   --- Round 680: global_best=2.974679 pop_best=2.974679 valid=5/8 ---
+08:48:57   --- Round 700: global_best=2.974679 pop_best=2.974679 valid=5/8 ---
+08:49:15   --- Round 40: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+08:49:51   --- Round 720: global_best=2.974679 pop_best=2.974679 valid=5/8 ---
+08:50:38   --- Round 740: global_best=2.974679 pop_best=2.974679 valid=5/8 ---
+08:51:25   --- Round 760: global_best=2.974679 pop_best=2.974679 valid=5/8 ---
+08:52:11   --- Round 780: global_best=2.974679 pop_best=2.974679 valid=5/8 ---
+08:52:55   --- Round 800: global_best=2.974679 pop_best=2.974679 valid=5/8 ---
+08:53:40   --- Round 820: global_best=2.974679 pop_best=2.974679 valid=5/8 ---
+08:54:22   --- Round 840: global_best=2.974679 pop_best=2.974679 valid=5/8 ---
+08:55:08   --- Round 860: global_best=2.974679 pop_best=2.974679 valid=5/8 ---
+08:55:51   --- Round 880: global_best=2.974679 pop_best=2.974679 valid=5/8 ---
+08:56:01   --- Round 40: global_best=2.974679 pop_best=2.974679 valid=2/8 ---
+08:56:36   --- Round 900: global_best=2.974679 pop_best=2.974679 valid=5/8 ---
+08:57:19   --- Round 920: global_best=2.974679 pop_best=2.974679 valid=5/8 ---
+08:58:08   --- Round 940: global_best=2.974679 pop_best=2.974679 valid=5/8 ---
+08:58:55   --- Round 960: global_best=2.974679 pop_best=2.974679 valid=5/8 ---
+08:59:15   --- Round 60: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+08:59:38   --- Round 980: global_best=2.974679 pop_best=2.974679 valid=5/8 ---
+09:00:22   --- Round 1000: global_best=2.974679 pop_best=2.974679 valid=5/8 ---
+09:01:05   --- Round 1020: global_best=2.974679 pop_best=2.974679 valid=5/8 ---
+09:01:16   --- Round 60: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+09:01:57   --- Round 1040: global_best=2.974679 pop_best=2.974679 valid=5/8 ---
+09:02:33 === PBH | pop=8 | rounds=2000 | start R=2.974679 ===
+09:02:33 === PBH | pop=8 | rounds=200 | start R=2.974679 ===
+09:02:33 === PBH | pop=8 | rounds=200 | start R=2.974679 ===
+09:02:33 === PBH | pop=8 | rounds=200 | start R=2.974679 ===
+09:02:34 Population initialized: 8 members
+09:02:34 Population initialized: 8 members
+09:02:34 Population initialized: 8 members
+09:02:34 Population initialized: 8 members
+09:03:25 === PBH | pop=3 | rounds=5 | start R=2.974679 ===
+09:03:26 Population initialized: 3 members
+09:03:29   --- Round 20: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+09:03:38 
+=== PBH done | best R=2.974679 ===
+09:03:48 === PBH | pop=8 | rounds=2000 | start R=2.974679 ===
+09:03:48 Population initialized: 8 members
+09:05:07 === PBH | pop=8 | rounds=5000 | start R=2.974679 ===
+09:05:08 Population initialized: 8 members
+09:06:19   --- Round 40: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+09:07:17 === PBH | pop=8 | rounds=5000 | start R=2.974679 ===
+09:07:17 Population initialized: 8 members
+09:08:05   --- Round 20: global_best=2.974679 pop_best=2.974679 valid=2/8 ---
+09:08:54   --- Round 40: global_best=2.974679 pop_best=2.974679 valid=2/8 ---
+09:09:29 === PBH | pop=8 | rounds=5000 | start R=2.974679 ===
+09:09:29 === PBH | pop=8 | rounds=5000 | start R=2.974679 ===
+09:09:30 Population initialized: 8 members
+09:09:30 Population initialized: 8 members
+09:10:37   --- Round 60: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+09:14:05   --- Round 20: global_best=2.974679 pop_best=2.974679 valid=2/8 ---
+09:14:06   --- Round 20: global_best=2.974679 pop_best=2.974679 valid=2/8 ---
+09:14:16   --- Round 80: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+09:17:54   --- Round 100: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+09:18:53   --- Round 40: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+09:18:55   --- Round 40: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+09:21:46   --- Round 120: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+09:23:15   --- Round 60: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+09:23:16   --- Round 60: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+09:25:18   --- Round 140: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+09:27:21   --- Round 80: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+09:27:26   --- Round 80: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+09:29:08   --- Round 160: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+09:31:29   --- Round 100: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+09:31:36   --- Round 100: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+09:32:29   --- Round 180: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+09:35:21   --- Round 120: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+09:35:28   --- Round 120: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+09:35:42   --- Round 200: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+09:36:26   --- Round 20: global_best=2.974679 pop_best=2.974679 valid=2/8 ---
+09:38:06   --- Round 20: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+09:38:50   --- Round 220: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+09:39:29   --- Round 140: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+09:39:34   --- Round 140: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+09:40:08   --- Round 20: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+09:42:02   --- Round 240: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+09:47:10   --- Round 40: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+09:47:26   --- Round 40: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+09:47:36   --- Round 40: global_best=2.974679 pop_best=2.974679 valid=2/8 ---
+09:51:40   --- Round 60: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+09:52:14   --- Round 60: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+09:52:49   --- Round 60: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+09:56:44   --- Round 80: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+09:57:05   --- Round 80: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+09:57:34   --- Round 80: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+10:01:05   --- Round 100: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+10:01:26   --- Round 100: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+10:02:45   --- Round 100: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+10:05:22   --- Round 120: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+10:05:32   --- Round 120: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+10:07:35   --- Round 120: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+10:09:48   --- Round 140: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+10:10:02   --- Round 140: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+10:12:58   --- Round 140: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+10:13:46   --- Round 160: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+10:14:24   --- Round 160: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+10:18:06   --- Round 180: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+10:18:11   --- Round 160: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+10:18:54   --- Round 180: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+10:22:00   --- Round 200: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+10:22:00 
+=== PBH done | best R=2.974679 ===
+10:22:01 === PBH | pop=8 | rounds=200 | start R=2.974679 ===
+10:22:02 Population initialized: 8 members
+10:22:55   --- Round 200: global_best=2.974679 pop_best=2.974679 valid=5/8 ---
+10:22:55 
+=== PBH done | best R=2.974679 ===
+10:22:56 === PBH | pop=8 | rounds=200 | start R=2.974679 ===
+10:22:57 Population initialized: 8 members
+10:23:08   --- Round 180: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+10:26:51   --- Round 20: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+10:27:11   --- Round 20: global_best=2.974679 pop_best=2.974679 valid=2/8 ---
+10:28:07   --- Round 200: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+10:28:07 
+=== PBH done | best R=2.974679 ===
+10:28:07 === PBH | pop=8 | rounds=200 | start R=2.974679 ===
+10:28:08 Population initialized: 8 members
+10:30:12 === PBH | pop=8 | rounds=5 | start R=3.977879 ===
+10:30:12 Population initialized: 8 members
+10:30:18 
+=== PBH done | best R=3.977879 ===
+10:30:19 === PBH | pop=8 | rounds=5 | start R=3.679220 ===
+10:30:19 Population initialized: 8 members
+10:30:26 
+=== PBH done | best R=3.679220 ===
+10:30:28 === PBH | pop=8 | rounds=5 | start R=3.900396 ===
+10:30:29 Population initialized: 8 members
+10:30:30   [   2.1] ★ standard   → R=3.855677
+10:30:32   [   4.4] ★ rattler    → R=3.853806
+10:30:33   [   4.6] ★ flat_face  → R=3.847568
+10:30:33   [   5.1] ★ standard   → R=3.802160
+10:30:34 
+=== PBH done | best R=3.802160 ===
+10:30:34 === PBH | pop=8 | rounds=5 | start R=3.902281 ===
+10:30:35 Population initialized: 8 members
+10:30:40   [   4.6] ★ standard   → R=3.831186
+10:30:40   [   4.7] ★ flat_face  → R=3.727573
+10:30:41 
+=== PBH done | best R=3.727573 ===
+10:30:54   --- Round 40: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+10:32:11 === PBH | pop=8 | rounds=3 | start R=3.677394 ===
+10:32:11 Population initialized: 8 members
+10:32:15 
+=== PBH done | best R=3.677394 ===
+10:32:16 === PBH | pop=8 | rounds=3 | start R=3.811330 ===
+10:32:16 Population initialized: 8 members
+10:32:20 
+=== PBH done | best R=3.811330 ===
+10:32:22 === PBH | pop=8 | rounds=3 | start R=3.604991 ===
+10:32:22 Population initialized: 8 members
+10:32:26 
+=== PBH done | best R=3.604991 ===
+10:32:27 === PBH | pop=8 | rounds=3 | start R=3.880703 ===
+10:32:28 Population initialized: 8 members
+10:32:31   [   3.7] ★ standard   → R=3.820954
+10:32:31 
+=== PBH done | best R=3.820954 ===
+10:32:32 === PBH | pop=8 | rounds=3 | start R=3.795844 ===
+10:32:32 Population initialized: 8 members
+10:32:34   --- Round 40: global_best=2.974679 pop_best=2.974679 valid=2/8 ---
+10:32:36 
+=== PBH done | best R=3.795844 ===
+10:32:37 === PBH | pop=8 | rounds=3 | start R=3.919881 ===
+10:32:37 Population initialized: 8 members
+10:32:40   [   3.3] ★ standard   → R=3.911095
+10:32:41   [   3.7] ★ flat_face  → R=3.899176
+10:32:41 
+=== PBH done | best R=3.899176 ===
+10:32:42 === PBH | pop=8 | rounds=3 | start R=4.185294 ===
+10:32:42 Population initialized: 8 members
+10:32:42   [   1.1] ★ flat_face  → R=3.998377
+10:33:13   --- Round 20: global_best=2.974679 pop_best=2.974679 valid=2/8 ---
+10:34:00 === PBH | pop=8 | rounds=500 | start R=3.628322 ===
+10:34:01 Population initialized: 8 members
+10:34:29   --- Round 20: global_best=3.628322 pop_best=3.628322 valid=5/8 ---
+10:34:54   --- Round 40: global_best=3.628322 pop_best=3.628322 valid=5/8 ---
+10:35:22   --- Round 60: global_best=3.628322 pop_best=3.628322 valid=5/8 ---
+10:35:40   --- Round 60: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+10:35:46   --- Round 80: global_best=3.628322 pop_best=3.628322 valid=5/8 ---
+10:35:56 === PBH | pop=8 | rounds=500 | start R=3.643724 ===
+10:35:57 Population initialized: 8 members
+10:36:10   [  96.1] ★ standard   → R=3.606510
+10:36:19   --- Round 100: global_best=3.606510 pop_best=3.606510 valid=5/8 ---
+10:36:37   --- Round 20: global_best=3.643724 pop_best=3.643724 valid=5/8 ---
+10:37:01   --- Round 120: global_best=3.606510 pop_best=3.606510 valid=5/8 ---
+10:37:15   --- Round 40: global_best=3.643724 pop_best=3.643724 valid=5/8 ---
+10:37:33 === PBH | pop=8 | rounds=500 | start R=3.730696 ===
+10:37:33 Population initialized: 8 members
+10:37:40   [ 137.7] ★ standard   → R=3.550689
+10:37:44   [ 138.7] ★ flat_face  → R=3.511262
+10:37:46   [  54.1] ★ standard   → R=3.618495
+10:37:49   [  55.1] ★ standard   → R=3.616021
+10:37:50   --- Round 140: global_best=3.511262 pop_best=3.511262 valid=5/8 ---
+10:37:53   [ 141.7] ★ flat_face  → R=3.489156
+10:38:09   --- Round 60: global_best=3.616021 pop_best=3.616021 valid=5/8 ---
+10:38:16   [  14.7] ★ standard   → R=3.708042
+10:38:23   [  65.1] ★ standard   → R=3.602501
+10:38:31   --- Round 20: global_best=3.708042 pop_best=3.708042 valid=4/8 ---
+10:39:03   --- Round 40: global_best=3.708042 pop_best=3.708042 valid=4/8 ---
+10:39:25   [  60.1] ★ standard   → R=3.682695
+10:39:26   --- Round 60: global_best=3.682695 pop_best=3.682695 valid=5/8 ---
+10:39:26   [  61.1] ★ flat_face  → R=3.676250
+10:39:27   [  62.1] ★ flat_face  → R=3.668176
+10:39:30   [  64.1] ★ flat_face  → R=3.662910
+10:39:51   --- Round 80: global_best=3.662910 pop_best=3.662910 valid=5/8 ---
+10:40:16   --- Round 100: global_best=3.662910 pop_best=3.662910 valid=5/8 ---
+10:40:39   --- Round 120: global_best=3.662910 pop_best=3.662910 valid=5/8 ---
+10:41:01   --- Round 140: global_best=3.662910 pop_best=3.662910 valid=5/8 ---
+10:41:25   --- Round 160: global_best=3.662910 pop_best=3.662910 valid=5/8 ---
+10:41:32   [ 167.1] ★ standard   → R=3.644176
+10:41:51   --- Round 180: global_best=3.644176 pop_best=3.644176 valid=5/8 ---
+10:42:18   --- Round 200: global_best=3.644176 pop_best=3.644176 valid=5/8 ---
+10:42:46   --- Round 220: global_best=3.644176 pop_best=3.644176 valid=5/8 ---
+10:43:15   --- Round 240: global_best=3.644176 pop_best=3.644176 valid=5/8 ---
+10:43:41   --- Round 260: global_best=3.644176 pop_best=3.644176 valid=5/8 ---
+10:43:46   [ 264.3] ★ flat_face  → R=3.637058
+10:44:07   --- Round 280: global_best=3.637058 pop_best=3.637058 valid=5/8 ---
+10:44:11   --- Round 40: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+10:44:25   [ 293.1] ★ standard   → R=3.608781
+10:44:36   --- Round 300: global_best=3.608781 pop_best=3.608781 valid=5/8 ---
+10:45:05   --- Round 320: global_best=3.608781 pop_best=3.608781 valid=5/8 ---
+10:45:37   --- Round 340: global_best=3.608781 pop_best=3.608781 valid=5/8 ---
+10:45:59   --- Round 60: global_best=2.974679 pop_best=2.974679 valid=2/8 ---
+10:46:07   --- Round 360: global_best=3.608781 pop_best=3.608781 valid=5/8 ---
+10:46:35   --- Round 380: global_best=3.608781 pop_best=3.608781 valid=5/8 ---
+10:47:03   --- Round 400: global_best=3.608781 pop_best=3.608781 valid=5/8 ---
+10:47:19   --- Round 80: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+10:47:32   --- Round 420: global_best=3.608781 pop_best=3.608781 valid=5/8 ---
+10:48:02   --- Round 440: global_best=3.608781 pop_best=3.608781 valid=5/8 ---
+10:48:29   --- Round 460: global_best=3.608781 pop_best=3.608781 valid=5/8 ---
+10:48:58   --- Round 480: global_best=3.608781 pop_best=3.608781 valid=5/8 ---
+10:49:28   --- Round 500: global_best=3.608781 pop_best=3.608781 valid=5/8 ---
+10:49:28 
+=== PBH done | best R=3.608781 ===
+10:49:28 === PBH | pop=8 | rounds=500 | start R=3.937783 ===
+10:49:29 Population initialized: 8 members
+10:49:31   [   3.4] ★ standard   → R=3.924116
+10:49:33   [   5.4] ★ standard   → R=3.907764
+10:49:46   [  17.1] ★ standard   → R=3.889175
+10:49:49   [  20.4] ★ standard   → R=3.780815
+10:49:49   --- Round 20: global_best=3.780815 pop_best=3.780815 valid=3/8 ---
+10:50:04   [  35.5] ★ standard   → R=3.771358
+10:50:06   [  37.1] ★ standard   → R=3.756532
+10:50:10   --- Round 40: global_best=3.756532 pop_best=3.756532 valid=3/8 ---
+10:50:37   --- Round 60: global_best=3.756532 pop_best=3.756532 valid=3/8 ---
+10:50:38   [  61.3] ★ standard   → R=3.729268
+10:50:46   [  66.1] ★ standard   → R=3.717138
+10:51:04   --- Round 80: global_best=3.717138 pop_best=3.717138 valid=4/8 ---
+10:51:15   [  89.5] ★ standard   → R=3.701824
+10:51:28   [  98.5] ★ standard   → R=3.696438
+10:51:29   [  99.1] ★ standard   → R=3.668921
+10:51:31   [ 100.5] ★ flat_face  → R=3.665589
+10:51:32   --- Round 100: global_best=3.665589 pop_best=3.665589 valid=4/8 ---
+10:51:53   --- Round 120: global_best=3.665589 pop_best=3.665589 valid=4/8 ---
+10:51:59   [ 127.1] ★ standard   → R=3.629894
+10:52:03   [ 129.5] ★ standard   → R=3.627425
+10:52:15   [ 140.5] ★ standard   → R=3.625720
+10:52:16   --- Round 140: global_best=3.625720 pop_best=3.625720 valid=5/8 ---
+10:52:36   [ 156.5] ★ standard   → R=3.511776
+10:52:42   --- Round 160: global_best=3.511776 pop_best=3.511776 valid=6/8 ---
+10:53:07   --- Round 180: global_best=3.511776 pop_best=3.511776 valid=6/8 ---
+10:53:31   --- Round 200: global_best=3.511776 pop_best=3.511776 valid=6/8 ---
+10:53:55   --- Round 220: global_best=3.511776 pop_best=3.511776 valid=6/8 ---
+10:54:22   --- Round 240: global_best=3.511776 pop_best=3.511776 valid=6/8 ---
+10:54:34   --- Round 60: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+10:54:49   --- Round 260: global_best=3.511776 pop_best=3.511776 valid=6/8 ---
+10:55:17   --- Round 280: global_best=3.511776 pop_best=3.511776 valid=6/8 ---
+10:55:19   [ 282.4] ★ standard   → R=3.487761
+10:55:51   --- Round 300: global_best=3.487761 pop_best=3.487761 valid=6/8 ---
+10:56:24   --- Round 320: global_best=3.487761 pop_best=3.487761 valid=6/8 ---
+10:56:57   --- Round 340: global_best=3.487761 pop_best=3.487761 valid=6/8 ---
+10:57:33   --- Round 360: global_best=3.487761 pop_best=3.487761 valid=6/8 ---
+10:57:43   --- Round 100: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+10:58:07   --- Round 380: global_best=3.487761 pop_best=3.487761 valid=6/8 ---
+10:58:38   --- Round 400: global_best=3.487761 pop_best=3.487761 valid=6/8 ---
+10:59:10   --- Round 420: global_best=3.487761 pop_best=3.487761 valid=6/8 ---
+10:59:27   [ 431.1] ★ standard   → R=3.461085
+10:59:40   --- Round 440: global_best=3.461085 pop_best=3.461085 valid=6/8 ---
+11:00:05   --- Round 460: global_best=3.461085 pop_best=3.461085 valid=6/8 ---
+11:00:34   --- Round 480: global_best=3.461085 pop_best=3.461085 valid=6/8 ---
+11:01:07   --- Round 500: global_best=3.461085 pop_best=3.461085 valid=6/8 ---
+11:01:07 
+=== PBH done | best R=3.461085 ===
+11:01:07 === PBH | pop=8 | rounds=500 | start R=3.674724 ===
+11:01:08 Population initialized: 8 members
+11:01:35   --- Round 20: global_best=3.674724 pop_best=3.674724 valid=4/8 ---
+11:02:01   --- Round 40: global_best=3.674724 pop_best=3.674724 valid=4/8 ---
+11:02:11   [  49.0] ★ standard   → R=3.640729
+11:02:18   --- Round 80: global_best=2.974679 pop_best=2.974679 valid=2/8 ---
+11:02:29   --- Round 60: global_best=3.640729 pop_best=3.640729 valid=4/8 ---
+11:02:58   --- Round 80: global_best=3.640729 pop_best=3.640729 valid=5/8 ---
+11:03:26   [ 100.4] ★ standard   → R=3.634286
+11:03:26   --- Round 100: global_best=3.634286 pop_best=3.634286 valid=5/8 ---
+11:03:35   [ 107.4] ★ standard   → R=3.603492
+11:03:52   --- Round 120: global_best=3.603492 pop_best=3.603492 valid=5/8 ---
+11:04:20   --- Round 140: global_best=3.603492 pop_best=3.603492 valid=5/8 ---
+11:04:45   --- Round 160: global_best=3.603492 pop_best=3.603492 valid=5/8 ---
+11:05:12   --- Round 180: global_best=3.603492 pop_best=3.603492 valid=5/8 ---
+11:05:32   --- Round 80: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+11:05:38   --- Round 200: global_best=3.603492 pop_best=3.603492 valid=5/8 ---
+11:05:48   [ 208.5] ★ standard   → R=3.589791
+11:06:04   --- Round 220: global_best=3.589791 pop_best=3.589791 valid=5/8 ---
+11:06:15   [ 229.4] ★ standard   → R=3.532385
+11:06:32   [ 240.4] ★ standard   → R=3.509993
+11:06:33   --- Round 240: global_best=3.509993 pop_best=3.509993 valid=5/8 ---
+11:06:52   [ 255.4] ★ standard   → R=3.490040
+11:07:00   --- Round 260: global_best=3.490040 pop_best=3.490040 valid=5/8 ---
+11:07:25   --- Round 280: global_best=3.490040 pop_best=3.490040 valid=5/8 ---
+11:07:52   [ 297.4] ★ standard   → R=3.485305
+11:07:57   --- Round 300: global_best=3.485305 pop_best=3.485305 valid=5/8 ---
+11:08:05   [ 305.4] ★ standard   → R=3.470908
+11:08:10   [ 307.4] ★ standard   → R=3.398575
+11:08:29   --- Round 320: global_best=3.398575 pop_best=3.398575 valid=5/8 ---
+11:09:00   --- Round 340: global_best=3.398575 pop_best=3.398575 valid=5/8 ---
+11:09:29   --- Round 120: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+11:10:24 === PBH | pop=8 | rounds=50 | start R=4.016352 ===
+11:10:24 === PBH | pop=8 | rounds=50 | start R=3.824514 ===
+11:10:24 === PBH | pop=8 | rounds=50 | start R=4.009139 ===
+11:10:25 Population initialized: 8 members
+11:10:25 Population initialized: 8 members
+11:10:25 Population initialized: 8 members
+11:10:25 === PBH | pop=8 | rounds=50 | start R=3.586577 ===
+11:10:26 Population initialized: 8 members
+11:10:28   [   1.6] ★ standard   → R=4.001146
+11:10:28   [   2.0] ★ standard   → R=3.976620
+11:10:29   [   2.1] ★ flat_face  → R=3.939186
+11:10:30   [   2.3] ★ flat_face  → R=3.924186
+11:10:30   [   2.4] ★ flat_face  → R=3.923942
+11:10:32   [   3.2] ★ flat_face  → R=3.863117
+11:10:33   [   3.4] ★ flat_face  → R=3.838061
+11:10:34   [   3.6] ★ flat_face  → R=3.803102
+11:10:35   [   4.1] ★ flat_face  → R=3.787976
+11:10:36   [   5.0] ★ standard   → R=3.980204
+11:10:38   [   4.6] ★ flat_face  → R=3.763722
+11:10:47   [   9.1] ★ standard   → R=3.870744
+11:10:51   [  13.3] ★ standard   → R=3.822696
+11:10:52   [  10.7] ★ standard   → R=3.840334
+11:11:00   [  17.1] ★ standard   → R=3.788993
+11:11:08   [  14.2] ★ standard   → R=3.738780
+11:11:09   [  14.4] ★ flat_face  → R=3.716727
+11:11:10   --- Round 20: global_best=3.788993 pop_best=3.788993 valid=7/8 ---
+11:11:24   --- Round 20: global_best=3.840334 pop_best=3.840334 valid=3/8 ---
+11:11:29   --- Round 20: global_best=3.716727 pop_best=3.716727 valid=4/8 ---
+11:11:30   [  29.3] ★ standard   → R=3.782216
+11:11:32   --- Round 20: global_best=3.586577 pop_best=3.586577 valid=5/8 ---
+11:11:47   [  36.3] ★ standard   → R=3.714304
+11:11:50   [  37.3] ★ rattler    → R=3.659982
+11:11:55   [  30.2] ★ standard   → R=3.715602
+11:11:58   --- Round 40: global_best=3.659982 pop_best=3.659982 valid=7/8 ---
+11:12:02   [  32.5] ★ rattler    → R=3.710649
+11:12:21 
+=== PBH done | best R=3.659982 ===
+11:12:22 === PBH | pop=8 | rounds=50 | start R=4.172856 ===
+11:12:22 Population initialized: 8 members
+11:12:25   --- Round 40: global_best=3.710649 pop_best=3.710649 valid=5/8 ---
+11:12:25   [   1.7] ★ standard   → R=4.134238
+11:12:25   --- Round 40: global_best=3.840334 pop_best=3.840334 valid=3/8 ---
+11:12:31   [  43.4] ★ standard   → R=3.707497
+11:12:34   [  44.4] ★ standard   → R=3.659799
+11:12:44   [   9.3] ★ standard   → R=4.128550
+11:12:46   [   9.7] ★ standard   → R=4.069605
+11:12:47   --- Round 40: global_best=3.586577 pop_best=3.586577 valid=5/8 ---
+11:12:49   [  11.1] ★ flat_face  → R=4.063967
+11:12:51   [  12.1] ★ standard   → R=4.061763
+11:12:52   [  12.3] ★ standard   → R=3.892923
+11:12:53 
+=== PBH done | best R=3.659799 ===
+11:12:53 === PBH | pop=8 | rounds=50 | start R=3.871833 ===
+11:12:54 Population initialized: 8 members
+11:12:57 
+=== PBH done | best R=3.840334 ===
+11:12:58   [  13.7] ★ standard   → R=3.881006
+11:12:58 === PBH | pop=8 | rounds=50 | start R=3.891060 ===
+11:13:00 Population initialized: 8 members
+11:13:02   [   3.1] ★ standard   → R=3.867392
+11:13:05   [   4.1] ★ standard   → R=3.807702
+11:13:10   [   5.7] ★ standard   → R=3.807370
+11:13:12   [  18.3] ★ standard   → R=3.867371
+11:13:21   --- Round 20: global_best=3.867371 pop_best=3.867371 valid=5/8 ---
+11:13:24 
+=== PBH done | best R=3.586577 ===
+11:13:24   [  22.1] ★ standard   → R=3.859204
+11:13:26   [  12.1] ★ standard   → R=3.765864
+11:13:27 === PBH | pop=8 | rounds=50 | start R=3.601772 ===
+11:13:27 Population initialized: 8 members
+11:13:28   [  12.7] ★ standard   → R=3.754843
+11:13:28   [  10.3] ★ rattler    → R=3.790740
+11:13:36   [  26.1] ★ standard   → R=3.856137
+11:13:45   [  29.1] ★ standard   → R=3.847480
+11:13:51   [  17.1] ★ standard   → R=3.775047
+11:13:53   --- Round 20: global_best=3.754843 pop_best=3.754843 valid=4/8 ---
+11:13:59   [  23.1] ★ standard   → R=3.712520
+11:14:03   --- Round 20: global_best=3.775047 pop_best=3.775047 valid=3/8 ---
+11:14:04   [  36.4] ★ standard   → R=3.826505
+11:14:15   --- Round 40: global_best=3.826505 pop_best=3.826505 valid=5/8 ---
+11:14:21   [  43.1] ★ standard   → R=3.762778
+11:14:21   [  43.3] ★ flat_face  → R=3.748273
+11:14:29   [  29.6] ★ standard   → R=3.741130
+11:14:35   [  48.1] ★ standard   → R=3.709907
+11:14:36   [  31.6] ★ standard   → R=3.651861
+11:14:39   [  32.6] ★ flat_face  → R=3.650898
+11:14:41   --- Round 20: global_best=3.601772 pop_best=3.601772 valid=4/8 ---
+11:14:42 
+=== PBH done | best R=3.709907 ===
+11:14:42 === PBH | pop=8 | rounds=50 | start R=4.085612 ===
+11:14:43 Population initialized: 8 members
+11:14:46   [   2.1] ★ standard   → R=3.945922
+11:14:52   --- Round 40: global_best=3.712520 pop_best=3.712520 valid=5/8 ---
+11:15:05   [   8.1] ★ standard   → R=3.823165
+11:15:06   --- Round 40: global_best=3.650898 pop_best=3.650898 valid=4/8 ---
+11:15:12   [  10.2] ★ flat_face  → R=3.821609
+11:15:16   [  11.3] ★ standard   → R=3.785948
+11:15:22 
+=== PBH done | best R=3.712520 ===
+11:15:23 === PBH | pop=8 | rounds=50 | start R=4.181407 ===
+11:15:24 Population initialized: 8 members
+11:15:25   [   1.3] ★ standard   → R=4.121628
+11:15:29   [   3.1] ★ standard   → R=4.009855
+11:15:35   [   5.3] ★ standard   → R=3.971402
+11:15:38 
+=== PBH done | best R=3.650898 ===
+11:15:38 === PBH | pop=8 | rounds=50 | start R=3.723087 ===
+11:15:39 Population initialized: 8 members
+11:15:40   [   7.1] ★ rattler    → R=3.941631
+11:15:42   [   8.1] ★ standard   → R=3.910503
+11:15:45   [   8.7] ★ flat_face  → R=3.891256
+11:15:47   --- Round 20: global_best=3.785948 pop_best=3.785948 valid=4/8 ---
+11:15:51   [  11.1] ★ standard   → R=3.809927
+11:15:53   --- Round 40: global_best=3.601772 pop_best=3.601772 valid=4/8 ---
+11:15:58   [  24.3] ★ standard   → R=3.772940
+11:15:58   [  14.1] ★ standard   → R=3.807757
+11:16:01   [  25.3] ★ standard   → R=3.668446
+11:16:08   [  17.4] ★ standard   → R=3.780297
+11:16:15   [  20.7] ★ standard   → R=3.743067
+11:16:15   --- Round 20: global_best=3.743067 pop_best=3.743067 valid=5/8 ---
+11:16:25 
+=== PBH done | best R=3.601772 ===
+11:16:35 === PBH | pop=8 | rounds=50 | start R=3.636803 ===
+11:16:35   --- Round 20: global_best=3.723087 pop_best=3.723087 valid=4/8 ---
+11:16:36 Population initialized: 8 members
+11:16:48   --- Round 40: global_best=3.668446 pop_best=3.668446 valid=4/8 ---
+11:16:56   [  36.4] ★ standard   → R=3.721713
+11:16:57   [  36.6] ★ standard   → R=3.707191
+11:17:04   [  39.1] ★ standard   → R=3.674638
+11:17:05   [  31.6] ★ standard   → R=3.714907
+11:17:06   [  40.1] ★ standard   → R=3.650238
+11:17:09   --- Round 40: global_best=3.650238 pop_best=3.650238 valid=5/8 ---
+11:17:16   [  35.4] ★ standard   → R=3.712353
+11:17:21 
+=== PBH done | best R=3.668446 ===
+11:17:22 === PBH | pop=8 | rounds=50 | start R=4.129803 ===
+11:17:23 Population initialized: 8 members
+11:17:24   [   1.2] ★ flat_face  → R=4.124399
+11:17:25   [   1.5] ★ standard   → R=4.013017
+11:17:27   [   2.3] ★ flat_face  → R=3.935866
+11:17:30   [   3.5] ★ standard   → R=3.933043
+11:17:31   [  40.3] ★ standard   → R=3.668870
+11:17:32   [   4.5] ★ standard   → R=3.863879
+11:17:33   --- Round 40: global_best=3.668870 pop_best=3.668870 valid=4/8 ---
+11:17:37 
+=== PBH done | best R=3.650238 ===
+11:17:37 === PBH | pop=8 | rounds=50 | start R=3.967294 ===
+11:17:37   [   6.2] ★ standard   → R=3.854773
+11:17:38   [   6.5] ★ flat_face  → R=3.851982
+11:17:39 Population initialized: 8 members
+11:17:42   [   2.1] ★ flat_face  → R=3.957411
+11:17:46   [  10.1] ★ standard   → R=3.816464
+11:17:47   [   3.7] ★ standard   → R=3.885880
+11:17:58   [   8.0] ★ standard   → R=3.867040
+11:18:05 
+=== PBH done | best R=3.668870 ===
+11:18:05 === PBH | pop=8 | rounds=50 | start R=3.907761 ===
+11:18:06 Population initialized: 8 members
+11:18:13   --- Round 20: global_best=3.816464 pop_best=3.816464 valid=4/8 ---
+11:18:16   [  22.2] ★ standard   → R=3.763054
+11:18:19   --- Round 20: global_best=3.636803 pop_best=3.636803 valid=4/8 ---
+11:18:22   [  16.6] ★ standard   → R=3.796449
+11:18:25   [  17.5] ★ flat_face  → R=3.761204
+11:18:25   [  26.2] ★ standard   → R=3.739796
+11:18:28   [  18.5] ★ flat_face  → R=3.725905
+11:18:28   [  18.7] ★ standard   → R=3.703017
+11:18:31   [  19.5] ★ flat_face  → R=3.687265
+11:18:35   [  10.1] ★ standard   → R=3.863736
+11:18:36   --- Round 20: global_best=3.687265 pop_best=3.687265 valid=3/8 ---
+11:18:38   [  11.1] ★ flat_face  → R=3.816463
+11:18:42   [  12.1] ★ flat_face  → R=3.813741
+11:18:48   [  23.7] ★ standard   → R=3.675448
+11:19:02   --- Round 40: global_best=3.739796 pop_best=3.739796 valid=5/8 ---
+11:19:08   --- Round 20: global_best=3.813741 pop_best=3.813741 valid=4/8 ---
+11:19:10   [  21.3] ★ standard   → R=3.769662
+11:19:16   [  46.1] ★ standard   → R=3.734373
+11:19:22   [  24.6] ★ standard   → R=3.744858
+11:19:22   [  48.1] ★ standard   → R=3.676388
+11:19:30 
+=== PBH done | best R=3.676388 ===
+11:19:31 === PBH | pop=8 | rounds=50 | start R=4.113119 ===
+11:19:32 Population initialized: 8 members
+11:19:34   [   1.5] ★ standard   → R=4.103115
+11:19:35   [   1.6] ★ rattler    → R=4.100671
+11:19:36   [   2.0] ★ standard   → R=3.995430
+11:19:53   [   9.6] ★ standard   → R=3.992724
+11:19:55   --- Round 40: global_best=3.675448 pop_best=3.675448 valid=3/8 ---
+11:19:56   [  11.3] ★ rattler    → R=3.987807
+11:19:56   [  11.4] ★ rattler    → R=3.986570
+11:20:00   [  13.2] ★ standard   → R=3.885989
+11:20:01   [  13.3] ★ flat_face  → R=3.813007
+11:20:01   --- Round 40: global_best=3.636803 pop_best=3.636803 valid=4/8 ---
+11:20:12   --- Round 40: global_best=3.744858 pop_best=3.744858 valid=5/8 ---
+11:20:18   --- Round 20: global_best=3.813007 pop_best=3.813007 valid=6/8 ---
+11:20:19   [  21.3] ★ standard   → R=3.775029
+11:20:30 
+=== PBH done | best R=3.675448 ===
+11:20:31 === PBH | pop=8 | rounds=50 | start R=3.933549 ===
+11:20:32 Population initialized: 8 members
+11:20:32   [  47.4] ★ standard   → R=3.694064
+11:20:35   [  27.6] ★ standard   → R=3.770752
+11:20:40   [   4.3] ★ flat_face  → R=3.915206
+11:20:41   [  49.5] ★ standard   → R=3.693995
+11:20:46 
+=== PBH done | best R=3.693995 ===
+11:20:46 === PBH | pop=8 | rounds=50 | start R=3.946848 ===
+11:20:46 Population initialized: 8 members
+11:20:49 
+=== PBH done | best R=3.636803 ===
+11:20:50 === PBH | pop=8 | rounds=50 | start R=3.605196 ===
+11:20:51 Population initialized: 8 members
+11:20:51   [   2.7] ★ standard   → R=3.912280
+11:20:57   [   4.7] ★ standard   → R=3.895672
+11:21:06   [  38.6] ★ standard   → R=3.740781
+11:21:10   [  10.1] ★ standard   → R=3.830305
+11:21:13   --- Round 40: global_best=3.740781 pop_best=3.740781 valid=6/8 ---
+11:21:22   --- Round 20: global_best=3.915206 pop_best=3.915206 valid=6/8 ---
+11:21:25   [  15.7] ★ standard   → R=3.780925
+11:21:31   [  17.7] ★ standard   → R=3.764070
+11:21:38   --- Round 20: global_best=3.764070 pop_best=3.764070 valid=5/8 ---
+11:21:42   [  29.1] ★ standard   → R=3.884047
+11:21:42   [  29.3] ★ standard   → R=3.883356
+11:21:45   [  30.3] ★ standard   → R=3.730144
+11:21:46 
+=== PBH done | best R=3.740781 ===
+11:21:47 === PBH | pop=8 | rounds=50 | start R=4.115417 ===
+11:21:47 Population initialized: 8 members
+11:21:48   [   1.0] ★ flat_face  → R=4.004580
+11:21:50   [  32.3] ★ standard   → R=3.711461
+11:21:53   [  33.3] ★ flat_face  → R=3.683150
+11:21:54   [   3.4] ★ flat_face  → R=3.963497
+11:21:57   [   4.4] ★ standard   → R=3.927678
+11:21:59   [   5.3] ★ flat_face  → R=3.909720
+11:22:01   [   5.7] ★ standard   → R=3.784740
+11:22:13   --- Round 20: global_best=3.605196 pop_best=3.605196 valid=4/8 ---
+11:22:14   --- Round 40: global_best=3.683150 pop_best=3.683150 valid=6/8 ---
+11:22:18   [  35.7] ★ standard   → R=3.697800
+11:22:27   [  38.7] ★ standard   → R=3.696074
+11:22:33   --- Round 40: global_best=3.696074 pop_best=3.696074 valid=6/8 ---
+11:22:41 
+=== PBH done | best R=3.683150 ===
+11:22:42 === PBH | pop=8 | rounds=50 | start R=4.161230 ===
+11:22:43 Population initialized: 8 members
+11:22:43   [   1.1] ★ standard   → R=4.152111
+11:22:46   --- Round 20: global_best=3.784740 pop_best=3.784740 valid=5/8 ---
+11:22:47   [   2.5] ★ standard   → R=4.079760
+11:22:47   [   2.7] ★ standard   → R=3.977135
+11:22:52   [  47.7] ★ standard   → R=3.693818
+11:22:53   [  22.7] ★ standard   → R=3.783703
+11:22:56   [   5.7] ★ standard   → R=3.950839
+11:22:57   [   6.1] ★ flat_face  → R=3.907937
+11:22:58   [   6.5] ★ standard   → R=3.905502
+11:22:59 
+=== PBH done | best R=3.693818 ===
+11:23:00 === PBH | pop=8 | rounds=50 | start R=3.835852 ===
+11:23:00 Population initialized: 8 members
+11:23:02   [   8.1] ★ standard   → R=3.884629
+11:23:10   [  11.1] ★ standard   → R=3.881668
+11:23:14   [   5.6] ★ standard   → R=3.810919
+11:23:21   [  16.1] ★ standard   → R=3.871176
+11:23:26   [  18.1] ★ standard   → R=3.799373
+11:23:28   [  35.2] ★ standard   → R=3.764143
+11:23:29   [  19.1] ★ standard   → R=3.730080
+11:23:29   [  11.0] ★ standard   → R=3.791468
+11:23:33   --- Round 20: global_best=3.730080 pop_best=3.730080 valid=4/8 ---
+11:23:35   --- Round 40: global_best=3.605196 pop_best=3.605196 valid=4/8 ---
+11:23:37   --- Round 100: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+11:23:42   [  24.1] ★ standard   → R=3.681776
+11:23:42   --- Round 40: global_best=3.764143 pop_best=3.764143 valid=5/8 ---
+11:23:46   [  26.1] ★ standard   → R=3.677619
+11:23:54   --- Round 20: global_best=3.791468 pop_best=3.791468 valid=5/8 ---
+11:23:55   [  28.1] ★ standard   → R=3.609353
+11:23:58   [  29.1] ★ flat_face  → R=3.564539
+11:24:11 
+=== PBH done | best R=3.764143 ===
+11:24:12 === PBH | pop=8 | rounds=50 | start R=3.942080 ===
+11:24:13 Population initialized: 8 members
+11:24:18   [  30.2] ★ standard   → R=3.784482
+11:24:20 
+=== PBH done | best R=3.605196 ===
+11:24:22   [  31.7] ★ rattler    → R=3.767071
+11:24:25 === PBH | pop=8 | rounds=50 | start R=3.582238 ===
+11:24:26 Population initialized: 8 members
+11:24:26   [  37.1] ★ flat_face  → R=3.532545
+11:24:42   --- Round 40: global_best=3.532545 pop_best=3.532545 valid=4/8 ---
+11:24:45   [  39.3] ★ standard   → R=3.760521
+11:24:46   [  42.1] ★ standard   → R=3.497846
+11:24:50   --- Round 40: global_best=3.760521 pop_best=3.760521 valid=6/8 ---
+11:24:58   [  43.2] ★ standard   → R=3.758070
+11:25:11   [  47.1] ★ standard   → R=3.747534
+11:25:11   --- Round 20: global_best=3.942080 pop_best=3.942080 valid=3/8 ---
+11:25:22 
+=== PBH done | best R=3.497846 ===
+11:25:23 === PBH | pop=8 | rounds=50 | start R=3.944095 ===
+11:25:23 
+=== PBH done | best R=3.747534 ===
+11:25:24 Population initialized: 8 members
+11:25:24 === PBH | pop=8 | rounds=50 | start R=3.880496 ===
+11:25:25 Population initialized: 8 members
+11:25:28   [   2.2] ★ standard   → R=3.787211
+11:25:32   --- Round 100: global_best=2.974679 pop_best=2.974679 valid=2/8 ---
+11:25:55   --- Round 20: global_best=3.582238 pop_best=3.582238 valid=4/8 ---
+11:26:13   --- Round 40: global_best=3.942080 pop_best=3.942080 valid=3/8 ---
+11:26:32   --- Round 20: global_best=3.787211 pop_best=3.787211 valid=5/8 ---
+11:26:33   --- Round 20: global_best=3.880496 pop_best=3.880496 valid=3/8 ---
+11:26:44 
+=== PBH done | best R=3.942080 ===
+11:26:45 === PBH | pop=8 | rounds=50 | start R=4.351968 ===
+11:26:46 Population initialized: 8 members
+11:26:46   [   1.1] ★ flat_face  → R=4.248072
+11:26:47   [   1.3] ★ standard   → R=4.068430
+11:26:48   [  25.5] ★ standard   → R=3.785913
+11:26:48   [   1.4] ★ rattler    → R=4.022054
+11:26:52   [   3.3] ★ flat_face  → R=3.995966
+11:26:56   [   4.7] ★ flat_face  → R=3.935397
+11:26:59   [   5.7] ★ flat_face  → R=3.876161
+11:27:00   [   6.3] ★ flat_face  → R=3.860037
+11:27:10   [  10.3] ★ standard   → R=3.820088
+11:27:14   [  12.1] ★ standard   → R=3.805962
+11:27:17   [  13.2] ★ standard   → R=3.784533
+11:27:27   --- Round 40: global_best=3.785913 pop_best=3.785913 valid=6/8 ---
+11:27:31   [  42.2] ★ standard   → R=3.717605
+11:27:36   --- Round 40: global_best=3.582238 pop_best=3.582238 valid=4/8 ---
+11:27:37   --- Round 20: global_best=3.784533 pop_best=3.784533 valid=5/8 ---
+11:27:38   --- Round 40: global_best=3.880496 pop_best=3.880496 valid=3/8 ---
+11:27:43   [  22.7] ★ rattler    → R=3.780807
+11:27:52 
+=== PBH done | best R=3.717605 ===
+11:27:53 === PBH | pop=8 | rounds=50 | start R=3.923451 ===
+11:27:54 Population initialized: 8 members
+11:27:58   [  47.1] ★ standard   → R=3.839360
+11:28:12 
+=== PBH done | best R=3.839360 ===
+11:28:12   [   6.6] ★ standard   → R=3.882613
+11:28:12 === PBH | pop=8 | rounds=50 | start R=3.972695 ===
+11:28:13 Population initialized: 8 members
+11:28:14   [   1.1] ★ standard   → R=3.963887
+11:28:22   [   9.7] ★ standard   → R=3.836353
+11:28:23   [   4.2] ★ standard   → R=3.887669
+11:28:25 
+=== PBH done | best R=3.582238 ===
+11:28:27 === PBH | pop=8 | rounds=50 | start R=3.691645 ===
+11:28:28 Population initialized: 8 members
+11:28:32   [   7.2] ★ rattler    → R=3.878225
+11:28:42   --- Round 40: global_best=3.780807 pop_best=3.780807 valid=5/8 ---
+11:28:43   [  10.2] ★ rattler    → R=3.877122
+11:28:46   [  17.5] ★ standard   → R=3.776626
+11:28:57   --- Round 20: global_best=3.776626 pop_best=3.776626 valid=4/8 ---
+11:29:02   [  47.3] ★ standard   → R=3.707959
+11:29:09   [  49.3] ★ rattler    → R=3.673404
+11:29:11   [  18.1] ★ standard   → R=3.811094
+11:29:11   [  50.3] ★ rattler    → R=3.670764
+11:29:13 
+=== PBH done | best R=3.670764 ===
+11:29:13 === PBH | pop=8 | rounds=50 | start R=4.234219 ===
+11:29:14 Population initialized: 8 members
+11:29:15   [   1.2] ★ flat_face  → R=4.230871
+11:29:17   [  27.5] ★ flat_face  → R=3.753913
+11:29:18   [   2.2] ★ flat_face  → R=4.193245
+11:29:21   [   3.0] ★ standard   → R=4.173919
+11:29:22   [   3.2] ★ flat_face  → R=4.169636
+11:29:23   --- Round 20: global_best=3.811094 pop_best=3.811094 valid=3/8 ---
+11:29:27   [  22.1] ★ standard   → R=3.785936
+11:29:32   [   7.5] ★ standard   → R=4.162632
+11:29:35   [   8.2] ★ rattler    → R=4.125685
+11:29:36   [   8.6] ★ flat_face  → R=4.125093
+11:29:37   [   9.1] ★ standard   → R=4.110030
+11:29:38   [  25.1] ★ standard   → R=3.774368
+11:29:39   [  10.1] ★ standard   → R=4.098716
+11:29:41   [  11.1] ★ standard   → R=4.019978
+11:29:43   --- Round 20: global_best=3.691645 pop_best=3.691645 valid=4/8 ---
+11:29:51   [  15.6] ★ standard   → R=3.949176
+11:29:54   [  16.6] ★ standard   → R=3.936202
+11:30:00   --- Round 40: global_best=3.753913 pop_best=3.753913 valid=4/8 ---
+11:30:03   --- Round 20: global_best=3.936202 pop_best=3.936202 valid=4/8 ---
+11:30:06   [  21.6] ★ standard   → R=3.839009
+11:30:21   [  27.6] ★ standard   → R=3.828001
+11:30:28   [  40.2] ★ standard   → R=3.749508
+11:30:30   [  30.5] ★ standard   → R=3.824241
+11:30:30 
+=== PBH done | best R=3.753913 ===
+11:30:30 === PBH | pop=8 | rounds=50 | start R=3.983617 ===
+11:30:30   --- Round 40: global_best=3.749508 pop_best=3.749508 valid=4/8 ---
+11:30:30   [  30.6] ★ rattler    → R=3.765572
+11:30:31 Population initialized: 8 members
+11:30:31   [  41.2] ★ flat_face  → R=3.691293
+11:30:34   [  42.2] ★ flat_face  → R=3.659381
+11:30:42   [  34.6] ★ standard   → R=3.753734
+11:30:42   [   5.1] ★ standard   → R=3.909274
+11:30:51   --- Round 40: global_best=3.691645 pop_best=3.691645 valid=4/8 ---
+11:30:57   [  39.5] ★ standard   → R=3.643701
+11:31:02   [  49.6] ★ standard   → R=3.589763
+11:31:03   --- Round 40: global_best=3.643701 pop_best=3.643701 valid=4/8 ---
+11:31:05 
+=== PBH done | best R=3.589763 ===
+11:31:06 === PBH | pop=8 | rounds=50 | start R=3.691127 ===
+11:31:07 Population initialized: 8 members
+11:31:13   [  15.7] ★ standard   → R=3.794243
+11:31:23   [  50.3] ★ standard   → R=3.621039
+11:31:26 
+=== PBH done | best R=3.621039 ===
+11:31:27   --- Round 20: global_best=3.794243 pop_best=3.794243 valid=4/8 ---
+11:31:35   [  25.1] ★ standard   → R=3.768776
+11:31:35   [  50.4] ★ standard   → R=3.624067
+11:31:36   [  25.6] ★ standard   → R=3.625609
+11:31:36 
+=== PBH done | best R=3.624067 ===
+11:31:37 === PBH | pop=8 | rounds=50 | start R=4.032481 ===
+11:31:38 Population initialized: 8 members
+11:31:38   [   1.1] ★ standard   → R=4.014638
+11:31:40   [   1.7] ★ flat_face  → R=4.010252
+11:31:51   [   8.1] ★ standard   → R=3.979948
+11:31:57   [  10.6] ★ standard   → R=3.976822
+11:32:04   --- Round 20: global_best=3.691127 pop_best=3.691127 valid=4/8 ---
+11:32:11   [  18.1] ★ standard   → R=3.897417
+11:32:16   [  20.1] ★ standard   → R=3.882686
+11:32:18   --- Round 20: global_best=3.882686 pop_best=3.882686 valid=4/8 ---
+11:32:19   --- Round 40: global_best=3.625609 pop_best=3.625609 valid=4/8 ---
+11:32:33   [  27.1] ★ standard   → R=3.813864
+11:32:35   [  28.1] ★ standard   → R=3.801639
+11:32:46 
+=== PBH done | best R=3.625609 ===
+11:32:46 === PBH | pop=8 | rounds=50 | start R=4.133160 ===
+11:32:47 Population initialized: 8 members
+11:32:48   [   1.5] ★ flat_face  → R=4.132486
+11:32:50   [   2.1] ★ standard   → R=4.016308
+11:32:54   --- Round 40: global_best=3.691127 pop_best=3.691127 valid=4/8 ---
+11:32:57   [   6.1] ★ standard   → R=3.966721
+11:33:05   --- Round 40: global_best=3.801639 pop_best=3.801639 valid=4/8 ---
+11:33:12   [  48.5] ★ standard   → R=3.684450
+11:33:18 
+=== PBH done | best R=3.684450 ===
+11:33:19 === PBH | pop=8 | rounds=50 | start R=3.880637 ===
+11:33:19 Population initialized: 8 members
+11:33:21   [  18.3] ★ standard   → R=3.916888
+11:33:23   [  19.1] ★ standard   → R=3.811852
+11:33:27 
+=== PBH done | best R=3.801639 ===
+11:33:28   --- Round 20: global_best=3.811852 pop_best=3.811852 valid=5/8 ---
+11:33:28 === PBH | pop=8 | rounds=50 | start R=4.655472 ===
+11:33:29 Population initialized: 8 members
+11:33:29   [   1.0] ★ flat_face  → R=4.603336
+11:33:29   [   1.1] ★ flat_face  → R=4.561342
+11:33:30   [   1.2] ★ flat_face  → R=4.534966
+11:33:30   [   1.3] ★ flat_face  → R=4.481995
+11:33:30   [   1.4] ★ flat_face  → R=4.465058
+11:33:31   [   2.1] ★ rattler    → R=4.389737
+11:33:32   [   2.3] ★ flat_face  → R=4.356992
+11:33:32   [   2.4] ★ rattler    → R=4.289510
+11:33:39   [   8.4] ★ standard   → R=4.247007
+11:33:44   [  28.6] ★ standard   → R=3.753876
+11:33:44   [  12.2] ★ standard   → R=4.225039
+11:33:47   [  14.2] ★ standard   → R=4.192764
+11:33:49   [  15.5] ★ standard   → R=4.059569
+11:33:56   --- Round 20: global_best=4.059569 pop_best=4.059569 valid=6/8 ---
+11:33:56   [  19.1] ★ standard   → R=3.836871
+11:34:00   --- Round 20: global_best=3.836871 pop_best=3.836871 valid=4/8 ---
+11:34:13   --- Round 40: global_best=3.753876 pop_best=3.753876 valid=5/8 ---
+11:34:16   [  29.1] ★ standard   → R=3.814971
+11:34:22   [  44.1] ★ standard   → R=3.725118
+11:34:22   [  31.5] ★ standard   → R=3.812748
+11:34:24   [  38.7] ★ standard   → R=4.033959
+11:34:25   [  39.3] ★ flat_face  → R=3.948764
+11:34:26   [  33.5] ★ standard   → R=3.810239
+11:34:27   [  40.1] ★ flat_face  → R=3.907214
+11:34:27   [  46.1] ★ standard   → R=3.721312
+11:34:28   --- Round 40: global_best=3.907214 pop_best=3.907214 valid=6/8 ---
+11:34:35   [  49.3] ★ standard   → R=3.628448
+11:34:38   [  39.5] ★ standard   → R=3.741417
+11:34:39 
+=== PBH done | best R=3.628448 ===
+11:34:39 === PBH | pop=8 | rounds=50 | start R=3.865494 ===
+11:34:40 Population initialized: 8 members
+11:34:41   --- Round 40: global_best=3.741417 pop_best=3.741417 valid=4/8 ---
+11:34:42   [   1.6] ★ standard   → R=3.853472
+11:34:44   [   2.5] ★ flat_face  → R=3.844245
+11:34:46   [  50.7] ★ standard   → R=3.872695
+11:34:46 
+=== PBH done | best R=3.872695 ===
+11:34:47 === PBH | pop=8 | rounds=50 | start R=4.095867 ===
+11:34:47 Population initialized: 8 members
+11:34:48   [   1.0] ★ rattler    → R=4.089572
+11:34:48   [   1.1] ★ flat_face  → R=3.972441
+11:34:49   [   1.5] ★ standard   → R=3.874371
+11:34:51   [   6.5] ★ standard   → R=3.785306
+11:35:06 
+=== PBH done | best R=3.741417 ===
+11:35:06 === PBH | pop=8 | rounds=50 | start R=3.681372 ===
+11:35:07 Population initialized: 8 members
+11:35:08   [  15.6] ★ standard   → R=3.738244
+11:35:09   [  15.7] ★ flat_face  → R=3.707093
+11:35:18   --- Round 20: global_best=3.707093 pop_best=3.707093 valid=6/8 ---
+11:35:22   [  16.2] ★ standard   → R=3.830594
+11:35:25   [  24.1] ★ standard   → R=3.658400
+11:35:26   [  24.7] ★ flat_face  → R=3.652566
+11:35:32   [  20.6] ★ standard   → R=3.691755
+11:35:32   --- Round 20: global_best=3.691755 pop_best=3.691755 valid=5/8 ---
+11:35:34   [  21.4] ★ flat_face  → R=3.620458
+11:35:34   [  28.6] ★ standard   → R=3.635647
+11:35:34   [  21.6] ★ flat_face  → R=3.566394
+11:35:47   [  34.7] ★ standard   → R=3.564440
+11:35:57   --- Round 20: global_best=3.681372 pop_best=3.681372 valid=4/8 ---
+11:36:00   --- Round 40: global_best=3.564440 pop_best=3.564440 valid=6/8 ---
+11:36:05   [  24.3] ★ standard   → R=3.667875
+11:36:12   [  45.7] ★ standard   → R=3.532435
+11:36:13   [  46.3] ★ flat_face  → R=3.532184
+11:36:22 
+=== PBH done | best R=3.532184 ===
+11:36:23 === PBH | pop=8 | rounds=50 | start R=3.840232 ===
+11:36:23 Population initialized: 8 members
+11:36:24   --- Round 40: global_best=3.566394 pop_best=3.566394 valid=5/8 ---
+11:36:25   [   1.4] ★ rattler    → R=3.818292
+11:36:27   [   2.3] ★ standard   → R=3.783813
+11:36:28   [   3.1] ★ flat_face  → R=3.781437
+11:36:31   [   4.4] ★ standard   → R=3.755348
+11:36:43   --- Round 40: global_best=3.667875 pop_best=3.667875 valid=5/8 ---
+11:36:46   [  10.2] ★ standard   → R=3.751668
+11:36:50 
+=== PBH done | best R=3.566394 ===
+11:36:50 === PBH | pop=8 | rounds=50 | start R=4.066252 ===
+11:36:51 Population initialized: 8 members
+11:36:53   [   1.4] ★ flat_face  → R=3.982411
+11:36:54   [   1.7] ★ flat_face  → R=3.959502
+11:36:55   [   2.4] ★ flat_face  → R=3.914044
+11:36:57   [   3.5] ★ flat_face  → R=3.875771
+11:36:58   [   3.7] ★ flat_face  → R=3.862878
+11:37:04   [   7.1] ★ standard   → R=3.757655
+11:37:04   [   7.3] ★ flat_face  → R=3.733661
+11:37:06 
+=== PBH done | best R=3.667875 ===
+11:37:07 === PBH | pop=8 | rounds=50 | start R=3.767050 ===
+11:37:07 Population initialized: 8 members
+11:37:15   --- Round 20: global_best=3.751668 pop_best=3.751668 valid=4/8 ---
+11:37:18   [  22.3] ★ standard   → R=3.739032
+11:37:33   --- Round 20: global_best=3.733661 pop_best=3.733661 valid=5/8 ---
+11:37:35   [  13.1] ★ standard   → R=3.729305
+11:37:43   [  16.4] ★ rattler    → R=3.697530
+11:37:47   [  17.7] ★ standard   → R=3.686258
+11:37:54   --- Round 20: global_best=3.686258 pop_best=3.686258 valid=3/8 ---
+11:38:05   --- Round 40: global_best=3.739032 pop_best=3.739032 valid=4/8 ---
+11:38:06   [  41.2] ★ standard   → R=3.660997
+11:38:09   [  26.7] ★ standard   → R=3.647566
+11:38:13   [  28.4] ★ standard   → R=3.510487
+11:38:14   [  44.3] ★ standard   → R=3.643676
+11:38:15   --- Round 40: global_best=3.733661 pop_best=3.733661 valid=5/8 ---
+11:38:33 
+=== PBH done | best R=3.643676 ===
+11:38:34 === PBH | pop=8 | rounds=50 | start R=3.935518 ===
+11:38:34 Population initialized: 8 members
+11:38:35   [   1.1] ★ standard   → R=3.806376
+11:38:36 
+=== PBH done | best R=3.733661 ===
+11:38:37 === PBH | pop=8 | rounds=50 | start R=4.401513 ===
+11:38:37 Population initialized: 8 members
+11:38:38   [   1.2] ★ standard   → R=4.300366
+11:38:38   [   1.3] ★ rattler    → R=4.262130
+11:38:39   [   1.4] ★ flat_face  → R=4.165273
+11:38:40   [   3.3] ★ standard   → R=3.755441
+11:38:40   [   2.2] ★ flat_face  → R=4.162151
+11:38:41   [   2.4] ★ flat_face  → R=4.156109
+11:38:41   --- Round 40: global_best=3.510487 pop_best=3.510487 valid=4/8 ---
+11:38:42   [   3.1] ★ flat_face  → R=4.151801
+11:38:43   [   3.6] ★ rattler    → R=4.007180
+11:39:04 
+=== PBH done | best R=3.510487 ===
+11:39:05 === PBH | pop=8 | rounds=50 | start R=3.662911 ===
+11:39:05 Population initialized: 8 members
+11:39:17   --- Round 20: global_best=4.007180 pop_best=4.007180 valid=3/8 ---
+11:39:18   --- Round 20: global_best=3.755441 pop_best=3.755441 valid=4/8 ---
+11:39:19   [  22.2] ★ flat_face  → R=4.005324
+11:39:21   [  22.7] ★ rattler    → R=3.988226
+11:39:27   [  24.2] ★ rattler    → R=3.751959
+11:39:30   --- Round 140: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+11:39:32   [  28.3] ★ standard   → R=3.985786
+11:39:35   [  30.3] ★ standard   → R=3.967204
+11:39:37   [  29.6] ★ standard   → R=3.711099
+11:39:47   [  37.6] ★ rattler    → R=3.920198
+11:39:52   [  36.7] ★ standard   → R=3.709788
+11:39:54   --- Round 40: global_best=3.920198 pop_best=3.920198 valid=5/8 ---
+11:39:56   [  41.6] ★ rattler    → R=3.910228
+11:40:01   --- Round 40: global_best=3.709788 pop_best=3.709788 valid=5/8 ---
+11:40:06   --- Round 20: global_best=3.662911 pop_best=3.662911 valid=2/8 ---
+11:40:07   [  47.3] ★ standard   → R=3.905182
+11:40:13   [  50.5] ★ standard   → R=3.898659
+11:40:13 
+=== PBH done | best R=3.898659 ===
+11:40:14 === PBH | pop=8 | rounds=50 | start R=4.263087 ===
+11:40:15 Population initialized: 8 members
+11:40:16   [   1.2] ★ flat_face  → R=4.237843
+11:40:16   [   1.3] ★ flat_face  → R=4.168356
+11:40:18   [   2.3] ★ rattler    → R=4.027517
+11:40:19   [   2.5] ★ standard   → R=4.012787
+11:40:21   [   3.2] ★ rattler    → R=3.937840
+11:40:21   [   3.3] ★ flat_face  → R=3.888067
+11:40:22   [   3.7] ★ rattler    → R=3.874195
+11:40:24 
+=== PBH done | best R=3.709788 ===
+11:40:24 === PBH | pop=8 | rounds=50 | start R=3.896619 ===
+11:40:25 Population initialized: 8 members
+11:40:30   [   3.1] ★ standard   → R=3.896020
+11:40:32   [   3.6] ★ standard   → R=3.815492
+11:40:33   [   9.5] ★ standard   → R=3.799004
+11:40:34   [   4.6] ★ standard   → R=3.643375
+11:40:52   [  18.4] ★ standard   → R=3.789405
+11:40:53   [  19.1] ★ standard   → R=3.785288
+11:40:55   [  13.1] ★ standard   → R=3.559682
+11:40:56   --- Round 40: global_best=3.662911 pop_best=3.662911 valid=4/8 ---
+11:40:57   --- Round 20: global_best=3.785288 pop_best=3.785288 valid=4/8 ---
+11:40:59   [  14.1] ★ standard   → R=3.559111
+11:41:00   [  22.1] ★ flat_face  → R=3.766610
+11:41:02   [  22.6] ★ flat_face  → R=3.764873
+11:41:03   [  23.1] ★ standard   → R=3.728208
+11:41:05   [  24.1] ★ standard   → R=3.715749
+11:41:06   [  24.6] ★ flat_face  → R=3.708226
+11:41:22 
+=== PBH done | best R=3.662911 ===
+11:41:22 === PBH | pop=8 | rounds=50 | start R=3.736237 ===
+11:41:23   --- Round 20: global_best=3.559111 pop_best=3.559111 valid=5/8 ---
+11:41:23 Population initialized: 8 members
+11:41:23   [  21.1] ★ standard   → R=3.531461
+11:41:35   [  36.1] ★ standard   → R=3.654607
+11:41:47   --- Round 40: global_best=3.654607 pop_best=3.654607 valid=4/8 ---
+11:42:09   [  20.6] ★ standard   → R=3.714544
+11:42:09   --- Round 20: global_best=3.714544 pop_best=3.714544 valid=2/8 ---
+11:42:10   [  40.1] ★ standard   → R=3.453093
+11:42:12   --- Round 40: global_best=3.453093 pop_best=3.453093 valid=5/8 ---
+11:42:13 
+=== PBH done | best R=3.654607 ===
+11:42:13 === PBH | pop=8 | rounds=50 | start R=3.915468 ===
+11:42:14 Population initialized: 8 members
+11:42:14   [   1.0] ★ rattler    → R=3.890332
+11:42:20   [   3.1] ★ standard   → R=3.889715
+11:42:20   [   3.2] ★ flat_face  → R=3.861524
+11:42:21   [   3.4] ★ flat_face  → R=3.850455
+11:42:35   [   9.1] ★ standard   → R=3.783106
+11:42:41   [  12.2] ★ standard   → R=3.770045
+11:42:41 
+=== PBH done | best R=3.453093 ===
+11:42:41 === PBH | pop=8 | rounds=50 | start R=3.950739 ===
+11:42:42 Population initialized: 8 members
+11:42:42   [  13.1] ★ standard   → R=3.769774
+11:42:44   [  14.1] ★ standard   → R=3.768680
+11:42:45   [   2.1] ★ standard   → R=3.876757
+11:42:50   [  38.6] ★ standard   → R=3.690808
+11:42:50   [   5.1] ★ standard   → R=3.876695
+11:42:52   [   5.7] ★ standard   → R=3.844109
+11:42:55   [   7.1] ★ flat_face  → R=3.835923
+11:42:56   --- Round 40: global_best=3.690808 pop_best=3.690808 valid=5/8 ---
+11:42:59   --- Round 20: global_best=3.768680 pop_best=3.768680 valid=4/8 ---
+11:43:01   [  10.3] ★ standard   → R=3.804653
+11:43:02   [  22.1] ★ standard   → R=3.760674
+11:43:05   [  12.1] ★ standard   → R=3.757743
+11:43:10   [  26.1] ★ standard   → R=3.756776
+11:43:15   [  16.7] ★ flat_face  → R=3.754485
+11:43:22 
+=== PBH done | best R=3.690808 ===
+11:43:22 === PBH | pop=8 | rounds=50 | start R=3.694388 ===
+11:43:23 Population initialized: 8 members
+11:43:25   --- Round 20: global_best=3.754485 pop_best=3.754485 valid=4/8 ---
+11:43:33   [  36.1] ★ standard   → R=3.736612
+11:43:36   [  26.2] ★ rattler    → R=3.749369
+11:43:39   [  27.1] ★ standard   → R=3.732716
+11:43:43   --- Round 40: global_best=3.736612 pop_best=3.736612 valid=5/8 ---
+11:43:47   [  42.6] ★ standard   → R=3.735399
+11:44:00   [  49.1] ★ standard   → R=3.690000
+11:44:05 
+=== PBH done | best R=3.690000 ===
+11:44:06 === PBH | pop=8 | rounds=50 | start R=4.158601 ===
+11:44:07 Population initialized: 8 members
+11:44:07   [   1.0] ★ standard   → R=4.060217
+11:44:07   --- Round 40: global_best=3.732716 pop_best=3.732716 valid=4/8 ---
+11:44:09   [   2.1] ★ standard   → R=3.982587
+11:44:13   --- Round 20: global_best=3.694388 pop_best=3.694388 valid=4/8 ---
+11:44:29   [   9.7] ★ standard   → R=3.973534
+11:44:30 
+=== PBH done | best R=3.732716 ===
+11:44:31   [  10.4] ★ flat_face  → R=3.970842
+11:44:31 === PBH | pop=8 | rounds=50 | start R=3.992164 ===
+11:44:32 Population initialized: 8 members
+11:44:33   [  11.4] ★ flat_face  → R=3.935114
+11:44:36   [   3.1] ★ standard   → R=3.955712
+11:44:37   [   3.5] ★ standard   → R=3.858506
+11:44:40   [  14.1] ★ standard   → R=3.916203
+11:44:49   [  18.1] ★ standard   → R=3.900500
+11:44:51   [  18.7] ★ standard   → R=3.867812
+11:44:52   [  19.1] ★ standard   → R=3.864663
+11:44:53   [  19.4] ★ flat_face  → R=3.862294
+11:44:56   [  20.4] ★ flat_face  → R=3.858998
+11:44:56   --- Round 20: global_best=3.858998 pop_best=3.858998 valid=3/8 ---
+11:44:57   [  11.1] ★ standard   → R=3.851740
+11:45:00   --- Round 40: global_best=3.694388 pop_best=3.694388 valid=4/8 ---
+11:45:07   [  43.4] ★ standard   → R=3.682724
+11:45:20   [  29.7] ★ standard   → R=3.682090
+11:45:21   --- Round 20: global_best=3.851740 pop_best=3.851740 valid=3/8 ---
+11:45:23   [  21.4] ★ standard   → R=3.784951
+11:45:27 
+=== PBH done | best R=3.682724 ===
+11:45:27 === PBH | pop=8 | rounds=50 | start R=4.087952 ===
+11:45:27 Population initialized: 8 members
+11:45:28   [   1.1] ★ standard   → R=4.047160
+11:45:46   [   9.1] ★ standard   → R=4.017245
+11:45:51   --- Round 40: global_best=3.682090 pop_best=3.682090 valid=4/8 ---
+11:46:06   [  39.6] ★ standard   → R=3.747268
+11:46:09   --- Round 40: global_best=3.747268 pop_best=3.747268 valid=3/8 ---
+11:46:13   --- Round 20: global_best=4.017245 pop_best=4.017245 valid=4/8 ---
+11:46:17   [  23.1] ★ standard   → R=4.014641
+11:46:19   [  24.3] ★ standard   → R=3.944416
+11:46:21 
+=== PBH done | best R=3.682090 ===
+11:46:22 === PBH | pop=8 | rounds=50 | start R=3.984249 ===
+11:46:23 Population initialized: 8 members
+11:46:25   [   2.2] ★ flat_face  → R=3.976535
+11:46:28   [   3.2] ★ flat_face  → R=3.913083
+11:46:28   [  29.1] ★ standard   → R=3.927973
+11:46:28   [   3.5] ★ flat_face  → R=3.912386
+11:46:29   [   3.6] ★ rattler    → R=3.889521
+11:46:30   [  30.1] ★ standard   → R=3.852495
+11:46:32   [  31.2] ★ standard   → R=3.798734
+11:46:33 
+=== PBH done | best R=3.747268 ===
+11:46:33 === PBH | pop=8 | rounds=50 | start R=3.918816 ===
+11:46:34 Population initialized: 8 members
+11:46:41   [   9.6] ★ rattler    → R=3.838407
+11:46:49   [   8.3] ★ standard   → R=3.845966
+11:46:55   --- Round 40: global_best=3.798734 pop_best=3.798734 valid=4/8 ---
+11:46:59   [  13.1] ★ standard   → R=3.733685
+11:47:06   --- Round 20: global_best=3.838407 pop_best=3.838407 valid=4/8 ---
+11:47:17   --- Round 20: global_best=3.733685 pop_best=3.733685 valid=4/8 ---
+11:47:18   [  26.5] ★ standard   → R=3.837032
+11:47:19 
+=== PBH done | best R=3.798734 ===
+11:47:19 === PBH | pop=8 | rounds=50 | start R=3.815596 ===
+11:47:20 Population initialized: 8 members
+11:47:24   [  24.1] ★ standard   → R=3.712938
+11:47:37   [  30.1] ★ standard   → R=3.624523
+11:47:42   [  10.2] ★ standard   → R=3.752658
+11:47:44   [  34.1] ★ standard   → R=3.516116
+11:47:49   --- Round 40: global_best=3.837032 pop_best=3.837032 valid=5/8 ---
+11:47:49   [  13.2] ★ standard   → R=3.647186
+11:47:51   [  41.4] ★ standard   → R=3.773662
+11:47:56   [  16.2] ★ standard   → R=3.637219
+11:48:03   --- Round 40: global_best=3.516116 pop_best=3.516116 valid=5/8 ---
+11:48:09   --- Round 20: global_best=3.637219 pop_best=3.637219 valid=4/8 ---
+11:48:14 
+=== PBH done | best R=3.773662 ===
+11:48:15 === PBH | pop=8 | rounds=50 | start R=3.916294 ===
+11:48:15 Population initialized: 8 members
+11:48:17   [   2.1] ★ standard   → R=3.852824
+11:48:27 
+=== PBH done | best R=3.516116 ===
+11:48:28 === PBH | pop=8 | rounds=50 | start R=4.033874 ===
+11:48:29 Population initialized: 8 members
+11:48:29   [   1.2] ★ standard   → R=3.907437
+11:48:31   [   1.7] ★ standard   → R=3.868050
+11:48:37   [   4.7] ★ standard   → R=3.866448
+11:48:38   [   5.1] ★ standard   → R=3.840126
+11:48:40   [  32.2] ★ standard   → R=3.598603
+11:48:45   [  13.3] ★ standard   → R=3.846841
+11:48:46   [   9.1] ★ standard   → R=3.821049
+11:48:47   [  35.1] ★ standard   → R=3.583145
+11:48:53   [  17.4] ★ standard   → R=3.760642
+11:48:59   --- Round 40: global_best=3.583145 pop_best=3.583145 valid=5/8 ---
+11:49:00   --- Round 20: global_best=3.760642 pop_best=3.760642 valid=6/8 ---
+11:49:11   --- Round 20: global_best=3.821049 pop_best=3.821049 valid=4/8 ---
+11:49:19   [  24.4] ★ standard   → R=3.795085
+11:49:21   [  25.3] ★ flat_face  → R=3.782125
+11:49:21 
+=== PBH done | best R=3.583145 ===
+11:49:22 === PBH | pop=8 | rounds=50 | start R=3.980708 ===
+11:49:22 Population initialized: 8 members
+11:49:23   [   1.1] ★ standard   → R=3.919937
+11:49:27   [   2.7] ★ standard   → R=3.826759
+11:49:37   [  40.4] ★ standard   → R=3.748232
+11:49:38   --- Round 40: global_best=3.748232 pop_best=3.748232 valid=6/8 ---
+11:49:41   [  42.4] ★ standard   → R=3.721497
+11:49:53   [  48.4] ★ standard   → R=3.668192
+11:49:55   [  49.2] ★ flat_face  → R=3.576037
+11:49:57   --- Round 40: global_best=3.782125 pop_best=3.782125 valid=4/8 ---
+11:49:58 
+=== PBH done | best R=3.576037 ===
+11:49:59 === PBH | pop=8 | rounds=50 | start R=4.213354 ===
+11:50:00 Population initialized: 8 members
+11:50:00   [   1.1] ★ standard   → R=4.139967
+11:50:02   [   1.4] ★ standard   → R=4.042173
+11:50:02   [   1.5] ★ flat_face  → R=4.028071
+11:50:03   [   1.6] ★ rattler    → R=4.008969
+11:50:03   [   1.7] ★ flat_face  → R=4.006149
+11:50:05   [   2.6] ★ flat_face  → R=3.916332
+11:50:05   --- Round 20: global_best=3.826759 pop_best=3.826759 valid=4/8 ---
+11:50:08   [   4.1] ★ standard   → R=3.849673
+11:50:14   [   7.1] ★ standard   → R=3.771297
+11:50:15   [  48.7] ★ standard   → R=3.744308
+11:50:20   [   9.5] ★ standard   → R=3.713667
+11:50:21 
+=== PBH done | best R=3.744308 ===
+11:50:21 === PBH | pop=8 | rounds=50 | start R=4.184643 ===
+11:50:22 Population initialized: 8 members
+11:50:23   [   1.3] ★ standard   → R=4.090478
+11:50:23   [   1.4] ★ flat_face  → R=3.993552
+11:50:32   [   5.6] ★ standard   → R=3.834392
+11:50:34   [   6.5] ★ standard   → R=3.813829
+11:50:49   --- Round 20: global_best=3.713667 pop_best=3.713667 valid=5/8 ---
+11:50:50   --- Round 40: global_best=3.826759 pop_best=3.826759 valid=5/8 ---
+11:51:01   [  18.4] ★ standard   → R=3.812983
+11:51:03   [  19.1] ★ standard   → R=3.734776
+11:51:06   [  49.1] ★ standard   → R=3.785478
+11:51:07   --- Round 20: global_best=3.734776 pop_best=3.734776 valid=4/8 ---
+11:51:10 
+=== PBH done | best R=3.785478 ===
+11:51:11 === PBH | pop=8 | rounds=50 | start R=3.869199 ===
+11:51:11 Population initialized: 8 members
+11:51:15   [   2.4] ★ standard   → R=3.862884
+11:51:17   [   3.2] ★ standard   → R=3.774545
+11:51:22   [   5.6] ★ standard   → R=3.747549
+11:51:26   [  27.4] ★ standard   → R=3.666802
+11:51:43   --- Round 40: global_best=3.713667 pop_best=3.713667 valid=5/8 ---
+11:51:51   [  44.1] ★ standard   → R=3.679849
+11:52:03   [  20.4] ★ standard   → R=3.734052
+11:52:04   --- Round 20: global_best=3.734052 pop_best=3.734052 valid=5/8 ---
+11:52:06   [  50.3] ★ standard   → R=3.670103
+11:52:06   --- Round 40: global_best=3.666802 pop_best=3.666802 valid=4/8 ---
+11:52:07 
+=== PBH done | best R=3.670103 ===
+11:52:30 
+=== PBH done | best R=3.666802 ===
+11:52:30 === PBH | pop=8 | rounds=50 | start R=4.046431 ===
+11:52:31 Population initialized: 8 members
+11:52:31   [   1.2] ★ flat_face  → R=4.036501
+11:52:35   [   3.6] ★ standard   → R=3.920353
+11:52:37   [   4.5] ★ flat_face  → R=3.875106
+11:52:37   [  36.2] ★ flat_face  → R=3.716290
+11:52:40   [   6.7] ★ standard   → R=3.801887
+11:52:41   [   7.6] ★ standard   → R=3.758895
+11:52:43   [   9.1] ★ standard   → R=3.738741
+11:52:45   --- Round 40: global_best=3.716290 pop_best=3.716290 valid=5/8 ---
+11:52:51   [  13.6] ★ standard   → R=3.713739
+11:52:57   [  47.1] ★ standard   → R=3.698477
+11:53:03 
+=== PBH done | best R=3.698477 ===
+11:53:03   --- Round 20: global_best=3.713739 pop_best=3.713739 valid=5/8 ---
+11:53:03 === PBH | pop=8 | rounds=50 | start R=3.901599 ===
+11:53:04 Population initialized: 8 members
+11:53:19   [  30.1] ★ standard   → R=3.702889
+11:53:24   [  14.0] ★ standard   → R=3.859922
+11:53:36   --- Round 20: global_best=3.859922 pop_best=3.859922 valid=4/8 ---
+11:53:37   --- Round 40: global_best=3.702889 pop_best=3.702889 valid=5/8 ---
+11:53:54 
+=== PBH done | best R=3.702889 ===
+11:54:05   --- Round 40: global_best=3.859922 pop_best=3.859922 valid=4/8 ---
+11:54:08   [  43.3] ★ standard   → R=3.733996
+11:54:16 
+=== PBH done | best R=3.733996 ===
+11:54:27   --- Round 120: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+11:54:41   --- Round 120: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+11:56:13   --- Round 160: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+11:57:47   --- Round 140: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+11:58:47   --- Round 140: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+12:00:10   --- Round 180: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+12:01:29   --- Round 160: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+12:02:31   --- Round 160: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+12:02:53 === PBH | pop=8 | rounds=100 | start R=5.784687 ===
+12:02:53 === PBH | pop=8 | rounds=100 | start R=5.906885 ===
+12:02:53 Population initialized: 8 members
+12:02:53 Population initialized: 8 members
+12:02:53   [   1.0] ★ rattler    → R=5.671798
+12:02:54   [   1.1] ★ flat_face  → R=5.359064
+12:02:54   [   1.0] ★ rattler    → R=5.855698
+12:02:54   [   1.1] ★ rattler    → R=5.489995
+12:02:54   [   1.2] ★ rattler    → R=5.358274
+12:02:54   [   1.3] ★ rattler    → R=5.294333
+12:02:54   [   1.4] ★ rattler    → R=5.342468
+12:02:54   [   1.5] ★ rattler    → R=5.243386
+12:02:54   [   1.5] ★ rattler    → R=5.335449
+12:02:55   [   1.6] ★ rattler    → R=5.048544
+12:02:55   [   1.7] ★ standard   → R=5.188689
+12:02:55   [   1.7] ★ rattler    → R=4.868094
+12:02:55   [   2.1] ★ rattler    → R=5.035909
+12:02:55   [   2.2] ★ rattler    → R=5.002612
+12:02:56   [   2.3] ★ rattler    → R=4.989955
+12:02:56   [   2.4] ★ rattler    → R=4.841099
+12:02:56   [   2.4] ★ rattler    → R=4.985926
+12:02:56   [   2.5] ★ rattler    → R=4.716013
+12:02:56   [   2.6] ★ flat_face  → R=4.606631
+12:02:56   [   2.7] ★ rattler    → R=4.510729
+12:02:57   [   3.4] ★ rattler    → R=4.971391
+12:02:57   [   3.3] ★ rattler    → R=4.445635
+12:02:57   [   3.7] ★ rattler    → R=4.864755
+12:02:57   [   4.1] ★ standard   → R=4.864704
+12:02:58 === PBH | pop=8 | rounds=100 | start R=5.849131 ===
+12:02:58   [   4.2] ★ flat_face  → R=4.851378
+12:02:58 Population initialized: 8 members
+12:02:58   [   4.4] ★ rattler    → R=4.836615
+12:02:58   [   1.0] ★ rattler    → R=5.794748
+12:02:58   [   4.3] ★ rattler    → R=4.436782
+12:02:59   [   1.3] ★ standard   → R=5.504057
+12:02:59   [   1.5] ★ rattler    → R=5.493071
+12:02:59   [   5.2] ★ rattler    → R=4.811297
+12:02:59   [   1.6] ★ rattler    → R=5.482331
+12:03:00   [   1.7] ★ flat_face  → R=5.448920
+12:03:00   [   5.4] ★ rattler    → R=4.795832
+12:03:00   [   5.3] ★ rattler    → R=4.436242
+12:03:00   [   5.5] ★ rattler    → R=4.763773
+12:03:00   [   2.1] ★ rattler    → R=5.330892
+12:03:00   [   5.7] ★ standard   → R=4.680739
+12:03:01   [   6.1] ★ standard   → R=4.592682
+12:03:01   [   2.7] ★ rattler    → R=5.289274
+12:03:01   [   6.4] ★ rattler    → R=4.582711
+12:03:02   [   6.5] ★ rattler    → R=4.518135
+12:03:02   [   3.4] ★ rattler    → R=5.239227
+12:03:02   [   3.7] ★ standard   → R=5.144539
+12:03:02   [   7.1] ★ rattler    → R=4.508682
+12:03:03   [   7.2] ★ rattler    → R=4.497991
+12:03:03   [   4.2] ★ rattler    → R=5.129101
+12:03:03   [   4.4] ★ rattler    → R=5.088651
+12:03:04   [   4.7] ★ rattler    → R=4.996111
+12:03:04   [   8.2] ★ rattler    → R=4.415299
+12:03:05   [   5.4] ★ rattler    → R=4.957385
+12:03:05   [   5.5] ★ rattler    → R=4.945296
+12:03:07   [   6.7] ★ flat_face  → R=4.832790
+12:03:07   [   7.4] ★ rattler    → R=4.817021
+12:03:07   [   9.7] ★ rattler    → R=4.431563
+12:03:08   [   7.5] ★ rattler    → R=4.783908
+12:03:08   [   7.7] ★ flat_face  → R=4.621832
+12:03:08   [  10.2] ★ rattler    → R=4.310868
+12:03:09   [   8.4] ★ rattler    → R=4.604913
+12:03:09   [   8.5] ★ rattler    → R=4.592478
+12:03:10   [  11.5] ★ rattler    → R=4.357827
+12:03:10   [  11.2] ★ rattler    → R=4.241508
+12:03:11   [  12.3] ★ rattler    → R=4.356291
+12:03:12   [  12.2] ★ rattler    → R=4.201849
+12:03:13   [  11.7] ★ flat_face  → R=4.548769
+12:03:13   [  13.5] ★ standard   → R=4.246783
+12:03:14   [  12.7] ★ flat_face  → R=4.496256
+12:03:14   [  14.4] ★ standard   → R=4.244545
+12:03:15   [  13.5] ★ standard   → R=4.481413
+12:03:16   [  13.7] ★ flat_face  → R=4.452480
+12:03:17   [  14.7] ★ flat_face  → R=4.440175
+12:03:19   [  15.7] ★ flat_face  → R=4.431153
+12:03:20   [  16.7] ★ flat_face  → R=4.429445
+12:03:22   [  17.7] ★ flat_face  → R=4.429219
+12:03:24   [  19.6] ★ standard   → R=4.426926
+12:03:24   --- Round 20: global_best=4.244545 pop_best=4.244545 valid=6/8 ---
+12:03:26   --- Round 20: global_best=4.426926 pop_best=4.426926 valid=5/8 ---
+12:03:26   --- Round 20: global_best=4.201849 pop_best=4.201849 valid=7/8 ---
+12:03:26   [  21.1] ★ rattler    → R=4.108826
+12:03:28   [  22.1] ★ rattler    → R=4.032881
+12:03:30   [  23.1] ★ rattler    → R=4.011720
+12:03:32   [  25.6] ★ standard   → R=4.364046
+12:03:32   [  25.7] ★ flat_face  → R=4.353488
+12:03:33   [  25.1] ★ rattler    → R=3.969619
+12:03:34   [  27.7] ★ flat_face  → R=4.338326
+12:03:35   [  26.1] ★ standard   → R=3.961088
+12:03:40   [  32.2] ★ flat_face  → R=4.329840
+12:03:52   --- Round 40: global_best=4.329840 pop_best=4.329840 valid=6/8 ---
+12:03:55   --- Round 40: global_best=4.244545 pop_best=4.244545 valid=6/8 ---
+12:03:56   [  37.3] ★ standard   → R=3.948021
+12:03:57   [  37.5] ★ flat_face  → R=3.894485
+12:03:57   [  38.1] ★ standard   → R=3.885842
+12:03:59   [  39.1] ★ rattler    → R=3.810177
+12:04:02   --- Round 40: global_best=3.810177 pop_best=3.810177 valid=7/8 ---
+12:04:23   --- Round 60: global_best=4.329840 pop_best=4.329840 valid=6/8 ---
+12:04:28   --- Round 60: global_best=4.244545 pop_best=4.244545 valid=6/8 ---
+12:04:37   --- Round 60: global_best=3.810177 pop_best=3.810177 valid=7/8 ---
+12:04:55   --- Round 80: global_best=4.329840 pop_best=4.329840 valid=6/8 ---
+12:04:59   --- Round 80: global_best=4.244545 pop_best=4.244545 valid=6/8 ---
+12:05:08   [  88.7] ★ standard   → R=4.302849
+12:05:09   [  89.3] ★ rattler    → R=4.282507
+12:05:10   [  79.3] ★ standard   → R=3.794347
+12:05:13   --- Round 80: global_best=3.794347 pop_best=3.794347 valid=8/8 ---
+12:05:29   --- Round 100: global_best=4.282507 pop_best=4.282507 valid=6/8 ---
+12:05:29 
+=== PBH done | best R=4.282507 ===
+12:05:29 === PBH | pop=8 | rounds=100 | start R=5.747409 ===
+12:05:30 Population initialized: 8 members
+12:05:30   [   1.1] ★ rattler    → R=5.405790
+12:05:30   --- Round 100: global_best=4.244545 pop_best=4.244545 valid=6/8 ---
+12:05:30 
+=== PBH done | best R=4.244545 ===
+12:05:30   [   1.2] ★ rattler    → R=5.346244
+12:05:30 === PBH | pop=8 | rounds=100 | start R=5.768648 ===
+12:05:31   [   1.3] ★ rattler    → R=5.052314
+12:05:31 Population initialized: 8 members
+12:05:31   [   1.5] ★ standard   → R=5.028637
+12:05:31   [   1.6] ★ flat_face  → R=4.947609
+12:05:31   [   1.2] ★ rattler    → R=5.512945
+12:05:32   [   1.4] ★ flat_face  → R=5.236783
+12:05:32   [   1.5] ★ rattler    → R=5.007356
+12:05:32   [   2.3] ★ rattler    → R=4.834489
+12:05:32   [   1.6] ★ flat_face  → R=4.964327
+12:05:32   [   1.7] ★ rattler    → R=4.769668
+12:05:32   [   2.4] ★ rattler    → R=4.827233
+12:05:33   [   2.5] ★ rattler    → R=4.661825
+12:05:33   [   2.6] ★ rattler    → R=4.558902
+12:05:33   [   2.6] ★ standard   → R=4.678744
+12:05:34   [   2.7] ★ rattler    → R=4.631299
+12:05:34   [   3.1] ★ rattler    → R=4.523723
+12:05:35   [   3.5] ★ rattler    → R=4.575566
+12:05:35   [   3.5] ★ rattler    → R=4.411404
+12:05:35   [   3.6] ★ rattler    → R=4.571176
+12:05:35   [   3.6] ★ flat_face  → R=4.323420
+12:05:35   [   3.7] ★ flat_face  → R=4.491236
+12:05:36   [   4.3] ★ standard   → R=4.393578
+12:05:37   [   4.5] ★ rattler    → R=4.302053
+12:05:37   [   4.7] ★ flat_face  → R=4.386697
+12:05:43   [   7.6] ★ standard   → R=4.259587
+12:05:44   [   9.3] ★ standard   → R=4.382674
+12:05:45   [   8.6] ★ rattler    → R=4.156474
+12:05:45   [   9.7] ★ flat_face  → R=4.342460
+12:05:46   [   9.4] ★ rattler    → R=4.141662
+12:05:46   --- Round 100: global_best=3.794347 pop_best=3.794347 valid=8/8 ---
+12:05:46 
+=== PBH done | best R=3.794347 ===
+12:05:46 === PBH | pop=8 | rounds=100 | start R=5.988664 ===
+12:05:46   [  10.3] ★ standard   → R=4.245734
+12:05:46 Population initialized: 8 members
+12:05:46   [   1.0] ★ rattler    → R=5.920325
+12:05:46   [   1.1] ★ rattler    → R=5.829019
+12:05:47   [   1.2] ★ rattler    → R=5.641770
+12:05:47   [   1.3] ★ rattler    → R=5.363736
+12:05:47   [   1.4] ★ rattler    → R=5.181258
+12:05:47   [   1.5] ★ rattler    → R=5.180452
+12:05:47   [  11.3] ★ standard   → R=4.238652
+12:05:47   [  10.4] ★ standard   → R=4.137373
+12:05:48   [   1.6] ★ rattler    → R=5.089362
+12:05:48   [   1.7] ★ rattler    → R=5.035979
+12:05:48   [   2.1] ★ rattler    → R=4.980778
+12:05:48   [   2.2] ★ rattler    → R=4.884250
+12:05:49   [  12.3] ★ standard   → R=4.212215
+12:05:49   [   2.5] ★ rattler    → R=4.834931
+12:05:49   [  11.4] ★ rattler    → R=4.131864
+12:05:49   [   2.6] ★ rattler    → R=4.834873
+12:05:50   [   2.7] ★ rattler    → R=4.693547
+12:05:50   [   3.2] ★ rattler    → R=4.680076
+12:05:50   [  13.3] ★ standard   → R=4.198196
+12:05:51   [   3.5] ★ standard   → R=4.675942
+12:05:52   [   4.2] ★ rattler    → R=4.671353
+12:05:52   [   4.4] ★ rattler    → R=4.662888
+12:05:52   [   4.5] ★ flat_face  → R=4.580906
+12:05:53   [   4.6] ★ rattler    → R=4.482611
+12:05:53   [   5.1] ★ rattler    → R=4.443802
+12:05:54   [   5.3] ★ rattler    → R=4.421938
+12:05:54   [   5.4] ★ rattler    → R=4.408584
+12:05:54   [   5.5] ★ rattler    → R=4.338769
+12:05:56   [   6.3] ★ rattler    → R=4.300368
+12:05:56   [  17.2] ★ standard   → R=4.196623
+12:05:57   [  17.7] ★ standard   → R=4.183036
+12:05:58   [  18.3] ★ rattler    → R=4.171957
+12:05:59   [  16.3] ★ standard   → R=4.079978
+12:05:59   [  18.7] ★ standard   → R=4.141211
+12:06:00   [  19.3] ★ rattler    → R=4.111628
+12:06:02   [  20.3] ★ flat_face  → R=4.094024
+12:06:03   --- Round 20: global_best=4.094024 pop_best=4.094024 valid=6/8 ---
+12:06:04   [  18.6] ★ rattler    → R=4.059568
+12:06:05   [  19.5] ★ standard   → R=4.050220
+12:06:07   [  20.2] ★ rattler    → R=4.050110
+12:06:08   --- Round 20: global_best=4.050110 pop_best=4.050110 valid=6/8 ---
+12:06:19   --- Round 20: global_best=4.300368 pop_best=4.300368 valid=4/8 ---
+12:06:23   [  29.3] ★ standard   → R=3.975419
+12:06:30   [  32.6] ★ standard   → R=3.861639
+12:06:32   [  33.6] ★ standard   → R=3.852883
+12:06:34   [  38.2] ★ standard   → R=4.091854
+12:06:39   --- Round 40: global_best=4.091854 pop_best=4.091854 valid=8/8 ---
+12:06:46   --- Round 40: global_best=3.852883 pop_best=3.852883 valid=6/8 ---
+12:06:48   [  45.2] ★ standard   → R=4.085463
+12:06:48   [  45.3] ★ rattler    → R=3.949602
+12:06:48   [  41.6] ★ standard   → R=3.754061
+12:06:50   [  46.3] ★ rattler    → R=3.770115
+12:06:52   --- Round 40: global_best=4.300368 pop_best=4.300368 valid=4/8 ---
+12:06:52   [  47.3] ★ rattler    → R=3.740293
+12:06:58   [  46.6] ★ standard   → R=3.671006
+12:07:00   [  52.3] ★ standard   → R=3.707680
+12:07:09   [  57.3] ★ standard   → R=3.700684
+12:07:09   [  51.6] ★ rattler    → R=3.654893
+12:07:13   [  53.6] ★ standard   → R=3.596036
+12:07:14   [  60.3] ★ standard   → R=3.684261
+12:07:14   --- Round 60: global_best=3.684261 pop_best=3.684261 valid=8/8 ---
+12:07:26   --- Round 60: global_best=4.300368 pop_best=4.300368 valid=4/8 ---
+12:07:28   --- Round 60: global_best=3.596036 pop_best=3.596036 valid=6/8 ---
+12:07:30   [  61.6] ★ standard   → R=3.540079
+12:07:49   --- Round 80: global_best=3.684261 pop_best=3.684261 valid=8/8 ---
+12:07:59   --- Round 80: global_best=4.300368 pop_best=4.300368 valid=4/8 ---
+12:08:07   --- Round 80: global_best=3.540079 pop_best=3.540079 valid=6/8 ---
+12:08:11   [  82.6] ★ standard   → R=3.515740
+12:08:23   --- Round 100: global_best=3.684261 pop_best=3.684261 valid=8/8 ---
+12:08:23 
+=== PBH done | best R=3.684261 ===
+12:08:23 === PBH | pop=8 | rounds=100 | start R=5.756283 ===
+12:08:24 Population initialized: 8 members
+12:08:24   [   1.1] ★ standard   → R=5.593379
+12:08:24   [   1.3] ★ standard   → R=5.274367
+12:08:24   [   1.4] ★ rattler    → R=5.019544
+12:08:25   [   2.1] ★ rattler    → R=4.964186
+12:08:26   [   2.3] ★ standard   → R=4.843823
+12:08:26   [   2.5] ★ rattler    → R=4.781033
+12:08:27   [   2.7] ★ standard   → R=4.736592
+12:08:27   [   3.3] ★ rattler    → R=4.586088
+12:08:28   [   3.5] ★ rattler    → R=4.574352
+12:08:28   [   3.6] ★ rattler    → R=4.550824
+12:08:28   [   3.7] ★ rattler    → R=4.508696
+12:08:29   [   4.3] ★ rattler    → R=4.459499
+12:08:30   [   4.7] ★ rattler    → R=4.457848
+12:08:32   [   5.7] ★ rattler    → R=4.454060
+12:08:32   --- Round 100: global_best=4.300368 pop_best=4.300368 valid=4/8 ---
+12:08:32 
+=== PBH done | best R=4.300368 ===
+12:08:32 === PBH | pop=8 | rounds=100 | start R=5.867362 ===
+12:08:32 Population initialized: 8 members
+12:08:32   [   1.1] ★ rattler    → R=5.720334
+12:08:33   [   1.3] ★ standard   → R=5.392545
+12:08:33   [   1.4] ★ rattler    → R=5.254280
+12:08:33   [   1.5] ★ flat_face  → R=5.121251
+12:08:33   [   1.6] ★ rattler    → R=5.007122
+12:08:33   [   1.7] ★ rattler    → R=4.893789
+12:08:34   [   2.1] ★ rattler    → R=4.728318
+12:08:34   [   2.4] ★ rattler    → R=4.599135
+12:08:35   [   3.1] ★ rattler    → R=4.568073
+12:08:40   [  11.4] ★ standard   → R=4.440098
+12:08:40   [  11.5] ★ rattler    → R=4.328561
+12:08:42   [  12.5] ★ rattler    → R=4.316359
+12:08:43   [   9.4] ★ standard   → R=4.563357
+12:08:44   [  10.4] ★ rattler    → R=4.507640
+12:08:45   --- Round 100: global_best=3.515740 pop_best=3.515740 valid=6/8 ---
+12:08:45 
+=== PBH done | best R=3.515740 ===
+12:08:45   [  11.4] ★ rattler    → R=4.497662
+12:08:46   [  12.4] ★ rattler    → R=4.493331
+12:08:48 === PBH | pop=8 | rounds=100 | start R=5.837937 ===
+12:08:48 Population initialized: 8 members
+12:08:48   [   1.0] ★ flat_face  → R=5.662024
+12:08:49   [   1.2] ★ flat_face  → R=5.483731
+12:08:49   [   1.4] ★ flat_face  → R=5.450520
+12:08:49   [   1.5] ★ rattler    → R=5.310322
+12:08:50   [   1.6] ★ flat_face  → R=5.171000
+12:08:50   [   2.2] ★ flat_face  → R=5.159554
+12:08:51   [   2.5] ★ rattler    → R=5.079778
+12:08:51   [   2.6] ★ flat_face  → R=4.939739
+12:08:52   --- Round 20: global_best=4.316359 pop_best=4.316359 valid=6/8 ---
+12:08:53   [   3.3] ★ rattler    → R=4.907564
+12:08:53   [   3.4] ★ flat_face  → R=4.889656
+12:08:53   [   3.6] ★ standard   → R=4.862677
+12:08:54   [  19.7] ★ standard   → R=4.416699
+12:08:54   [   4.2] ★ standard   → R=4.836557
+12:08:55   [   4.6] ★ flat_face  → R=4.658213
+12:08:55   [  20.7] ★ standard   → R=4.334781
+12:08:55   --- Round 20: global_best=4.334781 pop_best=4.334781 valid=7/8 ---
+12:08:56   [   5.2] ★ flat_face  → R=4.622880
+12:08:56   [   5.4] ★ flat_face  → R=4.561481
+12:08:56   [  21.7] ★ standard   → R=3.984079
+12:08:56   [   5.6] ★ flat_face  → R=4.498047
+12:08:57   [   5.7] ★ flat_face  → R=4.397117
+12:08:58   [   6.4] ★ flat_face  → R=4.350913
+12:08:58   [   6.7] ★ flat_face  → R=4.304459
+12:08:59   [   7.4] ★ flat_face  → R=4.268192
+12:09:01   [   8.4] ★ flat_face  → R=4.266499
+12:09:05   [  28.7] ★ flat_face  → R=3.963685
+12:09:15   [  36.7] ★ standard   → R=3.783829
+12:09:20   --- Round 20: global_best=4.266499 pop_best=4.266499 valid=5/8 ---
+12:09:21   [  40.7] ★ flat_face  → R=3.775781
+12:09:21   --- Round 40: global_best=3.775781 pop_best=3.775781 valid=7/8 ---
+12:09:23   [  41.7] ★ standard   → R=3.732695
+12:09:24   --- Round 40: global_best=4.316359 pop_best=4.316359 valid=6/8 ---
+12:09:29   [  46.7] ★ standard   → R=3.731428
+12:09:51   --- Round 60: global_best=3.731428 pop_best=3.731428 valid=7/8 ---
+12:09:53   --- Round 40: global_best=4.266499 pop_best=4.266499 valid=5/8 ---
+12:09:55   --- Round 60: global_best=4.316359 pop_best=4.316359 valid=6/8 ---
+12:10:25   --- Round 60: global_best=4.266499 pop_best=4.266499 valid=5/8 ---
+12:10:26   --- Round 80: global_best=3.731428 pop_best=3.731428 valid=7/8 ---
+12:10:27   --- Round 80: global_best=4.316359 pop_best=4.316359 valid=6/8 ---
+12:10:56   --- Round 100: global_best=4.316359 pop_best=4.316359 valid=6/8 ---
+12:10:56 
+=== PBH done | best R=4.316359 ===
+12:10:56 === PBH | pop=8 | rounds=100 | start R=5.784464 ===
+12:10:57 Population initialized: 8 members
+12:10:57   [   1.0] ★ rattler    → R=5.632710
+12:10:57   [   1.2] ★ standard   → R=5.383769
+12:10:57   --- Round 80: global_best=4.266499 pop_best=4.266499 valid=5/8 ---
+12:10:57   [   1.3] ★ rattler    → R=5.376656
+12:10:58   [   1.5] ★ standard   → R=5.281911
+12:10:58   [   1.6] ★ flat_face  → R=4.907218
+12:10:58   [   1.7] ★ rattler    → R=4.863652
+12:10:59   [   2.1] ★ flat_face  → R=4.799215
+12:10:59   [   2.4] ★ standard   → R=4.613328
+12:11:00   [   2.6] ★ flat_face  → R=4.556891
+12:11:00   [   2.7] ★ flat_face  → R=4.556132
+12:11:00   --- Round 100: global_best=3.731428 pop_best=3.731428 valid=7/8 ---
+12:11:00 
+=== PBH done | best R=3.731428 ===
+12:11:00 === PBH | pop=8 | rounds=100 | start R=5.899938 ===
+12:11:01 Population initialized: 8 members
+12:11:01   [   1.1] ★ rattler    → R=5.208807
+12:11:01   [   1.3] ★ rattler    → R=5.142059
+12:11:02   [   3.6] ★ flat_face  → R=4.491421
+12:11:02   [   1.4] ★ rattler    → R=5.141547
+12:11:02   [   1.5] ★ flat_face  → R=5.135795
+12:11:02   [   3.7] ★ rattler    → R=4.487455
+12:11:02   [   1.6] ★ rattler    → R=5.043747
+12:11:03   [   2.1] ★ rattler    → R=4.898226
+12:11:04   [   2.4] ★ rattler    → R=4.882737
+12:11:04   [   4.7] ★ rattler    → R=4.486008
+12:11:04   [   2.5] ★ rattler    → R=4.828191
+12:11:04   [   2.6] ★ rattler    → R=4.782221
+12:11:05   [   2.7] ★ rattler    → R=4.734217
+12:11:05   [   3.1] ★ rattler    → R=4.672999
+12:11:05   [   5.7] ★ rattler    → R=4.483091
+12:11:05   [   3.3] ★ rattler    → R=4.649054
+12:11:06   [   3.6] ★ rattler    → R=4.634957
+12:11:07   [   6.7] ★ flat_face  → R=4.418495
+12:11:07   [   4.1] ★ rattler    → R=4.472683
+12:11:07   [   7.1] ★ flat_face  → R=4.394499
+12:11:07   [   4.2] ★ rattler    → R=4.415088
+12:11:08   [   4.3] ★ rattler    → R=4.407747
+12:11:08   [   4.4] ★ rattler    → R=4.395131
+12:11:09   [   4.6] ★ flat_face  → R=4.361699
+12:11:09   [   4.7] ★ rattler    → R=4.350504
+12:11:09   [   8.1] ★ standard   → R=4.365325
+12:11:10   [   5.3] ★ rattler    → R=4.349745
+12:11:10   [   8.4] ★ rattler    → R=4.250554
+12:11:11   [   5.7] ★ rattler    → R=4.328345
+12:11:12   [   9.4] ★ flat_face  → R=4.156735
+12:11:13   [   6.6] ★ rattler    → R=4.273189
+12:11:13   [   6.7] ★ rattler    → R=4.252894
+12:11:13   [  10.4] ★ rattler    → R=4.072727
+12:11:15   [  11.4] ★ flat_face  → R=4.020017
+12:11:16   [   7.7] ★ rattler    → R=4.183909
+12:11:18   [  12.4] ★ rattler    → R=3.927867
+12:11:20   [  13.4] ★ rattler    → R=3.901636
+12:11:29   --- Round 100: global_best=4.266499 pop_best=4.266499 valid=5/8 ---
+12:11:29 
+=== PBH done | best R=4.266499 ===
+12:11:33   --- Round 20: global_best=3.901636 pop_best=3.901636 valid=6/8 ---
+12:11:41   --- Round 20: global_best=4.183909 pop_best=4.183909 valid=2/8 ---
+12:11:59   --- Round 40: global_best=3.901636 pop_best=3.901636 valid=6/8 ---
+12:12:12   --- Round 40: global_best=4.183909 pop_best=4.183909 valid=2/8 ---
+12:12:25   [  59.2] ★ standard   → R=3.881209
+12:12:26   [  59.4] ★ rattler    → R=3.867680
+12:12:28   --- Round 60: global_best=3.867680 pop_best=3.867680 valid=6/8 ---
+12:12:29   --- Round 200: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+12:12:29 
+=== PBH done | best R=2.974679 ===
+12:12:30 === PBH | pop=8 | rounds=200 | start R=2.975245 ===
+12:12:32 Population initialized: 8 members
+12:12:37   [  66.4] ★ rattler    → R=3.855651
+12:12:38   [  67.4] ★ standard   → R=3.836816
+12:12:40   [  68.4] ★ rattler    → R=3.663712
+12:12:44   --- Round 60: global_best=4.183909 pop_best=4.183909 valid=2/8 ---
+12:13:01   --- Round 80: global_best=3.663712 pop_best=3.663712 valid=6/8 ---
+12:13:17   --- Round 80: global_best=4.183909 pop_best=4.183909 valid=2/8 ---
+12:13:36   --- Round 100: global_best=3.663712 pop_best=3.663712 valid=6/8 ---
+12:13:36 
+=== PBH done | best R=3.663712 ===
+12:13:36 === PBH | pop=8 | rounds=100 | start R=5.804107 ===
+12:13:36 Population initialized: 8 members
+12:13:36   [   1.0] ★ flat_face  → R=5.704340
+12:13:36   [   1.1] ★ flat_face  → R=5.529825
+12:13:37   [   1.3] ★ rattler    → R=5.276976
+12:13:37   [   1.5] ★ rattler    → R=5.124572
+12:13:37   [   1.6] ★ rattler    → R=5.014656
+12:13:38   [   2.1] ★ rattler    → R=4.911914
+12:13:38   [   2.3] ★ rattler    → R=4.688555
+12:13:38   [   2.4] ★ flat_face  → R=4.637634
+12:13:39   [   2.6] ★ rattler    → R=4.636545
+12:13:39   [   2.7] ★ rattler    → R=4.612541
+12:13:40   [   3.3] ★ flat_face  → R=4.541658
+12:13:40   [   3.4] ★ standard   → R=4.537533
+12:13:41   [   4.1] ★ rattler    → R=4.441152
+12:13:41   [   4.4] ★ standard   → R=4.314092
+12:13:42   [   5.1] ★ rattler    → R=4.138447
+12:13:44   [   6.1] ★ flat_face  → R=4.089297
+12:13:45   [   6.6] ★ flat_face  → R=4.087017
+12:13:46   [   7.2] ★ standard   → R=4.066251
+12:13:47   --- Round 100: global_best=4.183909 pop_best=4.183909 valid=2/8 ---
+12:13:47 
+=== PBH done | best R=4.183909 ===
+12:13:47 === PBH | pop=8 | rounds=100 | start R=5.912469 ===
+12:13:47 Population initialized: 8 members
+12:13:48   [   1.0] ★ rattler    → R=5.296457
+12:13:48   [   1.1] ★ rattler    → R=5.148633
+12:13:48   [   1.2] ★ flat_face  → R=5.098520
+12:13:49   [   1.7] ★ rattler    → R=4.908176
+12:13:49   [   2.1] ★ rattler    → R=4.896352
+12:13:51   [   3.1] ★ rattler    → R=4.873344
+12:13:51   [   3.4] ★ flat_face  → R=4.723517
+12:13:52   [   4.2] ★ rattler    → R=4.667715
+12:13:53   [   4.4] ★ flat_face  → R=4.634613
+12:13:53   [   4.7] ★ standard   → R=4.616716
+12:13:54   [  13.2] ★ standard   → R=4.042864
+12:13:55   [   6.3] ★ standard   → R=4.599813
+12:13:55   [  14.2] ★ standard   → R=4.008569
+12:13:57   [  16.2] ★ standard   → R=4.001950
+12:13:58   [  17.2] ★ standard   → R=3.974462
+12:13:59   [   9.7] ★ standard   → R=4.591071
+12:14:00   [  10.7] ★ standard   → R=4.576614
+12:14:03   [  12.3] ★ rattler    → R=4.541047
+12:14:03   --- Round 20: global_best=3.974462 pop_best=3.974462 valid=8/8 ---
+12:14:04   [  13.3] ★ rattler    → R=4.509039
+12:14:05   [  23.2] ★ standard   → R=3.915649
+12:14:05   [  14.3] ★ rattler    → R=4.489385
+12:14:06   [  15.2] ★ flat_face  → R=4.443064
+12:14:06   [  15.3] ★ rattler    → R=4.422485
+12:14:08   [  16.3] ★ rattler    → R=4.421712
+12:14:10   [  17.3] ★ rattler    → R=4.411364
+12:14:14   --- Round 20: global_best=4.411364 pop_best=4.411364 valid=4/8 ---
+12:14:15   [  21.5] ★ standard   → R=4.399082
+12:14:16   [  34.2] ★ standard   → R=3.907934
+12:14:17   [  23.6] ★ rattler    → R=4.386670
+12:14:24   --- Round 40: global_best=3.907934 pop_best=3.907934 valid=8/8 ---
+12:14:41   --- Round 40: global_best=4.386670 pop_best=4.386670 valid=4/8 ---
+12:14:47   --- Round 60: global_best=3.907934 pop_best=3.907934 valid=8/8 ---
+12:15:09   --- Round 60: global_best=4.386670 pop_best=4.386670 valid=4/8 ---
+12:15:10   --- Round 80: global_best=3.907934 pop_best=3.907934 valid=8/8 ---
+12:15:33   --- Round 100: global_best=3.907934 pop_best=3.907934 valid=8/8 ---
+12:15:33 
+=== PBH done | best R=3.907934 ===
+12:15:33 === PBH | pop=8 | rounds=100 | start R=5.773322 ===
+12:15:33 Population initialized: 8 members
+12:15:33   [   1.0] ★ rattler    → R=5.608424
+12:15:33   [   1.1] ★ flat_face  → R=5.377055
+12:15:34   [   1.2] ★ rattler    → R=5.196657
+12:15:34   [   1.4] ★ rattler    → R=4.968094
+12:15:35   [   1.7] ★ rattler    → R=4.904306
+12:15:35   [   2.1] ★ standard   → R=4.787107
+12:15:35   [   2.2] ★ rattler    → R=4.746367
+12:15:36   [   2.4] ★ rattler    → R=4.639724
+12:15:36   [   2.5] ★ rattler    → R=4.597216
+12:15:36   [   2.6] ★ rattler    → R=4.469524
+12:15:37   [   3.2] ★ rattler    → R=4.445961
+12:15:37   [   3.4] ★ flat_face  → R=4.346303
+12:15:38   [   3.5] ★ rattler    → R=4.342588
+12:15:38   --- Round 80: global_best=4.386670 pop_best=4.386670 valid=4/8 ---
+12:15:39   [   4.4] ★ rattler    → R=4.327473
+12:15:40   [   5.2] ★ rattler    → R=4.269467
+12:15:41   [   6.2] ★ rattler    → R=4.240470
+12:15:45   [   8.7] ★ standard   → R=4.234135
+12:16:02   --- Round 20: global_best=4.234135 pop_best=4.234135 valid=5/8 ---
+12:16:06   [  24.3] ★ flat_face  → R=4.227490
+12:16:09   --- Round 100: global_best=4.386670 pop_best=4.386670 valid=4/8 ---
+12:16:09 
+=== PBH done | best R=4.386670 ===
+12:16:09 === PBH | pop=8 | rounds=100 | start R=5.920376 ===
+12:16:09 Population initialized: 8 members
+12:16:09   [   1.1] ★ standard   → R=5.633896
+12:16:09   [   1.2] ★ flat_face  → R=5.483071
+12:16:10   [   1.3] ★ rattler    → R=5.326168
+12:16:10   [   1.5] ★ rattler    → R=5.125708
+12:16:10   [   1.6] ★ rattler    → R=4.880055
+12:16:11   [   2.1] ★ rattler    → R=4.840728
+12:16:11   [   2.2] ★ rattler    → R=4.700640
+12:16:11   [  28.4] ★ rattler    → R=4.197569
+12:16:12   [   2.5] ★ rattler    → R=4.658640
+12:16:12   [   2.6] ★ rattler    → R=4.464995
+12:16:13   [  29.4] ★ rattler    → R=4.159812
+12:16:13   [   3.6] ★ rattler    → R=4.353577
+12:16:14   [  30.4] ★ standard   → R=4.087693
+12:16:14   [   4.5] ★ standard   → R=4.074548
+12:16:16   [   5.5] ★ rattler    → R=3.973130
+12:16:17   [   6.5] ★ rattler    → R=3.972458
+12:16:19   [  34.4] ★ standard   → R=4.075385
+12:16:21   [   9.1] ★ standard   → R=3.957460
+12:16:23   [   9.7] ★ rattler    → R=3.944707
+12:16:26   [  11.5] ★ standard   → R=3.935836
+12:16:27   [  12.5] ★ rattler    → R=3.925440
+12:16:28   --- Round 40: global_best=4.075385 pop_best=4.075385 valid=5/8 ---
+12:16:28   [  13.5] ★ rattler    → R=3.872128
+12:16:34   [  17.7] ★ flat_face  → R=3.843214
+12:16:38   --- Round 20: global_best=3.843214 pop_best=3.843214 valid=6/8 ---
+12:16:52   --- Round 60: global_best=4.075385 pop_best=4.075385 valid=5/8 ---
+12:17:00   --- Round 40: global_best=3.843214 pop_best=3.843214 valid=8/8 ---
+12:17:16   --- Round 80: global_best=4.075385 pop_best=4.075385 valid=5/8 ---
+12:17:24   --- Round 60: global_best=3.843214 pop_best=3.843214 valid=8/8 ---
+12:17:39   --- Round 100: global_best=4.075385 pop_best=4.075385 valid=5/8 ---
+12:17:39 
+=== PBH done | best R=4.075385 ===
+12:17:39 === PBH | pop=8 | rounds=100 | start R=5.782848 ===
+12:17:40 Population initialized: 8 members
+12:17:40   [  72.6] ★ standard   → R=3.833300
+12:17:40   [   1.0] ★ rattler    → R=5.613490
+12:17:40   [   1.2] ★ standard   → R=5.352104
+12:17:40   [   1.3] ★ rattler    → R=5.140654
+12:17:41   [   1.4] ★ rattler    → R=5.035948
+12:17:41   [   1.5] ★ rattler    → R=4.802892
+12:17:41   [   2.1] ★ flat_face  → R=4.520265
+12:17:42   [  74.6] ★ standard   → R=3.744464
+12:17:42   [   2.5] ★ rattler    → R=4.378202
+12:17:43   [   2.6] ★ flat_face  → R=4.287396
+12:17:45   [  76.6] ★ standard   → R=3.722885
+12:17:49   --- Round 80: global_best=3.722885 pop_best=3.722885 valid=8/8 ---
+12:17:55   [  11.7] ★ standard   → R=4.216898
+12:17:59   [  15.6] ★ standard   → R=4.161910
+12:18:00   [  15.7] ★ flat_face  → R=4.154485
+12:18:04   --- Round 180: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+12:18:06   --- Round 20: global_best=4.154485 pop_best=4.154485 valid=4/8 ---
+12:18:12   [  24.7] ★ standard   → R=4.129763
+12:18:15   --- Round 100: global_best=3.722885 pop_best=3.722885 valid=8/8 ---
+12:18:15 
+=== PBH done | best R=3.722885 ===
+12:18:15 === PBH | pop=8 | rounds=100 | start R=5.903874 ===
+12:18:15 Population initialized: 8 members
+12:18:16   [   1.0] ★ rattler    → R=5.340165
+12:18:16   [   1.1] ★ rattler    → R=5.246136
+12:18:16   [   1.3] ★ rattler    → R=5.183318
+12:18:16   [   1.4] ★ rattler    → R=5.158955
+12:18:16   [   1.5] ★ rattler    → R=5.123713
+12:18:17   [   2.1] ★ rattler    → R=5.025243
+12:18:17   [  28.7] ★ standard   → R=4.128517
+12:18:17   [   2.4] ★ standard   → R=5.022700
+12:18:18   [   2.7] ★ rattler    → R=4.907724
+12:18:18   [  29.6] ★ flat_face  → R=4.126959
+12:18:18   [   3.2] ★ rattler    → R=4.906402
+12:18:19   [  29.7] ★ rattler    → R=4.093518
+12:18:19   [   3.3] ★ rattler    → R=4.856152
+12:18:19   [   3.4] ★ rattler    → R=4.746793
+12:18:19   [   3.7] ★ rattler    → R=4.651212
+12:18:21   [   5.1] ★ standard   → R=4.650244
+12:18:21   [  31.6] ★ standard   → R=3.986301
+12:18:21   [   5.2] ★ rattler    → R=4.636504
+12:18:22   [  32.6] ★ flat_face  → R=3.906360
+12:18:28   [  35.6] ★ standard   → R=3.779243
+12:18:34   [  39.6] ★ rattler    → R=3.755047
+12:18:36   --- Round 40: global_best=3.755047 pop_best=3.755047 valid=5/8 ---
+12:18:38   [  41.6] ★ flat_face  → R=3.740426
+12:18:43   [  43.6] ★ standard   → R=3.689376
+12:18:46   --- Round 20: global_best=4.636504 pop_best=4.636504 valid=3/8 ---
+12:18:49   [  46.6] ★ standard   → R=3.679387
+12:19:13   --- Round 60: global_best=3.679387 pop_best=3.679387 valid=5/8 ---
+12:19:14   --- Round 40: global_best=4.636504 pop_best=4.636504 valid=3/8 ---
+12:19:39   [  76.7] ★ flat_face  → R=3.678402
+12:19:43   --- Round 60: global_best=4.636504 pop_best=4.636504 valid=3/8 ---
+12:19:46   --- Round 80: global_best=3.678402 pop_best=3.678402 valid=5/8 ---
+12:20:11   --- Round 80: global_best=4.636504 pop_best=4.636504 valid=3/8 ---
+12:20:18   --- Round 100: global_best=3.678402 pop_best=3.678402 valid=7/8 ---
+12:20:18 
+=== PBH done | best R=3.678402 ===
+12:20:18 === PBH | pop=8 | rounds=100 | start R=5.795333 ===
+12:20:18 Population initialized: 8 members
+12:20:18   [   1.0] ★ rattler    → R=5.683473
+12:20:19   [   1.1] ★ flat_face  → R=5.528955
+12:20:19   [   1.2] ★ flat_face  → R=5.502692
+12:20:19   [   1.3] ★ rattler    → R=5.427880
+12:20:19   [   1.4] ★ rattler    → R=5.279011
+12:20:19   [   1.5] ★ rattler    → R=5.246803
+12:20:20   [   1.6] ★ rattler    → R=5.148778
+12:20:21   [   2.4] ★ standard   → R=5.019467
+12:20:21   [   2.5] ★ flat_face  → R=4.814251
+12:20:22   [   3.2] ★ flat_face  → R=4.722723
+12:20:22   [   3.3] ★ rattler    → R=4.553286
+12:20:23   [   4.2] ★ standard   → R=4.516680
+12:20:23   [   4.3] ★ rattler    → R=4.453490
+12:20:24   [   5.3] ★ flat_face  → R=4.345440
+12:20:25   [   6.2] ★ standard   → R=4.333066
+12:20:31   [  11.2] ★ standard   → R=4.310842
+12:20:33   [  12.6] ★ standard   → R=4.200400
+12:20:34   [  13.3] ★ flat_face  → R=4.190771
+12:20:38   [  17.2] ★ rattler    → R=4.164928
+12:20:38   [  17.3] ★ rattler    → R=4.128107
+12:20:39   --- Round 100: global_best=4.636504 pop_best=4.636504 valid=3/8 ---
+12:20:39 
+=== PBH done | best R=4.636504 ===
+12:20:39 === PBH | pop=8 | rounds=100 | start R=5.941405 ===
+12:20:39 Population initialized: 8 members
+12:20:39   [   1.1] ★ standard   → R=5.667919
+12:20:39   [  18.2] ★ rattler    → R=4.116157
+12:20:39   [   1.2] ★ flat_face  → R=5.625088
+12:20:40   [   1.3] ★ rattler    → R=5.407222
+12:20:40   [   1.4] ★ rattler    → R=5.056652
+12:20:40   [   1.5] ★ rattler    → R=4.990511
+12:20:40   [   1.7] ★ rattler    → R=4.937752
+12:20:40   [  19.2] ★ rattler    → R=4.089094
+12:20:41   [  19.3] ★ rattler    → R=4.048329
+12:20:41   [   2.2] ★ standard   → R=4.910426
+12:20:41   [   2.3] ★ rattler    → R=4.821607
+12:20:41   [   2.4] ★ flat_face  → R=4.632968
+12:20:41   [  20.2] ★ flat_face  → R=3.979018
+12:20:42   [   3.2] ★ rattler    → R=4.627685
+12:20:42   [   3.3] ★ rattler    → R=4.609241
+12:20:42   --- Round 20: global_best=3.979018 pop_best=3.979018 valid=6/8 ---
+12:20:42   [   3.4] ★ rattler    → R=4.585735
+12:20:43   [  21.3] ★ rattler    → R=3.930383
+12:20:44   [   5.2] ★ standard   → R=4.566563
+12:20:45   [   5.7] ★ rattler    → R=4.493650
+12:20:46   [   6.7] ★ rattler    → R=4.468251
+12:20:51   [  28.3] ★ rattler    → R=3.896325
+12:21:03   [  20.5] ★ standard   → R=4.462667
+12:21:04   --- Round 20: global_best=4.462667 pop_best=4.462667 valid=5/8 ---
+12:21:06   --- Round 40: global_best=3.896325 pop_best=3.896325 valid=8/8 ---
+12:21:08   [  24.1] ★ standard   → R=4.362173
+12:21:09   [  25.1] ★ standard   → R=4.197225
+12:21:16   [  31.4] ★ standard   → R=4.150713
+12:21:22   [  36.4] ★ flat_face  → R=4.099417
+12:21:23   [  37.4] ★ flat_face  → R=4.064596
+12:21:24   [  38.4] ★ flat_face  → R=4.052089
+12:21:28   --- Round 40: global_best=4.052089 pop_best=4.052089 valid=5/8 ---
+12:21:32   --- Round 60: global_best=3.896325 pop_best=3.896325 valid=8/8 ---
+12:21:34   [  45.4] ★ standard   → R=4.045962
+12:21:38   [  48.4] ★ standard   → R=4.019829
+12:21:41   [  50.4] ★ standard   → R=4.014167
+12:21:43   [  51.4] ★ standard   → R=4.000246
+12:21:55   [  59.7] ★ standard   → R=3.976067
+12:21:56   --- Round 60: global_best=3.976067 pop_best=3.976067 valid=5/8 ---
+12:21:58   [  62.1] ★ flat_face  → R=3.974817
+12:21:59   --- Round 80: global_best=3.896325 pop_best=3.896325 valid=8/8 ---
+12:22:02   [  65.1] ★ standard   → R=3.945389
+12:22:08   [  69.4] ★ standard   → R=3.902365
+12:22:16   [  75.4] ★ flat_face  → R=3.880669
+12:22:17   [  76.4] ★ standard   → R=3.833295
+12:22:18   [  77.4] ★ flat_face  → R=3.782017
+12:22:22   --- Round 100: global_best=3.896325 pop_best=3.896325 valid=8/8 ---
+12:22:22 
+=== PBH done | best R=3.896325 ===
+12:22:22 === PBH | pop=8 | rounds=100 | start R=5.770321 ===
+12:22:23 Population initialized: 8 members
+12:22:23   --- Round 80: global_best=3.782017 pop_best=3.782017 valid=6/8 ---
+12:22:23   [   1.1] ★ rattler    → R=5.733238
+12:22:23   [   1.2] ★ rattler    → R=5.573990
+12:22:23   [   1.3] ★ rattler    → R=5.128234
+12:22:24   [   1.4] ★ rattler    → R=5.041689
+12:22:24   [   1.6] ★ rattler    → R=4.987250
+12:22:24   [   1.7] ★ flat_face  → R=4.767953
+12:22:25   [   2.1] ★ rattler    → R=4.708978
+12:22:25   [   2.2] ★ rattler    → R=4.666907
+12:22:26   [   2.7] ★ flat_face  → R=4.520783
+12:22:27   [   3.4] ★ standard   → R=4.441517
+12:22:27   [   3.5] ★ rattler    → R=4.438693
+12:22:28   [   4.4] ★ rattler    → R=4.252066
+12:22:29   [  86.1] ★ standard   → R=3.780321
+12:22:30   [   5.4] ★ rattler    → R=4.209630
+12:22:31   [   6.4] ★ rattler    → R=4.044057
+12:22:33   [   7.4] ★ rattler    → R=4.017591
+12:22:33   [  89.2] ★ standard   → R=3.756044
+12:22:34   [  90.1] ★ standard   → R=3.755664
+12:22:38   [  10.4] ★ standard   → R=3.910126
+12:22:39   [  11.4] ★ rattler    → R=3.859361
+12:22:48   [ 100.1] ★ standard   → R=3.735482
+12:22:49   [  17.7] ★ rattler    → R=3.821499
+12:22:50   [  18.4] ★ standard   → R=3.765708
+12:22:50   --- Round 100: global_best=3.735482 pop_best=3.735482 valid=6/8 ---
+12:22:50 
+=== PBH done | best R=3.735482 ===
+12:22:50 === PBH | pop=8 | rounds=100 | start R=5.953045 ===
+12:22:50 Population initialized: 8 members
+12:22:50   [   1.0] ★ rattler    → R=5.550054
+12:22:50   [   1.1] ★ rattler    → R=5.471327
+12:22:51   [   1.4] ★ rattler    → R=5.456497
+12:22:51   [   1.5] ★ rattler    → R=5.409117
+12:22:51   [   1.6] ★ rattler    → R=5.154425
+12:22:52   [   2.5] ★ rattler    → R=5.071102
+12:22:52   [   2.7] ★ rattler    → R=4.987350
+12:22:53   --- Round 20: global_best=3.765708 pop_best=3.765708 valid=6/8 ---
+12:22:53   [   3.5] ★ rattler    → R=4.867457
+12:22:53   [   3.7] ★ rattler    → R=4.783821
+12:22:55   [   4.5] ★ rattler    → R=4.759971
+12:22:55   [   5.4] ★ rattler    → R=4.672650
+12:23:00   [  26.4] ★ standard   → R=3.752993
+12:23:08   --- Round 180: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+12:23:11   --- Round 20: global_best=4.672650 pop_best=4.672650 valid=5/8 ---
+12:23:18   --- Round 40: global_best=3.752993 pop_best=3.752993 valid=7/8 ---
+12:23:19   [  41.4] ★ standard   → R=3.732723
+12:23:22   [  43.4] ★ standard   → R=3.668139
+12:23:26   [  46.4] ★ standard   → R=3.658805
+12:23:33   --- Round 40: global_best=4.672650 pop_best=4.672650 valid=5/8 ---
+12:23:47   --- Round 60: global_best=3.658805 pop_best=3.658805 valid=7/8 ---
+12:23:53   --- Round 60: global_best=4.672650 pop_best=4.672650 valid=5/8 ---
+12:24:12   --- Round 80: global_best=4.672650 pop_best=4.672650 valid=5/8 ---
+12:24:19   --- Round 80: global_best=3.658805 pop_best=3.658805 valid=7/8 ---
+12:24:30   [  87.4] ★ standard   → R=3.644990
+12:24:33   [  89.4] ★ standard   → R=3.626124
+12:24:34   --- Round 100: global_best=4.672650 pop_best=4.672650 valid=5/8 ---
+12:24:34 
+=== PBH done | best R=4.672650 ===
+12:24:34 === PBH | pop=8 | rounds=100 | start R=5.955857 ===
+12:24:34 Population initialized: 8 members
+12:24:34   [   1.0] ★ rattler    → R=5.932574
+12:24:34   [   1.1] ★ rattler    → R=5.409233
+12:24:34   [   1.2] ★ rattler    → R=5.321807
+12:24:35   [   1.3] ★ flat_face  → R=5.277003
+12:24:35   [   1.4] ★ flat_face  → R=5.153803
+12:24:35   [   1.5] ★ rattler    → R=4.798320
+12:24:35   [   2.1] ★ rattler    → R=4.761093
+12:24:36   [   2.2] ★ rattler    → R=4.726115
+12:24:36   [   2.3] ★ flat_face  → R=4.686045
+12:24:36   [   2.5] ★ flat_face  → R=4.598488
+12:24:37   [   3.1] ★ rattler    → R=4.552685
+12:24:37   [   3.2] ★ rattler    → R=4.549743
+12:24:37   [   3.3] ★ rattler    → R=4.488852
+12:24:38   [   4.1] ★ rattler    → R=4.437967
+12:24:38   [   4.3] ★ rattler    → R=4.426598
+12:24:39   [   5.1] ★ rattler    → R=4.377154
+12:24:40   [   6.1] ★ rattler    → R=4.328254
+12:24:42   [   7.1] ★ rattler    → R=4.319102
+12:24:43   [  96.4] ★ standard   → R=3.608869
+12:24:45   [   9.6] ★ rattler    → R=4.316228
+12:24:46   [  10.4] ★ rattler    → R=4.309024
+12:24:50   --- Round 100: global_best=3.608869 pop_best=3.608869 valid=7/8 ---
+12:24:50 
+=== PBH done | best R=3.608869 ===
+12:24:50 === PBH | pop=8 | rounds=100 | start R=5.771279 ===
+12:24:50 Population initialized: 8 members
+12:24:50   [  14.5] ★ rattler    → R=4.301063
+12:24:50   [   1.0] ★ rattler    → R=5.591777
+12:24:50   [   1.1] ★ flat_face  → R=5.379801
+12:24:51   [   1.2] ★ rattler    → R=5.280590
+12:24:51   [   1.3] ★ rattler    → R=5.109451
+12:24:51   [   1.4] ★ rattler    → R=5.063586
+12:24:51   [   1.5] ★ rattler    → R=4.973946
+12:24:51   [   1.6] ★ rattler    → R=4.937009
+12:24:52   [   1.7] ★ rattler    → R=4.769757
+12:24:52   [   2.1] ★ standard   → R=4.755166
+12:24:52   [   2.3] ★ rattler    → R=4.646921
+12:24:53   [   2.7] ★ flat_face  → R=4.591649
+12:24:53   [   3.2] ★ rattler    → R=4.525305
+12:24:54   [   3.4] ★ rattler    → R=4.481422
+12:24:54   [   3.5] ★ rattler    → R=4.464347
+12:24:55   [   4.4] ★ rattler    → R=4.444255
+12:24:57   [  19.6] ★ standard   → R=4.260728
+12:24:58   --- Round 20: global_best=4.260728 pop_best=4.260728 valid=6/8 ---
+12:25:12   --- Round 20: global_best=4.444255 pop_best=4.444255 valid=8/8 ---
+12:25:26   --- Round 40: global_best=4.260728 pop_best=4.260728 valid=6/8 ---
+12:25:34   --- Round 40: global_best=4.444255 pop_best=4.444255 valid=8/8 ---
+12:25:34   [  41.4] ★ standard   → R=4.435872
+12:25:35   [  41.7] ★ standard   → R=4.352957
+12:25:36   [  43.4] ★ standard   → R=4.325714
+12:25:45   [  50.4] ★ standard   → R=4.292693
+12:25:49   [  54.2] ★ standard   → R=4.266188
+12:25:50   [  55.2] ★ standard   → R=4.227546
+12:25:53   --- Round 60: global_best=4.260728 pop_best=4.260728 valid=6/8 ---
+12:25:53   [  57.2] ★ standard   → R=4.145732
+12:25:56   [  60.2] ★ standard   → R=3.989746
+12:25:57   --- Round 60: global_best=3.989746 pop_best=3.989746 valid=8/8 ---
+12:25:57   [  61.2] ★ standard   → R=3.974563
+12:26:01   [  64.2] ★ standard   → R=3.971211
+12:26:07   [  69.2] ★ standard   → R=3.872035
+12:26:08   [  70.2] ★ standard   → R=3.742941
+12:26:16   [  77.2] ★ rattler    → R=3.735789
+12:26:19   [  79.2] ★ rattler    → R=3.729333
+12:26:20   --- Round 80: global_best=4.260728 pop_best=4.260728 valid=6/8 ---
+12:26:21   --- Round 80: global_best=3.729333 pop_best=3.729333 valid=8/8 ---
+12:26:23   [  82.2] ★ standard   → R=3.659166
+12:26:42   [  97.2] ★ standard   → R=3.620538
+12:26:47   --- Round 100: global_best=3.620538 pop_best=3.620538 valid=8/8 ---
+12:26:47 
+=== PBH done | best R=3.620538 ===
+12:26:48   --- Round 100: global_best=4.260728 pop_best=4.260728 valid=6/8 ---
+12:26:48 
+=== PBH done | best R=4.260728 ===

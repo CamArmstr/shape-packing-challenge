@@ -1,0 +1,381 @@
+
+============================================================
+  Topology: seed_c5_loose
+============================================================
+  Trial  1/20: valid start R=3.8245, running PBH...
+=== PBH | pop=8 | rounds=50 | start R=3.824514 ===
+Population initialized: 8 members
+  [  13.3] ★ standard   → R=3.822696
+  [  17.1] ★ standard   → R=3.788993
+  --- Round 20: global_best=3.788993 pop_best=3.788993 valid=7/8 ---
+  [  29.3] ★ standard   → R=3.782216
+  [  36.3] ★ standard   → R=3.714304
+  [  37.3] ★ rattler    → R=3.659982
+  --- Round 40: global_best=3.659982 pop_best=3.659982 valid=7/8 ---
+
+=== PBH done | best R=3.659982 ===
+    PBH result: R=3.659982
+  Trial  2/20: valid start R=4.1729, running PBH...
+=== PBH | pop=8 | rounds=50 | start R=4.172856 ===
+Population initialized: 8 members
+  [   1.7] ★ standard   → R=4.134238
+  [   9.3] ★ standard   → R=4.128550
+  [   9.7] ★ standard   → R=4.069605
+  [  11.1] ★ flat_face  → R=4.063967
+  [  12.1] ★ standard   → R=4.061763
+  [  12.3] ★ standard   → R=3.892923
+  [  13.7] ★ standard   → R=3.881006
+  [  18.3] ★ standard   → R=3.867371
+  --- Round 20: global_best=3.867371 pop_best=3.867371 valid=5/8 ---
+  [  22.1] ★ standard   → R=3.859204
+  [  26.1] ★ standard   → R=3.856137
+  [  29.1] ★ standard   → R=3.847480
+  [  36.4] ★ standard   → R=3.826505
+  --- Round 40: global_best=3.826505 pop_best=3.826505 valid=5/8 ---
+  [  43.1] ★ standard   → R=3.762778
+  [  43.3] ★ flat_face  → R=3.748273
+  [  48.1] ★ standard   → R=3.709907
+
+=== PBH done | best R=3.709907 ===
+    PBH result: R=3.709907
+  Trial  3/20: valid start R=4.0856, running PBH...
+=== PBH | pop=8 | rounds=50 | start R=4.085612 ===
+Population initialized: 8 members
+  [   2.1] ★ standard   → R=3.945922
+  [   8.1] ★ standard   → R=3.823165
+  [  10.2] ★ flat_face  → R=3.821609
+  [  11.3] ★ standard   → R=3.785948
+  --- Round 20: global_best=3.785948 pop_best=3.785948 valid=4/8 ---
+  [  24.3] ★ standard   → R=3.772940
+  [  25.3] ★ standard   → R=3.668446
+  --- Round 40: global_best=3.668446 pop_best=3.668446 valid=4/8 ---
+
+=== PBH done | best R=3.668446 ===
+    PBH result: R=3.668446
+  Trial  4/20: valid start R=4.1298, running PBH...
+=== PBH | pop=8 | rounds=50 | start R=4.129803 ===
+Population initialized: 8 members
+  [   1.2] ★ flat_face  → R=4.124399
+  [   1.5] ★ standard   → R=4.013017
+  [   2.3] ★ flat_face  → R=3.935866
+  [   3.5] ★ standard   → R=3.933043
+  [   4.5] ★ standard   → R=3.863879
+  [   6.2] ★ standard   → R=3.854773
+  [   6.5] ★ flat_face  → R=3.851982
+  [  10.1] ★ standard   → R=3.816464
+  --- Round 20: global_best=3.816464 pop_best=3.816464 valid=4/8 ---
+  [  22.2] ★ standard   → R=3.763054
+  [  26.2] ★ standard   → R=3.739796
+  --- Round 40: global_best=3.739796 pop_best=3.739796 valid=5/8 ---
+  [  46.1] ★ standard   → R=3.734373
+  [  48.1] ★ standard   → R=3.676388
+
+=== PBH done | best R=3.676388 ===
+    PBH result: R=3.676388
+  Trial  5/20: valid start R=4.1131, running PBH...
+=== PBH | pop=8 | rounds=50 | start R=4.113119 ===
+Population initialized: 8 members
+  [   1.5] ★ standard   → R=4.103115
+  [   1.6] ★ rattler    → R=4.100671
+  [   2.0] ★ standard   → R=3.995430
+  [   9.6] ★ standard   → R=3.992724
+  [  11.3] ★ rattler    → R=3.987807
+  [  11.4] ★ rattler    → R=3.986570
+  [  13.2] ★ standard   → R=3.885989
+  [  13.3] ★ flat_face  → R=3.813007
+  --- Round 20: global_best=3.813007 pop_best=3.813007 valid=6/8 ---
+  [  21.3] ★ standard   → R=3.775029
+  [  27.6] ★ standard   → R=3.770752
+  [  38.6] ★ standard   → R=3.740781
+  --- Round 40: global_best=3.740781 pop_best=3.740781 valid=6/8 ---
+
+=== PBH done | best R=3.740781 ===
+    PBH result: R=3.740781
+  Trial  6/20: valid start R=4.1154, running PBH...
+=== PBH | pop=8 | rounds=50 | start R=4.115417 ===
+Population initialized: 8 members
+  [   1.0] ★ flat_face  → R=4.004580
+  [   3.4] ★ flat_face  → R=3.963497
+  [   4.4] ★ standard   → R=3.927678
+  [   5.3] ★ flat_face  → R=3.909720
+  [   5.7] ★ standard   → R=3.784740
+  --- Round 20: global_best=3.784740 pop_best=3.784740 valid=5/8 ---
+  [  22.7] ★ standard   → R=3.783703
+  [  35.2] ★ standard   → R=3.764143
+  --- Round 40: global_best=3.764143 pop_best=3.764143 valid=5/8 ---
+
+=== PBH done | best R=3.764143 ===
+    PBH result: R=3.764143
+  Trial  7/20: valid start R=3.9421, running PBH...
+=== PBH | pop=8 | rounds=50 | start R=3.942080 ===
+Population initialized: 8 members
+  --- Round 20: global_best=3.942080 pop_best=3.942080 valid=3/8 ---
+  --- Round 40: global_best=3.942080 pop_best=3.942080 valid=3/8 ---
+
+=== PBH done | best R=3.942080 ===
+    PBH result: R=3.942080
+  Trial  8/20: valid start R=4.3520, running PBH...
+=== PBH | pop=8 | rounds=50 | start R=4.351968 ===
+Population initialized: 8 members
+  [   1.1] ★ flat_face  → R=4.248072
+  [   1.3] ★ standard   → R=4.068430
+  [   1.4] ★ rattler    → R=4.022054
+  [   3.3] ★ flat_face  → R=3.995966
+  [   4.7] ★ flat_face  → R=3.935397
+  [   5.7] ★ flat_face  → R=3.876161
+  [   6.3] ★ flat_face  → R=3.860037
+  [  10.3] ★ standard   → R=3.820088
+  [  12.1] ★ standard   → R=3.805962
+  [  13.2] ★ standard   → R=3.784533
+  --- Round 20: global_best=3.784533 pop_best=3.784533 valid=5/8 ---
+  [  22.7] ★ rattler    → R=3.780807
+  --- Round 40: global_best=3.780807 pop_best=3.780807 valid=5/8 ---
+  [  47.3] ★ standard   → R=3.707959
+  [  49.3] ★ rattler    → R=3.673404
+  [  50.3] ★ rattler    → R=3.670764
+
+=== PBH done | best R=3.670764 ===
+    PBH result: R=3.670764
+  Trial  9/20: valid start R=4.2342, running PBH...
+=== PBH | pop=8 | rounds=50 | start R=4.234219 ===
+Population initialized: 8 members
+  [   1.2] ★ flat_face  → R=4.230871
+  [   2.2] ★ flat_face  → R=4.193245
+  [   3.0] ★ standard   → R=4.173919
+  [   3.2] ★ flat_face  → R=4.169636
+  [   7.5] ★ standard   → R=4.162632
+  [   8.2] ★ rattler    → R=4.125685
+  [   8.6] ★ flat_face  → R=4.125093
+  [   9.1] ★ standard   → R=4.110030
+  [  10.1] ★ standard   → R=4.098716
+  [  11.1] ★ standard   → R=4.019978
+  [  15.6] ★ standard   → R=3.949176
+  [  16.6] ★ standard   → R=3.936202
+  --- Round 20: global_best=3.936202 pop_best=3.936202 valid=4/8 ---
+  [  21.6] ★ standard   → R=3.839009
+  [  27.6] ★ standard   → R=3.828001
+  [  30.5] ★ standard   → R=3.824241
+  [  30.6] ★ rattler    → R=3.765572
+  [  34.6] ★ standard   → R=3.753734
+  [  39.5] ★ standard   → R=3.643701
+  --- Round 40: global_best=3.643701 pop_best=3.643701 valid=4/8 ---
+  [  50.4] ★ standard   → R=3.624067
+
+=== PBH done | best R=3.624067 ===
+    PBH result: R=3.624067
+  Trial 10/20: valid start R=4.0325, running PBH...
+=== PBH | pop=8 | rounds=50 | start R=4.032481 ===
+Population initialized: 8 members
+  [   1.1] ★ standard   → R=4.014638
+  [   1.7] ★ flat_face  → R=4.010252
+  [   8.1] ★ standard   → R=3.979948
+  [  10.6] ★ standard   → R=3.976822
+  [  18.1] ★ standard   → R=3.897417
+  [  20.1] ★ standard   → R=3.882686
+  --- Round 20: global_best=3.882686 pop_best=3.882686 valid=4/8 ---
+  [  27.1] ★ standard   → R=3.813864
+  [  28.1] ★ standard   → R=3.801639
+  --- Round 40: global_best=3.801639 pop_best=3.801639 valid=4/8 ---
+
+=== PBH done | best R=3.801639 ===
+    PBH result: R=3.801639
+  Trial 11/20: valid start R=4.6555, running PBH...
+=== PBH | pop=8 | rounds=50 | start R=4.655472 ===
+Population initialized: 8 members
+  [   1.0] ★ flat_face  → R=4.603336
+  [   1.1] ★ flat_face  → R=4.561342
+  [   1.2] ★ flat_face  → R=4.534966
+  [   1.3] ★ flat_face  → R=4.481995
+  [   1.4] ★ flat_face  → R=4.465058
+  [   2.1] ★ rattler    → R=4.389737
+  [   2.3] ★ flat_face  → R=4.356992
+  [   2.4] ★ rattler    → R=4.289510
+  [   8.4] ★ standard   → R=4.247007
+  [  12.2] ★ standard   → R=4.225039
+  [  14.2] ★ standard   → R=4.192764
+  [  15.5] ★ standard   → R=4.059569
+  --- Round 20: global_best=4.059569 pop_best=4.059569 valid=6/8 ---
+  [  38.7] ★ standard   → R=4.033959
+  [  39.3] ★ flat_face  → R=3.948764
+  [  40.1] ★ flat_face  → R=3.907214
+  --- Round 40: global_best=3.907214 pop_best=3.907214 valid=6/8 ---
+  [  50.7] ★ standard   → R=3.872695
+
+=== PBH done | best R=3.872695 ===
+    PBH result: R=3.872695
+  Trial 12/20: valid start R=4.0959, running PBH...
+=== PBH | pop=8 | rounds=50 | start R=4.095867 ===
+Population initialized: 8 members
+  [   1.0] ★ rattler    → R=4.089572
+  [   1.1] ★ flat_face  → R=3.972441
+  [   1.5] ★ standard   → R=3.874371
+  [  16.2] ★ standard   → R=3.830594
+  [  20.6] ★ standard   → R=3.691755
+  --- Round 20: global_best=3.691755 pop_best=3.691755 valid=5/8 ---
+  [  21.4] ★ flat_face  → R=3.620458
+  [  21.6] ★ flat_face  → R=3.566394
+  --- Round 40: global_best=3.566394 pop_best=3.566394 valid=5/8 ---
+
+=== PBH done | best R=3.566394 ===
+    PBH result: R=3.566394
+  Trial 13/20: valid start R=4.0663, running PBH...
+=== PBH | pop=8 | rounds=50 | start R=4.066252 ===
+Population initialized: 8 members
+  [   1.4] ★ flat_face  → R=3.982411
+  [   1.7] ★ flat_face  → R=3.959502
+  [   2.4] ★ flat_face  → R=3.914044
+  [   3.5] ★ flat_face  → R=3.875771
+  [   3.7] ★ flat_face  → R=3.862878
+  [   7.1] ★ standard   → R=3.757655
+  [   7.3] ★ flat_face  → R=3.733661
+  --- Round 20: global_best=3.733661 pop_best=3.733661 valid=5/8 ---
+  --- Round 40: global_best=3.733661 pop_best=3.733661 valid=5/8 ---
+
+=== PBH done | best R=3.733661 ===
+    PBH result: R=3.733661
+  Trial 14/20: valid start R=4.4015, running PBH...
+=== PBH | pop=8 | rounds=50 | start R=4.401513 ===
+Population initialized: 8 members
+  [   1.2] ★ standard   → R=4.300366
+  [   1.3] ★ rattler    → R=4.262130
+  [   1.4] ★ flat_face  → R=4.165273
+  [   2.2] ★ flat_face  → R=4.162151
+  [   2.4] ★ flat_face  → R=4.156109
+  [   3.1] ★ flat_face  → R=4.151801
+  [   3.6] ★ rattler    → R=4.007180
+  --- Round 20: global_best=4.007180 pop_best=4.007180 valid=3/8 ---
+  [  22.2] ★ flat_face  → R=4.005324
+  [  22.7] ★ rattler    → R=3.988226
+  [  28.3] ★ standard   → R=3.985786
+  [  30.3] ★ standard   → R=3.967204
+  [  37.6] ★ rattler    → R=3.920198
+  --- Round 40: global_best=3.920198 pop_best=3.920198 valid=5/8 ---
+  [  41.6] ★ rattler    → R=3.910228
+  [  47.3] ★ standard   → R=3.905182
+  [  50.5] ★ standard   → R=3.898659
+
+=== PBH done | best R=3.898659 ===
+    PBH result: R=3.898659
+  Trial 15/20: valid start R=4.2631, running PBH...
+=== PBH | pop=8 | rounds=50 | start R=4.263087 ===
+Population initialized: 8 members
+  [   1.2] ★ flat_face  → R=4.237843
+  [   1.3] ★ flat_face  → R=4.168356
+  [   2.3] ★ rattler    → R=4.027517
+  [   2.5] ★ standard   → R=4.012787
+  [   3.2] ★ rattler    → R=3.937840
+  [   3.3] ★ flat_face  → R=3.888067
+  [   3.7] ★ rattler    → R=3.874195
+  [   9.5] ★ standard   → R=3.799004
+  [  18.4] ★ standard   → R=3.789405
+  [  19.1] ★ standard   → R=3.785288
+  --- Round 20: global_best=3.785288 pop_best=3.785288 valid=4/8 ---
+  [  22.1] ★ flat_face  → R=3.766610
+  [  22.6] ★ flat_face  → R=3.764873
+  [  23.1] ★ standard   → R=3.728208
+  [  24.1] ★ standard   → R=3.715749
+  [  24.6] ★ flat_face  → R=3.708226
+  [  36.1] ★ standard   → R=3.654607
+  --- Round 40: global_best=3.654607 pop_best=3.654607 valid=4/8 ---
+
+=== PBH done | best R=3.654607 ===
+    PBH result: R=3.654607
+  Trial 16/20: valid start R=3.9155, running PBH...
+=== PBH | pop=8 | rounds=50 | start R=3.915468 ===
+Population initialized: 8 members
+  [   1.0] ★ rattler    → R=3.890332
+  [   3.1] ★ standard   → R=3.889715
+  [   3.2] ★ flat_face  → R=3.861524
+  [   3.4] ★ flat_face  → R=3.850455
+  [   9.1] ★ standard   → R=3.783106
+  [  12.2] ★ standard   → R=3.770045
+  [  13.1] ★ standard   → R=3.769774
+  [  14.1] ★ standard   → R=3.768680
+  --- Round 20: global_best=3.768680 pop_best=3.768680 valid=4/8 ---
+  [  22.1] ★ standard   → R=3.760674
+  [  26.1] ★ standard   → R=3.756776
+  [  36.1] ★ standard   → R=3.736612
+  --- Round 40: global_best=3.736612 pop_best=3.736612 valid=5/8 ---
+  [  42.6] ★ standard   → R=3.735399
+  [  49.1] ★ standard   → R=3.690000
+
+=== PBH done | best R=3.690000 ===
+    PBH result: R=3.690000
+  Trial 17/20: valid start R=4.1586, running PBH...
+=== PBH | pop=8 | rounds=50 | start R=4.158601 ===
+Population initialized: 8 members
+  [   1.0] ★ standard   → R=4.060217
+  [   2.1] ★ standard   → R=3.982587
+  [   9.7] ★ standard   → R=3.973534
+  [  10.4] ★ flat_face  → R=3.970842
+  [  11.4] ★ flat_face  → R=3.935114
+  [  14.1] ★ standard   → R=3.916203
+  [  18.1] ★ standard   → R=3.900500
+  [  18.7] ★ standard   → R=3.867812
+  [  19.1] ★ standard   → R=3.864663
+  [  19.4] ★ flat_face  → R=3.862294
+  [  20.4] ★ flat_face  → R=3.858998
+  --- Round 20: global_best=3.858998 pop_best=3.858998 valid=3/8 ---
+  [  29.7] ★ standard   → R=3.682090
+  --- Round 40: global_best=3.682090 pop_best=3.682090 valid=4/8 ---
+
+=== PBH done | best R=3.682090 ===
+    PBH result: R=3.682090
+  Trial 18/20: valid start R=3.9842, running PBH...
+=== PBH | pop=8 | rounds=50 | start R=3.984249 ===
+Population initialized: 8 members
+  [   2.2] ★ flat_face  → R=3.976535
+  [   3.2] ★ flat_face  → R=3.913083
+  [   3.5] ★ flat_face  → R=3.912386
+  [   3.6] ★ rattler    → R=3.889521
+  [   9.6] ★ rattler    → R=3.838407
+  --- Round 20: global_best=3.838407 pop_best=3.838407 valid=4/8 ---
+  [  26.5] ★ standard   → R=3.837032
+  --- Round 40: global_best=3.837032 pop_best=3.837032 valid=5/8 ---
+  [  41.4] ★ standard   → R=3.773662
+
+=== PBH done | best R=3.773662 ===
+    PBH result: R=3.773662
+  Trial 19/20: valid start R=3.9163, running PBH...
+=== PBH | pop=8 | rounds=50 | start R=3.916294 ===
+Population initialized: 8 members
+  [   2.1] ★ standard   → R=3.852824
+  [  13.3] ★ standard   → R=3.846841
+  [  17.4] ★ standard   → R=3.760642
+  --- Round 20: global_best=3.760642 pop_best=3.760642 valid=6/8 ---
+  [  40.4] ★ standard   → R=3.748232
+  --- Round 40: global_best=3.748232 pop_best=3.748232 valid=6/8 ---
+  [  42.4] ★ standard   → R=3.721497
+  [  48.4] ★ standard   → R=3.668192
+  [  49.2] ★ flat_face  → R=3.576037
+
+=== PBH done | best R=3.576037 ===
+    PBH result: R=3.576037
+  Trial 20/20: valid start R=4.2134, running PBH...
+=== PBH | pop=8 | rounds=50 | start R=4.213354 ===
+Population initialized: 8 members
+  [   1.1] ★ standard   → R=4.139967
+  [   1.4] ★ standard   → R=4.042173
+  [   1.5] ★ flat_face  → R=4.028071
+  [   1.6] ★ rattler    → R=4.008969
+  [   1.7] ★ flat_face  → R=4.006149
+  [   2.6] ★ flat_face  → R=3.916332
+  [   4.1] ★ standard   → R=3.849673
+  [   7.1] ★ standard   → R=3.771297
+  [   9.5] ★ standard   → R=3.713667
+  --- Round 20: global_best=3.713667 pop_best=3.713667 valid=5/8 ---
+  --- Round 40: global_best=3.713667 pop_best=3.713667 valid=5/8 ---
+  [  44.1] ★ standard   → R=3.679849
+  [  50.3] ★ standard   → R=3.670103
+
+=== PBH done | best R=3.670103 ===
+    PBH result: R=3.670103
+
+======================================================================
+  SUMMARY
+======================================================================
+  Topology             | Valid starts |   Best R | Rounds
+  ---------------------+--------------+----------+-------
+  seed_c5_loose        |    20/20     |   3.5664 |     50
+
+  Best found: R=3.566394 (current best: 2.974)
