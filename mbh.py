@@ -21,8 +21,9 @@ from scipy.optimize import minimize
 sys.path.insert(0, os.path.dirname(__file__))
 from phi import (
     phi_pair, penalty_energy_flat, penalty_gradient_flat,
-    penalty_energy, phi_containment
+    penalty_energy, phi_containment, containment_points
 )
+from gjk_numba import semicircle_gjk_signed_dist
 from src.semicircle_packing.geometry import Semicircle
 from src.semicircle_packing.scoring import validate_and_score
 
@@ -132,6 +133,57 @@ def lbfgs_minimize(xs, ys, ts, R, lam=500.0, max_iter=2000):
                       options={'maxiter': max_iter, 'ftol': 1e-15, 'gtol': 1e-12})
     rxs, rys, rts = unpack(result.x)
     energy = penalty_energy(rxs, rys, rts, R)
+    return rxs, rys, rts, energy
+
+
+# ── GJK-based L-BFGS-B local minimizer ─────────────────────────────────────
+
+def gjk_lbfgs_minimize(xs, ys, ts, R, lam=1e6, max_iter=3000):
+    """
+    Minimize GJK-based penalty energy (overlap + containment) at fixed R.
+    Uses finite-difference gradients since GJK has no analytical gradient.
+    Returns (xs, ys, ts, energy).
+    """
+    p0 = pack(xs, ys, ts)
+    n_vars = len(p0)
+    eps = 1e-5
+
+    def gjk_energy(p):
+        _xs = p[0::3]
+        _ys = p[1::3]
+        _ts = p[2::3]
+        E = 0.0
+        # Pairwise overlap via GJK
+        for i in range(N):
+            for j in range(i + 1, N):
+                d = semicircle_gjk_signed_dist(
+                    _xs[i], _ys[i], _ts[i], _xs[j], _ys[j], _ts[j])
+                if d < 0.0:
+                    E += d * d * lam
+        # Containment penalties
+        for i in range(N):
+            c = phi_containment(_xs[i], _ys[i], _ts[i], R)
+            if c < 0.0:
+                E += c * c * lam
+        return E
+
+    def fg(p):
+        """Return (energy, gradient) for L-BFGS-B with jac=True."""
+        E0 = gjk_energy(p)
+        grad = np.empty(n_vars)
+        for k in range(n_vars):
+            p[k] += eps
+            Ep = gjk_energy(p)
+            p[k] -= 2.0 * eps
+            Em = gjk_energy(p)
+            p[k] += eps  # restore
+            grad[k] = (Ep - Em) / (2.0 * eps)
+        return E0, grad
+
+    result = minimize(fg, p0, jac=True, method='L-BFGS-B',
+                      options={'maxiter': max_iter, 'ftol': 1e-10, 'gtol': 1e-8})
+    rxs, rys, rts = unpack(result.x)
+    energy = gjk_energy(result.x)
     return rxs, rys, rts, energy
 
 
