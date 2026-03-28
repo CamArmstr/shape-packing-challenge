@@ -2114,3 +2114,105 @@
 12:26:48   --- Round 100: global_best=4.260728 pop_best=4.260728 valid=6/8 ---
 12:26:48 
 === PBH done | best R=4.260728 ===
+12:28:22   --- Round 20: global_best=2.975245 pop_best=2.975245 valid=3/8 ---
+12:29:15   --- Round 200: global_best=2.974679 pop_best=2.974679 valid=3/8 ---
+12:29:16 
+=== PBH done | best R=2.974679 ===
+12:29:16 === PBH | pop=8 | rounds=200 | start R=2.975245 ===
+12:29:17 Population initialized: 8 members
+12:30:07   --- Round 200: global_best=2.974679 pop_best=2.974679 valid=4/8 ---
+12:30:07 
+=== PBH done | best R=2.974679 ===
+12:30:07 === PBH | pop=8 | rounds=200 | start R=2.975245 ===
+12:30:08 Population initialized: 8 members
+12:32:15   --- Round 40: global_best=2.975245 pop_best=2.975245 valid=3/8 ---
+12:33:47   --- Round 20: global_best=2.975245 pop_best=2.975245 valid=3/8 ---
+12:34:40   --- Round 20: global_best=2.975245 pop_best=2.975245 valid=1/8 ---
+12:36:16   --- Round 60: global_best=2.975245 pop_best=2.975245 valid=3/8 ---
+12:38:12   --- Round 40: global_best=2.975245 pop_best=2.975245 valid=3/8 ---
+12:39:43   --- Round 40: global_best=2.975245 pop_best=2.975245 valid=2/8 ---
+12:39:58   --- Round 80: global_best=2.975245 pop_best=2.975245 valid=3/8 ---
+12:43:06   --- Round 60: global_best=2.975245 pop_best=2.975245 valid=3/8 ---
+12:44:12   --- Round 100: global_best=2.975245 pop_best=2.975245 valid=3/8 ---
+12:45:05   --- Round 60: global_best=2.975245 pop_best=2.975245 valid=2/8 ---
+12:48:07   --- Round 80: global_best=2.975245 pop_best=2.975245 valid=3/8 ---
+12:48:37   --- Round 120: global_best=2.975245 pop_best=2.975245 valid=3/8 ---
+12:50:26   --- Round 80: global_best=2.975245 pop_best=2.975245 valid=2/8 ---
+12:52:51   --- Round 140: global_best=2.975245 pop_best=2.975245 valid=3/8 ---
+12:53:04   --- Round 100: global_best=2.975245 pop_best=2.975245 valid=3/8 ---
+12:55:41   --- Round 100: global_best=2.975245 pop_best=2.975245 valid=3/8 ---
+12:57:47   --- Round 160: global_best=2.975245 pop_best=2.975245 valid=3/8 ---
+12:58:17   --- Round 120: global_best=2.975245 pop_best=2.975245 valid=3/8 ---
+13:00:42   --- Round 120: global_best=2.975245 pop_best=2.975245 valid=3/8 ---
+13:02:11   --- Round 180: global_best=2.975245 pop_best=2.975245 valid=3/8 ---
+13:03:21   --- Round 140: global_best=2.975245 pop_best=2.975245 valid=3/8 ---
+13:05:22   --- Round 140: global_best=2.975245 pop_best=2.975245 valid=3/8 ---
+13:08:18   --- Round 200: global_best=2.975245 pop_best=2.975245 valid=3/8 ---
+13:08:18 
+=== PBH done | best R=2.975245 ===
+13:08:18 === PBH | pop=8 | rounds=200 | start R=2.975245 ===
+13:08:19 Population initialized: 8 members
+13:10:57   --- Round 160: global_best=2.975245 pop_best=2.975245 valid=3/8 ---
+13:12:07   --- Round 160: global_best=2.975245 pop_best=2.975245 valid=3/8 ---
+13:14:42   --- Round 20: global_best=2.975245 pop_best=2.975245 valid=2/8 ---
+13:15:25   --- Round 180: global_best=2.975245 pop_best=2.975245 valid=3/8 ---
+13:16:03   --- Round 180: global_best=2.975245 pop_best=2.975245 valid=3/8 ---
+13:19:26   --- Round 40: global_best=2.975245 pop_best=2.975245 valid=3/8 ---
+13:19:49   --- Round 200: global_best=2.975245 pop_best=2.975245 valid=3/8 ---
+13:19:49 
+=== PBH done | best R=2.975245 ===
+13:19:49 === PBH | pop=8 | rounds=200 | start R=2.975245 ===
+13:19:50 Population initialized: 8 members
+13:19:58   --- Round 200: global_best=2.975245 pop_best=2.975245 valid=4/8 ---
+13:19:58 
+=== PBH done | best R=2.975245 ===
+13:19:58 === PBH | pop=8 | rounds=200 | start R=2.975245 ===
+13:19:59 Population initialized: 8 members
+13:23:47   --- Round 60: global_best=2.975245 pop_best=2.975245 valid=3/8 ---
+13:24:30   --- Round 20: global_best=2.975245 pop_best=2.975245 valid=2/8 ---
+13:24:40   --- Round 20: global_best=2.975245 pop_best=2.975245 valid=2/8 ---
+13:27:52   --- Round 80: global_best=2.975245 pop_best=2.975245 valid=3/8 ---
+13:28:54   --- Round 40: global_best=2.975245 pop_best=2.975245 valid=3/8 ---
+13:29:34   --- Round 40: global_best=2.975245 pop_best=2.975245 valid=3/8 ---
+13:32:53   --- Round 100: global_best=2.975245 pop_best=2.975245 valid=3/8 ---
+13:33:20   --- Round 60: global_best=2.975245 pop_best=2.975245 valid=3/8 ---
+13:33:42   --- Round 60: global_best=2.975245 pop_best=2.975245 valid=4/8 ---
+13:37:03   --- Round 120: global_best=2.975245 pop_best=2.975245 valid=3/8 ---
+13:37:22   --- Round 80: global_best=2.975245 pop_best=2.975245 valid=4/8 ---
+13:37:22   --- Round 80: global_best=2.975245 pop_best=2.975245 valid=3/8 ---
+13:41:09   --- Round 100: global_best=2.975245 pop_best=2.975245 valid=4/8 ---
+13:41:20   --- Round 140: global_best=2.975245 pop_best=2.975245 valid=3/8 ---
+13:41:38   --- Round 100: global_best=2.975245 pop_best=2.975245 valid=3/8 ---
+13:44:40   --- Round 120: global_best=2.975245 pop_best=2.975245 valid=4/8 ---
+13:45:45   --- Round 120: global_best=2.975245 pop_best=2.975245 valid=3/8 ---
+13:46:09   --- Round 160: global_best=2.975245 pop_best=2.975245 valid=3/8 ---
+13:48:38   --- Round 140: global_best=2.975245 pop_best=2.975245 valid=4/8 ---
+13:49:35   --- Round 140: global_best=2.975245 pop_best=2.975245 valid=3/8 ---
+13:50:37   --- Round 180: global_best=2.975245 pop_best=2.975245 valid=4/8 ---
+13:52:12   --- Round 160: global_best=2.975245 pop_best=2.975245 valid=4/8 ---
+13:55:22   --- Round 160: global_best=2.975245 pop_best=2.975245 valid=3/8 ---
+13:58:30   --- Round 200: global_best=2.975245 pop_best=2.975245 valid=4/8 ---
+13:58:30 
+=== PBH done | best R=2.975245 ===
+13:58:31 === PBH | pop=8 | rounds=200 | start R=2.975245 ===
+13:58:33 Population initialized: 8 members
+13:59:48   --- Round 180: global_best=2.975245 pop_best=2.975245 valid=4/8 ---
+14:03:25   --- Round 180: global_best=2.975245 pop_best=2.975245 valid=3/8 ---
+14:05:28   --- Round 20: global_best=2.975245 pop_best=2.975245 valid=3/8 ---
+14:05:49   --- Round 200: global_best=2.975245 pop_best=2.975245 valid=4/8 ---
+14:05:49 
+=== PBH done | best R=2.975245 ===
+14:08:46   --- Round 200: global_best=2.975245 pop_best=2.975245 valid=3/8 ---
+14:08:46 
+=== PBH done | best R=2.975245 ===
+14:08:55   --- Round 40: global_best=2.975245 pop_best=2.975245 valid=3/8 ---
+14:09:40   --- Round 60: global_best=2.975245 pop_best=2.975245 valid=3/8 ---
+14:10:22   --- Round 80: global_best=2.975245 pop_best=2.975245 valid=3/8 ---
+14:11:05   --- Round 100: global_best=2.975245 pop_best=2.975245 valid=3/8 ---
+14:11:52   --- Round 120: global_best=2.975245 pop_best=2.975245 valid=3/8 ---
+14:12:39   --- Round 140: global_best=2.975245 pop_best=2.975245 valid=3/8 ---
+14:13:22   --- Round 160: global_best=2.975245 pop_best=2.975245 valid=4/8 ---
+14:14:05   --- Round 180: global_best=2.975245 pop_best=2.975245 valid=4/8 ---
+14:14:55   --- Round 200: global_best=2.975245 pop_best=2.975245 valid=4/8 ---
+14:14:55 
+=== PBH done | best R=2.975245 ===

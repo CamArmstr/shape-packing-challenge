@@ -1,0 +1,5 @@
+Random multistart: 6 workers, 18000s, starting from R=2.975245
+Target: R < 2.97275
+[w0 run  1] start=3.946 → R=3.161119
+[w4 run  1] start=3.894 → R=3.160400
+[w2 run  1] start=3.948 → R=3.286974
