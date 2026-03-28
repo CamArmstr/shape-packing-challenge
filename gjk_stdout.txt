@@ -1,0 +1,65 @@
+Starting 6 workers for 21600s
+Current best: R=2.976532
+Seed types: ['best+perturb', 'random', 'hex_pairs', 'pinwheel', 'flower', 'interleaved']
+
+[12s] [w1_random_1] Phase1: R=1000000000000000000.0000 (no feasible)
+[12s] [w4_flower_1] Phase1: R=1000000000000000000.0000 (no feasible)
+[16s] [w4_flower_2] Phase1: R=1000000000000000000.0000 (no feasible)
+
+[60s] === Best=2.976532 Workers=6/6 ===
+
+[75s] [w1_random_2] Phase1: R=3.3455 → Phase2
+[77s] [w0_best+perturb_1] Phase1: R=3.3471 → Phase2
+[80s] [w2_hex_pairs_1] Phase1: R=3.3542 → Phase2
+[80s] [w3_pinwheel_1] Phase1: R=3.3691 → Phase2
+[85s] [w5_interleaved_1] Phase1: R=3.3117 → Phase2
+[85s] [w5_interleaved_1] Phase2.0: R=2.968543 (improved from 3.311706)
+[93s] [w4_flower_3] Phase1: R=3.3364 → Phase2
+
+[120s] === Best=2.976532 Workers=6/6 ===
+
+[140s] [w0_best+perturb_1] Phase2.0: R=2.985579 (improved from 3.347098)
+[140s] [w0_best+perturb_1] Phase2.1: R=3.010216 (no improvement)
+[144s] [w2_hex_pairs_1] Phase2.0: R=3.075430 (improved from 3.354239)
+[146s] [w1_random_2] Phase2.0: R=3.054080 (improved from 3.345514)
+[148s] [w2_hex_pairs_1] Phase2.1: R=3.075430 (no improvement)
+[149s] [w3_pinwheel_1] Phase2.0: R=3.355996 (improved from 3.369079)
+[151s] [w1_random_2] Phase2.1: R=3.058868 (no improvement)
+[153s] [w2_hex_pairs_2] Phase1: R=4.8300 (too loose)
+[155s] [w1_random_3] Phase1: R=1000000000000000000.0000 (no feasible)
+[160s] [w1_random_4] Phase1: R=1000000000000000000.0000 (no feasible)
+[163s] [w4_flower_3] Phase2.0: R=2.990607 (improved from 3.336429)
+[164s] [w5_interleaved_1] Phase2.1: R=2.984421 (no improvement)
+[164s] [w1_random_5] Phase1: R=1000000000000000000.0000 (no feasible)
+[168s] [w5_interleaved_2] Phase1: R=1000000000000000000.0000 (no feasible)
+
+[180s] === Best=2.976532 Workers=6/6 ===
+
+[217s] [w0_best+perturb_2] Phase1: R=3.3448 → Phase2
+[220s] [w3_pinwheel_1] Phase2.1: R=3.342384 (improved from 3.355996)
+[225s] [w2_hex_pairs_3] Phase1: R=3.3406 → Phase2
+[230s] [w2_hex_pairs_3] Phase2.0: R=3.356753 (no improvement)
+[231s] [w4_flower_3] Phase2.1: R=2.983543 (improved from 2.990607)
+[234s] [w2_hex_pairs_4] Phase1: R=4.5756 (too loose)
+[236s] [w4_flower_3] Phase2.2: R=2.990186 (no improvement)
+[240s] [w4_flower_4] Phase1: R=1000000000000000000.0000 (no feasible)
+[241s] [w5_interleaved_3] Phase1: R=3.3573 → Phase2
+[241s] [w1_random_6] Phase1: R=3.3490 → Phase2
+
+[241s] === Best=2.976532 Workers=6/6 ===
+
+[287s] [w3_pinwheel_1] Phase2.2: R=3.026749 (improved from 3.342384)
+[287s] [w0_best+perturb_2] Phase2.0: R=2.982820 (improved from 3.344793)
+[287s] [w0_best+perturb_2] Phase2.1: R=2.982820 (no improvement)
+
+[301s] === Best=2.976532 Workers=6/6 ===
+
+[314s] [w5_interleaved_3] Phase2.0: R=3.013233 (improved from 3.357344)
+[315s] [w2_hex_pairs_5] Phase1: R=3.3021 → Phase2
+[316s] [w1_random_6] Phase2.0: R=3.008638 (improved from 3.349037)
+[320s] [w2_hex_pairs_5] Phase2.0: R=3.302130 (no improvement)
+[320s] [w1_random_6] Phase2.1: R=3.178435 (no improvement)
+[322s] [w4_flower_5] Phase1: R=3.3305 → Phase2
+[324s] [w1_random_7] Phase1: R=1000000000000000000.0000 (no feasible)
+[324s] [w2_hex_pairs_6] Phase1: R=5.2063 (too loose)
+[329s] [w2_hex_pairs_7] Phase1: R=5.5075 (too loose)
