@@ -555,6 +555,9 @@ def sa_run_v2(xs, ys, ts, n_steps, T_start, T_end, lam_start, lam_end, seed):
                 best_ts[k] = cur_ts[k]
             found_feasible = True
 
+    # Normalize thetas to [0, 2π) before returning
+    for k in range(n):
+        best_ts[k] = best_ts[k] % TWO_PI
     return best_xs, best_ys, best_ts, best_r, found_feasible, alphas, betas
 
 
