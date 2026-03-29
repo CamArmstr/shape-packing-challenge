@@ -1,14 +1,18 @@
 #!/usr/bin/env python3
 """
-lns3_worker.py — Single worker process for lns3.
-Run directly: python3 lns3_worker.py --wid 0 --runtime 21600
-Launched by lns3_launch.sh for multi-worker runs.
+lns4_worker.py — Large Neighborhood Search with k=3-7 removals.
+
+Same structure as lns3_worker but removes more shapes per cycle to
+escape the current contact-graph basin. Higher cost per cycle,
+but each cycle is a genuine topology disruption.
+
+Removal sizes weighted: 3(15%), 4(25%), 5(30%), 6(20%), 7(10%)
 """
 import sys, os, argparse
 os.chdir('/home/camcore/.openclaw/workspace/shape-packing-challenge')
 sys.path.insert(0, '.')
 
-import json, time, math, subprocess
+import json, time, math, subprocess, shutil
 import fcntl
 import numpy as np
 
@@ -29,8 +33,7 @@ def gjk_overlap_full(xs, ys, ts):
     for i in range(n):
         for j in range(i + 1, n):
             d = semicircle_gjk_signed_dist(xs[i], ys[i], ts[i], xs[j], ys[j], ts[j])
-            if d < 0.0:
-                e += d * d
+            if d < 0.0: e += d * d
     return e
 
 @nb.njit(cache=True)
@@ -38,11 +41,9 @@ def gjk_overlap_single(xs, ys, ts, idx):
     n = xs.shape[0]
     e = 0.0
     for j in range(n):
-        if j == idx:
-            continue
+        if j == idx: continue
         d = semicircle_gjk_signed_dist(xs[idx], ys[idx], ts[idx], xs[j], ys[j], ts[j])
-        if d < 0.0:
-            e += d * d
+        if d < 0.0: e += d * d
     return e
 
 @nb.njit(cache=True)
@@ -54,8 +55,8 @@ def r_single_nb(x, y, t):
     if r1 > r: r = r1
     if r2 > r: r = r2
     for k in range(24):
-        a = t - math.pi / 2 + math.pi * k / 23
-        rx_ = math.sqrt((x + math.cos(a))**2 + (y + math.sin(a))**2)
+        a = t - math.pi/2 + math.pi*k/23
+        rx_ = math.sqrt((x+math.cos(a))**2 + (y+math.sin(a))**2)
         if rx_ > r: r = rx_
     return r
 
@@ -78,22 +79,17 @@ def gjk_polish(xs, ys, ts, n_steps, T_start, T_end, lam, seed):
     best_R = 1e18
     if cur_ovlp < 1e-14:
         best_R = cur_R
-        best_xs[:] = cur_xs[:]
-        best_ys[:] = cur_ys[:]
-        best_ts[:] = cur_ts[:]
+        best_xs[:] = cur_xs[:]; best_ys[:] = cur_ys[:]; best_ts[:] = cur_ts[:]
 
     log_T = math.log(T_end / T_start)
     scale = 0.008
-
     for step in range(n_steps):
         frac = step / n_steps
         T    = T_start * math.exp(log_T * frac)
         idx  = int(np.random.random() * n) % n
-
-        old_x, old_y, old_t   = cur_xs[idx], cur_ys[idx], cur_ts[idx]
+        old_x, old_y, old_t = cur_xs[idx], cur_ys[idx], cur_ts[idx]
         old_ovlp_i = gjk_overlap_single(cur_xs, cur_ys, cur_ts, idx)
         old_ri     = r_single_nb(old_x, old_y, old_t)
-
         r = np.random.random()
         if r < 0.55:
             cur_xs[idx] += np.random.normal(0, scale)
@@ -104,30 +100,20 @@ def gjk_polish(xs, ys, ts, n_steps, T_start, T_end, lam, seed):
             cur_xs[idx] += np.random.normal(0, scale * 0.4)
             cur_ys[idx] += np.random.normal(0, scale * 0.4)
             cur_ts[idx] += np.random.normal(0, scale)
-
         new_ovlp_i = gjk_overlap_single(cur_xs, cur_ys, cur_ts, idx)
         new_ri     = r_single_nb(cur_xs[idx], cur_ys[idx], cur_ts[idx])
         new_ovlp   = cur_ovlp - old_ovlp_i + new_ovlp_i
         new_R      = cur_R
-        if new_ri > cur_R:
-            new_R = new_ri
-        elif abs(old_ri - cur_R) < 1e-10:
-            new_R = r_max_nb(cur_xs, cur_ys, cur_ts)
-
-        old_obj = cur_R + lam * cur_ovlp
-        new_obj = new_R + lam * new_ovlp
-        delta   = new_obj - old_obj
-
+        if new_ri > cur_R: new_R = new_ri
+        elif abs(old_ri - cur_R) < 1e-10: new_R = r_max_nb(cur_xs, cur_ys, cur_ts)
+        delta = (new_R + lam*new_ovlp) - (cur_R + lam*cur_ovlp)
         if delta < 0 or np.random.random() < math.exp(-delta / max(T, 1e-15)):
             cur_ovlp, cur_R = new_ovlp, new_R
             if new_ovlp < 1e-14 and new_R < best_R:
                 best_R = new_R
-                best_xs[:] = cur_xs[:]
-                best_ys[:] = cur_ys[:]
-                best_ts[:] = cur_ts[:]
+                best_xs[:] = cur_xs[:]; best_ys[:] = cur_ys[:]; best_ts[:] = cur_ts[:]
         else:
             cur_xs[idx], cur_ys[idx], cur_ts[idx] = old_x, old_y, old_t
-
     return best_xs, best_ys, best_ts, best_R
 
 
@@ -137,8 +123,7 @@ def official_score(xs, ys, ts):
     return (r.score if r.valid else float('inf')), r
 
 def load_best():
-    with open(BEST_FILE) as f:
-        raw = json.load(f)
+    with open(BEST_FILE) as f: raw = json.load(f)
     return (np.array([s['x'] for s in raw]),
             np.array([s['y'] for s in raw]),
             np.array([s['theta'] for s in raw]))
@@ -148,39 +133,27 @@ def load_best_score():
     s, _ = official_score(xs, ys, ts)
     return s
 
-def save_if_better(xs, ys, ts, score, best_score_ref):
-    if score >= best_score_ref[0]:
-        return False
+def save_if_better(xs, ys, ts, score, best_ref, label='lns4'):
+    if score >= best_ref[0]: return False
     with open(LOCK_PATH, 'w') as lf:
         try:
             fcntl.flock(lf, fcntl.LOCK_EX)
             disk_s = load_best_score()
-            if disk_s < best_score_ref[0]:
-                best_score_ref[0] = disk_s
-            if score >= best_score_ref[0]:
-                return False
+            if disk_s < best_ref[0]: best_ref[0] = disk_s
+            if score >= best_ref[0]: return False
             s, r = official_score(xs, ys, ts)
-            if not r.valid or s >= best_score_ref[0]:
-                return False
+            if not r.valid or s >= best_ref[0]: return False
             cx, cy = r.mec[0], r.mec[1]
-            out = [{'x': round(float(xs[i]-cx), 6),
-                    'y': round(float(ys[i]-cy), 6),
-                    'theta': round(float(ts[i]) % TWO_PI, 6)} for i in range(N)]
-            with open(BEST_FILE, 'w') as f:
-                json.dump(out, f, indent=2)
-            best_score_ref[0] = s
-            import shutil
+            out = [{'x': round(float(xs[i]-cx),6), 'y': round(float(ys[i]-cy),6),
+                    'theta': round(float(ts[i])%TWO_PI,6)} for i in range(N)]
+            with open(BEST_FILE,'w') as f: json.dump(out, f, indent=2)
+            best_ref[0] = s
             os.makedirs('solutions', exist_ok=True)
             shutil.copy(BEST_FILE, f'solutions/R{s:.6f}.json')
             try:
-                subprocess.run(['git', 'add', 'best_solution.json',
-                                f'solutions/R{s:.6f}.json'],
-                               capture_output=True)
-                subprocess.run(['git', 'commit', '-m',
-                                f'best: R={s:.6f} (lns3_worker wid={wid})'],
-                               capture_output=True)
-            except:
-                pass
+                subprocess.run(['git','add','best_solution.json',f'solutions/R{s:.6f}.json'], capture_output=True)
+                subprocess.run(['git','commit','-m',f'best: R={s:.6f} ({label})'], capture_output=True)
+            except: pass
             return True
         finally:
             fcntl.flock(lf, fcntl.LOCK_UN)
@@ -188,62 +161,58 @@ def save_if_better(xs, ys, ts, score, best_score_ref):
 def boundary_order(xs, ys, ts):
     sol = [Semicircle(float(xs[i]), float(ys[i]), float(ts[i])) for i in range(N)]
     r   = validate_and_score(sol)
-    if not r.valid:
-        return list(range(N))
+    if not r.valid: return list(range(N))
     cx, cy = r.mec[0], r.mec[1]
     pts = []
     for i in range(N):
         x, y, t = xs[i], ys[i], ts[i]
-        rim = [
-            (x + math.cos(t),  y + math.sin(t)),
-            (x - math.sin(t),  y + math.cos(t)),
-            (x + math.sin(t),  y - math.cos(t)),
-        ]
-        ri = max(math.hypot(px - cx, py - cy) for px, py in rim)
+        rim = [(x+math.cos(t), y+math.sin(t)), (x-math.sin(t), y+math.cos(t)), (x+math.sin(t), y-math.cos(t))]
+        ri = max(math.hypot(px-cx, py-cy) for px,py in rim)
         pts.append((ri, i))
     pts.sort(reverse=True)
-    return [idx for _, idx in pts]
+    return [idx for _,idx in pts]
 
-def try_reinsert(xs, ys, ts, removed_idxs, rng, n_cand=50):
+def try_reinsert(xs, ys, ts, removed_idxs, rng, n_cand=60):
+    """Reinsert with more candidates since k is larger."""
     mask = np.ones(N, dtype=bool)
-    for idx in removed_idxs:
-        mask[idx] = False
+    for idx in removed_idxs: mask[idx] = False
     base_xs = xs[mask]; base_ys = ys[mask]; base_ts = ts[mask]
     cur_xs = list(base_xs); cur_ys = list(base_ys); cur_ts = list(base_ts)
 
-    for _ in removed_idxs:
+    # Shuffle insertion order — try different sequences
+    insert_order = list(range(len(removed_idxs)))
+    rng.shuffle(insert_order)
+
+    for _ in insert_order:
         n_cur = len(cur_xs)
         best_s, best_pos = float('inf'), None
         for _ in range(n_cand):
-            if rng.random() < 0.65 and n_cur > 0:
+            if rng.random() < 0.60 and n_cur > 0:
                 anchor = rng.randint(0, n_cur)
                 angle  = rng.uniform(0, TWO_PI)
-                dist   = rng.uniform(1.85, 2.35)
+                dist   = rng.uniform(1.85, 2.40)
                 x = float(cur_xs[anchor]) + dist * math.cos(angle)
                 y = float(cur_ys[anchor]) + dist * math.sin(angle)
             else:
                 curr_r = max(math.hypot(cur_xs[j], cur_ys[j]) + 1.2 for j in range(n_cur)) if n_cur > 0 else 2.0
                 rpos   = rng.uniform(0, curr_r)
-                angle  = rng.uniform(0, TWO_PI)
-                x = rpos * math.cos(angle)
-                y = rpos * math.sin(angle)
-            for _ in range(10):
+                x = rpos * math.cos(rng.uniform(0, TWO_PI))
+                y = rpos * math.sin(rng.uniform(0, TWO_PI))
+            for _ in range(12):
                 t = rng.uniform(0, TWO_PI)
                 sc = Semicircle(x, y, t)
                 ok = all(not semicircles_overlap(sc,
-                         Semicircle(float(cur_xs[j]), float(cur_ys[j]), float(cur_ts[j])))
-                         for j in range(n_cur))
+                     Semicircle(float(cur_xs[j]), float(cur_ys[j]), float(cur_ts[j])))
+                     for j in range(n_cur))
                 if ok:
                     trial_xs = np.array(cur_xs + [x], dtype=np.float64)
                     trial_ys = np.array(cur_ys + [y], dtype=np.float64)
                     trial_ts = np.array(cur_ts + [t], dtype=np.float64)
                     s_proxy = r_max_nb(trial_xs, trial_ys, trial_ts)
                     if s_proxy < best_s:
-                        best_s = s_proxy
-                        best_pos = (x, y, t)
+                        best_s = s_proxy; best_pos = (x, y, t)
                     break
-        if best_pos is None:
-            return None
+        if best_pos is None: return None
         cur_xs.append(best_pos[0]); cur_ys.append(best_pos[1]); cur_ts.append(best_pos[2])
 
     return (np.array(cur_xs, dtype=np.float64),
@@ -252,81 +221,91 @@ def try_reinsert(xs, ys, ts, removed_idxs, rng, n_cand=50):
 
 
 def run(wid, runtime=21600):
-    # JIT warmup
     gjk_overlap_full(np.zeros(3), np.zeros(3), np.zeros(3))
     gjk_polish(np.zeros(N), np.zeros(N), np.zeros(N), 200, 0.01, 0.001, 1000.0, 42)
 
     rng = np.random.RandomState(wid * 9973 + int(time.time()) % 100000)
     start = time.time()
     cycle = 0
-    best_score_ref = [load_best_score()]
+    best_ref = [load_best_score()]
+    # k distribution: 3(15%) 4(25%) 5(30%) 6(20%) 7(10%)
+    k_choices = [3,4,4,5,5,5,6,6,7]
 
-    print(f'[w{wid}] start | best={best_score_ref[0]:.6f}', flush=True)
+    print(f'[w{wid}] lns4 start | best={best_ref[0]:.6f}', flush=True)
 
     while time.time() - start < runtime:
         cycle += 1
         xs, ys, ts = load_best()
         cur_best = load_best_score()
-        if cur_best < best_score_ref[0]:
-            best_score_ref[0] = cur_best
+        if cur_best < best_ref[0]: best_ref[0] = cur_best
 
-        k_choices = [1, 1, 1, 2, 2, 3]
         k = int(rng.choice(k_choices))
-
         order = boundary_order(xs, ys, ts)
+
         roll = rng.random()
-        if roll < 0.30:
+        if roll < 0.25:
+            # Top-k boundary shapes
             removed = order[:k]
-        elif roll < 0.55:
+        elif roll < 0.50:
+            # Fully random
             removed = list(rng.choice(N, k, replace=False))
         elif roll < 0.70:
-            alt = order[1] if len(order) > 1 else order[0]
-            removed = [alt] + [i for i in rng.permutation(N) if i != alt][:k-1]
+            # Spread evenly around circle (antipodal)
+            cx = float(np.mean(xs)); cy = float(np.mean(ys))
+            angles = sorted([(math.atan2(ys[i]-cy, xs[i]-cx), i) for i in range(N)])
+            step = N // k
+            start_idx = rng.randint(0, max(step, 1))
+            removed = [angles[(start_idx + j*step) % N][1] for j in range(k)]
         elif roll < 0.85:
+            # 1 boundary + rest random
             removed = [order[0]] + list(
                 [i for i in rng.permutation(N) if i != order[0]][:k-1])
         else:
-            cx = float(np.mean(xs)); cy = float(np.mean(ys))
-            angles = [(math.atan2(ys[i]-cy, xs[i]-cx), i) for i in range(N)]
-            angles.sort()
-            step = N // max(k, 1)
-            start_idx = rng.randint(0, step)
-            removed = [angles[(start_idx + j*step) % N][1] for j in range(k)]
+            # Mix of inner + outer (force topology change)
+            xs_arr = xs; ys_arr = ys
+            dists = sorted([(math.hypot(xs_arr[i], ys_arr[i]), i) for i in range(N)])
+            inner = [idx for _, idx in dists[:5]]
+            outer = [idx for _, idx in dists[-5:]]
+            n_inner = rng.randint(1, min(3, k))
+            n_outer = k - n_inner
+            removed = list(rng.choice(inner, min(n_inner, len(inner)), replace=False))
+            removed += list(rng.choice(outer, min(n_outer, len(outer)), replace=False))
+            removed = removed[:k]
 
-        result = try_reinsert(xs, ys, ts, removed, rng, n_cand=50)
+        result = try_reinsert(xs, ys, ts, removed, rng, n_cand=60)
         if result is None:
-            print(f'[w{wid}] c{cycle} no placement', flush=True)
+            print(f'[w{wid}] c{cycle} k={k} no placement', flush=True)
             continue
 
         rx, ry, rt = result
         pre_s, _ = official_score(rx, ry, rt)
-        if pre_s == float('inf'):
-            continue
+        if pre_s == float('inf'): continue
 
+        # Longer polish since we made a bigger move — 5M steps
         seed = wid * 10007 + cycle
-        px, py, pt, _ = gjk_polish(rx, ry, rt, 3_000_000, 0.003, 0.000005, 80_000.0, seed)
+        px, py, pt, _ = gjk_polish(rx, ry, rt, 5_000_000, 0.005, 0.000008, 60_000.0, seed)
         pol_s, _ = official_score(px, py, pt)
-        if pol_s == float('inf'):
-            pol_s = pre_s; px, py, pt = rx, ry, rt
+        if pol_s == float('inf'): pol_s = pre_s; px, py, pt = rx, ry, rt
 
-        saved = save_if_better(px, py, pt, pol_s, best_score_ref)
+        saved = save_if_better(px, py, pt, pol_s, best_ref, f'lns4_w{wid}')
 
-        if pol_s < cur_best + 0.08:
-            msg = f'[w{wid}] c{cycle} rm={removed} pre={pre_s:.4f} → pol={pol_s:.6f}'
+        if pol_s < cur_best + 0.10:
+            msg = f'[w{wid}] c{cycle} k={k} rm={removed} pre={pre_s:.4f} → pol={pol_s:.6f}'
             if saved: msg += f'  ★ NEW BEST R={pol_s:.6f}'
             print(msg, flush=True)
         elif saved:
-            print(f'[w{wid}] c{cycle}  ★ NEW BEST R={pol_s:.6f}', flush=True)
+            print(f'[w{wid}] c{cycle} k={k}  ★ NEW BEST R={pol_s:.6f}', flush=True)
 
-        if pol_s < best_score_ref[0] + 0.03:
-            px2, py2, pt2, _ = gjk_polish(px, py, pt, 5_000_000, 0.0008, 0.000001, 200_000.0, seed+1)
+        # Second pass if competitive
+        if pol_s < best_ref[0] + 0.04:
+            px2, py2, pt2, _ = gjk_polish(px, py, pt, 8_000_000, 0.001, 0.000001, 200_000.0, seed+1)
             pol2_s, _ = official_score(px2, py2, pt2)
             if pol2_s < pol_s:
-                saved2 = save_if_better(px2, py2, pt2, pol2_s, best_score_ref)
+                saved2 = save_if_better(px2, py2, pt2, pol2_s, best_ref, f'lns4_w{wid}')
                 if saved2:
-                    print(f'[w{wid}] c{cycle}  ★★ PASS-2 BEST R={pol2_s:.6f}', flush=True)
+                    print(f'[w{wid}] c{cycle} k={k}  ★★ PASS-2 BEST R={pol2_s:.6f}', flush=True)
 
-    print(f'[w{wid}] done | cycles={cycle} | best={best_score_ref[0]:.6f}', flush=True)
+    print(f'[w{wid}] done | cycles={cycle} | best={best_ref[0]:.6f}', flush=True)
 
 
 if __name__ == '__main__':
