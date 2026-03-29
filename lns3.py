@@ -190,7 +190,12 @@ def save_if_better(xs, ys, ts, score, global_best):
                 json.dump(out, f, indent=2)
             global_best.value = s
             try:
-                subprocess.run(['git', 'add', 'best_solution.json'],
+                # Archive milestone copy
+                import shutil, os as _os
+                _os.makedirs('solutions', exist_ok=True)
+                shutil.copy(BEST_FILE, f'solutions/R{s:.6f}.json')
+                subprocess.run(['git', 'add', 'best_solution.json',
+                                f'solutions/R{s:.6f}.json'],
                                capture_output=True)
                 subprocess.run(['git', 'commit', '-m',
                                 f'best: R={s:.6f} (lns3 auto-commit)'],
@@ -311,17 +316,35 @@ def worker(wid, global_best, runtime, log_q):
         k_choices = [1, 1, 1, 2, 2, 3]
         k = int(rng.choice(k_choices))
 
-        # Choose removal strategy
+        # Choose removal strategy — explicit diversity to avoid shape-14 lock-in
         order = boundary_order(xs, ys, ts)
-        if rng.random() < 0.60:
-            removed = order[:k]          # boundary-active shapes
-        elif rng.random() < 0.5:
-            removed = list(rng.choice(N, k, replace=False))  # fully random
+        boundary_top = order[0]  # most boundary-active shape this cycle
+        roll = rng.random()
+        if roll < 0.30:
+            # Pure boundary-active (most likely to help but overused)
+            removed = order[:k]
+        elif roll < 0.55:
+            # Fully random (max diversity)
+            removed = list(rng.choice(N, k, replace=False))
+        elif roll < 0.70:
+            # Second-most boundary-active shape (avoid fixating on #1)
+            alt = order[1] if len(order) > 1 else order[0]
+            removed = [alt] + [i for i in rng.permutation(N)
+                               if i != alt][:k-1]
+        elif roll < 0.85:
+            # Mix: boundary shape + random non-boundary shapes
+            removed = [boundary_top]
+            non_boundary = [i for i in rng.permutation(N) if i != boundary_top]
+            removed += list(non_boundary[:k-1])
         else:
-            # mix: 1 boundary + rest random
-            removed = [order[0]]
-            extra = [i for i in rng.permutation(N) if i not in removed]
-            removed += extra[:k-1]
+            # Antipodal: remove shapes on opposite sides of the packing
+            cx = float(np.mean(xs)); cy = float(np.mean(ys))
+            angles = [(math.atan2(ys[i]-cy, xs[i]-cx), i) for i in range(N)]
+            angles.sort()
+            # Pick k shapes spread ~evenly around the circle
+            step = N // max(k, 1)
+            start = rng.randint(0, step)
+            removed = [angles[(start + j*step) % N][1] for j in range(k)]
 
         # Reinsert
         result = try_reinsert(xs, ys, ts, removed, rng, n_cand=50)
