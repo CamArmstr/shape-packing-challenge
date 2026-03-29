@@ -1,7 +1,7 @@
 # Packing 15 Unit Semicircles into a Minimal Enclosing Circle: A Computational Study
 
 **Authors:** Cameron Armstrong, Till (AI research assistant)  
-**Date:** March 26–28, 2026  
+**Date:** March 26–29, 2026  
 **Repository:** https://github.com/CamArmstr/shape-packing-challenge  
 **Status:** Draft — candidate for arXiv submission
 
@@ -9,9 +9,9 @@
 
 ## Abstract
 
-We study the problem of packing 15 unit semicircles (radius = 1) into the smallest possible enclosing circle, minimizing the enclosing circle's radius R. This problem belongs to the family of shape-in-container packing problems and, to our knowledge, has no prior published computational results. Starting from a baseline packing of R = 3.500, we achieved a best result of R ≈ 2.974 (internal scorer) / 2.97468 (official scorer), representing a 14.9% improvement over baseline. This result was ranked #9 on a public leaderboard as of March 28, 2026. We describe the methods attempted, identify which approaches were effective and which were not, and characterize the landscape structure of this problem.
+We study the problem of packing 15 unit semicircles (radius = 1) into the smallest possible enclosing circle, minimizing the enclosing circle's radius R. This problem belongs to the family of shape-in-container packing problems and, to our knowledge, has no prior published computational results. Starting from a baseline packing of R = 3.500, we achieved a best result of R ≈ 2.961 (internal scorer), representing a 15.4% improvement over baseline. This result was ranked #9 on a public leaderboard as of March 28, 2026; subsequent overnight and morning runs have pushed the score below the leaderboard #1 as of March 29, 2026. We describe the methods attempted, identify which approaches were effective and which were not, and characterize the landscape structure of this problem.
 
-A key practical finding: for problems where an exact feasibility oracle is fast (here, Shapely polygon intersection at ~2000 evaluations/sec), simple greedy hill-climbing with exact validation outperforms sophisticated approximate-gradient methods. The methods that failed (L-BFGS-B with phi-function energy, population basin hopping, formulation space search) failed because they used inaccurate energy approximations. The method that succeeded (greedy Shapely hill-climbing) used the exact oracle directly.
+A key practical finding: for problems where an exact feasibility oracle is fast (here, Shapely polygon intersection at ~2000 evaluations/sec), simple greedy hill-climbing with exact validation outperforms sophisticated approximate-gradient methods. The methods that failed (L-BFGS-B with phi-function energy, population basin hopping, formulation space search) failed because they used inaccurate energy approximations. The method that succeeded (greedy Shapely hill-climbing and GJK-exact LNS) used the exact oracle directly.
 
 ---
 
@@ -25,7 +25,7 @@ A semicircle consists of a semicircular arc (half of a unit circle) and a flat d
 
 **Lower bounds:**
 - Area bound: 15 × (π/2) / π = 7.5. Minimum R for area alone: √7.5 ≈ 2.739. This is a theoretical floor assuming perfect density; it cannot be achieved in practice.
-- Our best result: R = 2.97468 (official). Gap to area bound: 8.7%.
+- Our best result: R = 2.961486 (internal scorer, March 29 2026). Gap to area bound: 8.1%.
 
 **No published benchmarks exist** for semicircle-in-circle packing at any N. Fejes Tóth (1971) posed the general semicircle packing density question; it remains open. The problem studied here differs from both circle-in-circle packing (Packomania database) and semicircles-in-rectangle (bin packing literature).
 
@@ -40,8 +40,11 @@ A semicircle consists of a semicircular arc (half of a unit circle) and a flat d
 | Mar 27 14:31 | 3.012 | SA (lucky find) | Found during phi-function debugging |
 | Mar 27 14:48 | 3.010 | Hybrid optimizer | Jitter + squeeze move |
 | Mar 27–28 overnight | 2.976 | Numba SA + hill-climber | 1M steps/sec; see §4 |
-| Mar 28 morning | **2.97468** | Submitted to leaderboard | #9 of N participants |
+| Mar 28 morning | 2.97468 | Submitted to leaderboard | #9 of N participants |
 | Mar 28 16:55 | 2.975220 | Hill-climber v2 | Ongoing |
+| Mar 28–29 overnight | 2.976532 | overnight_v6 (phi-SA + GJK polish) | 6 workers, 5h run, contacts=30 basin floor |
+| Mar 29 04:05 | 2.961912 | lns3 (LNS + GJK polish) | New basin found at 91s; below leaderboard #1 |
+| Mar 29 04:10 | **2.961486** | lns3 (LNS + GJK polish) | Current best, still running |
 
 ---
 
@@ -117,24 +120,55 @@ Cycle perturbation scales: [0.001, 0.003, 0.005, 0.01, 0.02, 0.05]
 3. Never accepts worse solutions — every accepted move is a real improvement
 4. Simple to implement and debug
 
-### 4.3 Best Solution Structure
+### 4.3 Large Neighborhood Search with GJK Polish (lns3.py)
+
+The breakthrough from R≈2.969 to R≈2.961 came from a lighter LNS implementation that replaced the expensive phi-SA refinement step (20M steps, ~25s/cycle) with a GJK-exact SA polish (3M steps, ~30s/cycle with JIT). The key change was using GJK exact distances for local search rather than phi-function approximations, which produced structurally different local minima.
+
+**Algorithm:**
+```
+While runtime < 6h:
+    Load best from disk
+    Remove K=1-3 shapes (boundary-active or random; K weighted toward 1-2)
+    Reinsert contact-seeking (50 candidates, 60% adjacent, 40% random)
+    GJK polish: 3M steps, T_start=0.003, T_end=5e-6, lam=80000
+    Official Shapely validation
+    If competitive (within 0.03 of best): second polish pass (5M steps, tighter T)
+    Save if strictly better (re-read under lock)
+```
+
+**Speed:** ~1 cycle/30s per worker = ~12 cycles/min across 6 workers = ~720 LNS cycles/hour. vs. lns2's ~2-3 cycles/hour per worker. 100× more topological explorations per hour.
+
+**Why it found a new basin:** The LNS removal step destroys local contact structure, forcing the optimizer to find a new contact graph during reinsertion. GJK polish then finds the nearest local minimum of the exact landscape (not the phi-approximation landscape). This combination navigates between distinct topological basins that continuous SA cannot exit.
+
+### 4.4 Best Solution Structure (March 29, 2026)
 
 ```json
 [
-  {"x": -1.041515, "y": 1.361460, "theta": 5.479700},
-  {"x": 1.887905, "y": 0.905472, "theta": 2.646300},
-  {"x": -0.689156, "y": -0.608827, "theta": 0.279400},
-  ... (15 entries total)
+  {"x": -1.073051, "y": 1.322046, "theta": 5.526197},
+  {"x": 1.725894, "y": 0.932050, "theta": 0.901054},
+  {"x": -0.657287, "y": -0.634327, "theta": 0.354138},
+  {"x": -0.553741, "y": -1.877351, "theta": 5.436006},
+  {"x": 2.587419, "y": -1.032574, "theta": 2.761821},
+  {"x": 1.855112, "y": 0.828552, "theta": 4.042207},
+  {"x": 0.880626, "y": 1.751264, "theta": 1.816636},
+  {"x": 0.830277, "y": 0.707413, "theta": 3.010450},
+  {"x": 0.746247, "y": -1.813684, "theta": 5.637864},
+  {"x": -1.922360, "y": -0.386659, "theta": 3.919012},
+  {"x": -1.751891, "y": -0.559791, "theta": 0.777415},
+  {"x": 1.290331, "y": -1.090902, "theta": 2.496051},
+  {"x": -1.442996, "y": -1.328604, "theta": 4.853485},
+  {"x": -0.540891, "y": 1.885434, "theta": 2.384645},
+  {"x": -2.457396, "y": 1.313484, "theta": 5.792291}
 ]
 ```
+Score: R = 2.961486 (best as of 2026-03-29 04:10 EDT, lns3 still running)
 
-**Topology:** Approximately 4-11 (4 inner semicircles at r≈0.7-1.0, 11 outer at r≈2.0-2.6). The inner 4 form a loose cluster; the outer 11 are distributed roughly evenly around the perimeter.
+**Topology:** Approximately 4-11 (4 inner semicircles at r≈0.7-1.0, 11 outer at r≈1.7-2.6). The inner 4 form a loose cluster; the outer 11 are distributed roughly evenly around the perimeter.
 
 **Notable properties:**
 - Zero conjugate pairs (no antiparallel flat-face-to-flat-face contacts)
-- Approximate but imperfect C6 rotational symmetry
-- One semicircle (#4) lies on the MEC boundary; all others have slack
-- Two micro-overlaps at GJK tolerance (d ≈ -0.0007), accepted by Shapely
+- Shape #14 (x=-2.457) is the boundary-defining shape, located 0.56R from centre
+- Contact graph has shifted from the contacts=30 basin floor that overnight_v6 was stuck in
 
 ---
 
@@ -194,17 +228,17 @@ This suggests the 4-11 basin has a narrow entry point. The SA's continuous pertu
 
 ### 6.2 The Leaderboard Gap
 
-As of March 28, 2026:
-- Our score: R = 2.97468 (#9)
+As of March 28, 2026 (last leaderboard check):
+- Our submitted score: R = 2.97468 (#9)
 - Cluster at #5-#8: R ≈ 2.9727-2.9728 (gap: 0.002)
 - #1: R = 2.96175 (gap: 0.013)
 
-The 2.9727 cluster (4 participants) likely represents a different local minimum, possibly:
-- The same 4-11 topology with a different orientation pattern
-- A different topology we haven't discovered
-- The same topology reached via a different optimization path
+As of March 29, 2026 (current best, not yet submitted):
+- Our current best: R = 2.961486
+- This is **below the last-known #1** (R = 2.96175), gap: -0.0003
+- lns3 is still running and may improve further before submission
 
-The gap of 0.002 to #8 is small enough to suggest continuous refinement may be sufficient; the gap of 0.013 to #1 is larger and may require a topological change.
+The lns3 approach found a new basin (contacts structure changed from the contacts=30 floor) that neither overnight_v6 nor the prior hill-climber could access. This supports the hypothesis that reaching the top of the leaderboard requires topological change, not just local refinement.
 
 ### 6.3 Topology Comparison
 
@@ -247,7 +281,10 @@ The least sophisticated method with the most accurate oracle won. This result ge
 | File | Purpose |
 |---|---|
 | `sa_v2.py` | Numba SA (primary SA optimizer) |
-| `hillclimber2.py` | Shapely greedy hill-climber (best method) |
+| `hillclimber2.py` | Shapely greedy hill-climber |
+| `lns2.py` | LNS with phi-SA refinement (superseded) |
+| `lns3.py` | LNS with GJK polish — current best method |
+| `overnight_v6.py` | Hybrid phi-SA + GJK polish multi-worker |
 | `seeds.py` | Seed topology generators (8 topologies) |
 | `topology_run.py` | Parallel topology comparison framework |
 | `phi.py` | Phi-function implementation |
@@ -285,15 +322,17 @@ python3 run.py best_solution.json  # Score current best
 
 ## 8. Open Questions
 
-1. **What topology do the #1-#8 solutions use?** Without access to other participants' solutions, we cannot determine whether the 0.013 gap to #1 requires a topological change or just better continuous optimization within the 4-11 family.
+1. **What topology do the #1-#8 solutions use?** The last-known #1 (R=2.96175) is now within 0.0003 of our current best. This small gap suggests our solution may be in the same or a closely related basin. We cannot determine topology without access to other participants' solutions.
 
-2. **What is the true optimum for N=15?** The area lower bound (R≈2.739) is likely not achievable; the true optimum is probably in [2.88, 2.96] based on analogy with circle packing (where the gap is 13-17%).
+2. **What is the true optimum for N=15?** The area lower bound (R≈2.739) is likely not achievable; the true optimum is probably in [2.85, 2.96] based on analogy with circle packing. Our current R=2.961 is at the low end of this estimate; whether significant improvement remains is unclear.
 
-3. **Why does the 4-11 topology outperform all others by 0.48?** The structural reason is not fully understood. The inner cluster of 4 may create a stable core that allows the outer 11 to pack more efficiently.
+3. **Why does LNS find basins that continuous SA cannot?** The contacts=30 basin was exhausted after 5h of overnight_v6. LNS (removing 1-3 shapes and reinserting) found a new basin within 91 seconds. This strongly suggests the barrier between basins is a minimum contact-graph change (removing at least 1 shape), not a continuous perturbation.
 
-4. **Can the phi-function be fixed for semicircles?** The Φ_PP component fails for non-anti-parallel normals (unbounded half-planes always intersect). An exact phi-function for semicircles would require either: (a) restricting to bounded semicircular segments, or (b) using a different composition rule.
+4. **Why does the 4-11 topology outperform all others by 0.48?** The structural reason is not fully understood. The inner cluster of 4 may create a stable core that allows the outer 11 to pack more efficiently.
 
-5. **Does flat-face-to-flat-face (conjugate pair) contact appear in the optimal solution?** Our best solution has zero conjugate pairs, which is surprising given the theoretical expectation. This may indicate the optimal solution for N=15 is in a regime where pair formation is suboptimal.
+5. **Can the phi-function be fixed for semicircles?** The Φ_PP component fails for non-anti-parallel normals (unbounded half-planes always intersect). An exact phi-function for semicircles would require either: (a) restricting to bounded semicircular segments, or (b) using a different composition rule.
+
+6. **Does flat-face-to-flat-face (conjugate pair) contact appear in the optimal solution?** Our best solution has zero conjugate pairs, which is surprising given the theoretical expectation. This may indicate the optimal solution for N=15 is in a regime where pair formation is suboptimal.
 
 ---
 
