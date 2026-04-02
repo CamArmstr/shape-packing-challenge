@@ -44,6 +44,14 @@ def save_if_better(xs, ys, ts, current_best):
         out = [{'x': round(float(xs[i]-cx),6), 'y': round(float(ys[i]-cy),6),
                 'theta': round(float(ts[i])%TWO_PI,6)} for i in range(N)]
         with open(BEST_FILE,'w') as f: json.dump(out, f, indent=2)
+        # Auto-commit to git so we never lose a best solution
+        try:
+            import subprocess
+            subprocess.run(['git', 'add', 'best_solution.json'], cwd=os.path.dirname(BEST_FILE), capture_output=True)
+            subprocess.run(['git', 'commit', '-m', f'best: R={s:.6f} (auto-commit)'],
+                          cwd=os.path.dirname(BEST_FILE), capture_output=True)
+        except Exception:
+            pass
         return s, True
 
 # ─── Addition 1: Contact graph fingerprint ───────────────────────────
@@ -87,15 +95,15 @@ def fingerprint(xs, ys, ts):
     return frozenset(contacts), boundary_active
 
 # ─── Addition 2: Cluster move ────────────────────────────────────────
-def perturb_cluster(xs, ys, ts, scale, rng):
-    """Pick 3-5 adjacent semicircles and apply a rigid transform to the cluster."""
+def perturb_cluster(xs, ys, ts, scale, rng, min_k=2, max_k=4):
+    """Pick adjacent semicircles and apply a rigid transform to the cluster."""
     nxs, nys, nts = xs.copy(), ys.copy(), ts.copy()
 
     # Pick random center shape
     center = rng.randint(0, N)
 
-    # Find k nearest neighbors (k = 2-4, so cluster = 3-5)
-    k = rng.randint(2, 5)  # 2..4 neighbors
+    # Find k nearest neighbors
+    k = rng.randint(min_k, max_k + 1)
     dists = np.hypot(xs - xs[center], ys - ys[center])
     dists[center] = -1  # ensure center is first
     order = np.argsort(dists)
@@ -215,9 +223,13 @@ def run(max_trials=500000, log_interval=10000):
         r = rng.random()
         nxs, nys, nts = xs.copy(), ys.copy(), ts.copy()
 
-        if r < 0.1625:
-            # Cluster move (25% of single-shape budget) at 2x scale
-            nxs, nys, nts = perturb_cluster(xs, ys, ts, scale * 2, rng)
+        if r < 0.10:
+            # Large cluster move (6-8 shapes) at coarse scale — contact-graph escape
+            coarse = max(scale, 0.02)
+            nxs, nys, nts = perturb_cluster(xs, ys, ts, coarse, rng, min_k=5, max_k=7)
+        elif r < 0.2625:
+            # Standard cluster move (3-5 shapes) at 2x scale
+            nxs, nys, nts = perturb_cluster(xs, ys, ts, scale * 2, rng, min_k=2, max_k=4)
         elif r < 0.5:
             # Perturb one random shape (x, y, theta)
             i = rng.randint(0, N)

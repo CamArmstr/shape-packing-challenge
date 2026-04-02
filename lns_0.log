@@ -1,0 +1,44 @@
+start R=2.969719 | max_cycles=1000
+cycle   0 remove=[np.int64(0)] reinsert=3.42369 refined=3.41218
+cycle   1 remove=[4] reinsert=3.19350 refined=3.15648
+cycle   2 remove=[4] reinsert=3.19311 refined=3.18083
+cycle   3 remove=[4] reinsert=3.15218 refined=3.12813
+cycle   4 remove=[4] reinsert=3.35015 refined=3.32149
+cycle   5 remove=[4] reinsert=3.25135 refined=3.22504
+cycle   6 remove=[np.int64(10)] reinsert=3.12211 refined=3.11185
+cycle   7 remove=[np.int64(5)] reinsert=3.20011 refined=3.17332
+cycle   8 remove=[4] reinsert=3.13827 refined=3.09774
+cycle   9 remove=[np.int64(7)] reinsert=3.22254 refined=3.21203
+cycle  10 remove=[4] reinsert=3.13174 refined=3.10462
+cycle  11 remove=[4] reinsert=3.26045 refined=3.23387
+cycle  12 remove=[np.int64(10)] reinsert=3.33743 refined=3.31288
+cycle  13 remove=[np.int64(3)] reinsert=3.22501 refined=3.20001
+cycle  14 remove=[4] reinsert=3.20646 refined=3.12508
+cycle  15 remove=[4] reinsert=3.18837 refined=3.15158
+cycle  16 remove=[4] reinsert=3.34401 refined=3.31837
+cycle  17 remove=[4] reinsert=3.31515 refined=3.29241
+cycle  18 remove=[4] reinsert=3.16987 refined=3.11735
+cycle  19 remove=[np.int64(2)] no valid reinsertion
+cycle  20 remove=[0] no valid reinsertion
+cycle  21 remove=[0] no valid reinsertion
+cycle  22 remove=[0] no valid reinsertion
+cycle  23 remove=[np.int64(7)] reinsert=3.28765 refined=3.26462 *** NEW BEST ***
+cycle  24 remove=[np.int64(0)] reinsert=3.53102 refined=3.50408
+cycle  25 remove=[4] reinsert=3.38855 refined=3.35602
+cycle  26 remove=[np.int64(7)] reinsert=3.51087 refined=3.46842
+cycle  27 remove=[4] reinsert=3.47738 refined=3.39951
+cycle  28 remove=[np.int64(14)] reinsert=3.30391 refined=3.24454
+cycle  29 remove=[13] reinsert=3.27703 refined=3.22789
+cycle  30 remove=[np.int64(3)] reinsert=3.22730 refined=3.19802
+cycle  31 remove=[4] no valid reinsertion
+cycle  32 remove=[4] no valid reinsertion
+cycle  33 remove=[4] reinsert=3.28156 refined=3.24727
+cycle  34 remove=[4] no valid reinsertion
+cycle  35 remove=[np.int64(13)] reinsert=3.39955 refined=3.38150
+cycle  36 remove=[4] no valid reinsertion
+cycle  37 remove=[4] no valid reinsertion
+cycle  38 remove=[4] no valid reinsertion
+cycle  39 remove=[4] no valid reinsertion
+cycle  40 remove=[4] reinsert=3.28199 refined=3.25533
+cycle  41 remove=[4] no valid reinsertion
+cycle  42 remove=[np.int64(8)] reinsert=3.11994 refined=3.10739 *** NEW BEST ***

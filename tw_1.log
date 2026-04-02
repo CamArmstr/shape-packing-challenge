@@ -1,0 +1,15 @@
+[w1] start | orient=standard | 9 runs
+[w1] run 0 P1=3.156332 → P2
+[w1] run 0 P2=3.080610
+[w1] run 1 P1 no feasible
+[w1] run 2 P1=3.7985 too loose, skip
+[w1] run 3 P1=3.189910 → P2
+[w1] run 3 P2=3.074447
+[w1] run 4 P1=3.232994 → P2
+[w1] run 4 P2=3.058306
+[w1] run 5 P1 no feasible
+[w1] run 6 P1=3.125618 → P2
+[w1] run 6 P2=3.085143
+[w1] run 7 P1 no feasible
+[w1] run 8 P1 no feasible
+[w1] done

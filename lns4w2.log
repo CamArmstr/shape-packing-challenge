@@ -1,0 +1,74 @@
+[w2] lns4 start | best=2.960586
+[w2] c3 k=7 rm=[10, 2, 8, 4, 1, 6, 0] pre=4.0040 → pol=3.019135
+[w2] c5 k=6 rm=[14, 4, 1, 8, 13, 3] pre=3.8103 → pol=3.008505
+[w2] c9 k=5 rm=[14, 4, 1, 8, 13] pre=3.7480 → pol=2.980976
+[w2] c11 k=6 rm=[np.int64(14), np.int64(11), np.int64(12), np.int64(1), np.int64(5), np.int64(9)] pre=3.9454 → pol=3.050076
+[w2] c12 k=4 rm=[np.int64(7), np.int64(0), np.int64(4), np.int64(8)] pre=3.5627 → pol=3.051754
+[w2] c13 k=5 rm=[9, 2, 11, 1, 13] pre=3.8408 → pol=3.031731
+[w2] c14 k=5 rm=[14, 4, 1, 8, 13] pre=3.7613 → pol=3.047097
+[w2] c15 k=6 rm=[9, 12, 3, 11, 5, 7] pre=4.2093 → pol=3.052976
+[w2] c17 k=5 rm=[np.int64(0), np.int64(7), np.int64(14), np.int64(5), np.int64(9)] pre=3.8881 → pol=3.033441
+[w2] c18 k=5 rm=[14, np.int64(13), np.int64(11), np.int64(7), np.int64(0)] pre=3.8439 → pol=3.011725
+[w2] c19 k=6 rm=[np.int64(13), np.int64(3), np.int64(10), np.int64(4), np.int64(7), np.int64(14)] pre=4.0391 → pol=2.998466
+[w2] c21 k=6 rm=[np.int64(11), np.int64(5), np.int64(9), np.int64(4), np.int64(14), np.int64(8)] pre=3.9176 → pol=3.033229
+[w2] c22 k=6 rm=[14, 4, 1, 8, 13, 3] pre=3.6591 → pol=3.034487
+[w2] c24 k=5 rm=[14, np.int64(13), np.int64(10), np.int64(4), np.int64(5)] pre=4.0431 → pol=2.983476
+[w2] c26 k=6 rm=[14, np.int64(4), np.int64(5), np.int64(13), np.int64(8), np.int64(12)] pre=4.1655 → pol=3.018046
+[w2] c27 k=7 rm=[14, 4, 1, 8, 13, 3, 9] pre=3.7824 → pol=3.023415
+[w2] c28 k=5 rm=[np.int64(3), np.int64(7), np.int64(9), np.int64(0), np.int64(14)] pre=3.4878 → pol=3.015140
+[w2] c30 k=4 rm=[np.int64(5), np.int64(6), np.int64(12), np.int64(11)] pre=3.9711 → pol=3.009566
+[w2] c33 k=5 rm=[14, 4, 1, 8, 13] pre=3.9791 → pol=3.052750
+[w2] c34 k=6 rm=[9, 12, 3, 11, 5, 7] pre=3.9792 → pol=3.015480
+[w2] c35 k=6 rm=[np.int64(8), np.int64(9), np.int64(2), np.int64(14), np.int64(0), np.int64(7)] pre=3.9961 → pol=3.032134
+[w2] c36 k=3 rm=[np.int64(2), np.int64(0), np.int64(14)] pre=3.8300 → pol=3.009141
+[w2] c37 k=6 rm=[14, np.int64(2), np.int64(7), np.int64(1), np.int64(10), np.int64(11)] pre=4.0099 → pol=3.032501
+[w2] c39 k=3 rm=[np.int64(7), np.int64(2), np.int64(9)] pre=3.6941 → pol=2.996586
+[w2] c41 k=6 rm=[14, np.int64(12), np.int64(8), np.int64(6), np.int64(13), np.int64(10)] pre=3.9434 → pol=3.043293
+[w2] c42 k=3 rm=[np.int64(7), np.int64(11), np.int64(5)] pre=3.6830 → pol=3.012097
+[w2] c46 k=6 rm=[np.int64(7), np.int64(8), np.int64(9), np.int64(14), np.int64(4), np.int64(5)] pre=3.9096 → pol=3.010568
+[w2] c48 k=6 rm=[9, 12, 3, 11, 5, 7] pre=3.9431 → pol=2.999409
+[w2] c49 k=5 rm=[14, np.int64(13), np.int64(2), np.int64(9), np.int64(0)] pre=3.7119 → pol=3.010378
+[w2] c50 k=5 rm=[14, np.int64(3), np.int64(10), np.int64(1), np.int64(0)] pre=3.9398 → pol=3.028314
+[w2] c52 k=5 rm=[np.int64(7), np.int64(8), np.int64(4), np.int64(5), np.int64(9)] pre=4.1280 → pol=3.002469
+[w2] c54 k=5 rm=[12, 8, 5, 6, 14] pre=3.9199 → pol=3.039170
+[w2] c55 k=3 rm=[np.int64(0), np.int64(11), np.int64(5)] pre=3.5884 → pol=2.988525
+[w2] c56 k=5 rm=[12, 8, 5, 6, 14] pre=3.7892 → pol=3.024283
+[w2] c57 k=3 rm=[np.int64(8), np.int64(2), np.int64(5)] pre=3.8959 → pol=3.029824
+[w2] c58 k=4 rm=[12, 8, 5, 6] pre=3.9693 → pol=3.043900
+[w2] c60 k=5 rm=[14, np.int64(1), np.int64(10), np.int64(6), np.int64(8)] pre=3.8087 → pol=2.982446
+[w2] c61 k=6 rm=[np.int64(10), np.int64(14), np.int64(9), np.int64(5), np.int64(4), np.int64(8)] pre=4.0112 → pol=3.024424
+[w2] c62 k=4 rm=[9, 2, 11, 1] pre=4.0691 → pol=3.020934
+[w2] c63 k=6 rm=[10, 2, 8, 4, 1, 6] pre=3.9179 → pol=3.021001
+[w2] c64 k=7 rm=[np.int64(12), np.int64(3), np.int64(14), np.int64(6), np.int64(1), np.int64(10), np.int64(7)] pre=4.2029 → pol=3.006132
+[w2] c65 k=5 rm=[10, 3, 4, 7, 0] pre=3.9244 → pol=3.043333
+[w2] c67 k=4 rm=[14, 4, 1, 8] pre=3.5462 → pol=3.055076
+[w2] c68 k=6 rm=[np.int64(7), np.int64(13), np.int64(1), np.int64(5), np.int64(12), np.int64(8)] pre=3.8289 → pol=3.051755
+[w2] c69 k=7 rm=[np.int64(13), np.int64(2), np.int64(10), np.int64(8), np.int64(3), np.int64(5), np.int64(9)] pre=3.9343 → pol=3.052636
+[w2] c70 k=4 rm=[np.int64(11), np.int64(6), np.int64(3), np.int64(0)] pre=3.9465 → pol=3.052340
+[w2] c71 k=3 rm=[3, 1, 14] pre=3.9072 → pol=2.988858
+[w2] c74 k=4 rm=[14, 4, 1, 8] pre=3.8916 → pol=3.026198
+[w2] c76 k=6 rm=[np.int64(5), np.int64(12), np.int64(14), np.int64(11), np.int64(7), np.int64(0)] pre=4.0624 → pol=3.036649
+[w2] c77 k=3 rm=[2, 5, 0] pre=4.0941 → pol=3.022180
+[w2] c78 k=5 rm=[14, 4, 1, 8, 13] pre=4.0202 → pol=3.020536
+[w2] c79 k=7 rm=[10, 2, 8, 4, 1, 6, 0] pre=3.5929 → pol=3.001371
+[w2] c80 k=5 rm=[np.int64(10), np.int64(4), np.int64(9), np.int64(8), np.int64(14)] pre=3.8300 → pol=3.012311
+[w2] c81 k=4 rm=[14, 4, 1, 8] pre=3.6341 → pol=3.011503
+[w2] c83 k=4 rm=[9, 2, 11, 1] pre=4.0703 → pol=3.026759
+[w2] c85 k=6 rm=[14, np.int64(1), np.int64(10), np.int64(9), np.int64(5), np.int64(12)] pre=4.1440 → pol=3.045802
+[w2] c87 k=5 rm=[10, 3, 4, 7, 0] pre=4.0486 → pol=3.020612
+[w2] c88 k=6 rm=[14, np.int64(2), np.int64(5), np.int64(9), np.int64(0), np.int64(11)] pre=3.8697 → pol=3.039440
+[w2] c89 k=3 rm=[14, 4, 1] pre=3.4922 → pol=3.044128
+[w2] c90 k=4 rm=[10, 3, 4, 7] pre=3.7849 → pol=3.033068
+[w2] c91 k=7 rm=[14, 4, 1, 8, 13, 3, 9] pre=3.7744 → pol=3.037454
+[w2] c92 k=4 rm=[np.int64(7), np.int64(14), np.int64(9), np.int64(8)] pre=3.7805 → pol=3.051403
+[w2] c93 k=5 rm=[14, 4, 1, 8, 13] pre=3.5756 → pol=3.030392
+[w2] c95 k=5 rm=[14, 4, 1, 8, 13] pre=3.8495 → pol=3.014958
+[w2] c96 k=7 rm=[14, 4, 1, 8, 13, 3, 9] pre=3.9487 → pol=3.022325
+[w2] c98 k=4 rm=[14, 4, 1, 8] pre=3.8966 → pol=3.059782
+[w2] c100 k=6 rm=[14, 4, 1, 8, 13, 3] pre=3.7022 → pol=3.031099
+[w2] c101 k=4 rm=[np.int64(0), np.int64(4), np.int64(9), np.int64(14)] pre=3.7851 → pol=3.013972
+[w2] c102 k=4 rm=[14, np.int64(9), np.int64(12), np.int64(10)] pre=3.8733 → pol=3.000479
+[w2] c103 k=4 rm=[14, np.int64(7), np.int64(10), np.int64(4)] pre=3.7404 → pol=3.032755
+[w2] c104 k=7 rm=[14, 4, 1, 8, 13, 3, 9] pre=3.9231 → pol=3.049368
+[w2] c105 k=4 rm=[12, 8, 5, 6] pre=3.9911 → pol=2.994383
+[w2] c107 k=5 rm=[np.int64(10), np.int64(2), np.int64(8), np.int64(14), np.int64(5)] pre=3.7521 → pol=3.019062

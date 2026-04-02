@@ -1,0 +1,13 @@
+[w2] start | orient=random | 8 runs
+[w2] run 0 P1=3.303702 → P2
+[w2] run 0 P2=3.053854
+[w2] run 1 P1=3.490777 → P2
+[w2] run 1 P2=3.057515
+[w2] run 2 P1 no feasible
+[w2] run 3 P1 no feasible
+[w2] run 4 P1 no feasible
+[w2] run 5 P1 no feasible
+[w2] run 6 P1=3.230719 → P2
+[w2] run 6 P2=3.055683
+[w2] run 7 P1 no feasible
+[w2] done

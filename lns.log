@@ -1,0 +1,146 @@
+19:14:02 [w0] start R=2.969719 | max_cycles=1000
+19:14:02 [w2] start R=2.969719 | max_cycles=1000
+19:14:02 [w1] start R=2.969719 | max_cycles=1000
+19:14:02 [w3] start R=2.969719 | max_cycles=1000
+19:15:00 [w0] cycle   0 remove=[np.int64(0)] reinsert=3.42369 refined=3.41218
+19:15:03 [w1] cycle   0 remove=[4] reinsert=3.08843 refined=3.02699
+19:15:05 [w3] cycle   0 remove=[np.int64(4)] reinsert=3.15693 refined=3.13607
+19:15:06 [w2] cycle   0 remove=[4] reinsert=3.26989 refined=3.24863
+19:16:01 [w0] cycle   1 remove=[4] reinsert=3.19350 refined=3.15648
+19:16:07 [w2] cycle   1 remove=[4] reinsert=3.08797 refined=3.06138
+19:16:08 [w1] cycle   1 remove=[np.int64(1)] reinsert=3.43899 refined=3.42647
+19:16:08 [w3] cycle   1 remove=[4] reinsert=3.24547 refined=3.21836
+19:17:02 [w0] cycle   2 remove=[4] reinsert=3.19311 refined=3.18083
+19:17:07 [w1] cycle   2 remove=[np.int64(13)] reinsert=3.45068 refined=3.42098
+19:17:07 [w2] cycle   2 remove=[np.int64(13)] reinsert=3.49153 refined=3.46064
+19:17:09 [w3] cycle   2 remove=[np.int64(8)] reinsert=3.26927 refined=3.23761
+19:18:03 [w0] cycle   3 remove=[4] reinsert=3.15218 refined=3.12813
+19:18:08 [w3] cycle   3 remove=[np.int64(10)] reinsert=3.36967 refined=3.34992
+19:18:10 [w2] cycle   3 remove=[4] reinsert=3.25134 refined=3.22340
+19:18:10 [w1] cycle   3 remove=[4] reinsert=3.12014 refined=3.10618
+19:19:06 [w0] cycle   4 remove=[4] reinsert=3.35015 refined=3.32149
+19:19:13 [w1] cycle   4 remove=[4] reinsert=3.21351 refined=3.18886
+19:19:14 [w3] cycle   4 remove=[4] reinsert=3.20887 refined=3.19088
+19:19:14 [w2] cycle   4 remove=[4] reinsert=3.28257 refined=3.25893
+19:20:13 [w0] cycle   5 remove=[4] reinsert=3.25135 refined=3.22504
+19:20:21 [w1] cycle   5 remove=[4] reinsert=3.19941 refined=3.12939
+19:20:21 [w3] cycle   5 remove=[4] reinsert=3.30704 refined=3.24331
+19:20:23 [w2] cycle   5 remove=[4] reinsert=3.24125 refined=3.21430
+19:21:19 [w0] cycle   6 remove=[np.int64(10)] reinsert=3.12211 refined=3.11185
+19:21:28 [w2] cycle   6 remove=[4] reinsert=3.30270 refined=3.26986
+19:21:28 [w1] cycle   6 remove=[4] reinsert=3.18536 refined=3.16813
+19:22:19 [w0] cycle   7 remove=[np.int64(5)] reinsert=3.20011 refined=3.17332
+19:22:27 [w2] cycle   7 remove=[4] reinsert=3.24312 refined=3.21898
+19:22:28 [w1] cycle   7 remove=[4] reinsert=3.36940 refined=3.33821
+19:23:17 [w0] cycle   8 remove=[4] reinsert=3.13827 refined=3.09774
+19:23:26 [w2] cycle   8 remove=[4] reinsert=3.20983 refined=3.15884
+19:23:29 [w1] cycle   8 remove=[np.int64(0)] reinsert=3.46642 refined=3.45597
+19:24:19 [w0] cycle   9 remove=[np.int64(7)] reinsert=3.22254 refined=3.21203
+19:24:27 [w1] cycle   9 remove=[np.int64(3)] reinsert=3.32953 refined=3.30815
+19:24:29 [w2] cycle   9 remove=[4] reinsert=3.24650 refined=3.22653
+19:25:22 [w0] cycle  10 remove=[4] reinsert=3.13174 refined=3.10462
+19:25:27 [w1] cycle  10 remove=[4] reinsert=3.09927 refined=3.06949
+19:25:30 [w2] cycle  10 remove=[4] reinsert=3.28040 refined=3.21967
+19:26:26 [w1] cycle  11 remove=[np.int64(11)] reinsert=3.41702 refined=3.39181
+19:26:28 [w0] cycle  11 remove=[4] reinsert=3.26045 refined=3.23387
+19:26:32 [w2] cycle  11 remove=[4] reinsert=3.38889 refined=3.36440
+19:27:25 [w1] cycle  12 remove=[4] reinsert=3.31270 refined=3.29384
+19:27:25 [w0] cycle  12 remove=[np.int64(10)] reinsert=3.33743 refined=3.31288
+19:27:35 [w2] cycle  12 remove=[np.int64(1)] reinsert=3.40357 refined=3.39154
+19:28:25 [w0] cycle  13 remove=[np.int64(3)] reinsert=3.22501 refined=3.20001
+19:28:25 [w1] cycle  13 remove=[4] reinsert=3.20578 refined=3.17572
+19:28:34 [w2] cycle  13 remove=[np.int64(7)] reinsert=3.14951 refined=3.13760
+19:29:24 [w0] cycle  14 remove=[4] reinsert=3.20646 refined=3.12508
+19:29:26 [w1] cycle  14 remove=[4] reinsert=3.29101 refined=3.26982
+19:29:33 [w2] cycle  14 remove=[4] reinsert=3.18204 refined=3.13386
+19:30:24 [w0] cycle  15 remove=[4] reinsert=3.18837 refined=3.15158
+19:30:24 [w1] cycle  15 remove=[np.int64(7)] reinsert=3.41865 refined=3.40079
+19:30:34 [w2] cycle  15 remove=[4] reinsert=3.27644 refined=3.25034
+19:31:19 [w1] cycle  16 remove=[np.int64(2)] reinsert=3.47283 refined=3.45823
+19:31:24 [w0] cycle  16 remove=[4] reinsert=3.34401 refined=3.31837
+19:31:35 [w2] cycle  16 remove=[4] reinsert=3.35657 refined=3.33165
+19:32:20 [w1] cycle  17 remove=[4] reinsert=3.23857 refined=3.22356
+19:32:24 [w0] cycle  17 remove=[4] reinsert=3.31515 refined=3.29241
+19:32:35 [w2] cycle  17 remove=[np.int64(3)] reinsert=3.20206 refined=3.17774
+19:33:16 [w1] cycle  18 remove=[4] reinsert=3.17390 refined=3.12242
+19:33:20 [w0] cycle  18 remove=[4] reinsert=3.16987 refined=3.11735
+19:33:24 [w1] cycle  19 remove=[0] no valid reinsertion
+19:33:28 [w0] cycle  19 remove=[np.int64(2)] no valid reinsertion
+19:33:32 [w1] cycle  20 remove=[0] no valid reinsertion
+19:33:37 [w0] cycle  20 remove=[0] no valid reinsertion
+19:33:37 [w2] cycle  18 remove=[4] reinsert=3.28176 refined=3.27137
+19:33:40 [w1] cycle  21 remove=[0] no valid reinsertion
+19:33:45 [w0] cycle  21 remove=[0] no valid reinsertion
+19:33:46 [w2] cycle  19 remove=[0] no valid reinsertion
+19:33:49 [w1] cycle  22 remove=[0] no valid reinsertion
+19:33:53 [w0] cycle  22 remove=[0] no valid reinsertion
+19:33:54 [w2] cycle  20 remove=[0] no valid reinsertion
+19:33:57 [w1] cycle  23 remove=[0] no valid reinsertion
+19:34:02 [w2] cycle  21 remove=[np.int64(1)] no valid reinsertion
+19:34:05 [w1] cycle  24 remove=[0] no valid reinsertion
+19:34:10 [w2] cycle  22 remove=[0] no valid reinsertion
+19:34:14 [w1] cycle  25 remove=[np.int64(1)] no valid reinsertion
+19:34:17 [w2] cycle  23 remove=[0] no valid reinsertion
+19:34:20 [w1] cycle  26 remove=[0] no valid reinsertion
+19:34:25 [w2] cycle  24 remove=[0] no valid reinsertion
+19:34:28 [w1] cycle  27 remove=[0] no valid reinsertion
+19:34:31 [w2] cycle  25 remove=[np.int64(11)] no valid reinsertion
+19:34:34 [w1] cycle  28 remove=[0] no valid reinsertion
+19:34:37 [w2] cycle  26 remove=[np.int64(10)] no valid reinsertion
+19:34:41 [w1] cycle  29 remove=[0] no valid reinsertion
+19:34:45 [w2] cycle  27 remove=[0] no valid reinsertion
+19:34:50 [w1] cycle  30 remove=[0] no valid reinsertion
+19:34:50 [w0] cycle  23 remove=[np.int64(7)] reinsert=3.28765 refined=3.26462 *** NEW BEST ***
+19:34:53 [w2] cycle  28 remove=[0] no valid reinsertion
+19:34:57 [w1] cycle  31 remove=[0] no valid reinsertion
+19:35:42 [w0] cycle  24 remove=[np.int64(0)] reinsert=3.53102 refined=3.50408
+19:35:55 [w1] cycle  32 remove=[np.int64(6)] reinsert=3.26462 refined=3.24810 *** NEW BEST ***
+19:35:55 [w2] cycle  29 remove=[np.int64(13)] reinsert=3.48650 refined=3.45825
+19:36:49 [w0] cycle  25 remove=[4] reinsert=3.38855 refined=3.35602
+19:36:50 [w1] cycle  33 remove=[np.int64(2)] reinsert=3.45350 refined=3.43265
+19:36:52 [w2] cycle  30 remove=[14] reinsert=3.24811 refined=3.23783 *** NEW BEST ***
+19:37:44 [w0] cycle  26 remove=[np.int64(7)] reinsert=3.51087 refined=3.46842
+19:37:49 [w1] cycle  34 remove=[14] reinsert=3.25663 refined=3.24050
+19:37:58 [w2] cycle  31 remove=[4] reinsert=3.34698 refined=3.28492
+19:38:48 [w0] cycle  27 remove=[4] reinsert=3.47738 refined=3.39951
+19:38:49 [w1] cycle  35 remove=[np.int64(14)] reinsert=3.28495 refined=3.25656
+19:38:55 [w2] cycle  32 remove=[np.int64(13)] reinsert=3.19709 refined=3.14363 *** NEW BEST ***
+19:39:46 [w0] cycle  28 remove=[np.int64(14)] reinsert=3.30391 refined=3.24454
+19:39:52 [w1] cycle  36 remove=[4] reinsert=3.33769 refined=3.27967
+19:39:54 [w2] cycle  33 remove=[np.int64(11)] reinsert=3.47347 refined=3.44362
+19:40:41 [w0] cycle  29 remove=[13] reinsert=3.27703 refined=3.22789
+19:40:51 [w1] cycle  37 remove=[13] reinsert=3.19734 refined=3.18698
+19:40:55 [w2] cycle  34 remove=[13] reinsert=3.13562 refined=3.11994 *** NEW BEST ***
+19:41:05 [w2] cycle  35 remove=[4] no valid reinsertion
+19:41:39 [w0] cycle  30 remove=[np.int64(3)] reinsert=3.22730 refined=3.19802
+19:41:45 [w1] cycle  38 remove=[np.int64(8)] reinsert=3.20449 refined=3.14585
+19:41:48 [w0] cycle  31 remove=[4] no valid reinsertion
+19:41:58 [w0] cycle  32 remove=[4] no valid reinsertion
+19:42:17 [w2] cycle  36 remove=[4] reinsert=3.25741 refined=3.23044
+19:42:45 [w1] cycle  39 remove=[np.int64(1)] reinsert=3.43761 refined=3.42185
+19:42:55 [w1] cycle  40 remove=[4] no valid reinsertion
+19:43:08 [w0] cycle  33 remove=[4] reinsert=3.28156 refined=3.24727
+19:43:16 [w2] cycle  37 remove=[np.int64(14)] reinsert=3.23212 refined=3.15190
+19:43:18 [w0] cycle  34 remove=[4] no valid reinsertion
+19:43:27 [w2] cycle  38 remove=[4] no valid reinsertion
+19:44:04 [w1] cycle  41 remove=[4] reinsert=3.27730 refined=3.23470
+19:44:17 [w0] cycle  35 remove=[np.int64(13)] reinsert=3.39955 refined=3.38150
+19:44:27 [w0] cycle  36 remove=[4] no valid reinsertion
+19:44:28 [w2] cycle  39 remove=[np.int64(14)] reinsert=3.43159 refined=3.39754
+19:44:36 [w0] cycle  37 remove=[4] no valid reinsertion
+19:44:38 [w2] cycle  40 remove=[4] no valid reinsertion
+19:44:47 [w0] cycle  38 remove=[4] no valid reinsertion
+19:44:48 [w2] cycle  41 remove=[4] no valid reinsertion
+19:44:57 [w0] cycle  39 remove=[4] no valid reinsertion
+19:45:00 [w1] cycle  42 remove=[np.int64(2)] reinsert=3.44873 refined=3.43298
+19:45:51 [w2] cycle  42 remove=[np.int64(12)] reinsert=3.52342 refined=3.49815
+19:46:03 [w1] cycle  43 remove=[np.int64(0)] reinsert=3.50776 refined=3.49303
+19:46:04 [w0] cycle  40 remove=[4] reinsert=3.28199 refined=3.25533
+19:46:14 [w1] cycle  44 remove=[4] no valid reinsertion
+19:46:15 [w0] cycle  41 remove=[4] no valid reinsertion
+19:46:23 [w1] cycle  45 remove=[4] no valid reinsertion
+19:47:02 [w2] cycle  43 remove=[np.int64(4)] reinsert=3.24549 refined=3.21861
+19:47:15 [w0] cycle  42 remove=[np.int64(8)] reinsert=3.11994 refined=3.10739 *** NEW BEST ***
+19:47:28 [w1] cycle  46 remove=[np.int64(11)] reinsert=3.46488 refined=3.44479
+19:47:38 [w1] cycle  47 remove=[4] no valid reinsertion
+19:47:48 [w1] cycle  48 remove=[4] no valid reinsertion

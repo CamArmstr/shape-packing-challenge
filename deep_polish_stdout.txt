@@ -1,0 +1,122 @@
+04:24:41 deep_polish start | best on disk: R=2.961486
+04:26:21 [run 1] warm: R=2.973464 (was 2.961486)
+04:28:10 [run 1] cold: R=2.960955 (was 2.961486)
+04:28:10 [run 1] ★ NEW BEST R=2.960955
+04:30:20 [run 1] ultra: R=2.960736 (was 2.960955)
+04:30:20 [run 1] ★ NEW BEST R=2.960736
+04:30:20 [run 1] done | best this run: R=2.960736 | global: R=2.960736
+04:31:58 [run 2] warm: R=2.972341 (was 2.960736)
+04:33:50 [run 2] cold: R=2.961571 (was 2.960736)
+04:35:57 [run 2] ultra: R=2.960698 (was 2.960736)
+04:35:57 [run 2] ★ NEW BEST R=2.960698
+04:35:57 [run 2] done | best this run: R=2.960698 | global: R=2.960698
+04:37:32 [run 3] warm: R=2.960856 (was 2.960698)
+04:39:22 [run 3] cold: R=2.960586 (was 2.960698)
+04:39:22 [run 3] ★ NEW BEST R=2.960586
+04:41:25 [run 3] ultra: R=2.960832 (was 2.960586)
+04:41:25 [run 3] done | best this run: R=2.960586 | global: R=2.960586
+04:41:25 [run 4] reloaded disk best: R=2.960586
+04:42:56 [run 4] warm: R=2.965547 (was 2.960586)
+04:44:45 [run 4] cold: R=2.960683 (was 2.960586)
+04:46:47 [run 4] ultra: R=2.960827 (was 2.960586)
+04:46:47 [run 4] done | best this run: R=2.960586 | global: R=2.960586
+04:48:21 [run 5] warm: R=inf (was 2.960586)
+04:50:11 [run 5] cold: R=2.960929 (was 2.960586)
+04:52:13 [run 5] ultra: R=2.960702 (was 2.960586)
+04:52:13 [run 5] done | best this run: R=2.960586 | global: R=2.960586
+04:53:47 [run 6] warm: R=2.961020 (was 2.960586)
+04:55:36 [run 6] cold: R=2.966782 (was 2.960586)
+04:57:38 [run 6] ultra: R=2.960849 (was 2.960586)
+04:57:38 [run 6] done | best this run: R=2.960586 | global: R=2.960586
+04:59:13 [run 7] warm: R=2.960975 (was 2.960586)
+05:01:02 [run 7] cold: R=2.960867 (was 2.960586)
+05:03:04 [run 7] ultra: R=2.960952 (was 2.960586)
+05:03:04 [run 7] done | best this run: R=2.960586 | global: R=2.960586
+05:04:39 [run 8] warm: R=2.960861 (was 2.960586)
+05:06:27 [run 8] cold: R=2.966164 (was 2.960586)
+05:08:30 [run 8] ultra: R=2.960732 (was 2.960586)
+05:08:30 [run 8] done | best this run: R=2.960586 | global: R=2.960586
+05:10:04 [run 9] warm: R=2.960789 (was 2.960586)
+05:11:54 [run 9] cold: R=2.960922 (was 2.960586)
+05:13:57 [run 9] ultra: R=2.960922 (was 2.960586)
+05:13:57 [run 9] done | best this run: R=2.960586 | global: R=2.960586
+05:15:31 [run 10] warm: R=inf (was 2.960586)
+05:17:18 [run 10] cold: R=2.966854 (was 2.960586)
+05:19:19 [run 10] ultra: R=2.960699 (was 2.960586)
+05:19:19 [run 10] done | best this run: R=2.960586 | global: R=2.960586
+05:20:54 [run 11] warm: R=2.967384 (was 2.960586)
+05:22:41 [run 11] cold: R=2.962446 (was 2.960586)
+05:24:42 [run 11] ultra: R=2.960744 (was 2.960586)
+05:24:42 [run 11] done | best this run: R=2.960586 | global: R=2.960586
+05:26:17 [run 12] warm: R=2.965108 (was 2.960586)
+05:28:05 [run 12] cold: R=2.961012 (was 2.960586)
+05:30:06 [run 12] ultra: R=2.960771 (was 2.960586)
+05:30:06 [run 12] done | best this run: R=2.960586 | global: R=2.960586
+05:31:41 [run 13] warm: R=2.960940 (was 2.960586)
+05:33:30 [run 13] cold: R=2.960850 (was 2.960586)
+05:35:32 [run 13] ultra: R=2.962725 (was 2.960586)
+05:35:32 [run 13] done | best this run: R=2.960586 | global: R=2.960586
+05:37:07 [run 14] warm: R=2.970860 (was 2.960586)
+05:38:55 [run 14] cold: R=2.966206 (was 2.960586)
+05:40:58 [run 14] ultra: R=2.960805 (was 2.960586)
+05:40:58 [run 14] done | best this run: R=2.960586 | global: R=2.960586
+05:42:31 [run 15] warm: R=2.960996 (was 2.960586)
+05:44:20 [run 15] cold: R=2.960631 (was 2.960586)
+05:46:22 [run 15] ultra: R=2.961387 (was 2.960586)
+05:46:22 [run 15] done | best this run: R=2.960586 | global: R=2.960586
+05:47:47 [run 16] warm: R=2.963108 (was 2.960586)
+05:49:36 [run 16] cold: R=2.961049 (was 2.960586)
+05:51:37 [run 16] ultra: R=2.960795 (was 2.960586)
+05:51:37 [run 16] done | best this run: R=2.960586 | global: R=2.960586
+05:53:12 [run 17] warm: R=2.960725 (was 2.960586)
+05:55:01 [run 17] cold: R=2.960786 (was 2.960586)
+05:56:59 [run 17] ultra: R=2.960981 (was 2.960586)
+05:56:59 [run 17] done | best this run: R=2.960586 | global: R=2.960586
+05:58:34 [run 18] warm: R=2.960861 (was 2.960586)
+06:00:21 [run 18] cold: R=2.960895 (was 2.960586)
+06:02:21 [run 18] ultra: R=2.960814 (was 2.960586)
+06:02:21 [run 18] done | best this run: R=2.960586 | global: R=2.960586
+06:03:55 [run 19] warm: R=2.983892 (was 2.960586)
+06:05:44 [run 19] cold: R=2.960893 (was 2.960586)
+06:07:42 [run 19] ultra: R=2.960929 (was 2.960586)
+06:07:42 [run 19] done | best this run: R=2.960586 | global: R=2.960586
+06:09:17 [run 20] warm: R=2.962534 (was 2.960586)
+06:11:06 [run 20] cold: R=2.969522 (was 2.960586)
+06:13:09 [run 20] ultra: R=2.961508 (was 2.960586)
+06:13:09 [run 20] done | best this run: R=2.960586 | global: R=2.960586
+06:14:37 [run 21] warm: R=2.964728 (was 2.960586)
+06:16:25 [run 21] cold: R=2.960638 (was 2.960586)
+06:18:27 [run 21] ultra: R=2.960867 (was 2.960586)
+06:18:27 [run 21] done | best this run: R=2.960586 | global: R=2.960586
+06:20:02 [run 22] warm: R=inf (was 2.960586)
+06:21:50 [run 22] cold: R=2.960861 (was 2.960586)
+06:23:49 [run 22] ultra: R=2.960636 (was 2.960586)
+06:23:49 [run 22] done | best this run: R=2.960586 | global: R=2.960586
+06:25:24 [run 23] warm: R=2.961132 (was 2.960586)
+06:27:12 [run 23] cold: R=2.965624 (was 2.960586)
+06:29:12 [run 23] ultra: R=2.960939 (was 2.960586)
+06:29:12 [run 23] done | best this run: R=2.960586 | global: R=2.960586
+06:30:47 [run 24] warm: R=2.960586 (was 2.960586)
+06:32:37 [run 24] cold: R=2.962269 (was 2.960586)
+06:34:39 [run 24] ultra: R=2.960780 (was 2.960586)
+06:34:39 [run 24] done | best this run: R=2.960586 | global: R=2.960586
+06:36:14 [run 25] warm: R=2.965759 (was 2.960586)
+06:38:01 [run 25] cold: R=2.960834 (was 2.960586)
+06:40:04 [run 25] ultra: R=2.960609 (was 2.960586)
+06:40:04 [run 25] done | best this run: R=2.960586 | global: R=2.960586
+06:41:37 [run 26] warm: R=2.960846 (was 2.960586)
+06:43:26 [run 26] cold: R=2.963996 (was 2.960586)
+06:45:28 [run 26] ultra: R=2.960586 (was 2.960586)
+06:45:28 [run 26] done | best this run: R=2.960586 | global: R=2.960586
+06:47:03 [run 27] warm: R=2.960846 (was 2.960586)
+06:48:51 [run 27] cold: R=2.960839 (was 2.960586)
+06:50:52 [run 27] ultra: R=2.965104 (was 2.960586)
+06:50:52 [run 27] done | best this run: R=2.960586 | global: R=2.960586
+06:52:27 [run 28] warm: R=2.983761 (was 2.960586)
+06:54:17 [run 28] cold: R=2.960891 (was 2.960586)
+06:56:19 [run 28] ultra: R=2.961465 (was 2.960586)
+06:56:19 [run 28] done | best this run: R=2.960586 | global: R=2.960586
+06:57:54 [run 29] warm: R=2.963840 (was 2.960586)
+06:59:42 [run 29] cold: R=2.960952 (was 2.960586)
+07:01:44 [run 29] ultra: R=2.962037 (was 2.960586)
+07:01:44 [run 29] done | best this run: R=2.960586 | global: R=2.960586

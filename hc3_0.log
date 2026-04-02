@@ -1,0 +1,345 @@
+Starting: R=2.970699
+[1541] R=2.970699 (single #1) contacts=30 boundary=6
+[3221] R=2.970696 (single #2) contacts=30 boundary=6
+[3222] R=2.970696 (single #3) contacts=30 boundary=6
+[3268] R=2.970629 (single #4) contacts=30 boundary=6
+[5451] R=2.970622 (single #5) contacts=30 boundary=6
+[6189] R=2.970622 (single #6) contacts=30 boundary=6
+[7577] R=2.970622 (single #7) contacts=30 boundary=6
+[7594] R=2.970621 (single #8) contacts=30 boundary=6
+[7657] R=2.970621 (single #9) contacts=30 boundary=6
+[7756] R=2.970617 (single #10) contacts=30 boundary=6
+[8260] R=2.970617 (single #11) contacts=30 boundary=6
+[8488] R=2.970599 (single #12) contacts=30 boundary=6
+[8563] R=2.970593 (single #13) contacts=30 boundary=6
+[8625] R=2.970593 (single #14) contacts=30 boundary=6
+[8855] R=2.970593 (single #15) contacts=30 boundary=6
+[9176] R=2.970593 (single #16) contacts=30 boundary=6
+[9179] R=2.970593 (single #17) contacts=30 boundary=6
+[9199] R=2.970593 (single #18) contacts=30 boundary=6
+[9580] R=2.970593 (single #19) contacts=30 boundary=6
+[1057s] trial=10000, best=2.970593, improvements=19
+[12475] R=2.970593 (single #20) contacts=30 boundary=6
+[12917] R=2.970592 (single #21) contacts=30 boundary=6
+[14473] R=2.970592 (single #22) contacts=30 boundary=6
+[18823] R=2.970591 (single #23) contacts=30 boundary=6
+[19460] R=2.970591 (single #24) contacts=30 boundary=6
+[2079s] trial=20000, best=2.970591, improvements=24
+[20295] R=2.970591 (single #25) contacts=30 boundary=6
+[21637] R=2.970591 (single #26) contacts=30 boundary=6
+[22577] R=2.970590 (single #27) contacts=30 boundary=6
+[23419] R=2.970590 (single #28) contacts=30 boundary=6
+[24004] R=2.970576 (cluster #29) contacts=30 boundary=6
+[24055] R=2.970576 (single #30) contacts=30 boundary=6
+[25529] R=2.970576 (cluster #31) contacts=30 boundary=6
+[25690] R=2.970541 (single #32) contacts=30 boundary=6
+[25901] R=2.970532 (single #33) contacts=30 boundary=6
+[25952] R=2.970532 (single #34) contacts=30 boundary=6
+[26029] R=2.970517 (single #35) contacts=30 boundary=6
+[27273] R=2.970515 (single #36) contacts=30 boundary=6
+[28169] R=2.970515 (single #37) contacts=30 boundary=6
+[28455] R=2.970495 (single #38) contacts=30 boundary=6
+[28637] R=2.970482 (cluster #39) contacts=30 boundary=6
+[28672] R=2.970482 (single #40) contacts=30 boundary=6
+[28760] R=2.970482 (single #41) contacts=30 boundary=6
+[29082] R=2.970473 (single #42) contacts=30 boundary=6
+[29167] R=2.970473 (single #43) contacts=30 boundary=6
+[29472] R=2.970473 (single #44) contacts=30 boundary=6
+[3084s] trial=30000, best=2.970473, improvements=44
+[30996] R=2.970453 (single #45) contacts=30 boundary=6
+[31077] R=2.970453 (single #46) contacts=30 boundary=6
+[32168] R=2.970453 (single #47) contacts=30 boundary=6
+[32297] R=2.970450 (single #48) contacts=30 boundary=6
+[32594] R=2.970439 (single #49) contacts=30 boundary=6
+[32608] R=2.970389 (single #50) contacts=30 boundary=6
+[32715] R=2.970278 (single #51) contacts=30 boundary=6
+[33058] R=2.970220 (single #52) contacts=30 boundary=6
+[33640] R=2.970181 (single #53) contacts=30 boundary=6
+[33844] R=2.970121 (single #54) contacts=30 boundary=6
+[34588] R=2.970087 (single #55) contacts=30 boundary=6
+[34648] R=2.970081 (single #56) contacts=30 boundary=6
+[34786] R=2.970081 (single #57) contacts=30 boundary=6
+[35377] R=2.970071 (single #58) contacts=30 boundary=6
+[35382] R=2.970070 (single #59) contacts=30 boundary=6
+[36212] R=2.970064 (single #60) contacts=30 boundary=6
+[38126] R=2.970064 (single #61) contacts=30 boundary=6
+[39489] R=2.970064 (single #62) contacts=30 boundary=6
+[4099s] trial=40000, best=2.970064, improvements=62
+[40518] R=2.970064 (single #63) contacts=30 boundary=6
+[41046] R=2.970053 (single #64) contacts=30 boundary=6
+[41077] R=2.970053 (single #65) contacts=30 boundary=6
+[41165] R=2.970035 (single #66) contacts=30 boundary=6
+[43181] R=2.970035 (single #67) contacts=30 boundary=6
+[5106s] trial=50000, best=2.970035, improvements=67
+[6086s] trial=60000, best=2.970035, improvements=67
+[7056s] trial=70000, best=2.970035, improvements=67
+[73283] R=2.970035 (single #68) contacts=30 boundary=6
+[73703] R=2.970026 (single #69) contacts=30 boundary=6
+[73731] R=2.970026 (single #70) contacts=30 boundary=6
+[74866] R=2.970026 (single #71) contacts=30 boundary=6
+[75367] R=2.970026 (single #72) contacts=30 boundary=6
+[77173] R=2.970026 (single #73) contacts=30 boundary=6
+[8047s] trial=80000, best=2.970026, improvements=73
+[81027] R=2.970026 (single #74) contacts=30 boundary=6
+[82312] R=2.970022 (single #75) contacts=30 boundary=6
+[82330] R=2.970012 (single #76) contacts=30 boundary=6
+[82423] R=2.970012 (single #77) contacts=30 boundary=6
+[82437] R=2.970006 (single #78) contacts=30 boundary=6
+[82617] R=2.970006 (single #79) contacts=30 boundary=6
+[84191] R=2.969954 (cluster #80) contacts=30 boundary=6
+[84192] R=2.969944 (single #81) contacts=30 boundary=6
+[84194] R=2.969879 (single #82) contacts=30 boundary=6
+[84234] R=2.969842 (single #83) contacts=30 boundary=6
+[85299] R=2.969842 (single #84) contacts=30 boundary=6
+[85357] R=2.969842 (single #85) contacts=30 boundary=6
+[85446] R=2.969841 (single #86) contacts=30 boundary=6
+[85481] R=2.969841 (single #87) contacts=30 boundary=6
+[9061s] trial=90000, best=2.969841, improvements=87
+[92370] R=2.969841 (single #88) contacts=30 boundary=6
+[92537] R=2.969838 (single #89) contacts=30 boundary=6
+[93182] R=2.969835 (single #90) contacts=30 boundary=6
+[93437] R=2.969835 (single #91) contacts=30 boundary=6
+[94539] R=2.969825 (single #92) contacts=30 boundary=6
+[95346] R=2.969825 (single #93) contacts=30 boundary=6
+[96626] R=2.969789 (single #94) contacts=30 boundary=6
+[96630] R=2.969789 (single #95) contacts=30 boundary=6
+[96763] R=2.969789 (single #96) contacts=30 boundary=6
+[96888] R=2.969789 (single #97) contacts=30 boundary=6
+[96918] R=2.969787 (single #98) contacts=30 boundary=6
+[96965] R=2.969787 (single #99) contacts=30 boundary=6
+[97180] R=2.969787 (single #100) contacts=30 boundary=6
+[97186] R=2.969787 (single #101) contacts=30 boundary=6
+[97719] R=2.969784 (single #102) contacts=30 boundary=6
+[97739] R=2.969783 (single #103) contacts=30 boundary=6
+[98613] R=2.969783 (single #104) contacts=30 boundary=6
+[98755] R=2.969783 (single #105) contacts=30 boundary=6
+[98785] R=2.969782 (single #106) contacts=30 boundary=6
+[99037] R=2.969782 (single #107) contacts=30 boundary=6
+[99465] R=2.969782 (single #108) contacts=30 boundary=6
+[10077s] trial=100000, best=2.969782, improvements=108
+[100022] R=2.969782 (single #109) contacts=30 boundary=6
+[100069] R=2.969782 (single #110) contacts=30 boundary=6
+[100096] R=2.969780 (single #111) contacts=30 boundary=6
+[100386] R=2.969780 (single #112) contacts=30 boundary=6
+[100572] R=2.969780 (single #113) contacts=30 boundary=6
+[105588] R=2.969780 (single #114) contacts=30 boundary=6
+[109644] R=2.969780 (single #115) contacts=30 boundary=6
+[11064s] trial=110000, best=2.969780, improvements=115
+[110375] R=2.969780 (single #116) contacts=30 boundary=6
+[110431] R=2.969780 (single #117) contacts=30 boundary=6
+[110902] R=2.969780 (single #118) contacts=30 boundary=6
+[111013] R=2.969780 (single #119) contacts=30 boundary=6
+[111274] R=2.969767 (single #120) contacts=30 boundary=6
+[111559] R=2.969708 (single #121) contacts=30 boundary=6
+[111627] R=2.969703 (single #122) contacts=30 boundary=6
+[111643] R=2.969703 (single #123) contacts=30 boundary=6
+[111818] R=2.969672 (single #124) contacts=30 boundary=6
+[111951] R=2.969506 (single #125) contacts=30 boundary=6
+[112094] R=2.969482 (single #126) contacts=30 boundary=6
+[112193] R=2.969482 (single #127) contacts=30 boundary=6
+[112195] R=2.969480 (single #128) contacts=30 boundary=6
+[113826] R=2.969459 (single #129) contacts=30 boundary=6
+[114389] R=2.969459 (single #130) contacts=30 boundary=6
+[115288] R=2.969459 (single #131) contacts=30 boundary=6
+[118948] R=2.969455 (single #132) contacts=30 boundary=6
+[12052s] trial=120000, best=2.969455, improvements=132
+[12997s] trial=130000, best=2.969455, improvements=132
+[138252] R=2.969455 (single #133) contacts=30 boundary=6
+[138677] R=2.969455 (single #134) contacts=30 boundary=6
+[139147] R=2.969455 (single #135) contacts=30 boundary=6
+[139169] R=2.969455 (single #136) contacts=30 boundary=6
+[139696] R=2.969455 (single #137) contacts=30 boundary=6
+[13952s] trial=140000, best=2.969455, improvements=137
+[141375] R=2.969436 (single #138) contacts=30 boundary=6
+[141616] R=2.969431 (single #139) contacts=30 boundary=6
+[141661] R=2.969421 (single #140) contacts=30 boundary=6
+[145091] R=2.969421 (single #141) contacts=30 boundary=6
+[145427] R=2.969421 (single #142) contacts=30 boundary=6
+[146260] R=2.969421 (single #143) contacts=30 boundary=6
+[146900] R=2.969421 (single #144) contacts=30 boundary=6
+[147076] R=2.969421 (single #145) contacts=30 boundary=6
+[148924] R=2.969421 (single #146) contacts=30 boundary=6
+[149943] R=2.969421 (single #147) contacts=30 boundary=6
+[14945s] trial=150000, best=2.969421, improvements=147
+[153938] R=2.969421 (single #148) contacts=30 boundary=6
+[154103] R=2.969421 (single #149) contacts=30 boundary=6
+[155131] R=2.969419 (single #150) contacts=30 boundary=6
+[159409] R=2.969402 (single #151) contacts=30 boundary=6
+[159416] R=2.969402 (single #152) contacts=30 boundary=6
+[159430] R=2.969398 (single #153) contacts=30 boundary=6
+[159454] R=2.969398 (single #154) contacts=30 boundary=6
+[15937s] trial=160000, best=2.969398, improvements=154
+[163562] R=2.969395 (single #155) contacts=30 boundary=6
+[164452] R=2.969391 (single #156) contacts=30 boundary=6
+[164571] R=2.969391 (single #157) contacts=30 boundary=6
+[164896] R=2.969391 (single #158) contacts=30 boundary=6
+[165897] R=2.969391 (single #159) contacts=30 boundary=6
+[167425] R=2.969388 (single #160) contacts=30 boundary=6
+[167922] R=2.969388 (single #161) contacts=30 boundary=6
+[168145] R=2.969388 (single #162) contacts=30 boundary=6
+[168924] R=2.969388 (single #163) contacts=30 boundary=6
+[16908s] trial=170000, best=2.969388, improvements=163
+[170545] R=2.969386 (single #164) contacts=30 boundary=6
+[170579] R=2.969386 (single #165) contacts=30 boundary=6
+[170632] R=2.969386 (single #166) contacts=30 boundary=6
+[172465] R=2.969386 (single #167) contacts=30 boundary=6
+[172588] R=2.969386 (single #168) contacts=30 boundary=6
+[174034] R=2.969386 (single #169) contacts=30 boundary=6
+[176782] R=2.969386 (single #170) contacts=30 boundary=6
+[178396] R=2.969385 (single #171) contacts=30 boundary=6
+[178419] R=2.969385 (single #172) contacts=30 boundary=6
+[179542] R=2.969385 (single #173) contacts=30 boundary=6
+[17881s] trial=180000, best=2.969385, improvements=173
+[180029] R=2.969385 (single #174) contacts=30 boundary=6
+[180120] R=2.969384 (single #175) contacts=30 boundary=6
+[180207] R=2.969384 (single #176) contacts=30 boundary=6
+[181796] R=2.969384 (single #177) contacts=30 boundary=6
+[181887] R=2.969384 (single #178) contacts=30 boundary=6
+[181906] R=2.969383 (single #179) contacts=30 boundary=6
+[184006] R=2.969383 (single #180) contacts=30 boundary=6
+[187427] R=2.969383 (single #181) contacts=30 boundary=6
+[187472] R=2.969381 (single #182) contacts=30 boundary=6
+[187563] R=2.969365 (single #183) contacts=30 boundary=6
+[188867] R=2.969365 (single #184) contacts=30 boundary=6
+[189483] R=2.969365 (single #185) contacts=30 boundary=6
+[189499] R=2.969365 (single #186) contacts=30 boundary=6
+[189744] R=2.969365 (single #187) contacts=30 boundary=6
+[18871s] trial=190000, best=2.969365, improvements=187
+[190026] R=2.969362 (single #188) contacts=30 boundary=6
+[190540] R=2.969362 (single #189) contacts=30 boundary=6
+[190780] R=2.969362 (single #190) contacts=30 boundary=6
+[191710] R=2.969362 (single #191) contacts=30 boundary=6
+[192733] R=2.969362 (single #192) contacts=30 boundary=6
+[193165] R=2.969362 (single #193) contacts=30 boundary=6
+[193411] R=2.969362 (single #194) contacts=30 boundary=6
+[199582] R=2.969361 (single #195) contacts=30 boundary=6
+[19870s] trial=200000, best=2.969361, improvements=195
+[201547] R=2.969360 (single #196) contacts=30 boundary=6
+[201553] R=2.969359 (single #197) contacts=30 boundary=6
+[201566] R=2.969357 (single #198) contacts=30 boundary=6
+[201648] R=2.969353 (single #199) contacts=30 boundary=6
+[203171] R=2.969353 (single #200) contacts=30 boundary=6
+[204100] R=2.969353 (single #201) contacts=30 boundary=6
+[204147] R=2.969353 (single #202) contacts=30 boundary=6
+[204921] R=2.969353 (single #203) contacts=30 boundary=6
+[205512] R=2.969352 (single #204) contacts=30 boundary=6
+[205971] R=2.969352 (single #205) contacts=30 boundary=6
+[206574] R=2.969352 (single #206) contacts=30 boundary=6
+[208092] R=2.969352 (single #207) contacts=30 boundary=6
+[20890s] trial=210000, best=2.969352, improvements=207
+[210894] R=2.969352 (single #208) contacts=30 boundary=6
+[211613] R=2.969352 (single #209) contacts=30 boundary=6
+[212899] R=2.969352 (single #210) contacts=30 boundary=6
+[214185] R=2.969352 (single #211) contacts=30 boundary=6
+[214234] R=2.969351 (single #212) contacts=30 boundary=6
+[214371] R=2.969351 (single #213) contacts=30 boundary=6
+[214838] R=2.969351 (single #214) contacts=30 boundary=6
+[215428] R=2.969350 (single #215) contacts=30 boundary=6
+[215685] R=2.969350 (single #216) contacts=30 boundary=6
+[215758] R=2.969350 (single #217) contacts=30 boundary=6
+[218114] R=2.969349 (single #218) contacts=30 boundary=6
+[219601] R=2.969349 (single #219) contacts=30 boundary=6
+[21912s] trial=220000, best=2.969349, improvements=219
+[222368] R=2.969349 (single #220) contacts=30 boundary=6
+[222439] R=2.969349 (single #221) contacts=30 boundary=6
+[222874] R=2.969349 (single #222) contacts=30 boundary=6
+[22972s] trial=230000, best=2.969349, improvements=222
+[24072s] trial=240000, best=2.969349, improvements=222
+[25048s] trial=250000, best=2.969349, improvements=222
+[254327] R=2.969349 (single #223) contacts=30 boundary=6
+[255124] R=2.969349 (single #224) contacts=30 boundary=6
+[26027s] trial=260000, best=2.969349, improvements=224
+[261037] R=2.969345 (single #225) contacts=30 boundary=6
+[261099] R=2.969345 (single #226) contacts=30 boundary=6
+[261127] R=2.969345 (single #227) contacts=30 boundary=6
+[262836] R=2.969344 (single #228) contacts=30 boundary=6
+[262989] R=2.969344 (single #229) contacts=30 boundary=6
+[263726] R=2.969344 (single #230) contacts=30 boundary=6
+[264154] R=2.969344 (single #231) contacts=30 boundary=6
+[264274] R=2.969344 (single #232) contacts=30 boundary=6
+[264623] R=2.969344 (single #233) contacts=30 boundary=6
+[264822] R=2.969344 (single #234) contacts=30 boundary=6
+[27016s] trial=270000, best=2.969344, improvements=234
+[27968s] trial=280000, best=2.969344, improvements=234
+[28913s] trial=290000, best=2.969344, improvements=234
+[295658] R=2.969344 (single #235) contacts=30 boundary=6
+[29876s] trial=300000, best=2.969344, improvements=235
+[305527] R=2.969344 (single #236) contacts=30 boundary=6
+[305559] R=2.969344 (single #237) contacts=30 boundary=6
+[306163] R=2.969344 (single #238) contacts=30 boundary=6
+[307607] R=2.969344 (single #239) contacts=30 boundary=6
+[30854s] trial=310000, best=2.969344, improvements=239
+[310705] R=2.969344 (single #240) contacts=30 boundary=6
+[311398] R=2.969344 (single #241) contacts=30 boundary=6
+[315394] R=2.969344 (single #242) contacts=30 boundary=6
+[316422] R=2.969344 (single #243) contacts=30 boundary=6
+[31821s] trial=320000, best=2.969344, improvements=243
+[32772s] trial=330000, best=2.969344, improvements=243
+[33795s] trial=340000, best=2.969344, improvements=243
+[349296] R=2.969343 (single #244) contacts=30 boundary=6
+[349308] R=2.969343 (single #245) contacts=30 boundary=6
+[349392] R=2.969343 (single #246) contacts=30 boundary=6
+[34948s] trial=350000, best=2.969343, improvements=246
+[351281] R=2.969343 (single #247) contacts=30 boundary=6
+[351525] R=2.969343 (single #248) contacts=30 boundary=6
+[351628] R=2.969343 (single #249) contacts=30 boundary=6
+[351848] R=2.969343 (single #250) contacts=30 boundary=6
+[352293] R=2.969343 (single #251) contacts=30 boundary=6
+[352630] R=2.969343 (single #252) contacts=30 boundary=6
+[352829] R=2.969343 (single #253) contacts=30 boundary=6
+[353197] R=2.969343 (single #254) contacts=30 boundary=6
+[357402] R=2.969343 (single #255) contacts=30 boundary=6
+[358921] R=2.969343 (single #256) contacts=30 boundary=6
+[359112] R=2.969343 (single #257) contacts=30 boundary=6
+[36133s] trial=360000, best=2.969343, improvements=257
+[360138] R=2.969331 (single #258) contacts=30 boundary=6
+[360171] R=2.969316 (single #259) contacts=30 boundary=6
+[360313] R=2.969316 (single #260) contacts=30 boundary=6
+[360373] R=2.969316 (single #261) contacts=30 boundary=6
+[360487] R=2.969312 (single #262) contacts=30 boundary=6
+[363041] R=2.969310 (single #263) contacts=30 boundary=6
+[363083] R=2.969307 (single #264) contacts=30 boundary=6
+[363756] R=2.969307 (single #265) contacts=30 boundary=6
+[364136] R=2.969307 (single #266) contacts=30 boundary=6
+[364268] R=2.969307 (single #267) contacts=30 boundary=6
+[364732] R=2.969296 (single #268) contacts=30 boundary=6
+[364796] R=2.969296 (single #269) contacts=30 boundary=6
+[365505] R=2.969296 (single #270) contacts=30 boundary=6
+[367368] R=2.969279 (single #271) contacts=30 boundary=6
+[367410] R=2.969275 (single #272) contacts=30 boundary=6
+[367682] R=2.969275 (single #273) contacts=30 boundary=6
+[368386] R=2.969273 (single #274) contacts=30 boundary=6
+[368824] R=2.969272 (single #275) contacts=30 boundary=6
+[369346] R=2.969272 (single #276) contacts=30 boundary=6
+[37253s] trial=370000, best=2.969272, improvements=276
+[373115] R=2.969271 (single #277) contacts=30 boundary=6
+[373128] R=2.969271 (single #278) contacts=30 boundary=6
+[373695] R=2.969270 (single #279) contacts=30 boundary=6
+[375471] R=2.969270 (single #280) contacts=30 boundary=6
+[379467] R=2.969270 (single #281) contacts=30 boundary=6
+[38326s] trial=380000, best=2.969270, improvements=281
+[39386s] trial=390000, best=2.969270, improvements=281
+[40439s] trial=400000, best=2.969270, improvements=281
+[41455s] trial=410000, best=2.969270, improvements=281
+[411007] R=2.969268 (single #282) contacts=30 boundary=6
+[411287] R=2.969268 (single #283) contacts=30 boundary=6
+[415498] R=2.969262 (single #284) contacts=30 boundary=6
+[416483] R=2.969262 (single #285) contacts=30 boundary=6
+[416966] R=2.969254 (single #286) contacts=30 boundary=6
+[417124] R=2.969254 (single #287) contacts=30 boundary=6
+[42483s] trial=420000, best=2.969254, improvements=287
+[421037] R=2.969254 (single #288) contacts=30 boundary=6
+[422114] R=2.969254 (single #289) contacts=30 boundary=6
+[423732] R=2.969254 (single #290) contacts=30 boundary=6
+[424118] R=2.969251 (single #291) contacts=30 boundary=6
+[425094] R=2.969251 (single #292) contacts=30 boundary=6
+[425780] R=2.969251 (single #293) contacts=30 boundary=6
+[425831] R=2.969251 (single #294) contacts=30 boundary=6
+[425845] R=2.969251 (single #295) contacts=30 boundary=6
+[425982] R=2.969251 (single #296) contacts=30 boundary=6
+[426168] R=2.969251 (single #297) contacts=30 boundary=6
+[426785] R=2.969251 (single #298) contacts=30 boundary=6
+[428454] R=2.969251 (single #299) contacts=30 boundary=6
+[428455] R=2.969251 (single #300) contacts=30 boundary=6
+[43545s] trial=430000, best=2.969251, improvements=300
+[430542] R=2.969251 (single #301) contacts=30 boundary=6

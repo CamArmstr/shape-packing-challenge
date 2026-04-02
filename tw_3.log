@@ -1,0 +1,12 @@
+[w3] start | orient=random | 8 runs
+[w3] run 0 P1 no feasible
+[w3] run 1 P1=3.223027 → P2
+[w3] run 1 P2=3.085556
+[w3] run 2 P1 no feasible
+[w3] run 3 P1 no feasible
+[w3] run 4 P1=3.7176 too loose, skip
+[w3] run 5 P1=3.105667 → P2
+[w3] run 5 P2=3.067499
+[w3] run 6 P1 no feasible
+[w3] run 7 P1 no feasible
+[w3] done

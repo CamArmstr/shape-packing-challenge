@@ -1,0 +1,50 @@
+\begin{thebibliography}{6}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Addis et~al.(2008)Addis, Locatelli, and Schoen]{addis2008}
+Bernardetta Addis, Marco Locatelli, and Fabio Schoen.
+\newblock Efficiently packing unequal disks in a circle.
+\newblock \emph{Operations Research Letters}, 36\penalty0 (1):\penalty0 37--42,
+  2008.
+\newblock \doi{10.1016/j.orl.2007.03.001}.
+
+\bibitem[Brass et~al.(2005)Brass, Moser, and Pach]{brass2005}
+Peter Brass, William Moser, and J{\'a}nos Pach.
+\newblock \emph{Research Problems in Discrete Geometry}.
+\newblock Springer, New York, 2005.
+\newblock Section 1.5: semicircle packing listed as open.
+
+\bibitem[Chernov et~al.(2012)Chernov, Stoyan, Romanova, and
+  Pankratov]{chernov2012}
+Nikolai Chernov, Yuriy Stoyan, Tatiana Romanova, and Alexander Pankratov.
+\newblock Phi-functions for 2{D} objects formed by line segments and circular
+  arcs.
+\newblock \emph{Advances in Operations Research}, 2012:\penalty0 Article ID
+  346358, 2012.
+\newblock \doi{10.1155/2012/346358}.
+
+\bibitem[Fejes~T{\'o}th(1971)]{fejestoth1971}
+L{\'a}szl{\'o} Fejes~T{\'o}th.
+\newblock Packing and covering.
+\newblock In \emph{Handbook of Convex Geometry}. North-Holland, 1971.
+\newblock Semicircle packing density question posed; still open.
+
+\bibitem[Grosso et~al.(2010)Grosso, Locatelli, and Schoen]{grosso2010}
+Andrea Grosso, Marco Locatelli, and Fabio Schoen.
+\newblock Solving the problem of packing equal and unequal circles in a
+  circular container.
+\newblock \emph{Journal of Global Optimization}, 47\penalty0 (1):\penalty0
+  63--86, 2010.
+\newblock \doi{10.1007/s10898-009-9458-3}.
+
+\bibitem[Specht(2024)]{packomania2024}
+Eckard Specht.
+\newblock Packomania: The encyclopedia of circle packings.
+\newblock \url{http://packomania.com}, 2024.
+\newblock Contains circles-in-circle data; no semicircle-in-circle results.
+
+\end{thebibliography}
