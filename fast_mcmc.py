@@ -373,21 +373,24 @@ def retain_scratch_candidate(state: FastState, tag: str, batch: int, reason: str
     with open(out, 'w') as f:
         json.dump(payload, f, indent=2)
 
+    def existing_sorted(pattern: str) -> list[Path]:
+        candidates: list[tuple[float, Path]] = []
+        for path in SCRATCH_DIR.glob(pattern):
+            try:
+                mtime = path.stat().st_mtime
+            except FileNotFoundError:
+                continue
+            candidates.append((mtime, path))
+        candidates.sort(key=lambda item: item[0], reverse=True)
+        return [path for _, path in candidates]
+
     valid_quota = min(limit, max(8, limit // 4))
-    valid_candidates = sorted(
-        (p for p in SCRATCH_DIR.glob('*_valid_*.json')),
-        key=lambda p: p.stat().st_mtime,
-        reverse=True,
-    )
-    invalid_candidates = sorted(
-        (p for p in SCRATCH_DIR.glob('*_invalid_*.json')),
-        key=lambda p: p.stat().st_mtime,
-        reverse=True,
-    )
+    valid_candidates = existing_sorted('*_valid_*.json')
+    invalid_candidates = existing_sorted('*_invalid_*.json')
     keep = set(valid_candidates[:valid_quota])
     remaining = max(0, limit - len(keep))
     keep.update(invalid_candidates[:remaining])
-    for stale in SCRATCH_DIR.glob('*.json'):
+    for stale in list(SCRATCH_DIR.glob('*.json')):
         if stale not in keep:
             stale.unlink(missing_ok=True)
     return out
