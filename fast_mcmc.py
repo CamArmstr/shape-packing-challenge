@@ -117,6 +117,27 @@ def filter_restart_paths(archive_paths: list[Path], score_slack: float) -> list[
     return filtered or [p for _, p in scored[: min(8, len(scored))]]
 
 
+def restart_diversity_bucket(path: Path, score_bucket_decimals: int) -> str:
+    exact_score = archive_exact_score(path)
+    if math.isfinite(exact_score):
+        exact_bucket = f'{round(exact_score, score_bucket_decimals):.{score_bucket_decimals}f}'
+    else:
+        exact_bucket = 'inf'
+
+    if path.name == BEST_FILE.name:
+        return f'{exact_bucket}|best'
+
+    stem = path.stem
+    if stem.startswith('R'):
+        tail = stem.split('_', 1)
+        if len(tail) == 2:
+            source = tail[1]
+            source = source.rsplit('_b', 1)[0]
+            if source:
+                return f'{exact_bucket}|{source}'
+    return f'{exact_bucket}|{stem}'
+
+
 def pick_restart_path(
     archive_paths: list[Path],
     rng: random.Random,
@@ -135,11 +156,7 @@ def pick_restart_path(
 
     grouped: dict[str, list[tuple[int, Path]]] = {}
     for rank, path in enumerate(filtered):
-        exact_score = archive_exact_score(path)
-        if math.isfinite(exact_score):
-            bucket = f'{round(exact_score, score_bucket_decimals):.{score_bucket_decimals}f}'
-        else:
-            bucket = path.name
+        bucket = restart_diversity_bucket(path, score_bucket_decimals)
         grouped.setdefault(bucket, []).append((rank, path))
 
     bucket_weights: list[tuple[float, str]] = []
@@ -628,13 +645,9 @@ def run(args: argparse.Namespace) -> None:
             recent_restart_names.append(seed_path.name)
             if len(recent_restart_names) > max(1, args.restart_recent_window):
                 recent_restart_names = recent_restart_names[-args.restart_recent_window:]
-            exact_seed_score = archive_exact_score(seed_path)
-            if math.isfinite(exact_seed_score):
-                recent_restart_score_buckets.append(
-                    f'{round(exact_seed_score, args.restart_score_bucket_decimals):.{args.restart_score_bucket_decimals}f}'
-                )
-            else:
-                recent_restart_score_buckets.append(seed_path.name)
+            recent_restart_score_buckets.append(
+                restart_diversity_bucket(seed_path, args.restart_score_bucket_decimals)
+            )
             if len(recent_restart_score_buckets) > max(1, args.restart_recent_window):
                 recent_restart_score_buckets = recent_restart_score_buckets[-args.restart_recent_window:]
             seed = load_json_state(seed_path)
