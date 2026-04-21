@@ -117,15 +117,9 @@ def filter_restart_paths(archive_paths: list[Path], score_slack: float) -> list[
     return filtered or [p for _, p in scored[: min(8, len(scored))]]
 
 
-def restart_diversity_bucket(path: Path, score_bucket_decimals: int) -> str:
-    exact_score = archive_exact_score(path)
-    if math.isfinite(exact_score):
-        exact_bucket = f'{round(exact_score, score_bucket_decimals):.{score_bucket_decimals}f}'
-    else:
-        exact_bucket = 'inf'
-
+def restart_source_family(path: Path) -> str:
     if path.name == BEST_FILE.name:
-        return f'{exact_bucket}|best'
+        return 'best'
 
     stem = path.stem
     if stem.startswith('R'):
@@ -134,8 +128,17 @@ def restart_diversity_bucket(path: Path, score_bucket_decimals: int) -> str:
             source = tail[1]
             source = source.rsplit('_b', 1)[0]
             if source:
-                return f'{exact_bucket}|{source}'
-    return f'{exact_bucket}|{stem}'
+                return source
+    return stem
+
+
+def restart_diversity_bucket(path: Path, score_bucket_decimals: int) -> str:
+    exact_score = archive_exact_score(path)
+    if math.isfinite(exact_score):
+        exact_bucket = f'{round(exact_score, score_bucket_decimals):.{score_bucket_decimals}f}'
+    else:
+        exact_bucket = 'inf'
+    return f'{exact_bucket}|{restart_source_family(path)}'
 
 
 def pick_restart_path(
@@ -443,8 +446,28 @@ def retain_restart_pool_candidate(centered: list[dict[str, float]], exact_score:
             json.dump(centered, f, indent=2)
 
     candidates = sorted(RESTART_POOL_DIR.glob('R*.json'), key=lambda p: (archive_exact_score(p), p.name))
-    for stale in candidates[limit:]:
-        stale.unlink(missing_ok=True)
+    keep: list[Path] = []
+    seen_families: set[str] = set()
+    for path in candidates:
+        family = restart_source_family(path)
+        if family in seen_families:
+            continue
+        keep.append(path)
+        seen_families.add(family)
+        if len(keep) >= limit:
+            break
+    if len(keep) < limit:
+        for path in candidates:
+            if path in keep:
+                continue
+            keep.append(path)
+            if len(keep) >= limit:
+                break
+
+    keep_set = set(keep)
+    for stale in candidates:
+        if stale not in keep_set:
+            stale.unlink(missing_ok=True)
     return out
 
 
