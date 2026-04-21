@@ -443,6 +443,29 @@ def exact_save_gate(state: FastState, tag: str) -> tuple[bool, bool, Optional[fl
         return True, True, exact_score
 
 
+def build_restart_state(seed: FastState, rng: random.Random, kick_scale: float, attempts: int) -> FastState:
+    base = FastState(seed.xs.copy(), seed.ys.copy(), seed.ts.copy(), seed.approx_score)
+    if kick_scale <= 0:
+        return base
+
+    best_candidate: Optional[FastState] = None
+    for _ in range(max(1, attempts)):
+        xs = seed.xs.copy()
+        ys = seed.ys.copy()
+        ts = seed.ts.copy()
+        for i in range(N):
+            xs[i] += rng.gauss(0.0, kick_scale)
+            ys[i] += rng.gauss(0.0, kick_scale)
+            ts[i] = (ts[i] + rng.gauss(0.0, kick_scale * math.pi)) % TWO_PI
+        if not moved_valid(list(range(N)), xs, ys, ts):
+            continue
+        candidate = FastState(xs, ys, ts, approx_score(xs, ys, ts))
+        if best_candidate is None or candidate.approx_score < best_candidate.approx_score:
+            best_candidate = candidate
+
+    return best_candidate or base
+
+
 def run(args: argparse.Namespace) -> None:
     rng = random.Random(args.seed)
     archive_paths = load_archive_paths(args.archive_limit, args.restart_pool_limit)
@@ -593,18 +616,14 @@ def run(args: argparse.Namespace) -> None:
             if len(recent_restart_score_buckets) > max(1, args.restart_recent_window):
                 recent_restart_score_buckets = recent_restart_score_buckets[-args.restart_recent_window:]
             seed = load_json_state(seed_path)
-            state = FastState(seed.xs.copy(), seed.ys.copy(), seed.ts.copy(), seed.approx_score)
-            for i in range(N):
-                state.xs[i] += rng.gauss(0.0, args.kick_scale)
-                state.ys[i] += rng.gauss(0.0, args.kick_scale)
-                state.ts[i] = (state.ts[i] + rng.gauss(0.0, args.kick_scale * math.pi)) % TWO_PI
-            state.approx_score = approx_score(state.xs, state.ys, state.ts)
+            state = build_restart_state(seed, rng, args.kick_scale, args.restart_kick_attempts)
             temp = args.restart_temp
             step = args.restart_step
             print(
                 f'[{args.tag}] restart batch={batch} seed={seed_path.name} approx={state.approx_score:.6f} '
                 f'archive={len(archive_paths)} recent={len(set(recent_restart_names))}/{max(1, args.restart_recent_window)} '
                 f'score_buckets={len(set(recent_restart_score_buckets))}/{max(1, args.restart_recent_window)} '
+                f'kick_attempts={args.restart_kick_attempts} '
                 f'slack={args.restart_score_slack:.6f}'
             )
 
@@ -633,6 +652,7 @@ def parse_args() -> argparse.Namespace:
     p.add_argument('--restart-step', type=float, default=0.06)
     p.add_argument('--restart-temp', type=float, default=0.004)
     p.add_argument('--kick-scale', type=float, default=0.05)
+    p.add_argument('--restart-kick-attempts', type=int, default=6)
     p.add_argument('--cluster-prob', type=float, default=0.35)
     p.add_argument('--cluster-min', type=int, default=2)
     p.add_argument('--cluster-max', type=int, default=4)
