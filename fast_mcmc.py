@@ -194,7 +194,7 @@ def propose(state: FastState, rng: random.Random, step_xy: float, step_theta: fl
     return FastState(xs, ys, ts, approx_score(xs, ys, ts)), 1
 
 
-def exact_save_gate(state: FastState, tag: str) -> bool:
+def exact_result_for_state(state: FastState) -> tuple[bool, Optional[float], Optional[list[dict[str, float]]]]:
     rounded = [
         {"x": round(float(state.xs[i]), 6), "y": round(float(state.ys[i]), 6), "theta": round(float(state.ts[i] % TWO_PI), 6)}
         for i in range(N)
@@ -202,7 +202,7 @@ def exact_save_gate(state: FastState, tag: str) -> bool:
     sol = [Semicircle(d["x"], d["y"], d["theta"]) for d in rounded]
     result = validate_and_score(sol)
     if not result.valid or result.score is None or result.mec is None:
-        return False
+        return False, None, None
 
     cx, cy, _ = result.mec
     centered = [
@@ -212,15 +212,22 @@ def exact_save_gate(state: FastState, tag: str) -> bool:
     centered_sol = [Semicircle(d["x"], d["y"], d["theta"]) for d in centered]
     centered_result = validate_and_score(centered_sol)
     if not centered_result.valid or centered_result.score is None:
-        return False
+        return False, None, None
+    return True, centered_result.score, centered
+
+
+def exact_save_gate(state: FastState, tag: str) -> tuple[bool, Optional[float]]:
+    valid, exact_score, centered = exact_result_for_state(state)
+    if not valid or exact_score is None or centered is None:
+        return False, None
 
     with open(LOCK_FILE, 'w') as lf:
         fcntl.flock(lf, fcntl.LOCK_EX)
         current = load_json_state(BEST_FILE)
         current_exact = validate_and_score([Semicircle(float(current.xs[i]), float(current.ys[i]), float(current.ts[i])) for i in range(N)])
         current_score = current_exact.score if current_exact.valid and current_exact.score is not None else float('inf')
-        if centered_result.score >= current_score - 1e-12:
-            return False
+        if exact_score >= current_score - 1e-12:
+            return False, exact_score
 
         tmp = BEST_FILE.with_suffix('.json.tmp')
         with open(tmp, 'w') as f:
@@ -230,17 +237,17 @@ def exact_save_gate(state: FastState, tag: str) -> bool:
         os.replace(tmp, BEST_FILE)
 
         SOLUTIONS_DIR.mkdir(exist_ok=True)
-        out = SOLUTIONS_DIR / f'R{centered_result.score:.6f}.json'
+        out = SOLUTIONS_DIR / f'R{exact_score:.6f}.json'
         with open(out, 'w') as f:
             json.dump(centered, f, indent=2)
 
         try:
             import subprocess
             subprocess.run(['git', 'add', 'best_solution.json', str(out)], cwd=ROOT, capture_output=True)
-            subprocess.run(['git', 'commit', '-m', f'best: R={centered_result.score:.6f} ({tag}, fast)'], cwd=ROOT, capture_output=True)
+            subprocess.run(['git', 'commit', '-m', f'best: R={exact_score:.6f} ({tag}, fast)'], cwd=ROOT, capture_output=True)
         except Exception:
             pass
-        return True
+        return True, exact_score
 
 
 def run(args: argparse.Namespace) -> None:
@@ -250,6 +257,8 @@ def run(args: argparse.Namespace) -> None:
     temp = args.temp
     step = args.step
     start = time.time()
+    gate_checks = 0
+    last_gate_batch = 0
 
     print(f'[{args.tag}] seed approx={state.approx_score:.6f}')
     print(f'[{args.tag}] mode={args.mode} step={step:.6f} temp={temp:.6f}')
@@ -278,8 +287,23 @@ def run(args: argparse.Namespace) -> None:
                 accepted += 1
                 if state.approx_score < best.approx_score - 1e-12:
                     best = FastState(state.xs.copy(), state.ys.copy(), state.ts.copy(), state.approx_score)
-                    saved = exact_save_gate(best, args.tag)
-                    print(f'[{args.tag}] improvement batch={batch} approx={best.approx_score:.6f} exact_save={"yes" if saved else "no"}')
+                    saved, exact_score = exact_save_gate(best, args.tag)
+                    exact_text = f'{exact_score:.6f}' if exact_score is not None else 'invalid'
+                    print(f'[{args.tag}] improvement batch={batch} approx={best.approx_score:.6f} exact={exact_text} exact_save={"yes" if saved else "no"}')
+                elif (
+                    args.gate_window > 0.0
+                    and state.approx_score <= best.approx_score + args.gate_window
+                    and batch - last_gate_batch >= args.gate_log_interval
+                ):
+                    gate_checks += 1
+                    last_gate_batch = batch
+                    valid, exact_score, _ = exact_result_for_state(state)
+                    exact_text = f'{exact_score:.6f}' if exact_score is not None else 'invalid'
+                    print(
+                        f'[{args.tag}] gate_probe batch={batch} current_approx={state.approx_score:.6f} '
+                        f'best_approx={best.approx_score:.6f} exact={exact_text} valid={"yes" if valid else "no"} '
+                        f'gate_checks={gate_checks}'
+                    )
 
         ar = batch_accept / batch_valid if batch_valid else 0.0
         step = min(step * 1.03, max_step) if ar > args.target_accept else max(step * 0.97, min_step)
@@ -321,6 +345,8 @@ def parse_args() -> argparse.Namespace:
     p.add_argument('--cluster-min', type=int, default=2)
     p.add_argument('--cluster-max', type=int, default=4)
     p.add_argument('--report-every', type=int, default=10)
+    p.add_argument('--gate-window', type=float, default=0.002)
+    p.add_argument('--gate-log-interval', type=int, default=5)
     p.add_argument('--seed', type=int, default=42)
     p.add_argument('--tag', default='fast_mcmc')
     return p.parse_args()
