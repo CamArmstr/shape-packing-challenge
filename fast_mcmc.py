@@ -451,6 +451,8 @@ def retain_restart_pool_candidate(centered: list[dict[str, float]], exact_score:
     keep: list[Path] = []
     seen_score_buckets: set[str] = set()
     seen_families: set[str] = set()
+    bucket_counts: dict[str, int] = {}
+    bucket_cap = 2
 
     for path in candidates:
         score_bucket = exact_score_bucket(path, 4)
@@ -459,6 +461,7 @@ def retain_restart_pool_candidate(centered: list[dict[str, float]], exact_score:
         keep.append(path)
         seen_score_buckets.add(score_bucket)
         seen_families.add(restart_source_family(path))
+        bucket_counts[score_bucket] = bucket_counts.get(score_bucket, 0) + 1
         if len(keep) >= limit:
             break
 
@@ -467,10 +470,12 @@ def retain_restart_pool_candidate(centered: list[dict[str, float]], exact_score:
             if path in keep:
                 continue
             family = restart_source_family(path)
-            if family in seen_families:
+            score_bucket = exact_score_bucket(path, 4)
+            if family in seen_families or bucket_counts.get(score_bucket, 0) >= bucket_cap:
                 continue
             keep.append(path)
             seen_families.add(family)
+            bucket_counts[score_bucket] = bucket_counts.get(score_bucket, 0) + 1
             if len(keep) >= limit:
                 break
 
@@ -478,7 +483,11 @@ def retain_restart_pool_candidate(centered: list[dict[str, float]], exact_score:
         for path in candidates:
             if path in keep:
                 continue
+            score_bucket = exact_score_bucket(path, 4)
+            if bucket_counts.get(score_bucket, 0) >= bucket_cap:
+                continue
             keep.append(path)
+            bucket_counts[score_bucket] = bucket_counts.get(score_bucket, 0) + 1
             if len(keep) >= limit:
                 break
 
