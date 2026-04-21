@@ -345,11 +345,25 @@ def choose_cluster(xs: np.ndarray, ys: np.ndarray, rng: random.Random, min_size:
     return [int(i) for i in order[:k]]
 
 
-def propose(state: FastState, rng: random.Random, step_xy: float, step_theta: float, cluster_prob: float, cluster_min: int, cluster_max: int) -> tuple[Optional[FastState], int]:
+def propose(state: FastState, rng: random.Random, step_xy: float, step_theta: float, cluster_prob: float, cluster_min: int, cluster_max: int, swap_prob: float = 0.08) -> tuple[Optional[FastState], int]:
     xs = state.xs.copy()
     ys = state.ys.copy()
     ts = state.ts.copy()
-    if rng.random() < cluster_prob:
+    roll = rng.random()
+    if roll < swap_prob:
+        # Swap move: exchange two semicircles' positions (keep orientations or swap them)
+        i, j = rng.sample(range(N), 2)
+        indices = [i, j]
+        xs[i], xs[j] = xs[j], xs[i]
+        ys[i], ys[j] = ys[j], ys[i]
+        if rng.random() < 0.5:
+            ts[i], ts[j] = ts[j], ts[i]
+        # Small perturbation on both swapped pieces
+        for idx in indices:
+            xs[idx] += rng.gauss(0.0, step_xy * 0.3)
+            ys[idx] += rng.gauss(0.0, step_xy * 0.3)
+            ts[idx] = (ts[idx] + rng.gauss(0.0, step_theta * 0.3)) % TWO_PI
+    elif roll < swap_prob + cluster_prob:
         indices = choose_cluster(xs, ys, rng, cluster_min, cluster_max)
         cx = float(np.mean(xs[indices]))
         cy = float(np.mean(ys[indices]))
