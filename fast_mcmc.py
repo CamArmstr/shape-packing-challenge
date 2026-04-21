@@ -342,9 +342,23 @@ def retain_scratch_candidate(state: FastState, tag: str, batch: int, reason: str
     with open(out, 'w') as f:
         json.dump(payload, f, indent=2)
 
-    candidates = sorted(SCRATCH_DIR.glob('*.json'), key=lambda p: p.stat().st_mtime, reverse=True)
-    for stale in candidates[limit:]:
-        stale.unlink(missing_ok=True)
+    valid_quota = min(limit, max(8, limit // 4))
+    valid_candidates = sorted(
+        (p for p in SCRATCH_DIR.glob('*_valid_*.json')),
+        key=lambda p: p.stat().st_mtime,
+        reverse=True,
+    )
+    invalid_candidates = sorted(
+        (p for p in SCRATCH_DIR.glob('*_invalid_*.json')),
+        key=lambda p: p.stat().st_mtime,
+        reverse=True,
+    )
+    keep = set(valid_candidates[:valid_quota])
+    remaining = max(0, limit - len(keep))
+    keep.update(invalid_candidates[:remaining])
+    for stale in SCRATCH_DIR.glob('*.json'):
+        if stale not in keep:
+            stale.unlink(missing_ok=True)
     return out
 
 
