@@ -132,13 +132,15 @@ def restart_source_family(path: Path) -> str:
     return stem
 
 
-def restart_diversity_bucket(path: Path, score_bucket_decimals: int) -> str:
+def exact_score_bucket(path: Path, decimals: int) -> str:
     exact_score = archive_exact_score(path)
     if math.isfinite(exact_score):
-        exact_bucket = f'{round(exact_score, score_bucket_decimals):.{score_bucket_decimals}f}'
-    else:
-        exact_bucket = 'inf'
-    return f'{exact_bucket}|{restart_source_family(path)}'
+        return f'{round(exact_score, decimals):.{decimals}f}'
+    return 'inf'
+
+
+def restart_diversity_bucket(path: Path, score_bucket_decimals: int) -> str:
+    return f'{exact_score_bucket(path, score_bucket_decimals)}|{restart_source_family(path)}'
 
 
 def pick_restart_path(
@@ -447,15 +449,31 @@ def retain_restart_pool_candidate(centered: list[dict[str, float]], exact_score:
 
     candidates = sorted(RESTART_POOL_DIR.glob('R*.json'), key=lambda p: (archive_exact_score(p), p.name))
     keep: list[Path] = []
+    seen_score_buckets: set[str] = set()
     seen_families: set[str] = set()
+
     for path in candidates:
-        family = restart_source_family(path)
-        if family in seen_families:
+        score_bucket = exact_score_bucket(path, 4)
+        if score_bucket in seen_score_buckets:
             continue
         keep.append(path)
-        seen_families.add(family)
+        seen_score_buckets.add(score_bucket)
+        seen_families.add(restart_source_family(path))
         if len(keep) >= limit:
             break
+
+    if len(keep) < limit:
+        for path in candidates:
+            if path in keep:
+                continue
+            family = restart_source_family(path)
+            if family in seen_families:
+                continue
+            keep.append(path)
+            seen_families.add(family)
+            if len(keep) >= limit:
+                break
+
     if len(keep) < limit:
         for path in candidates:
             if path in keep:
