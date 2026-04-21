@@ -113,7 +113,21 @@ def filter_restart_paths(archive_paths: list[Path], score_slack: float) -> list[
     best_score = scored[0][0]
     if not math.isfinite(best_score):
         return archive_paths
-    filtered = [p for score, p in scored if score <= best_score + score_slack]
+
+    within_slack = [p for score, p in scored if score <= best_score + score_slack]
+    if not within_slack:
+        return [p for _, p in scored[: min(8, len(scored))]]
+
+    bucket_cap = 2
+    filtered: list[Path] = []
+    bucket_counts: dict[str, int] = {}
+    for path in within_slack:
+        bucket = exact_score_bucket(path, 4)
+        if bucket_counts.get(bucket, 0) >= bucket_cap:
+            continue
+        filtered.append(path)
+        bucket_counts[bucket] = bucket_counts.get(bucket, 0) + 1
+
     return filtered or [p for _, p in scored[: min(8, len(scored))]]
 
 
