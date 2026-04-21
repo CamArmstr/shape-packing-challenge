@@ -34,6 +34,7 @@ BEST_FILE = ROOT / "best_solution.json"
 LOCK_FILE = ROOT / "best_solution.json.lock"
 SOLUTIONS_DIR = ROOT / "solutions"
 SCRATCH_DIR = SOLUTIONS_DIR / "scratch_candidates"
+RESTART_POOL_DIR = SOLUTIONS_DIR / "restart_pool"
 N = 15
 TWO_PI = 2 * math.pi
 ARC_STEPS = 30
@@ -76,7 +77,7 @@ def archive_exact_score(path: Path) -> float:
     return float('inf')
 
 
-def load_archive_paths(limit: int) -> list[Path]:
+def load_archive_paths(limit: int, restart_pool_limit: int) -> list[Path]:
     paths = [BEST_FILE]
     solution_paths = sorted(
         (Path(p) for p in glob.glob(str(SOLUTIONS_DIR / "R*.json"))),
@@ -85,6 +86,15 @@ def load_archive_paths(limit: int) -> list[Path]:
     if limit > 0 and len(solution_paths) > limit:
         solution_paths = solution_paths[:limit]
     paths.extend(solution_paths)
+
+    restart_pool_paths = sorted(
+        (Path(p) for p in glob.glob(str(RESTART_POOL_DIR / "R*.json"))),
+        key=lambda p: (archive_exact_score(p), p.name),
+    )
+    if restart_pool_limit > 0 and len(restart_pool_paths) > restart_pool_limit:
+        restart_pool_paths = restart_pool_paths[:restart_pool_limit]
+    paths.extend(restart_pool_paths)
+
     deduped = []
     seen = set()
     for p in paths:
@@ -338,6 +348,22 @@ def retain_scratch_candidate(state: FastState, tag: str, batch: int, reason: str
     return out
 
 
+def retain_restart_pool_candidate(centered: list[dict[str, float]], exact_score: float, tag: str, batch: int, limit: int) -> Optional[Path]:
+    if limit <= 0:
+        return None
+
+    RESTART_POOL_DIR.mkdir(parents=True, exist_ok=True)
+    out = RESTART_POOL_DIR / f'R{exact_score:.6f}_{tag}_b{batch}.json'
+    if not out.exists():
+        with open(out, 'w') as f:
+            json.dump(centered, f, indent=2)
+
+    candidates = sorted(RESTART_POOL_DIR.glob('R*.json'), key=lambda p: (archive_exact_score(p), p.name))
+    for stale in candidates[limit:]:
+        stale.unlink(missing_ok=True)
+    return out
+
+
 def exact_save_gate(state: FastState, tag: str) -> tuple[bool, bool, Optional[float]]:
     valid, exact_score, centered = exact_result_for_state(state)
     if not valid or exact_score is None or centered is None:
@@ -374,7 +400,7 @@ def exact_save_gate(state: FastState, tag: str) -> tuple[bool, bool, Optional[fl
 
 def run(args: argparse.Namespace) -> None:
     rng = random.Random(args.seed)
-    archive_paths = load_archive_paths(args.archive_limit)
+    archive_paths = load_archive_paths(args.archive_limit, args.restart_pool_limit)
     state = load_json_state(Path(args.seed_file))
     best = FastState(state.xs.copy(), state.ys.copy(), state.ts.copy(), state.approx_score)
     temp = args.temp
@@ -424,6 +450,10 @@ def run(args: argparse.Namespace) -> None:
                             exact_score=exact_score,
                             limit=args.scratch_retain_limit,
                         )
+                        if exact_valid and exact_score is not None:
+                            _, _, centered = exact_result_for_state(best)
+                            if centered is not None:
+                                retain_restart_pool_candidate(centered, exact_score, args.tag, batch, args.restart_pool_limit)
                     else:
                         scratch_path = None
                     exact_text = f'{exact_score:.6f}' if exact_score is not None else 'invalid'
@@ -447,7 +477,7 @@ def run(args: argparse.Namespace) -> None:
                     else:
                         gate_checks += 1
                         last_gate_batch = batch
-                        valid, exact_score, _ = exact_result_for_state(state)
+                        valid, exact_score, centered = exact_result_for_state(state)
                         if not valid:
                             recent_invalid_gate_batches[sig] = batch
                         elif sig in recent_invalid_gate_batches:
@@ -461,6 +491,8 @@ def run(args: argparse.Namespace) -> None:
                             exact_score=exact_score,
                             limit=args.scratch_retain_limit,
                         )
+                        if valid and exact_score is not None and centered is not None:
+                            retain_restart_pool_candidate(centered, exact_score, args.tag, batch, args.restart_pool_limit)
                         exact_text = f'{exact_score:.6f}' if exact_score is not None else 'invalid'
                         scratch_text = f' scratch={scratch_path.name}' if scratch_path is not None else ''
                         print(
@@ -474,7 +506,7 @@ def run(args: argparse.Namespace) -> None:
         temp = max(temp * args.cooling, args.min_temp)
 
         if args.mode == 'explorer' and batch % args.restart_every == 0:
-            archive_paths = load_archive_paths(args.archive_limit)
+            archive_paths = load_archive_paths(args.archive_limit, args.restart_pool_limit)
             seed_path = pick_restart_path(
                 archive_paths,
                 rng,
@@ -534,6 +566,7 @@ def parse_args() -> argparse.Namespace:
     p.add_argument('--invalid-gate-cooldown', type=int, default=48)
     p.add_argument('--gate-signature-decimals', type=int, default=4)
     p.add_argument('--scratch-retain-limit', type=int, default=64)
+    p.add_argument('--restart-pool-limit', type=int, default=32)
     p.add_argument('--seed', type=int, default=42)
     p.add_argument('--tag', default='fast_mcmc')
     return p.parse_args()
