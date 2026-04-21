@@ -724,6 +724,26 @@ def run(args: argparse.Namespace) -> None:
                 recent_restart_score_buckets,
                 args.restart_score_bucket_decimals,
             )
+            try:
+                seed = load_json_state(seed_path)
+            except FileNotFoundError:
+                archive_paths = load_archive_paths(args.archive_limit, args.restart_pool_limit)
+                fallback_pool = [p for p in archive_paths if p != seed_path]
+                fallback_path = BEST_FILE
+                if fallback_pool:
+                    fallback_path = pick_restart_path(
+                        fallback_pool,
+                        rng,
+                        args.best_bias,
+                        recent_restart_names,
+                        args.restart_recent_window,
+                        args.restart_score_slack,
+                        recent_restart_score_buckets,
+                        args.restart_score_bucket_decimals,
+                    )
+                print(f'[{args.tag}] restart_seed_missing batch={batch} missing={seed_path.name} fallback={fallback_path.name}')
+                seed_path = fallback_path
+                seed = load_json_state(seed_path)
             recent_restart_names.append(seed_path.name)
             if len(recent_restart_names) > max(1, args.restart_recent_window):
                 recent_restart_names = recent_restart_names[-args.restart_recent_window:]
@@ -732,7 +752,6 @@ def run(args: argparse.Namespace) -> None:
             )
             if len(recent_restart_score_buckets) > max(1, args.restart_recent_window):
                 recent_restart_score_buckets = recent_restart_score_buckets[-args.restart_recent_window:]
-            seed = load_json_state(seed_path)
             state = build_restart_state(seed, rng, args.kick_scale, args.restart_kick_attempts)
             temp = args.restart_temp
             step = args.restart_step
