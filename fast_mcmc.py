@@ -373,23 +373,42 @@ def retain_scratch_candidate(state: FastState, tag: str, batch: int, reason: str
     with open(out, 'w') as f:
         json.dump(payload, f, indent=2)
 
-    def existing_sorted(pattern: str) -> list[Path]:
-        candidates: list[tuple[float, Path]] = []
-        for path in SCRATCH_DIR.glob(pattern):
-            try:
-                mtime = path.stat().st_mtime
-            except FileNotFoundError:
-                continue
-            candidates.append((mtime, path))
-        candidates.sort(key=lambda item: item[0], reverse=True)
-        return [path for _, path in candidates]
+    def score_from_name(path: Path, marker: str) -> float:
+        stem = path.stem
+        if marker not in stem:
+            return float('inf')
+        try:
+            token = stem.split(marker, 1)[1].split('_', 1)[0]
+        except IndexError:
+            return float('inf')
+        if token == 'invalid':
+            return float('inf')
+        try:
+            return float(token)
+        except ValueError:
+            return float('inf')
+
+    valid_candidates: list[tuple[float, float, Path]] = []
+    invalid_candidates: list[tuple[float, float, Path]] = []
+    for path in SCRATCH_DIR.glob('*.json'):
+        try:
+            mtime = path.stat().st_mtime
+        except FileNotFoundError:
+            continue
+        exact_value = score_from_name(path, '_E')
+        approx_value = score_from_name(path, '_A')
+        if '_valid_' in path.name:
+            valid_candidates.append((exact_value, -mtime, path))
+        else:
+            invalid_candidates.append((approx_value, -mtime, path))
+
+    valid_candidates.sort(key=lambda item: (item[0], item[1], item[2].name))
+    invalid_candidates.sort(key=lambda item: (item[0], item[1], item[2].name))
 
     valid_quota = min(limit, max(8, limit // 4))
-    valid_candidates = existing_sorted('*_valid_*.json')
-    invalid_candidates = existing_sorted('*_invalid_*.json')
-    keep = set(valid_candidates[:valid_quota])
+    keep = {path for _, _, path in valid_candidates[:valid_quota]}
     remaining = max(0, limit - len(keep))
-    keep.update(invalid_candidates[:remaining])
+    keep.update(path for _, _, path in invalid_candidates[:remaining])
     for stale in list(SCRATCH_DIR.glob('*.json')):
         if stale not in keep:
             stale.unlink(missing_ok=True)
