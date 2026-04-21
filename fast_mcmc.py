@@ -620,6 +620,7 @@ def run(args: argparse.Namespace) -> None:
     recent_restart_names: list[str] = []
     recent_restart_score_buckets: list[str] = []
     recent_invalid_gate_batches: dict[str, int] = {}
+    recent_valid_gate_batches: dict[str, int] = {}
 
     print(f'[{args.tag}] seed approx={state.approx_score:.6f}')
     print(f'[{args.tag}] mode={args.mode} step={step:.6f} temp={temp:.6f}')
@@ -691,6 +692,8 @@ def run(args: argparse.Namespace) -> None:
                 ):
                     sig = state_signature(state, args.gate_signature_decimals)
                     last_invalid_batch = recent_invalid_gate_batches.get(sig)
+                    valid_gate_cooldown = max(1, args.invalid_gate_cooldown // 2)
+                    last_valid_batch = recent_valid_gate_batches.get(sig)
                     if last_invalid_batch is not None and batch - last_invalid_batch < args.invalid_gate_cooldown:
                         gate_skips += 1
                         last_gate_batch = batch
@@ -699,14 +702,25 @@ def run(args: argparse.Namespace) -> None:
                             f'anchor_approx={best_exact_anchor.approx_score:.6f} since_invalid={batch - last_invalid_batch} '
                             f'gate_skips={gate_skips}'
                         )
+                    elif last_valid_batch is not None and batch - last_valid_batch < valid_gate_cooldown:
+                        gate_skips += 1
+                        last_gate_batch = batch
+                        print(
+                            f'[{args.tag}] gate_skip batch={batch} current_approx={state.approx_score:.6f} '
+                            f'anchor_approx={best_exact_anchor.approx_score:.6f} since_valid={batch - last_valid_batch} '
+                            f'gate_skips={gate_skips}'
+                        )
                     else:
                         gate_checks += 1
                         last_gate_batch = batch
                         valid, exact_score, centered = exact_result_for_state(state)
                         if not valid:
                             recent_invalid_gate_batches[sig] = batch
-                        elif sig in recent_invalid_gate_batches:
-                            del recent_invalid_gate_batches[sig]
+                            recent_valid_gate_batches.pop(sig, None)
+                        else:
+                            recent_valid_gate_batches[sig] = batch
+                            if sig in recent_invalid_gate_batches:
+                                del recent_invalid_gate_batches[sig]
                         scratch_path = retain_scratch_candidate(
                             state,
                             args.tag,
