@@ -1,0 +1,330 @@
+#!/usr/bin/env python3
+"""
+fast_mcmc.py
+
+Approximate high-throughput MCMC search inspired by the browser optimizer.
+Uses cheap overlap + cheap MEC in the inner loop, and exact official
+validation only when a candidate looks save-worthy.
+"""
+
+from __future__ import annotations
+
+import argparse
+import fcntl
+import json
+import math
+import os
+import random
+import time
+from dataclasses import dataclass
+from pathlib import Path
+from typing import Optional
+
+import numpy as np
+
+import sys
+sys.path.insert(0, os.path.dirname(__file__))
+
+from src.semicircle_packing.geometry import Semicircle
+from src.semicircle_packing.scoring import minimum_enclosing_circle, validate_and_score
+
+ROOT = Path(__file__).resolve().parent
+BEST_FILE = ROOT / "best_solution.json"
+LOCK_FILE = ROOT / "best_solution.json.lock"
+SOLUTIONS_DIR = ROOT / "solutions"
+N = 15
+TWO_PI = 2 * math.pi
+ARC_STEPS = 30
+
+
+@dataclass
+class FastState:
+    xs: np.ndarray
+    ys: np.ndarray
+    ts: np.ndarray
+    approx_score: float
+
+
+def load_json_state(path: Path) -> FastState:
+    with open(path) as f:
+        raw = json.load(f)
+    xs = np.array([float(s["x"]) for s in raw], dtype=float)
+    ys = np.array([float(s["y"]) for s in raw], dtype=float)
+    ts = np.array([float(s["theta"]) for s in raw], dtype=float)
+    return FastState(xs, ys, ts, approx_score(xs, ys, ts))
+
+
+def approx_points(xs: np.ndarray, ys: np.ndarray, ts: np.ndarray) -> np.ndarray:
+    pts = []
+    for i in range(N):
+        pts.append((xs[i], ys[i]))
+        for k in range(ARC_STEPS + 1):
+            a = ts[i] - math.pi / 2 + (math.pi * k) / ARC_STEPS
+            pts.append((xs[i] + math.cos(a), ys[i] + math.sin(a)))
+    return np.array(pts, dtype=float)
+
+
+def approx_score(xs: np.ndarray, ys: np.ndarray, ts: np.ndarray) -> float:
+    pts = approx_points(xs, ys, ts)
+    _, _, r = minimum_enclosing_circle(pts)
+    return float(r)
+
+
+def dot(ax: float, ay: float, bx: float, by: float) -> float:
+    return ax * bx + ay * by
+
+
+def segment_circle_intersections(ax: float, ay: float, bx: float, by: float, cx: float, cy: float, r: float):
+    vx, vy = bx - ax, by - ay
+    wx, wy = ax - cx, ay - cy
+    A = vx * vx + vy * vy
+    B = 2 * (vx * wx + vy * wy)
+    C = wx * wx + wy * wy - r * r
+    disc = B * B - 4 * A * C
+    if disc < 0:
+        return []
+    root = math.sqrt(max(0.0, disc))
+    out = []
+    for t in ((-B - root) / (2 * A), (-B + root) / (2 * A)):
+        if -1e-9 <= t <= 1 + 1e-9:
+            out.append((ax + t * vx, ay + t * vy))
+    return out
+
+
+def circles_intersections(x1: float, y1: float, x2: float, y2: float, r: float):
+    dx, dy = x2 - x1, y2 - y1
+    d2 = dx * dx + dy * dy
+    d = math.sqrt(d2)
+    if d > 2 * r + 1e-9 or d < 1e-9:
+        return []
+    a = d / 2
+    h2 = r * r - a * a
+    if h2 < 0:
+        return []
+    h = math.sqrt(max(0.0, h2))
+    mx, my = x1 + a * dx / d, y1 + a * dy / d
+    px, py = -dy / d, dx / d
+    return [(mx + h * px, my + h * py), (mx - h * px, my - h * py)]
+
+
+def quick_overlap(i: int, j: int, xs: np.ndarray, ys: np.ndarray, ts: np.ndarray) -> bool:
+    if (xs[i] - xs[j]) ** 2 + (ys[i] - ys[j]) ** 2 > 4.000001:
+        return False
+
+    xi, yi, ti = xs[i], ys[i], ts[i]
+    xj, yj, tj = xs[j], ys[j], ts[j]
+    dxi, dyi = math.cos(ti), math.sin(ti)
+    dxj, dyj = math.cos(tj), math.sin(tj)
+
+    if (xs[i] - xs[j]) ** 2 + (ys[i] - ys[j]) ** 2 < 1e-8 and (dxi * dxj + dyi * dyj) > -0.999:
+        return True
+
+    fi1 = (xi + dyi, yi - dxi)
+    fi2 = (xi - dyi, yi + dxi)
+    fj1 = (xj + dyj, yj - dxj)
+    fj2 = (xj - dyj, yj + dxj)
+
+    def ccw(p1, p2, p3):
+        return (p3[1] - p1[1]) * (p2[0] - p1[0]) - (p2[1] - p1[1]) * (p3[0] - p1[0])
+
+    c1, c2 = ccw(fi1, fi2, fj1), ccw(fi1, fi2, fj2)
+    c3, c4 = ccw(fj1, fj2, fi1), ccw(fj1, fj2, fi2)
+    if ((c1 > 1e-6 and c2 < -1e-6) or (c1 < -1e-6 and c2 > 1e-6)) and ((c3 > 1e-6 and c4 < -1e-6) or (c3 < -1e-6 and c4 > 1e-6)):
+        return True
+
+    for px, py in segment_circle_intersections(fi1[0], fi1[1], fi2[0], fi2[1], xj, yj, 1.0):
+        if (px - xi) ** 2 + (py - yi) ** 2 < 1 - 1e-6 and dot(px - xj, py - yj, dxj, dyj) > 1e-6:
+            return True
+    for px, py in segment_circle_intersections(fj1[0], fj1[1], fj2[0], fj2[1], xi, yi, 1.0):
+        if (px - xj) ** 2 + (py - yj) ** 2 < 1 - 1e-6 and dot(px - xi, py - yi, dxi, dyi) > 1e-6:
+            return True
+    for px, py in circles_intersections(xi, yi, xj, yj, 1.0):
+        if dot(px - xi, py - yi, dxi, dyi) > 1e-6 and dot(px - xj, py - yj, dxj, dyj) > 1e-6:
+            return True
+    return False
+
+
+def moved_valid(indices: list[int], xs: np.ndarray, ys: np.ndarray, ts: np.ndarray) -> bool:
+    moved = set(indices)
+    for i in indices:
+        for j in range(N):
+            if i == j:
+                continue
+            if j in moved and j < i:
+                continue
+            if quick_overlap(i, j, xs, ys, ts):
+                return False
+    return True
+
+
+def choose_cluster(xs: np.ndarray, ys: np.ndarray, rng: random.Random, min_size: int, max_size: int) -> list[int]:
+    center = rng.randrange(N)
+    k = rng.randint(min_size, max_size)
+    d = np.hypot(xs - xs[center], ys - ys[center])
+    order = np.argsort(d)
+    return [int(i) for i in order[:k]]
+
+
+def propose(state: FastState, rng: random.Random, step_xy: float, step_theta: float, cluster_prob: float, cluster_min: int, cluster_max: int) -> tuple[Optional[FastState], int]:
+    xs = state.xs.copy()
+    ys = state.ys.copy()
+    ts = state.ts.copy()
+    if rng.random() < cluster_prob:
+        indices = choose_cluster(xs, ys, rng, cluster_min, cluster_max)
+        cx = float(np.mean(xs[indices]))
+        cy = float(np.mean(ys[indices]))
+        dx = rng.gauss(0.0, step_xy)
+        dy = rng.gauss(0.0, step_xy)
+        dphi = rng.gauss(0.0, step_theta * 0.35)
+        c, s = math.cos(dphi), math.sin(dphi)
+        for i in indices:
+            rx, ry = xs[i] - cx, ys[i] - cy
+            xs[i] = cx + rx * c - ry * s + dx
+            ys[i] = cy + rx * s + ry * c + dy
+            ts[i] = (ts[i] + dphi) % TWO_PI
+    else:
+        idx = rng.randrange(N)
+        indices = [idx]
+        xs[idx] += rng.gauss(0.0, step_xy)
+        ys[idx] += rng.gauss(0.0, step_xy)
+        ts[idx] = (ts[idx] + rng.gauss(0.0, step_theta)) % TWO_PI
+
+    if not moved_valid(indices, xs, ys, ts):
+        return None, 0
+    return FastState(xs, ys, ts, approx_score(xs, ys, ts)), 1
+
+
+def exact_save_gate(state: FastState, tag: str) -> bool:
+    rounded = [
+        {"x": round(float(state.xs[i]), 6), "y": round(float(state.ys[i]), 6), "theta": round(float(state.ts[i] % TWO_PI), 6)}
+        for i in range(N)
+    ]
+    sol = [Semicircle(d["x"], d["y"], d["theta"]) for d in rounded]
+    result = validate_and_score(sol)
+    if not result.valid or result.score is None or result.mec is None:
+        return False
+
+    cx, cy, _ = result.mec
+    centered = [
+        {"x": round(float(sol[i].x - cx), 6), "y": round(float(sol[i].y - cy), 6), "theta": round(float(sol[i].theta % TWO_PI), 6)}
+        for i in range(N)
+    ]
+    centered_sol = [Semicircle(d["x"], d["y"], d["theta"]) for d in centered]
+    centered_result = validate_and_score(centered_sol)
+    if not centered_result.valid or centered_result.score is None:
+        return False
+
+    with open(LOCK_FILE, 'w') as lf:
+        fcntl.flock(lf, fcntl.LOCK_EX)
+        current = load_json_state(BEST_FILE)
+        current_exact = validate_and_score([Semicircle(float(current.xs[i]), float(current.ys[i]), float(current.ts[i])) for i in range(N)])
+        current_score = current_exact.score if current_exact.valid and current_exact.score is not None else float('inf')
+        if centered_result.score >= current_score - 1e-12:
+            return False
+
+        tmp = BEST_FILE.with_suffix('.json.tmp')
+        with open(tmp, 'w') as f:
+            json.dump(centered, f, indent=2)
+            f.flush()
+            os.fsync(f.fileno())
+        os.replace(tmp, BEST_FILE)
+
+        SOLUTIONS_DIR.mkdir(exist_ok=True)
+        out = SOLUTIONS_DIR / f'R{centered_result.score:.6f}.json'
+        with open(out, 'w') as f:
+            json.dump(centered, f, indent=2)
+
+        try:
+            import subprocess
+            subprocess.run(['git', 'add', 'best_solution.json', str(out)], cwd=ROOT, capture_output=True)
+            subprocess.run(['git', 'commit', '-m', f'best: R={centered_result.score:.6f} ({tag}, fast)'], cwd=ROOT, capture_output=True)
+        except Exception:
+            pass
+        return True
+
+
+def run(args: argparse.Namespace) -> None:
+    rng = random.Random(args.seed)
+    state = load_json_state(Path(args.seed_file))
+    best = FastState(state.xs.copy(), state.ys.copy(), state.ts.copy(), state.approx_score)
+    temp = args.temp
+    step = args.step
+    start = time.time()
+
+    print(f'[{args.tag}] seed approx={state.approx_score:.6f}')
+    print(f'[{args.tag}] mode={args.mode} step={step:.6f} temp={temp:.6f}')
+
+    if args.mode == 'polisher':
+        cluster_prob = 0.0
+        min_step, max_step = 1e-5, 0.01
+    else:
+        cluster_prob = args.cluster_prob
+        min_step, max_step = 5e-4, 0.2
+
+    accepted = valid = total = 0
+    for batch in range(1, args.batches + 1):
+        batch_valid = batch_accept = 0
+        for _ in range(args.batch_size):
+            total += 1
+            candidate, ok = propose(state, rng, step, step * math.pi, cluster_prob, args.cluster_min, args.cluster_max)
+            batch_valid += ok
+            valid += ok
+            if candidate is None:
+                continue
+            delta = candidate.approx_score - state.approx_score
+            if delta <= 0 or rng.random() < math.exp(-delta / max(temp, 1e-12)):
+                state = candidate
+                batch_accept += 1
+                accepted += 1
+                if state.approx_score < best.approx_score - 1e-12:
+                    best = FastState(state.xs.copy(), state.ys.copy(), state.ts.copy(), state.approx_score)
+                    saved = exact_save_gate(best, args.tag)
+                    print(f'[{args.tag}] improvement batch={batch} approx={best.approx_score:.6f} exact_save={"yes" if saved else "no"}')
+
+        ar = batch_accept / batch_valid if batch_valid else 0.0
+        step = min(step * 1.03, max_step) if ar > args.target_accept else max(step * 0.97, min_step)
+        temp = max(temp * args.cooling, args.min_temp)
+
+        if args.mode == 'explorer' and batch % args.restart_every == 0:
+            seed = load_json_state(BEST_FILE)
+            state = FastState(seed.xs.copy(), seed.ys.copy(), seed.ts.copy(), seed.approx_score)
+            for i in range(N):
+                state.xs[i] += rng.gauss(0.0, args.kick_scale)
+                state.ys[i] += rng.gauss(0.0, args.kick_scale)
+                state.ts[i] = (state.ts[i] + rng.gauss(0.0, args.kick_scale * math.pi)) % TWO_PI
+            state.approx_score = approx_score(state.xs, state.ys, state.ts)
+            temp = args.restart_temp
+            step = args.restart_step
+            print(f'[{args.tag}] restart batch={batch} approx={state.approx_score:.6f}')
+
+        if batch == 1 or batch % args.report_every == 0:
+            elapsed = time.time() - start
+            print(f'[{args.tag}] batch={batch}/{args.batches} best={best.approx_score:.6f} current={state.approx_score:.6f} accept={ar:.3f} valid={batch_valid}/{args.batch_size} step={step:.6f} temp={temp:.6f} elapsed={elapsed:.1f}s')
+
+
+def parse_args() -> argparse.Namespace:
+    p = argparse.ArgumentParser()
+    p.add_argument('--seed-file', default=str(BEST_FILE))
+    p.add_argument('--mode', choices=['explorer', 'polisher'], default='explorer')
+    p.add_argument('--batches', type=int, default=1000)
+    p.add_argument('--batch-size', type=int, default=400)
+    p.add_argument('--step', type=float, default=0.05)
+    p.add_argument('--temp', type=float, default=0.003)
+    p.add_argument('--min-temp', type=float, default=1e-7)
+    p.add_argument('--cooling', type=float, default=0.995)
+    p.add_argument('--target-accept', type=float, default=0.234)
+    p.add_argument('--restart-every', type=int, default=30)
+    p.add_argument('--restart-step', type=float, default=0.06)
+    p.add_argument('--restart-temp', type=float, default=0.004)
+    p.add_argument('--kick-scale', type=float, default=0.05)
+    p.add_argument('--cluster-prob', type=float, default=0.35)
+    p.add_argument('--cluster-min', type=int, default=2)
+    p.add_argument('--cluster-max', type=int, default=4)
+    p.add_argument('--report-every', type=int, default=10)
+    p.add_argument('--seed', type=int, default=42)
+    p.add_argument('--tag', default='fast_mcmc')
+    return p.parse_args()
+
+
+if __name__ == '__main__':
+    run(parse_args())
