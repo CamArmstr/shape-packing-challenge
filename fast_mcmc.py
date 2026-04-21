@@ -56,11 +56,31 @@ def load_json_state(path: Path) -> FastState:
     return FastState(xs, ys, ts, approx_score(xs, ys, ts))
 
 
+def archive_exact_score(path: Path) -> float:
+    if path.name == BEST_FILE.name:
+        try:
+            state = load_json_state(path)
+            valid, exact_score, _ = exact_result_for_state(state)
+            if valid and exact_score is not None:
+                return float(exact_score)
+        except Exception:
+            return float('inf')
+        return float('inf')
+
+    stem = path.stem
+    if stem.startswith('R'):
+        try:
+            return float(stem[1:].split('_', 1)[0])
+        except ValueError:
+            return float('inf')
+    return float('inf')
+
+
 def load_archive_paths(limit: int) -> list[Path]:
     paths = [BEST_FILE]
     solution_paths = sorted(
         (Path(p) for p in glob.glob(str(SOLUTIONS_DIR / "R*.json"))),
-        key=lambda p: p.name,
+        key=lambda p: (archive_exact_score(p), p.name),
     )
     if limit > 0 and len(solution_paths) > limit:
         solution_paths = solution_paths[:limit]
@@ -76,12 +96,47 @@ def load_archive_paths(limit: int) -> list[Path]:
     return deduped
 
 
-def pick_restart_path(archive_paths: list[Path], rng: random.Random, best_bias: float) -> Path:
+def filter_restart_paths(archive_paths: list[Path], score_slack: float) -> list[Path]:
+    if not archive_paths:
+        return [BEST_FILE]
+    scored = sorted(((archive_exact_score(p), p) for p in archive_paths), key=lambda item: (item[0], item[1].name))
+    best_score = scored[0][0]
+    if not math.isfinite(best_score):
+        return archive_paths
+    filtered = [p for score, p in scored if score <= best_score + score_slack]
+    return filtered or [p for _, p in scored[: min(8, len(scored))]]
+
+
+def pick_restart_path(
+    archive_paths: list[Path],
+    rng: random.Random,
+    best_bias: float,
+    recent_names: list[str],
+    recent_window: int,
+    score_slack: float,
+) -> Path:
     if not archive_paths:
         return BEST_FILE
-    if rng.random() < best_bias:
+    filtered = filter_restart_paths(archive_paths, score_slack)
+    if rng.random() < best_bias and BEST_FILE in filtered:
         return BEST_FILE
-    return archive_paths[rng.randrange(len(archive_paths))]
+
+    weighted: list[tuple[float, Path]] = []
+    for rank, path in enumerate(filtered):
+        base = 1.0 / (1.0 + rank)
+        recent_penalty = 0.35 if path.name in recent_names[-recent_window:] else 1.0
+        weighted.append((base * recent_penalty, path))
+
+    total = sum(weight for weight, _ in weighted)
+    if total <= 0:
+        return filtered[rng.randrange(len(filtered))]
+
+    roll = rng.random() * total
+    for weight, path in weighted:
+        roll -= weight
+        if roll <= 0:
+            return path
+    return weighted[-1][1]
 
 
 def approx_points(xs: np.ndarray, ys: np.ndarray, ts: np.ndarray) -> np.ndarray:
@@ -316,6 +371,7 @@ def run(args: argparse.Namespace) -> None:
     start = time.time()
     gate_checks = 0
     last_gate_batch = 0
+    recent_restart_names: list[str] = []
 
     print(f'[{args.tag}] seed approx={state.approx_score:.6f}')
     print(f'[{args.tag}] mode={args.mode} step={step:.6f} temp={temp:.6f}')
@@ -391,7 +447,17 @@ def run(args: argparse.Namespace) -> None:
 
         if args.mode == 'explorer' and batch % args.restart_every == 0:
             archive_paths = load_archive_paths(args.archive_limit)
-            seed_path = pick_restart_path(archive_paths, rng, args.best_bias)
+            seed_path = pick_restart_path(
+                archive_paths,
+                rng,
+                args.best_bias,
+                recent_restart_names,
+                args.restart_recent_window,
+                args.restart_score_slack,
+            )
+            recent_restart_names.append(seed_path.name)
+            if len(recent_restart_names) > max(1, args.restart_recent_window):
+                recent_restart_names = recent_restart_names[-args.restart_recent_window:]
             seed = load_json_state(seed_path)
             state = FastState(seed.xs.copy(), seed.ys.copy(), seed.ts.copy(), seed.approx_score)
             for i in range(N):
@@ -401,7 +467,11 @@ def run(args: argparse.Namespace) -> None:
             state.approx_score = approx_score(state.xs, state.ys, state.ts)
             temp = args.restart_temp
             step = args.restart_step
-            print(f'[{args.tag}] restart batch={batch} seed={seed_path.name} approx={state.approx_score:.6f} archive={len(archive_paths)}')
+            print(
+                f'[{args.tag}] restart batch={batch} seed={seed_path.name} approx={state.approx_score:.6f} '
+                f'archive={len(archive_paths)} recent={len(set(recent_restart_names))}/{max(1, args.restart_recent_window)} '
+                f'slack={args.restart_score_slack:.6f}'
+            )
 
         if batch == 1 or batch % args.report_every == 0:
             elapsed = time.time() - start
@@ -431,6 +501,8 @@ def parse_args() -> argparse.Namespace:
     p.add_argument('--gate-log-interval', type=int, default=5)
     p.add_argument('--archive-limit', type=int, default=64)
     p.add_argument('--best-bias', type=float, default=0.35)
+    p.add_argument('--restart-recent-window', type=int, default=6)
+    p.add_argument('--restart-score-slack', type=float, default=0.0015)
     p.add_argument('--scratch-retain-limit', type=int, default=64)
     p.add_argument('--seed', type=int, default=42)
     p.add_argument('--tag', default='fast_mcmc')
