@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import argparse
 import fcntl
+import glob
 import json
 import math
 import os
@@ -52,6 +53,34 @@ def load_json_state(path: Path) -> FastState:
     ys = np.array([float(s["y"]) for s in raw], dtype=float)
     ts = np.array([float(s["theta"]) for s in raw], dtype=float)
     return FastState(xs, ys, ts, approx_score(xs, ys, ts))
+
+
+def load_archive_paths(limit: int) -> list[Path]:
+    paths = [BEST_FILE]
+    solution_paths = sorted(
+        (Path(p) for p in glob.glob(str(SOLUTIONS_DIR / "R*.json"))),
+        key=lambda p: p.name,
+    )
+    if limit > 0 and len(solution_paths) > limit:
+        solution_paths = solution_paths[:limit]
+    paths.extend(solution_paths)
+    deduped = []
+    seen = set()
+    for p in paths:
+        key = str(p.resolve())
+        if key in seen or not p.exists():
+            continue
+        seen.add(key)
+        deduped.append(p)
+    return deduped
+
+
+def pick_restart_path(archive_paths: list[Path], rng: random.Random, best_bias: float) -> Path:
+    if not archive_paths:
+        return BEST_FILE
+    if rng.random() < best_bias:
+        return BEST_FILE
+    return archive_paths[rng.randrange(len(archive_paths))]
 
 
 def approx_points(xs: np.ndarray, ys: np.ndarray, ts: np.ndarray) -> np.ndarray:
@@ -252,6 +281,7 @@ def exact_save_gate(state: FastState, tag: str) -> tuple[bool, Optional[float]]:
 
 def run(args: argparse.Namespace) -> None:
     rng = random.Random(args.seed)
+    archive_paths = load_archive_paths(args.archive_limit)
     state = load_json_state(Path(args.seed_file))
     best = FastState(state.xs.copy(), state.ys.copy(), state.ts.copy(), state.approx_score)
     temp = args.temp
@@ -310,7 +340,9 @@ def run(args: argparse.Namespace) -> None:
         temp = max(temp * args.cooling, args.min_temp)
 
         if args.mode == 'explorer' and batch % args.restart_every == 0:
-            seed = load_json_state(BEST_FILE)
+            archive_paths = load_archive_paths(args.archive_limit)
+            seed_path = pick_restart_path(archive_paths, rng, args.best_bias)
+            seed = load_json_state(seed_path)
             state = FastState(seed.xs.copy(), seed.ys.copy(), seed.ts.copy(), seed.approx_score)
             for i in range(N):
                 state.xs[i] += rng.gauss(0.0, args.kick_scale)
@@ -319,7 +351,7 @@ def run(args: argparse.Namespace) -> None:
             state.approx_score = approx_score(state.xs, state.ys, state.ts)
             temp = args.restart_temp
             step = args.restart_step
-            print(f'[{args.tag}] restart batch={batch} approx={state.approx_score:.6f}')
+            print(f'[{args.tag}] restart batch={batch} seed={seed_path.name} approx={state.approx_score:.6f} archive={len(archive_paths)}')
 
         if batch == 1 or batch % args.report_every == 0:
             elapsed = time.time() - start
@@ -347,6 +379,8 @@ def parse_args() -> argparse.Namespace:
     p.add_argument('--report-every', type=int, default=10)
     p.add_argument('--gate-window', type=float, default=0.002)
     p.add_argument('--gate-log-interval', type=int, default=5)
+    p.add_argument('--archive-limit', type=int, default=64)
+    p.add_argument('--best-bias', type=float, default=0.35)
     p.add_argument('--seed', type=int, default=42)
     p.add_argument('--tag', default='fast_mcmc')
     return p.parse_args()
