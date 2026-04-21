@@ -31,7 +31,7 @@ import numpy as np
 import sys
 sys.path.insert(0, os.path.dirname(__file__))
 
-from src.semicircle_packing.geometry import Semicircle, semicircles_overlap
+from src.semicircle_packing.geometry import Semicircle, semicircles_overlap, farthest_boundary_point_from
 from src.semicircle_packing.scoring import validate_and_score
 
 ROOT = Path(__file__).resolve().parent
@@ -97,6 +97,8 @@ def moved_shape_valid(idx: int, xs: np.ndarray, ys: np.ndarray, ts: np.ndarray) 
     for j in range(N):
         if j == idx:
             continue
+        if (xs[idx] - xs[j]) ** 2 + (ys[idx] - ys[j]) ** 2 > 4.05:
+            continue
         other = Semicircle(float(xs[j]), float(ys[j]), float(ts[j]))
         if semicircles_overlap(candidate, other):
             return False
@@ -110,10 +112,39 @@ def moved_cluster_valid(indices: list[int], xs: np.ndarray, ys: np.ndarray, ts: 
         for j in range(N):
             if j in moved:
                 continue
+            if (xs[i] - xs[j]) ** 2 + (ys[i] - ys[j]) ** 2 > 4.05:
+                continue
             other = Semicircle(float(xs[j]), float(ys[j]), float(ts[j]))
             if semicircles_overlap(candidate, other):
                 return False
     return True
+
+
+def quick_radius_estimate(state: WalkerState, xs: np.ndarray, ys: np.ndarray, ts: np.ndarray, changed_indices: list[int]) -> float:
+    cx, cy, _ = state.mec
+    est = state.score
+    for i in changed_indices:
+        sc = Semicircle(float(xs[i]), float(ys[i]), float(ts[i]))
+        fx, fy = farthest_boundary_point_from(sc, cx, cy)
+        est = max(est, math.hypot(fx - cx, fy - cy))
+    return est
+
+
+def cheap_prefilter(
+    state: WalkerState,
+    xs: np.ndarray,
+    ys: np.ndarray,
+    ts: np.ndarray,
+    changed_indices: list[int],
+    *,
+    score_slack: float,
+    rescue_prob: float,
+    rng: random.Random,
+) -> bool:
+    est = quick_radius_estimate(state, xs, ys, ts, changed_indices)
+    if est <= state.score + score_slack:
+        return True
+    return rng.random() < rescue_prob
 
 
 def rounded_payload(state: WalkerState, *, center: bool) -> list[dict[str, float]]:
@@ -274,7 +305,16 @@ def mode_defaults(mode: str) -> tuple[float, float, float, float, float]:
     return 5e-4, 0.08, 1e-4, 0.50, 0.995
 
 
-def propose_single(state: WalkerState, idx: int, sigma_xy: float, sigma_theta: float, rng: random.Random) -> Optional[WalkerState]:
+def propose_single(
+    state: WalkerState,
+    idx: int,
+    sigma_xy: float,
+    sigma_theta: float,
+    rng: random.Random,
+    *,
+    score_slack: float,
+    rescue_prob: float,
+) -> Optional[WalkerState]:
     xs = state.xs.copy()
     ys = state.ys.copy()
     ts = state.ts.copy()
@@ -284,6 +324,8 @@ def propose_single(state: WalkerState, idx: int, sigma_xy: float, sigma_theta: f
     ts[idx] = (ts[idx] + gaussian(rng, sigma_theta)) % TWO_PI
 
     if not moved_shape_valid(idx, xs, ys, ts):
+        return None
+    if not cheap_prefilter(state, xs, ys, ts, [idx], score_slack=score_slack, rescue_prob=rescue_prob, rng=rng):
         return None
 
     return build_state(xs, ys, ts)
@@ -297,7 +339,17 @@ def choose_cluster(state: WalkerState, rng: random.Random, min_size: int, max_si
     return [int(i) for i in order[:k]]
 
 
-def propose_cluster(state: WalkerState, sigma_xy: float, sigma_theta: float, rng: random.Random, min_size: int, max_size: int) -> Optional[WalkerState]:
+def propose_cluster(
+    state: WalkerState,
+    sigma_xy: float,
+    sigma_theta: float,
+    rng: random.Random,
+    min_size: int,
+    max_size: int,
+    *,
+    score_slack: float,
+    rescue_prob: float,
+) -> Optional[WalkerState]:
     indices = choose_cluster(state, rng, min_size, max_size)
     xs = state.xs.copy()
     ys = state.ys.copy()
@@ -320,14 +372,45 @@ def propose_cluster(state: WalkerState, sigma_xy: float, sigma_theta: float, rng
 
     if not moved_cluster_valid(indices, xs, ys, ts):
         return None
+    if not cheap_prefilter(state, xs, ys, ts, indices, score_slack=score_slack, rescue_prob=rescue_prob, rng=rng):
+        return None
 
     return build_state(xs, ys, ts)
 
 
-def propose(state: WalkerState, idx: int, sigma_xy: float, sigma_theta: float, rng: random.Random, *, cluster_prob: float, cluster_min: int, cluster_max: int) -> Optional[WalkerState]:
+def propose(
+    state: WalkerState,
+    idx: int,
+    sigma_xy: float,
+    sigma_theta: float,
+    rng: random.Random,
+    *,
+    cluster_prob: float,
+    cluster_min: int,
+    cluster_max: int,
+    score_slack: float,
+    rescue_prob: float,
+) -> Optional[WalkerState]:
     if rng.random() < cluster_prob:
-        return propose_cluster(state, sigma_xy, sigma_theta, rng, cluster_min, cluster_max)
-    return propose_single(state, idx, sigma_xy, sigma_theta, rng)
+        return propose_cluster(
+            state,
+            sigma_xy,
+            sigma_theta,
+            rng,
+            cluster_min,
+            cluster_max,
+            score_slack=score_slack,
+            rescue_prob=rescue_prob,
+        )
+    return propose_single(
+        state,
+        idx,
+        sigma_xy,
+        sigma_theta,
+        rng,
+        score_slack=score_slack,
+        rescue_prob=rescue_prob,
+    )
 
 
 def run(args: argparse.Namespace) -> None:
@@ -368,6 +451,8 @@ def run(args: argparse.Namespace) -> None:
                 cluster_prob=cluster_prob,
                 cluster_min=args.cluster_min,
                 cluster_max=args.cluster_max,
+                score_slack=args.score_slack,
+                rescue_prob=args.rescue_prob,
             )
             if candidate is None:
                 continue
@@ -461,6 +546,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--cluster-prob", type=float, default=0.25)
     parser.add_argument("--cluster-min", type=int, default=2)
     parser.add_argument("--cluster-max", type=int, default=4)
+    parser.add_argument("--score-slack", type=float, default=0.01)
+    parser.add_argument("--rescue-prob", type=float, default=0.05)
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--tag", default="mcmc_exact")
     return parser.parse_args()
