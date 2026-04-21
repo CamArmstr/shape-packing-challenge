@@ -95,8 +95,8 @@ def moved_shape_valid(idx: int, xs: np.ndarray, ys: np.ndarray, ts: np.ndarray) 
     return True
 
 
-def centered_payload(state: WalkerState) -> list[dict[str, float]]:
-    cx, cy, _ = state.mec
+def rounded_payload(state: WalkerState, *, center: bool) -> list[dict[str, float]]:
+    cx, cy = (state.mec[0], state.mec[1]) if center else (0.0, 0.0)
     return [
         {
             "x": round(float(state.xs[i] - cx), 6),
@@ -107,12 +107,34 @@ def centered_payload(state: WalkerState) -> list[dict[str, float]]:
     ]
 
 
-def archive_solution(state: WalkerState) -> None:
+def payload_to_state(payload: list[dict[str, float]]) -> Optional[WalkerState]:
+    xs = np.array([round(float(s["x"]), 6) for s in payload], dtype=float)
+    ys = np.array([round(float(s["y"]), 6) for s in payload], dtype=float)
+    ts = np.array([round(float(s["theta"]), 6) for s in payload], dtype=float)
+    return build_state(xs, ys, ts)
+
+
+def make_saveable_state(state: WalkerState) -> tuple[Optional[WalkerState], Optional[list[dict[str, float]]], str]:
+    centered = rounded_payload(state, center=True)
+    centered_state = payload_to_state(centered)
+    if centered_state is not None:
+        return centered_state, centered, "centered"
+
+    uncentered = rounded_payload(state, center=False)
+    uncentered_state = payload_to_state(uncentered)
+    if uncentered_state is not None:
+        return uncentered_state, uncentered, "uncentered"
+
+    return None, None, "invalid-after-rounding"
+
+
+def archive_solution(payload: list[dict[str, float]], saved_state: WalkerState) -> Path:
     SOLUTIONS_DIR.mkdir(exist_ok=True)
-    out = SOLUTIONS_DIR / f"R{state.score:.6f}.json"
+    out = SOLUTIONS_DIR / f"R{saved_state.score:.6f}.json"
     if not out.exists():
         with open(out, "w") as f:
-            json.dump(centered_payload(state), f, indent=2)
+            json.dump(payload, f, indent=2)
+    return out
 
 
 def save_if_global_best(state: WalkerState, tag: str) -> bool:
@@ -120,21 +142,27 @@ def save_if_global_best(state: WalkerState, tag: str) -> bool:
         fcntl.flock(lf, fcntl.LOCK_EX)
 
         current_best = load_solution(BEST_FILE)
-        if state.score >= current_best.score - 1e-12:
+        saveable_state, payload, save_mode = make_saveable_state(state)
+        if saveable_state is None or payload is None:
+            return False
+        if saveable_state.score >= current_best.score - 1e-12:
             return False
 
-        payload = centered_payload(state)
-        with open(BEST_FILE, "w") as f:
+        tmp_file = BEST_FILE.with_suffix(BEST_FILE.suffix + ".tmp")
+        with open(tmp_file, "w") as f:
             json.dump(payload, f, indent=2)
+            f.flush()
+            os.fsync(f.fileno())
+        os.replace(tmp_file, BEST_FILE)
 
-        archive_solution(state)
+        archive_path = archive_solution(payload, saveable_state)
 
         try:
             import subprocess
             subprocess.run(["git", "add", "best_solution.json"], cwd=ROOT, capture_output=True)
-            subprocess.run(["git", "add", str(SOLUTIONS_DIR / f"R{state.score:.6f}.json")], cwd=ROOT, capture_output=True)
+            subprocess.run(["git", "add", str(archive_path)], cwd=ROOT, capture_output=True)
             subprocess.run(
-                ["git", "commit", "-m", f"best: R={state.score:.6f} ({tag})"],
+                ["git", "commit", "-m", f"best: R={saveable_state.score:.6f} ({tag}, {save_mode})"],
                 cwd=ROOT,
                 capture_output=True,
             )
