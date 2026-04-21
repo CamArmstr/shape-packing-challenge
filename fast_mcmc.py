@@ -184,6 +184,12 @@ def pick_restart_path(
     if rng.random() < effective_best_bias and BEST_FILE in filtered:
         return BEST_FILE
 
+    cooldown_threshold = max(2, recent_window // 2) if recent_window > 0 else 0
+    if best_bucket_recent >= cooldown_threshold:
+        cooled = [path for path in filtered if exact_score_bucket(path, score_bucket_decimals) != best_exact_bucket]
+        if cooled:
+            filtered = cooled
+
     grouped: dict[str, list[tuple[int, Path]]] = {}
     for rank, path in enumerate(filtered):
         bucket = restart_diversity_bucket(path, score_bucket_decimals)
