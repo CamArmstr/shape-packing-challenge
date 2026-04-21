@@ -22,6 +22,7 @@ import os
 import random
 import time
 from dataclasses import dataclass
+from glob import glob
 from pathlib import Path
 from typing import Optional
 
@@ -56,6 +57,13 @@ class BatchStats:
     valid_proposals: int = 0
     accepted: int = 0
     improved: int = 0
+
+
+@dataclass
+class ArchiveEntry:
+    state: WalkerState
+    source: str
+    signature: tuple
 
 
 def gaussian(rng: random.Random, sigma: float) -> float:
@@ -172,6 +180,81 @@ def save_if_global_best(state: WalkerState, tag: str) -> bool:
         return True
 
 
+def state_signature(state: WalkerState) -> tuple:
+    cx, cy, _ = state.mec
+    rs = np.sqrt((state.xs - cx) ** 2 + (state.ys - cy) ** 2)
+    radial = tuple(np.round(np.sort(rs), 3))
+
+    nnd = []
+    for i in range(N):
+        d = np.hypot(state.xs[i] - state.xs, state.ys[i] - state.ys)
+        d[i] = np.inf
+        nnd.append(np.min(d))
+    nn = tuple(np.round(np.sort(np.array(nnd)), 3))
+    return radial + nn
+
+
+def add_to_archive(archive: list[ArchiveEntry], state: WalkerState, source: str, max_size: int) -> bool:
+    sig = state_signature(state)
+    for i, entry in enumerate(archive):
+        if entry.signature == sig:
+            if state.score < entry.state.score - 1e-12:
+                archive[i] = ArchiveEntry(
+                    state=WalkerState(state.xs.copy(), state.ys.copy(), state.ts.copy(), state.score, state.mec),
+                    source=source,
+                    signature=sig,
+                )
+                archive.sort(key=lambda e: e.state.score)
+                return True
+            return False
+
+    archive.append(
+        ArchiveEntry(
+            state=WalkerState(state.xs.copy(), state.ys.copy(), state.ts.copy(), state.score, state.mec),
+            source=source,
+            signature=sig,
+        )
+    )
+    archive.sort(key=lambda e: e.state.score)
+    del archive[max_size:]
+    return True
+
+
+def load_archive(max_size: int) -> list[ArchiveEntry]:
+    archive: list[ArchiveEntry] = []
+    candidates = [BEST_FILE] + [Path(p) for p in sorted(glob(str(SOLUTIONS_DIR / 'R*.json')))]
+    for path in candidates:
+        if not path.exists():
+            continue
+        try:
+            state = load_solution(path)
+        except Exception:
+            continue
+        add_to_archive(archive, state, path.name, max_size)
+    return archive
+
+
+def pick_archive_seed(archive: list[ArchiveEntry], rng: random.Random) -> ArchiveEntry:
+    idx = min(int((rng.random() ** 2) * len(archive)), len(archive) - 1)
+    return archive[idx]
+
+
+def kicked_copy(state: WalkerState, rng: random.Random, kick_scale: float) -> Optional[WalkerState]:
+    xs = state.xs.copy()
+    ys = state.ys.copy()
+    ts = state.ts.copy()
+    for i in range(N):
+        xs[i] += gaussian(rng, kick_scale)
+        ys[i] += gaussian(rng, kick_scale)
+        ts[i] = (ts[i] + gaussian(rng, kick_scale * math.pi)) % TWO_PI
+    return build_state(xs, ys, ts)
+
+
+def maybe_reload_best(current_best: WalkerState) -> WalkerState:
+    latest = load_solution(BEST_FILE)
+    return latest if latest.score < current_best.score - 1e-12 else current_best
+
+
 def mode_defaults(mode: str) -> tuple[float, float, float, float, float]:
     if mode == "polisher":
         return 1e-7, 0.004, 1e-5, 0.015, 0.985
@@ -203,15 +286,21 @@ def run(args: argparse.Namespace) -> None:
 
     state = load_solution(Path(args.seed_file))
     best_local = WalkerState(state.xs.copy(), state.ys.copy(), state.ts.copy(), state.score, state.mec)
+    global_best = maybe_reload_best(best_local)
+    archive = load_archive(args.archive_size)
+    add_to_archive(archive, state, 'seed', args.archive_size)
 
     print(f"[{args.tag}] seed score: {state.score:.6f}")
-    print(f"[{args.tag}] mode={args.mode} temp={temp:.8f} step={step_xy:.6f} target_accept={args.target_accept:.3f}")
+    print(f"[{args.tag}] mode={args.mode} temp={temp:.8f} step={step_xy:.6f} target_accept={args.target_accept:.3f} archive={len(archive)}")
 
     started = time.time()
     last_report = started
+    last_improve_batch = 0
 
     for batch_idx in range(1, args.batches + 1):
         stats = BatchStats()
+        global_best = maybe_reload_best(global_best)
+        add_to_archive(archive, global_best, 'global_best', args.archive_size)
 
         for _ in range(args.batch_size):
             stats.proposals += 1
@@ -232,10 +321,15 @@ def run(args: argparse.Namespace) -> None:
             if state.score < best_local.score - 1e-12:
                 best_local = WalkerState(state.xs.copy(), state.ys.copy(), state.ts.copy(), state.score, state.mec)
                 stats.improved += 1
+                last_improve_batch = batch_idx
+                add_to_archive(archive, best_local, args.tag, args.archive_size)
                 was_global = save_if_global_best(best_local, args.tag)
+                if was_global:
+                    global_best = maybe_reload_best(global_best)
+                    add_to_archive(archive, global_best, 'global_best', args.archive_size)
                 print(
                     f"[{args.tag}] improvement batch={batch_idx} score={best_local.score:.6f} "
-                    f"global={'yes' if was_global else 'no'}"
+                    f"global={'yes' if was_global else 'no'} archive={len(archive)}"
                 )
 
         acceptance = stats.accepted / stats.valid_proposals if stats.valid_proposals else 0.0
@@ -249,6 +343,26 @@ def run(args: argparse.Namespace) -> None:
         else:
             temp = max(temp * args.polisher_cooling, args.min_temp)
 
+        stale_batches = batch_idx - last_improve_batch
+        if args.restart_every > 0 and stale_batches >= args.restart_every and archive:
+            seed_entry = pick_archive_seed(archive, rng)
+            restarted = kicked_copy(seed_entry.state, rng, args.kick_scale)
+            if restarted is None:
+                restarted = seed_entry.state
+            state = WalkerState(restarted.xs.copy(), restarted.ys.copy(), restarted.ts.copy(), restarted.score, restarted.mec)
+            if args.mode == 'explorer':
+                temp = max(args.restart_temp, args.min_temp)
+                step_xy = max(args.restart_step, min_step)
+            else:
+                state = WalkerState(global_best.xs.copy(), global_best.ys.copy(), global_best.ts.copy(), global_best.score, global_best.mec)
+                temp = max(min(temp, args.min_temp * 10), args.min_temp)
+                step_xy = min(max(args.restart_step * 0.25, min_step), max_step)
+            last_improve_batch = batch_idx
+            print(
+                f"[{args.tag}] restart batch={batch_idx} from={seed_entry.source} seed_score={seed_entry.state.score:.6f} "
+                f"new_score={state.score:.6f} archive={len(archive)}"
+            )
+
         now = time.time()
         if batch_idx == 1 or batch_idx % args.report_every == 0 or (now - last_report) > 30:
             elapsed = now - started
@@ -256,7 +370,7 @@ def run(args: argparse.Namespace) -> None:
             print(
                 f"[{args.tag}] batch={batch_idx}/{args.batches} best={best_local.score:.6f} current={state.score:.6f} "
                 f"accept={acceptance:.3f} valid={stats.valid_proposals}/{stats.proposals} "
-                f"step={step_xy:.6f} temp={temp:.8f} evals={evals} elapsed={elapsed:.1f}s"
+                f"step={step_xy:.6f} temp={temp:.8f} evals={evals} elapsed={elapsed:.1f}s archive={len(archive)}"
             )
             last_report = now
 
@@ -276,6 +390,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--target-accept", type=float, default=0.234)
     parser.add_argument("--report-every", type=int, default=10)
     parser.add_argument("--polisher-cooling", type=float, default=0.995)
+    parser.add_argument("--archive-size", type=int, default=24)
+    parser.add_argument("--restart-every", type=int, default=25)
+    parser.add_argument("--restart-temp", type=float, default=0.002)
+    parser.add_argument("--restart-step", type=float, default=0.05)
+    parser.add_argument("--kick-scale", type=float, default=0.03)
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--tag", default="mcmc_exact")
     return parser.parse_args()
