@@ -447,7 +447,8 @@ def run(args: argparse.Namespace) -> None:
     rng = random.Random(args.seed)
     archive_paths = load_archive_paths(args.archive_limit, args.restart_pool_limit)
     state = load_json_state(Path(args.seed_file))
-    best = FastState(state.xs.copy(), state.ys.copy(), state.ts.copy(), state.approx_score)
+    best_seen = FastState(state.xs.copy(), state.ys.copy(), state.ts.copy(), state.approx_score)
+    best_exact_anchor = FastState(state.xs.copy(), state.ys.copy(), state.ts.copy(), state.approx_score)
     temp = args.temp
     step = args.step
     start = time.time()
@@ -483,12 +484,12 @@ def run(args: argparse.Namespace) -> None:
                 state = candidate
                 batch_accept += 1
                 accepted += 1
-                if state.approx_score < best.approx_score - 1e-12:
-                    best = FastState(state.xs.copy(), state.ys.copy(), state.ts.copy(), state.approx_score)
-                    saved, exact_valid, exact_score = exact_save_gate(best, args.tag)
+                if state.approx_score < best_seen.approx_score - 1e-12:
+                    best_seen = FastState(state.xs.copy(), state.ys.copy(), state.ts.copy(), state.approx_score)
+                    saved, exact_valid, exact_score = exact_save_gate(best_seen, args.tag)
                     if not saved:
                         scratch_path = retain_scratch_candidate(
-                            best,
+                            best_seen,
                             args.tag,
                             batch,
                             reason='improvement',
@@ -497,17 +498,33 @@ def run(args: argparse.Namespace) -> None:
                             limit=args.scratch_retain_limit,
                         )
                         if exact_valid and exact_score is not None:
-                            _, _, centered = exact_result_for_state(best)
+                            _, _, centered = exact_result_for_state(best_seen)
                             if centered is not None:
                                 retain_restart_pool_candidate(centered, exact_score, args.tag, batch, args.restart_pool_limit)
+                                best_exact_anchor = FastState(
+                                    best_seen.xs.copy(),
+                                    best_seen.ys.copy(),
+                                    best_seen.ts.copy(),
+                                    best_seen.approx_score,
+                                )
                     else:
                         scratch_path = None
+                        best_exact_anchor = FastState(
+                            best_seen.xs.copy(),
+                            best_seen.ys.copy(),
+                            best_seen.ts.copy(),
+                            best_seen.approx_score,
+                        )
                     exact_text = f'{exact_score:.6f}' if exact_score is not None else 'invalid'
                     scratch_text = f' scratch={scratch_path.name}' if scratch_path is not None else ''
-                    print(f'[{args.tag}] improvement batch={batch} approx={best.approx_score:.6f} exact={exact_text} exact_save={"yes" if saved else "no"}{scratch_text}')
+                    print(
+                        f'[{args.tag}] improvement batch={batch} approx={best_seen.approx_score:.6f} '
+                        f'anchor={best_exact_anchor.approx_score:.6f} exact={exact_text} '
+                        f'exact_save={"yes" if saved else "no"}{scratch_text}'
+                    )
                 elif (
                     args.gate_window > 0.0
-                    and state.approx_score <= best.approx_score + args.gate_window
+                    and state.approx_score <= best_exact_anchor.approx_score + args.gate_window
                     and batch - last_gate_batch >= args.gate_log_interval
                 ):
                     sig = state_signature(state, args.gate_signature_decimals)
@@ -517,7 +534,7 @@ def run(args: argparse.Namespace) -> None:
                         last_gate_batch = batch
                         print(
                             f'[{args.tag}] gate_skip batch={batch} current_approx={state.approx_score:.6f} '
-                            f'best_approx={best.approx_score:.6f} since_invalid={batch - last_invalid_batch} '
+                            f'anchor_approx={best_exact_anchor.approx_score:.6f} since_invalid={batch - last_invalid_batch} '
                             f'gate_skips={gate_skips}'
                         )
                     else:
@@ -543,7 +560,7 @@ def run(args: argparse.Namespace) -> None:
                         scratch_text = f' scratch={scratch_path.name}' if scratch_path is not None else ''
                         print(
                             f'[{args.tag}] gate_probe batch={batch} current_approx={state.approx_score:.6f} '
-                            f'best_approx={best.approx_score:.6f} exact={exact_text} valid={"yes" if valid else "no"} '
+                            f'anchor_approx={best_exact_anchor.approx_score:.6f} exact={exact_text} valid={"yes" if valid else "no"} '
                             f'gate_checks={gate_checks}{scratch_text}'
                         )
 
@@ -593,7 +610,12 @@ def run(args: argparse.Namespace) -> None:
 
         if batch == 1 or batch % args.report_every == 0:
             elapsed = time.time() - start
-            print(f'[{args.tag}] batch={batch}/{args.batches} best={best.approx_score:.6f} current={state.approx_score:.6f} accept={ar:.3f} valid={batch_valid}/{args.batch_size} step={step:.6f} temp={temp:.6f} elapsed={elapsed:.1f}s')
+            print(
+                f'[{args.tag}] batch={batch}/{args.batches} best_seen={best_seen.approx_score:.6f} '
+                f'anchor={best_exact_anchor.approx_score:.6f} current={state.approx_score:.6f} '
+                f'accept={ar:.3f} valid={batch_valid}/{args.batch_size} step={step:.6f} '
+                f'temp={temp:.6f} elapsed={elapsed:.1f}s'
+            )
 
 
 def parse_args() -> argparse.Namespace:
