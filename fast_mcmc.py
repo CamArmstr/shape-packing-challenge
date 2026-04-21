@@ -124,6 +124,8 @@ def pick_restart_path(
     recent_names: list[str],
     recent_window: int,
     score_slack: float,
+    recent_score_buckets: list[str],
+    score_bucket_decimals: int,
 ) -> Path:
     if not archive_paths:
         return BEST_FILE
@@ -131,15 +133,44 @@ def pick_restart_path(
     if rng.random() < best_bias and BEST_FILE in filtered:
         return BEST_FILE
 
-    weighted: list[tuple[float, Path]] = []
+    grouped: dict[str, list[tuple[int, Path]]] = {}
     for rank, path in enumerate(filtered):
+        exact_score = archive_exact_score(path)
+        if math.isfinite(exact_score):
+            bucket = f'{round(exact_score, score_bucket_decimals):.{score_bucket_decimals}f}'
+        else:
+            bucket = path.name
+        grouped.setdefault(bucket, []).append((rank, path))
+
+    bucket_weights: list[tuple[float, str]] = []
+    recent_bucket_slice = recent_score_buckets[-recent_window:]
+    for bucket, items in grouped.items():
+        best_rank = min(rank for rank, _ in items)
+        base = 1.0 / (1.0 + best_rank)
+        recent_penalty = 0.4 if bucket in recent_bucket_slice else 1.0
+        bucket_weights.append((base * recent_penalty, bucket))
+
+    total = sum(weight for weight, _ in bucket_weights)
+    if total <= 0:
+        chosen_bucket = rng.choice(list(grouped))
+    else:
+        roll = rng.random() * total
+        chosen_bucket = bucket_weights[-1][1]
+        for weight, bucket in bucket_weights:
+            roll -= weight
+            if roll <= 0:
+                chosen_bucket = bucket
+                break
+
+    weighted: list[tuple[float, Path]] = []
+    for rank, path in grouped[chosen_bucket]:
         base = 1.0 / (1.0 + rank)
         recent_penalty = 0.35 if path.name in recent_names[-recent_window:] else 1.0
         weighted.append((base * recent_penalty, path))
 
     total = sum(weight for weight, _ in weighted)
     if total <= 0:
-        return filtered[rng.randrange(len(filtered))]
+        return grouped[chosen_bucket][rng.randrange(len(grouped[chosen_bucket]))][1]
 
     roll = rng.random() * total
     for weight, path in weighted:
@@ -424,6 +455,7 @@ def run(args: argparse.Namespace) -> None:
     gate_skips = 0
     last_gate_batch = 0
     recent_restart_names: list[str] = []
+    recent_restart_score_buckets: list[str] = []
     recent_invalid_gate_batches: dict[str, int] = {}
 
     print(f'[{args.tag}] seed approx={state.approx_score:.6f}')
@@ -528,10 +560,21 @@ def run(args: argparse.Namespace) -> None:
                 recent_restart_names,
                 args.restart_recent_window,
                 args.restart_score_slack,
+                recent_restart_score_buckets,
+                args.restart_score_bucket_decimals,
             )
             recent_restart_names.append(seed_path.name)
             if len(recent_restart_names) > max(1, args.restart_recent_window):
                 recent_restart_names = recent_restart_names[-args.restart_recent_window:]
+            exact_seed_score = archive_exact_score(seed_path)
+            if math.isfinite(exact_seed_score):
+                recent_restart_score_buckets.append(
+                    f'{round(exact_seed_score, args.restart_score_bucket_decimals):.{args.restart_score_bucket_decimals}f}'
+                )
+            else:
+                recent_restart_score_buckets.append(seed_path.name)
+            if len(recent_restart_score_buckets) > max(1, args.restart_recent_window):
+                recent_restart_score_buckets = recent_restart_score_buckets[-args.restart_recent_window:]
             seed = load_json_state(seed_path)
             state = FastState(seed.xs.copy(), seed.ys.copy(), seed.ts.copy(), seed.approx_score)
             for i in range(N):
@@ -544,6 +587,7 @@ def run(args: argparse.Namespace) -> None:
             print(
                 f'[{args.tag}] restart batch={batch} seed={seed_path.name} approx={state.approx_score:.6f} '
                 f'archive={len(archive_paths)} recent={len(set(recent_restart_names))}/{max(1, args.restart_recent_window)} '
+                f'score_buckets={len(set(recent_restart_score_buckets))}/{max(1, args.restart_recent_window)} '
                 f'slack={args.restart_score_slack:.6f}'
             )
 
@@ -577,6 +621,7 @@ def parse_args() -> argparse.Namespace:
     p.add_argument('--best-bias', type=float, default=0.35)
     p.add_argument('--restart-recent-window', type=int, default=6)
     p.add_argument('--restart-score-slack', type=float, default=0.0015)
+    p.add_argument('--restart-score-bucket-decimals', type=int, default=4)
     p.add_argument('--invalid-gate-cooldown', type=int, default=48)
     p.add_argument('--gate-signature-decimals', type=int, default=4)
     p.add_argument('--scratch-retain-limit', type=int, default=64)
