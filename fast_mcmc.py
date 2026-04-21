@@ -172,9 +172,12 @@ def pick_restart_path(
     filtered = filter_restart_paths(archive_paths, score_slack)
     recent_bucket_slice = recent_score_buckets[-recent_window:]
     recent_exact_bucket_counts: dict[str, int] = {}
+    recent_family_counts: dict[str, int] = {}
     for bucket in recent_bucket_slice:
-        exact_bucket = bucket.split('|', 1)[0]
+        exact_bucket, family = (bucket.split('|', 1) + [''])[:2]
         recent_exact_bucket_counts[exact_bucket] = recent_exact_bucket_counts.get(exact_bucket, 0) + 1
+        if family:
+            recent_family_counts[family] = recent_family_counts.get(family, 0) + 1
 
     best_exact_bucket = exact_score_bucket(BEST_FILE, score_bucket_decimals)
     best_bucket_recent = recent_exact_bucket_counts.get(best_exact_bucket, 0)
@@ -190,6 +193,15 @@ def pick_restart_path(
         if cooled:
             filtered = cooled
 
+    family_cooldown_threshold = max(2, recent_window // 3) if recent_window > 0 else 0
+    if family_cooldown_threshold > 0:
+        cooled = [
+            path for path in filtered
+            if recent_family_counts.get(restart_source_family(path), 0) < family_cooldown_threshold
+        ]
+        if cooled:
+            filtered = cooled
+
     grouped: dict[str, list[tuple[int, Path]]] = {}
     for rank, path in enumerate(filtered):
         bucket = restart_diversity_bucket(path, score_bucket_decimals)
@@ -199,10 +211,11 @@ def pick_restart_path(
     for bucket, items in grouped.items():
         best_rank = min(rank for rank, _ in items)
         base = 1.0 / (1.0 + best_rank)
-        exact_bucket = bucket.split('|', 1)[0]
+        exact_bucket, family = (bucket.split('|', 1) + [''])[:2]
         recent_diversity_penalty = 0.4 if bucket in recent_bucket_slice else 1.0
         exact_bucket_penalty = 1.0 / (1.0 + recent_exact_bucket_counts.get(exact_bucket, 0))
-        bucket_weights.append((base * recent_diversity_penalty * exact_bucket_penalty, bucket))
+        family_penalty = 1.0 / (1.0 + recent_family_counts.get(family, 0))
+        bucket_weights.append((base * recent_diversity_penalty * exact_bucket_penalty * family_penalty, bucket))
 
     total = sum(weight for weight, _ in bucket_weights)
     if total <= 0:
@@ -220,7 +233,8 @@ def pick_restart_path(
     for rank, path in grouped[chosen_bucket]:
         base = 1.0 / (1.0 + rank)
         recent_penalty = 0.35 if path.name in recent_names[-recent_window:] else 1.0
-        weighted.append((base * recent_penalty, path))
+        family_penalty = 1.0 / (1.0 + recent_family_counts.get(restart_source_family(path), 0))
+        weighted.append((base * recent_penalty * family_penalty, path))
 
     total = sum(weight for weight, _ in weighted)
     if total <= 0:
