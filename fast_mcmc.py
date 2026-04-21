@@ -286,6 +286,17 @@ def rounded_state_payload(state: FastState) -> list[dict[str, float]]:
     ]
 
 
+def state_signature(state: FastState, decimals: int) -> str:
+    parts: list[str] = []
+    for i in range(N):
+        parts.append(
+            f'{round(float(state.xs[i]), decimals):.{decimals}f},'
+            f'{round(float(state.ys[i]), decimals):.{decimals}f},'
+            f'{round(float(state.ts[i] % TWO_PI), decimals):.{decimals}f}'
+        )
+    return '|'.join(parts)
+
+
 def exact_result_for_state(state: FastState) -> tuple[bool, Optional[float], Optional[list[dict[str, float]]]]:
     rounded = rounded_state_payload(state)
     sol = [Semicircle(d["x"], d["y"], d["theta"]) for d in rounded]
@@ -370,8 +381,10 @@ def run(args: argparse.Namespace) -> None:
     step = args.step
     start = time.time()
     gate_checks = 0
+    gate_skips = 0
     last_gate_batch = 0
     recent_restart_names: list[str] = []
+    recent_invalid_gate_batches: dict[str, int] = {}
 
     print(f'[{args.tag}] seed approx={state.approx_score:.6f}')
     print(f'[{args.tag}] mode={args.mode} step={step:.6f} temp={temp:.6f}')
@@ -421,25 +434,40 @@ def run(args: argparse.Namespace) -> None:
                     and state.approx_score <= best.approx_score + args.gate_window
                     and batch - last_gate_batch >= args.gate_log_interval
                 ):
-                    gate_checks += 1
-                    last_gate_batch = batch
-                    valid, exact_score, _ = exact_result_for_state(state)
-                    scratch_path = retain_scratch_candidate(
-                        state,
-                        args.tag,
-                        batch,
-                        reason='gate',
-                        valid=valid,
-                        exact_score=exact_score,
-                        limit=args.scratch_retain_limit,
-                    )
-                    exact_text = f'{exact_score:.6f}' if exact_score is not None else 'invalid'
-                    scratch_text = f' scratch={scratch_path.name}' if scratch_path is not None else ''
-                    print(
-                        f'[{args.tag}] gate_probe batch={batch} current_approx={state.approx_score:.6f} '
-                        f'best_approx={best.approx_score:.6f} exact={exact_text} valid={"yes" if valid else "no"} '
-                        f'gate_checks={gate_checks}{scratch_text}'
-                    )
+                    sig = state_signature(state, args.gate_signature_decimals)
+                    last_invalid_batch = recent_invalid_gate_batches.get(sig)
+                    if last_invalid_batch is not None and batch - last_invalid_batch < args.invalid_gate_cooldown:
+                        gate_skips += 1
+                        last_gate_batch = batch
+                        print(
+                            f'[{args.tag}] gate_skip batch={batch} current_approx={state.approx_score:.6f} '
+                            f'best_approx={best.approx_score:.6f} since_invalid={batch - last_invalid_batch} '
+                            f'gate_skips={gate_skips}'
+                        )
+                    else:
+                        gate_checks += 1
+                        last_gate_batch = batch
+                        valid, exact_score, _ = exact_result_for_state(state)
+                        if not valid:
+                            recent_invalid_gate_batches[sig] = batch
+                        elif sig in recent_invalid_gate_batches:
+                            del recent_invalid_gate_batches[sig]
+                        scratch_path = retain_scratch_candidate(
+                            state,
+                            args.tag,
+                            batch,
+                            reason='gate',
+                            valid=valid,
+                            exact_score=exact_score,
+                            limit=args.scratch_retain_limit,
+                        )
+                        exact_text = f'{exact_score:.6f}' if exact_score is not None else 'invalid'
+                        scratch_text = f' scratch={scratch_path.name}' if scratch_path is not None else ''
+                        print(
+                            f'[{args.tag}] gate_probe batch={batch} current_approx={state.approx_score:.6f} '
+                            f'best_approx={best.approx_score:.6f} exact={exact_text} valid={"yes" if valid else "no"} '
+                            f'gate_checks={gate_checks}{scratch_text}'
+                        )
 
         ar = batch_accept / batch_valid if batch_valid else 0.0
         step = min(step * 1.03, max_step) if ar > args.target_accept else max(step * 0.97, min_step)
@@ -503,6 +531,8 @@ def parse_args() -> argparse.Namespace:
     p.add_argument('--best-bias', type=float, default=0.35)
     p.add_argument('--restart-recent-window', type=int, default=6)
     p.add_argument('--restart-score-slack', type=float, default=0.0015)
+    p.add_argument('--invalid-gate-cooldown', type=int, default=48)
+    p.add_argument('--gate-signature-decimals', type=int, default=4)
     p.add_argument('--scratch-retain-limit', type=int, default=64)
     p.add_argument('--seed', type=int, default=42)
     p.add_argument('--tag', default='fast_mcmc')
