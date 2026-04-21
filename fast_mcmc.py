@@ -33,6 +33,7 @@ ROOT = Path(__file__).resolve().parent
 BEST_FILE = ROOT / "best_solution.json"
 LOCK_FILE = ROOT / "best_solution.json.lock"
 SOLUTIONS_DIR = ROOT / "solutions"
+SCRATCH_DIR = SOLUTIONS_DIR / "scratch_candidates"
 N = 15
 TWO_PI = 2 * math.pi
 ARC_STEPS = 30
@@ -223,11 +224,15 @@ def propose(state: FastState, rng: random.Random, step_xy: float, step_theta: fl
     return FastState(xs, ys, ts, approx_score(xs, ys, ts)), 1
 
 
-def exact_result_for_state(state: FastState) -> tuple[bool, Optional[float], Optional[list[dict[str, float]]]]:
-    rounded = [
+def rounded_state_payload(state: FastState) -> list[dict[str, float]]:
+    return [
         {"x": round(float(state.xs[i]), 6), "y": round(float(state.ys[i]), 6), "theta": round(float(state.ts[i] % TWO_PI), 6)}
         for i in range(N)
     ]
+
+
+def exact_result_for_state(state: FastState) -> tuple[bool, Optional[float], Optional[list[dict[str, float]]]]:
+    rounded = rounded_state_payload(state)
     sol = [Semicircle(d["x"], d["y"], d["theta"]) for d in rounded]
     result = validate_and_score(sol)
     if not result.valid or result.score is None or result.mec is None:
@@ -245,10 +250,32 @@ def exact_result_for_state(state: FastState) -> tuple[bool, Optional[float], Opt
     return True, centered_result.score, centered
 
 
-def exact_save_gate(state: FastState, tag: str) -> tuple[bool, Optional[float]]:
+def retain_scratch_candidate(state: FastState, tag: str, batch: int, reason: str, valid: bool, exact_score: Optional[float], limit: int) -> Optional[Path]:
+    if limit <= 0:
+        return None
+
+    payload = rounded_state_payload(state)
+    approx_text = f'{state.approx_score:.6f}'
+    exact_text = f'{exact_score:.6f}' if exact_score is not None else 'invalid'
+    stem = f'{reason}_{"valid" if valid else "invalid"}_A{approx_text}_E{exact_text}_{tag}_b{batch}'
+    out = SCRATCH_DIR / f'{stem}.json'
+    if out.exists():
+        return None
+
+    SCRATCH_DIR.mkdir(parents=True, exist_ok=True)
+    with open(out, 'w') as f:
+        json.dump(payload, f, indent=2)
+
+    candidates = sorted(SCRATCH_DIR.glob('*.json'), key=lambda p: p.stat().st_mtime, reverse=True)
+    for stale in candidates[limit:]:
+        stale.unlink(missing_ok=True)
+    return out
+
+
+def exact_save_gate(state: FastState, tag: str) -> tuple[bool, bool, Optional[float]]:
     valid, exact_score, centered = exact_result_for_state(state)
     if not valid or exact_score is None or centered is None:
-        return False, None
+        return False, False, None
 
     with open(LOCK_FILE, 'w') as lf:
         fcntl.flock(lf, fcntl.LOCK_EX)
@@ -256,7 +283,7 @@ def exact_save_gate(state: FastState, tag: str) -> tuple[bool, Optional[float]]:
         current_exact = validate_and_score([Semicircle(float(current.xs[i]), float(current.ys[i]), float(current.ts[i])) for i in range(N)])
         current_score = current_exact.score if current_exact.valid and current_exact.score is not None else float('inf')
         if exact_score >= current_score - 1e-12:
-            return False, exact_score
+            return False, True, exact_score
 
         tmp = BEST_FILE.with_suffix('.json.tmp')
         with open(tmp, 'w') as f:
@@ -276,7 +303,7 @@ def exact_save_gate(state: FastState, tag: str) -> tuple[bool, Optional[float]]:
             subprocess.run(['git', 'commit', '-m', f'best: R={exact_score:.6f} ({tag}, fast)'], cwd=ROOT, capture_output=True)
         except Exception:
             pass
-        return True, exact_score
+        return True, True, exact_score
 
 
 def run(args: argparse.Namespace) -> None:
@@ -317,9 +344,22 @@ def run(args: argparse.Namespace) -> None:
                 accepted += 1
                 if state.approx_score < best.approx_score - 1e-12:
                     best = FastState(state.xs.copy(), state.ys.copy(), state.ts.copy(), state.approx_score)
-                    saved, exact_score = exact_save_gate(best, args.tag)
+                    saved, exact_valid, exact_score = exact_save_gate(best, args.tag)
+                    if not saved:
+                        scratch_path = retain_scratch_candidate(
+                            best,
+                            args.tag,
+                            batch,
+                            reason='improvement',
+                            valid=exact_valid,
+                            exact_score=exact_score,
+                            limit=args.scratch_retain_limit,
+                        )
+                    else:
+                        scratch_path = None
                     exact_text = f'{exact_score:.6f}' if exact_score is not None else 'invalid'
-                    print(f'[{args.tag}] improvement batch={batch} approx={best.approx_score:.6f} exact={exact_text} exact_save={"yes" if saved else "no"}')
+                    scratch_text = f' scratch={scratch_path.name}' if scratch_path is not None else ''
+                    print(f'[{args.tag}] improvement batch={batch} approx={best.approx_score:.6f} exact={exact_text} exact_save={"yes" if saved else "no"}{scratch_text}')
                 elif (
                     args.gate_window > 0.0
                     and state.approx_score <= best.approx_score + args.gate_window
@@ -328,11 +368,21 @@ def run(args: argparse.Namespace) -> None:
                     gate_checks += 1
                     last_gate_batch = batch
                     valid, exact_score, _ = exact_result_for_state(state)
+                    scratch_path = retain_scratch_candidate(
+                        state,
+                        args.tag,
+                        batch,
+                        reason='gate',
+                        valid=valid,
+                        exact_score=exact_score,
+                        limit=args.scratch_retain_limit,
+                    )
                     exact_text = f'{exact_score:.6f}' if exact_score is not None else 'invalid'
+                    scratch_text = f' scratch={scratch_path.name}' if scratch_path is not None else ''
                     print(
                         f'[{args.tag}] gate_probe batch={batch} current_approx={state.approx_score:.6f} '
                         f'best_approx={best.approx_score:.6f} exact={exact_text} valid={"yes" if valid else "no"} '
-                        f'gate_checks={gate_checks}'
+                        f'gate_checks={gate_checks}{scratch_text}'
                     )
 
         ar = batch_accept / batch_valid if batch_valid else 0.0
@@ -381,6 +431,7 @@ def parse_args() -> argparse.Namespace:
     p.add_argument('--gate-log-interval', type=int, default=5)
     p.add_argument('--archive-limit', type=int, default=64)
     p.add_argument('--best-bias', type=float, default=0.35)
+    p.add_argument('--scratch-retain-limit', type=int, default=64)
     p.add_argument('--seed', type=int, default=42)
     p.add_argument('--tag', default='fast_mcmc')
     return p.parse_args()

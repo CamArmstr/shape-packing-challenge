@@ -11,3 +11,4 @@ uv.lock
 *.log
 *_pids.txt
 *_events.log
+solutions/scratch_candidates/
