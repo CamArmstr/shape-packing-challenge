@@ -442,7 +442,25 @@ def retain_scratch_candidate(state: FastState, tag: str, batch: int, reason: str
     invalid_candidates.sort(key=lambda item: (item[0], item[1], item[2].name))
 
     valid_quota = min(limit, max(8, limit // 4))
-    keep = {path for _, _, path in valid_candidates[:valid_quota]}
+    valid_bucket_cap = 2
+    keep: set[Path] = set()
+    valid_bucket_counts: dict[str, int] = {}
+    for exact_value, _, path in valid_candidates:
+        bucket = f'{round(exact_value, 4):.4f}' if math.isfinite(exact_value) else 'inf'
+        if valid_bucket_counts.get(bucket, 0) >= valid_bucket_cap:
+            continue
+        keep.add(path)
+        valid_bucket_counts[bucket] = valid_bucket_counts.get(bucket, 0) + 1
+        if len(keep) >= valid_quota:
+            break
+    if len(keep) < valid_quota:
+        for _, _, path in valid_candidates:
+            if path in keep:
+                continue
+            keep.add(path)
+            if len(keep) >= valid_quota:
+                break
+
     remaining = max(0, limit - len(keep))
     keep.update(path for _, _, path in invalid_candidates[:remaining])
     for stale in list(SCRATCH_DIR.glob('*.json')):
