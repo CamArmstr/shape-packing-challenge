@@ -170,7 +170,18 @@ def pick_restart_path(
     if not archive_paths:
         return BEST_FILE
     filtered = filter_restart_paths(archive_paths, score_slack)
-    if rng.random() < best_bias and BEST_FILE in filtered:
+    recent_bucket_slice = recent_score_buckets[-recent_window:]
+    recent_exact_bucket_counts: dict[str, int] = {}
+    for bucket in recent_bucket_slice:
+        exact_bucket = bucket.split('|', 1)[0]
+        recent_exact_bucket_counts[exact_bucket] = recent_exact_bucket_counts.get(exact_bucket, 0) + 1
+
+    best_exact_bucket = exact_score_bucket(BEST_FILE, score_bucket_decimals)
+    best_bucket_recent = recent_exact_bucket_counts.get(best_exact_bucket, 0)
+    effective_best_bias = best_bias
+    if recent_window > 0 and best_bucket_recent > 0:
+        effective_best_bias *= max(0.0, 1.0 - (best_bucket_recent / recent_window))
+    if rng.random() < effective_best_bias and BEST_FILE in filtered:
         return BEST_FILE
 
     grouped: dict[str, list[tuple[int, Path]]] = {}
@@ -179,12 +190,13 @@ def pick_restart_path(
         grouped.setdefault(bucket, []).append((rank, path))
 
     bucket_weights: list[tuple[float, str]] = []
-    recent_bucket_slice = recent_score_buckets[-recent_window:]
     for bucket, items in grouped.items():
         best_rank = min(rank for rank, _ in items)
         base = 1.0 / (1.0 + best_rank)
-        recent_penalty = 0.4 if bucket in recent_bucket_slice else 1.0
-        bucket_weights.append((base * recent_penalty, bucket))
+        exact_bucket = bucket.split('|', 1)[0]
+        recent_diversity_penalty = 0.4 if bucket in recent_bucket_slice else 1.0
+        exact_bucket_penalty = 1.0 / (1.0 + recent_exact_bucket_counts.get(exact_bucket, 0))
+        bucket_weights.append((base * recent_diversity_penalty * exact_bucket_penalty, bucket))
 
     total = sum(weight for weight, _ in bucket_weights)
     if total <= 0:
