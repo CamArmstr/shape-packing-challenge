@@ -103,6 +103,19 @@ def moved_shape_valid(idx: int, xs: np.ndarray, ys: np.ndarray, ts: np.ndarray) 
     return True
 
 
+def moved_cluster_valid(indices: list[int], xs: np.ndarray, ys: np.ndarray, ts: np.ndarray) -> bool:
+    moved = set(indices)
+    for i in indices:
+        candidate = Semicircle(float(xs[i]), float(ys[i]), float(ts[i]))
+        for j in range(N):
+            if j in moved:
+                continue
+            other = Semicircle(float(xs[j]), float(ys[j]), float(ts[j]))
+            if semicircles_overlap(candidate, other):
+                return False
+    return True
+
+
 def rounded_payload(state: WalkerState, *, center: bool) -> list[dict[str, float]]:
     cx, cy = (state.mec[0], state.mec[1]) if center else (0.0, 0.0)
     return [
@@ -261,7 +274,7 @@ def mode_defaults(mode: str) -> tuple[float, float, float, float, float]:
     return 5e-4, 0.08, 1e-4, 0.50, 0.995
 
 
-def propose(state: WalkerState, idx: int, sigma_xy: float, sigma_theta: float, rng: random.Random) -> Optional[WalkerState]:
+def propose_single(state: WalkerState, idx: int, sigma_xy: float, sigma_theta: float, rng: random.Random) -> Optional[WalkerState]:
     xs = state.xs.copy()
     ys = state.ys.copy()
     ts = state.ts.copy()
@@ -273,8 +286,48 @@ def propose(state: WalkerState, idx: int, sigma_xy: float, sigma_theta: float, r
     if not moved_shape_valid(idx, xs, ys, ts):
         return None
 
-    next_state = build_state(xs, ys, ts)
-    return next_state
+    return build_state(xs, ys, ts)
+
+
+def choose_cluster(state: WalkerState, rng: random.Random, min_size: int, max_size: int) -> list[int]:
+    center = rng.randrange(N)
+    k = rng.randint(min_size, max_size)
+    d = np.hypot(state.xs - state.xs[center], state.ys - state.ys[center])
+    order = np.argsort(d)
+    return [int(i) for i in order[:k]]
+
+
+def propose_cluster(state: WalkerState, sigma_xy: float, sigma_theta: float, rng: random.Random, min_size: int, max_size: int) -> Optional[WalkerState]:
+    indices = choose_cluster(state, rng, min_size, max_size)
+    xs = state.xs.copy()
+    ys = state.ys.copy()
+    ts = state.ts.copy()
+
+    cx = float(np.mean(xs[indices]))
+    cy = float(np.mean(ys[indices]))
+    dx = gaussian(rng, sigma_xy)
+    dy = gaussian(rng, sigma_xy)
+    dphi = gaussian(rng, sigma_theta * 0.35)
+    cos_phi = math.cos(dphi)
+    sin_phi = math.sin(dphi)
+
+    for i in indices:
+        rx = xs[i] - cx
+        ry = ys[i] - cy
+        xs[i] = cx + rx * cos_phi - ry * sin_phi + dx
+        ys[i] = cy + rx * sin_phi + ry * cos_phi + dy
+        ts[i] = (ts[i] + dphi) % TWO_PI
+
+    if not moved_cluster_valid(indices, xs, ys, ts):
+        return None
+
+    return build_state(xs, ys, ts)
+
+
+def propose(state: WalkerState, idx: int, sigma_xy: float, sigma_theta: float, rng: random.Random, *, cluster_prob: float, cluster_min: int, cluster_max: int) -> Optional[WalkerState]:
+    if rng.random() < cluster_prob:
+        return propose_cluster(state, sigma_xy, sigma_theta, rng, cluster_min, cluster_max)
+    return propose_single(state, idx, sigma_xy, sigma_theta, rng)
 
 
 def run(args: argparse.Namespace) -> None:
@@ -305,7 +358,17 @@ def run(args: argparse.Namespace) -> None:
         for _ in range(args.batch_size):
             stats.proposals += 1
             idx = rng.randrange(N)
-            candidate = propose(state, idx, step_xy, step_xy * sigma_theta_factor, rng)
+            cluster_prob = args.cluster_prob if args.mode == 'explorer' else 0.0
+            candidate = propose(
+                state,
+                idx,
+                step_xy,
+                step_xy * sigma_theta_factor,
+                rng,
+                cluster_prob=cluster_prob,
+                cluster_min=args.cluster_min,
+                cluster_max=args.cluster_max,
+            )
             if candidate is None:
                 continue
 
@@ -395,6 +458,9 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--restart-temp", type=float, default=0.002)
     parser.add_argument("--restart-step", type=float, default=0.05)
     parser.add_argument("--kick-scale", type=float, default=0.03)
+    parser.add_argument("--cluster-prob", type=float, default=0.25)
+    parser.add_argument("--cluster-min", type=int, default=2)
+    parser.add_argument("--cluster-max", type=int, default=4)
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--tag", default="mcmc_exact")
     return parser.parse_args()
