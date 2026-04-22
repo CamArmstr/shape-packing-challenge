@@ -856,6 +856,41 @@ def exact_save_gate(state: FastState, tag: str) -> tuple[bool, bool, Optional[fl
         return True, True, exact_score
 
 
+def random_valid_state(rng: random.Random, radius: float = 5.0, max_outer: int = 30) -> Optional[FastState]:
+    """Generate a random non-overlapping configuration in a circle of given radius.
+
+    Uses a sequential placement strategy: for each shape try many random positions
+    until a non-overlapping one is found. Uses a generous radius so placement is easy.
+    """
+    inner = radius - 1.05  # keep semicircle centers well inside
+    for _outer in range(max_outer):
+        xs = np.zeros(N)
+        ys = np.zeros(N)
+        ts = np.zeros(N)
+        failed = False
+        for i in range(N):
+            placed = False
+            for _try in range(2000):
+                # uniform disk via rejection or radius scaling
+                rx = rng.uniform(-inner, inner)
+                ry = rng.uniform(-inner, inner)
+                if rx * rx + ry * ry > inner * inner:
+                    continue
+                xs[i] = rx
+                ys[i] = ry
+                ts[i] = rng.uniform(0, TWO_PI)
+                clear = all(not quick_overlap(i, j, xs, ys, ts) for j in range(i))
+                if clear:
+                    placed = True
+                    break
+            if not placed:
+                failed = True
+                break
+        if not failed:
+            return FastState(xs, ys, ts, approx_score(xs, ys, ts))
+    return None
+
+
 def build_restart_state(seed: FastState, rng: random.Random, kick_scale: float, attempts: int) -> FastState:
     base = FastState(seed.xs.copy(), seed.ys.copy(), seed.ts.copy(), seed.approx_score)
     if kick_scale <= 0:
@@ -1025,6 +1060,21 @@ def run(args: argparse.Namespace) -> None:
 
         if args.mode == 'explorer' and batch % args.restart_every == 0:
             archive_paths = load_archive_paths(args.archive_limit, args.restart_pool_limit)
+            # Occasionally escape the current basin with a random valid configuration
+            if args.random_restart_prob > 0 and rng.random() < args.random_restart_prob:
+                rand_state = random_valid_state(rng)
+                if rand_state is not None:
+                    state = rand_state
+                    temp = args.restart_temp * 4.0
+                    step = args.restart_step * 3.0
+                    recent_restart_names.append('__random__')
+                    recent_restart_score_buckets.append('rand|rand')
+                    if len(recent_restart_names) > max(1, args.restart_recent_window):
+                        recent_restart_names = recent_restart_names[-args.restart_recent_window:]
+                    if len(recent_restart_score_buckets) > max(1, args.restart_recent_window):
+                        recent_restart_score_buckets = recent_restart_score_buckets[-args.restart_recent_window:]
+                    print(f'[{args.tag}] random_restart batch={batch} approx={state.approx_score:.6f}')
+                    continue
             seed_path = pick_restart_path(
                 archive_paths,
                 rng,
@@ -1115,6 +1165,7 @@ def parse_args() -> argparse.Namespace:
     p.add_argument('--gate-signature-decimals', type=int, default=4)
     p.add_argument('--scratch-retain-limit', type=int, default=64)
     p.add_argument('--restart-pool-limit', type=int, default=32)
+    p.add_argument('--random-restart-prob', type=float, default=0.0)
     p.add_argument('--seed', type=int, default=42)
     p.add_argument('--tag', default='fast_mcmc')
     return p.parse_args()
