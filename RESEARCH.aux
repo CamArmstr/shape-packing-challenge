@@ -26,6 +26,7 @@
 \newlabel{eq:phiCP}{{3}{2}{Phi-Function Energy}{equation.3.3}{}}
 \newlabel{eq:phiPC}{{4}{2}{Phi-Function Energy}{equation.3.4}{}}
 \newlabel{eq:phiPP}{{5}{2}{Phi-Function Energy}{equation.3.5}{}}
+\citation{shaw1998}
 \@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Shapely Greedy Hill-Climber}}{3}{algorithm.1}\protected@file@percent }
 \newlabel{alg:hc}{{1}{3}{Shapely Hill-Climber}{algorithm.1}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.4}GJK Distance}{3}{subsection.3.4}\protected@file@percent }
@@ -33,42 +34,59 @@
 \newlabel{sec:sa}{{3.5}{3}{Simulated Annealing (SA)}{subsection.3.5}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Shapely Hill-Climber}{3}{subsection.3.6}\protected@file@percent }
 \newlabel{sec:hc}{{3.6}{3}{Shapely Hill-Climber}{subsection.3.6}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Score progression over the project timeline.}}{4}{table.1}\protected@file@percent }
-\newlabel{tab:progression}{{1}{4}{Score progression over the project timeline}{table.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Schematic of the best-known packing ($R \approx 2.975$). Blue (inner): 4~semicircles forming a loose core cluster. Orange (outer): 11~semicircles distributed around the perimeter. Semicircles are drawn as filled arcs at the actual solution coordinates and orientations.}}{4}{figure.1}\protected@file@percent }
-\newlabel{fig:packing}{{1}{4}{Schematic of the best-known packing ($R \approx 2.975$). Blue (inner): 4~semicircles forming a loose core cluster. Orange (outer): 11~semicircles distributed around the perimeter. Semicircles are drawn as filled arcs at the actual solution coordinates and orientations}{figure.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Results}{4}{section.4}\protected@file@percent }
-\newlabel{sec:results}{{4}{4}{Results}{section.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Score Progression}{4}{subsection.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Best Solution Structure}{4}{subsection.4.2}\protected@file@percent }
+\citation{compusophy2026}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {2}{\ignorespaces LNS with GJK Polish}}{4}{algorithm.2}\protected@file@percent }
+\newlabel{alg:lns}{{2}{4}{Large Neighbourhood Search with GJK Polish (LNS)}{algorithm.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.7}Large Neighbourhood Search with GJK Polish (LNS)}{4}{subsection.3.7}\protected@file@percent }
+\newlabel{sec:lns}{{3.7}{4}{Large Neighbourhood Search with GJK Polish (LNS)}{subsection.3.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.8}Fast Approximate MCMC with Exact Validation Gate}{4}{subsection.3.8}\protected@file@percent }
+\newlabel{sec:fastmcmc}{{3.8}{4}{Fast Approximate MCMC with Exact Validation Gate}{subsection.3.8}{}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {3}{\ignorespaces Fast Approximate MCMC with Exact Gate}}{5}{algorithm.3}\protected@file@percent }
+\newlabel{alg:fastmcmc}{{3}{5}{Fast Approximate MCMC with Exact Validation Gate}{algorithm.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Results}{5}{section.4}\protected@file@percent }
+\newlabel{sec:results}{{4}{5}{Results}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Score Progression}{5}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Phase Analysis}{5}{subsection.4.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Score progression over the project timeline.}}{6}{table.1}\protected@file@percent }
+\newlabel{tab:progression}{{1}{6}{Score progression over the project timeline}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Radial structure of the best solution ($R = 2.948911$).}}{6}{table.2}\protected@file@percent }
+\newlabel{tab:topology}{{2}{6}{Radial structure of the best solution ($R = 2.948911$)}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Best Solution Structure}{6}{subsection.4.3}\protected@file@percent }
 \citation{grosso2010}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Comparison of seed topologies. All results after PBH refinement (50--100 rounds).}}{5}{table.2}\protected@file@percent }
-\newlabel{tab:topology}{{2}{5}{Comparison of seed topologies. All results after PBH refinement (50--100 rounds)}{table.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Topology Comparison}{5}{subsection.4.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5}Analysis}{5}{section.5}\protected@file@percent }
-\newlabel{sec:analysis}{{5}{5}{Analysis}{section.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Why Sophisticated Methods Failed}{5}{subsection.5.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{L-BFGS-B with phi-function energy.}{5}{section*.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Monotonic basin hopping (MBH).}{5}{section*.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Population basin hopping (PBH).}{5}{section*.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Formulation space search (FSS).}{5}{section*.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Orientation-flip search.}{5}{section*.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Random multistart.}{5}{section*.8}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}The Basin Discovery Problem}{6}{subsection.5.2}\protected@file@percent }
-\newlabel{sec:landscape}{{5.2}{6}{The Basin Discovery Problem}{subsection.5.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Oracle Cost Determines Method Choice}{6}{subsection.5.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Leaderboard Context}{6}{subsection.5.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusions}{6}{section.6}\protected@file@percent }
-\newlabel{sec:conclusions}{{6}{6}{Conclusions}{section.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Schematic of the best-known packing ($R = 2.948911$). Blue: 3 inner semicircles (core cluster). Orange: 11 mid-ring semicircles. Green: 1 boundary-defining semicircle (shape 12, $r = 2.774$). Drawn at solution coordinates and orientations.}}{7}{figure.1}\protected@file@percent }
+\newlabel{fig:packing}{{1}{7}{Schematic of the best-known packing ($R = 2.948911$). Blue: 3 inner semicircles (core cluster). Orange: 11 mid-ring semicircles. Green: 1 boundary-defining semicircle (shape 12, $r = 2.774$). Drawn at solution coordinates and orientations}{figure.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Comparison of seed topologies.}}{7}{table.3}\protected@file@percent }
+\newlabel{tab:topologies}{{3}{7}{Comparison of seed topologies}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Topology Comparison}{7}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Analysis}{7}{section.5}\protected@file@percent }
+\newlabel{sec:analysis}{{5}{7}{Analysis}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Why Sophisticated Methods Failed}{7}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{L-BFGS-B with phi-function energy.}{7}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Monotonic basin hopping (MBH).}{8}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Population basin hopping (PBH).}{8}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Formulation space search (FSS).}{8}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Orientation-flip search.}{8}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Random multistart.}{8}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}The Basin Discovery Problem}{8}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:landscape}{{5.2}{8}{The Basin Discovery Problem}{subsection.5.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Oracle Cost Determines Method Choice}{8}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:oraclecost}{{5.3}{8}{Oracle Cost Determines Method Choice}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Approximate vs.\ Exact Score Gap}{9}{subsection.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Leaderboard Context}{9}{subsection.5.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusions}{9}{section.6}\protected@file@percent }
+\newlabel{sec:conclusions}{{6}{9}{Conclusions}{section.6}{}}
+\citation{compusophy2026}
 \bibstyle{plainnat}
 \bibdata{refs}
 \bibcite{addis2008}{{1}{2008}{{Addis et~al.}}{{Addis, Locatelli, and Schoen}}}
 \bibcite{brass2005}{{2}{2005}{{Brass et~al.}}{{Brass, Moser, and Pach}}}
 \bibcite{chernov2012}{{3}{2012}{{Chernov et~al.}}{{Chernov, Stoyan, Romanova, and Pankratov}}}
-\bibcite{fejestoth1971}{{4}{1971}{{Fejes~T{\'o}th}}{{}}}
-\bibcite{grosso2010}{{5}{2010}{{Grosso et~al.}}{{Grosso, Locatelli, and Schoen}}}
-\bibcite{packomania2024}{{6}{2024}{{Specht}}{{}}}
-\@writefile{toc}{\contentsline {paragraph}{Open questions.}{7}{section*.9}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Reproducibility.}{7}{section*.10}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Acknowledgements.}{7}{section*.11}\protected@file@percent }
-\gdef \@abspage@last{7}
+\bibcite{compusophy2026}{{4}{2026}{{compusophy}}{{}}}
+\bibcite{fejestoth1971}{{5}{1971}{{Fejes~T{\'o}th}}{{}}}
+\bibcite{grosso2010}{{6}{2010}{{Grosso et~al.}}{{Grosso, Locatelli, and Schoen}}}
+\bibcite{shaw1998}{{7}{1998}{{Shaw}}{{}}}
+\bibcite{packomania2024}{{8}{2024}{{Specht}}{{}}}
+\@writefile{toc}{\contentsline {paragraph}{Open questions.}{10}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Reproducibility.}{10}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Acknowledgements.}{10}{section*.11}\protected@file@percent }
+\gdef \@abspage@last{10}

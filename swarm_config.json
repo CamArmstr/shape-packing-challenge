@@ -1,0 +1,55 @@
+{
+  "workers": [
+    {
+      "tag": "explorer_1",
+      "script": "mcmc_exact.py",
+      "args": ["--mode", "explorer", "--batches", "0", "--batch-size", "200", "--seed", "101", "--tag", "explorer_1"]
+    },
+    {
+      "tag": "explorer_2",
+      "script": "mcmc_exact.py",
+      "args": ["--mode", "explorer", "--batches", "0", "--batch-size", "200", "--seed", "202", "--tag", "explorer_2"]
+    },
+    {
+      "tag": "polish_fine",
+      "script": "mcmc_exact.py",
+      "args": [
+        "--mode", "polisher", "--batches", "0", "--batch-size", "200",
+        "--step", "0.0001", "--max-step", "0.0003", "--min-step", "0.00003",
+        "--score-slack", "0.00005", "--rescue-prob", "0.02",
+        "--mec-bias-prob", "0.4", "--mec-top-k", "5",
+        "--polisher-cluster-prob", "0.15", "--cluster-min", "2", "--cluster-max", "2",
+        "--seed", "401", "--tag", "polish_fine"
+      ]
+    },
+    {
+      "tag": "polish_micro",
+      "script": "mcmc_exact.py",
+      "args": [
+        "--mode", "polisher", "--batches", "0", "--batch-size", "200",
+        "--step", "0.00003", "--max-step", "0.0001", "--min-step", "0.000005",
+        "--score-slack", "0.00001", "--rescue-prob", "0.01",
+        "--mec-bias-prob", "0.5", "--mec-top-k", "4",
+        "--polisher-cluster-prob", "0.1", "--cluster-min", "2", "--cluster-max", "2",
+        "--seed", "501", "--tag", "polish_micro"
+      ]
+    },
+    {
+      "tag": "polish_nano",
+      "script": "mcmc_exact.py",
+      "args": [
+        "--mode", "polisher", "--batches", "0", "--batch-size", "200",
+        "--step", "0.00001", "--max-step", "0.00003", "--min-step", "0.000001",
+        "--score-slack", "0.000005", "--rescue-prob", "0.005",
+        "--mec-bias-prob", "0.6", "--mec-top-k", "3",
+        "--polisher-cluster-prob", "0.1", "--cluster-min", "2", "--cluster-max", "2",
+        "--seed", "601", "--tag", "polish_nano"
+      ]
+    },
+    {
+      "tag": "coordinated",
+      "script": "coordinated_polish.py",
+      "args": ["--workers", "2"]
+    }
+  ]
+}

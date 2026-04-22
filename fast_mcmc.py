@@ -496,7 +496,7 @@ def choose_cluster(xs: np.ndarray, ys: np.ndarray, rng: random.Random, min_size:
     return [int(i) for i in order[:k]]
 
 
-def propose(state: FastState, rng: random.Random, step_xy: float, step_theta: float, cluster_prob: float, cluster_min: int, cluster_max: int, swap_prob: float = 0.08) -> tuple[Optional[FastState], int]:
+def propose(state: FastState, rng: random.Random, step_xy: float, step_theta: float, cluster_prob: float, cluster_min: int, cluster_max: int, swap_prob: float = 0.08, exact_mode: bool = False) -> tuple[Optional[FastState], int]:
     xs = state.xs.copy()
     ys = state.ys.copy()
     ts = state.ts.copy()
@@ -536,7 +536,15 @@ def propose(state: FastState, rng: random.Random, step_xy: float, step_theta: fl
 
     if not moved_valid(indices, xs, ys, ts):
         return None, 0
-    return FastState(xs, ys, ts, approx_score(xs, ys, ts)), 1
+    candidate = FastState(xs, ys, ts, 0.0)
+    if exact_mode:
+        score = exact_score_only(candidate)
+        if score == float('inf'):
+            return None, 0
+        candidate.approx_score = score
+    else:
+        candidate.approx_score = approx_score(xs, ys, ts)
+    return candidate, 1
 
 
 def rounded_state_payload(state: FastState) -> list[dict[str, float]]:
@@ -555,6 +563,16 @@ def state_signature(state: FastState, decimals: int) -> str:
             f'{round(float(state.ts[i] % TWO_PI), decimals):.{decimals}f}'
         )
     return '|'.join(parts)
+
+
+def exact_score_only(state: FastState) -> float:
+    """Return exact MEC radius for state, or inf if invalid."""
+    rounded = rounded_state_payload(state)
+    sol = [Semicircle(d["x"], d["y"], d["theta"]) for d in rounded]
+    result = validate_and_score(sol)
+    if not result.valid or result.score is None:
+        return float('inf')
+    return result.score
 
 
 def exact_result_for_state(state: FastState) -> tuple[bool, Optional[float], Optional[list[dict[str, float]]]]:
@@ -918,6 +936,16 @@ def run(args: argparse.Namespace) -> None:
     rng = random.Random(args.seed)
     archive_paths = load_archive_paths(args.archive_limit, args.restart_pool_limit)
     state = load_json_state(Path(args.seed_file))
+
+    # In exact mode, re-score the seed with exact validation
+    if args.exact_mode:
+        exact_seed = exact_score_only(state)
+        if exact_seed == float('inf'):
+            print(f'[{args.tag}] ERROR: seed file fails exact validation, cannot use exact mode')
+            return
+        state.approx_score = exact_seed
+        print(f'[{args.tag}] exact_mode=on seed_exact={exact_seed:.6f}')
+
     best_seen = FastState(state.xs.copy(), state.ys.copy(), state.ts.copy(), state.approx_score)
     best_exact_anchor = FastState(state.xs.copy(), state.ys.copy(), state.ts.copy(), state.approx_score)
     temp = args.temp
@@ -946,7 +974,7 @@ def run(args: argparse.Namespace) -> None:
         batch_valid = batch_accept = 0
         for _ in range(args.batch_size):
             total += 1
-            candidate, ok = propose(state, rng, step, step * math.pi, cluster_prob, args.cluster_min, args.cluster_max)
+            candidate, ok = propose(state, rng, step, step * math.pi, cluster_prob, args.cluster_min, args.cluster_max, exact_mode=args.exact_mode)
             batch_valid += ok
             valid += ok
             if candidate is None:
@@ -958,45 +986,62 @@ def run(args: argparse.Namespace) -> None:
                 accepted += 1
                 if state.approx_score < best_seen.approx_score - 1e-12:
                     best_seen = FastState(state.xs.copy(), state.ys.copy(), state.ts.copy(), state.approx_score)
-                    saved, exact_valid, exact_score = exact_save_gate(best_seen, args.tag)
-                    save_best_approx(best_seen, args.tag, batch, exact_score, exact_valid)
-                    if not saved:
-                        scratch_path = retain_scratch_candidate(
-                            best_seen,
-                            args.tag,
-                            batch,
-                            reason='improvement',
-                            valid=exact_valid,
-                            exact_score=exact_score,
-                            limit=args.scratch_retain_limit,
-                        )
-                        if exact_valid and exact_score is not None:
-                            _, _, centered = exact_result_for_state(best_seen)
-                            if centered is not None:
-                                retain_restart_pool_candidate(centered, exact_score, args.tag, batch, args.restart_pool_limit)
-                                best_exact_anchor = FastState(
-                                    best_seen.xs.copy(),
-                                    best_seen.ys.copy(),
-                                    best_seen.ts.copy(),
-                                    best_seen.approx_score,
-                                )
-                    else:
-                        scratch_path = None
+                    if args.exact_mode:
+                        # In exact mode, the score IS the exact score — save directly
+                        exact_score = best_seen.approx_score
+                        _, _, centered = exact_result_for_state(best_seen)
+                        saved = False
+                        if centered is not None:
+                            saved = try_save_best(centered, exact_score, args.tag, batch)
+                            retain_restart_pool_candidate(centered, exact_score, args.tag, batch, args.restart_pool_limit)
                         best_exact_anchor = FastState(
-                            best_seen.xs.copy(),
-                            best_seen.ys.copy(),
-                            best_seen.ts.copy(),
-                            best_seen.approx_score,
+                            best_seen.xs.copy(), best_seen.ys.copy(), best_seen.ts.copy(), best_seen.approx_score,
                         )
-                    exact_text = f'{exact_score:.6f}' if exact_score is not None else 'invalid'
-                    scratch_text = f' scratch={scratch_path.name}' if scratch_path is not None else ''
-                    print(
-                        f'[{args.tag}] improvement batch={batch} approx={best_seen.approx_score:.6f} '
-                        f'anchor={best_exact_anchor.approx_score:.6f} exact={exact_text} '
-                        f'exact_save={"yes" if saved else "no"}{scratch_text}'
-                    )
+                        print(
+                            f'[{args.tag}] exact_improvement batch={batch} exact={exact_score:.6f} '
+                            f'saved={"yes" if saved else "no"}'
+                        )
+                    else:
+                        saved, exact_valid, exact_score = exact_save_gate(best_seen, args.tag)
+                        save_best_approx(best_seen, args.tag, batch, exact_score, exact_valid)
+                        if not saved:
+                            scratch_path = retain_scratch_candidate(
+                                best_seen,
+                                args.tag,
+                                batch,
+                                reason='improvement',
+                                valid=exact_valid,
+                                exact_score=exact_score,
+                                limit=args.scratch_retain_limit,
+                            )
+                            if exact_valid and exact_score is not None:
+                                _, _, centered = exact_result_for_state(best_seen)
+                                if centered is not None:
+                                    retain_restart_pool_candidate(centered, exact_score, args.tag, batch, args.restart_pool_limit)
+                                    best_exact_anchor = FastState(
+                                        best_seen.xs.copy(),
+                                        best_seen.ys.copy(),
+                                        best_seen.ts.copy(),
+                                        best_seen.approx_score,
+                                    )
+                        else:
+                            scratch_path = None
+                            best_exact_anchor = FastState(
+                                best_seen.xs.copy(),
+                                best_seen.ys.copy(),
+                                best_seen.ts.copy(),
+                                best_seen.approx_score,
+                            )
+                        exact_text = f'{exact_score:.6f}' if exact_score is not None else 'invalid'
+                        scratch_text = f' scratch={scratch_path.name}' if scratch_path is not None else ''
+                        print(
+                            f'[{args.tag}] improvement batch={batch} approx={best_seen.approx_score:.6f} '
+                            f'anchor={best_exact_anchor.approx_score:.6f} exact={exact_text} '
+                            f'exact_save={"yes" if saved else "no"}{scratch_text}'
+                        )
                 elif (
-                    args.gate_window > 0.0
+                    not args.exact_mode
+                    and args.gate_window > 0.0
                     and state.approx_score <= best_exact_anchor.approx_score + args.gate_window
                     and batch - last_gate_batch >= args.gate_log_interval
                 ):
@@ -1114,6 +1159,13 @@ def run(args: argparse.Namespace) -> None:
             if len(recent_restart_score_buckets) > max(1, args.restart_recent_window):
                 recent_restart_score_buckets = recent_restart_score_buckets[-args.restart_recent_window:]
             state = build_restart_state(seed, rng, args.kick_scale, args.restart_kick_attempts)
+            if args.exact_mode:
+                exact_restart = exact_score_only(state)
+                if exact_restart == float('inf'):
+                    # Restart state invalid under exact — fall back to seed directly
+                    state = FastState(seed.xs.copy(), seed.ys.copy(), seed.ts.copy(), exact_score_only(seed))
+                else:
+                    state.approx_score = exact_restart
             temp = args.restart_temp
             step = args.restart_step
             print(
@@ -1166,6 +1218,7 @@ def parse_args() -> argparse.Namespace:
     p.add_argument('--scratch-retain-limit', type=int, default=64)
     p.add_argument('--restart-pool-limit', type=int, default=32)
     p.add_argument('--random-restart-prob', type=float, default=0.0)
+    p.add_argument('--exact-mode', action='store_true', help='Use exact validation for every proposal (slower but no false positives)')
     p.add_argument('--seed', type=int, default=42)
     p.add_argument('--tag', default='fast_mcmc')
     return p.parse_args()

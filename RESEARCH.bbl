@@ -1,4 +1,4 @@
-\begin{thebibliography}{6}
+\begin{thebibliography}{8}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -27,6 +27,14 @@ Nikolai Chernov, Yuriy Stoyan, Tatiana Romanova, and Alexander Pankratov.
   346358, 2012.
 \newblock \doi{10.1155/2012/346358}.
 
+\bibitem[compusophy(2026)]{compusophy2026}
+compusophy.
+\newblock pack-semicircles: Browser-based parallel tempering {MCMC} for
+  semicircle packing.
+\newblock \url{https://github.com/compusophy/pack-semicircles}, 2026.
+\newblock Client-side React/TypeScript optimizer using 12 explorers + 4 greedy
+  polishers; best $R = 2.94960$.
+
 \bibitem[Fejes~T{\'o}th(1971)]{fejestoth1971}
 L{\'a}szl{\'o} Fejes~T{\'o}th.
 \newblock Packing and covering.
@@ -40,6 +48,14 @@ Andrea Grosso, Marco Locatelli, and Fabio Schoen.
 \newblock \emph{Journal of Global Optimization}, 47\penalty0 (1):\penalty0
   63--86, 2010.
 \newblock \doi{10.1007/s10898-009-9458-3}.
+
+\bibitem[Shaw(1998)]{shaw1998}
+Paul Shaw.
+\newblock Using constraint programming and local search methods to solve
+  vehicle routing problems.
+\newblock In \emph{Principles and Practice of Constraint Programming (CP-98)},
+  pages 417--431. Springer, 1998.
+\newblock Original large neighbourhood search formulation.
 
 \bibitem[Specht(2024)]{packomania2024}
 Eckard Specht.

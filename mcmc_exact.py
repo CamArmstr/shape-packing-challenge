@@ -74,9 +74,9 @@ def load_solution(path: Path) -> WalkerState:
     with open(path) as f:
         raw = json.load(f)
 
-    xs = np.array([round(float(s["x"]), 6) for s in raw], dtype=float)
-    ys = np.array([round(float(s["y"]), 6) for s in raw], dtype=float)
-    ts = np.array([round(float(s["theta"]), 6) for s in raw], dtype=float)
+    xs = np.array([round(float(s["x"]), 8) for s in raw], dtype=float)
+    ys = np.array([round(float(s["y"]), 8) for s in raw], dtype=float)
+    ts = np.array([round(float(s["theta"]), 8) for s in raw], dtype=float)
 
     state = build_state(xs, ys, ts)
     if state is None:
@@ -151,18 +151,18 @@ def rounded_payload(state: WalkerState, *, center: bool) -> list[dict[str, float
     cx, cy = (state.mec[0], state.mec[1]) if center else (0.0, 0.0)
     return [
         {
-            "x": round(float(state.xs[i] - cx), 6),
-            "y": round(float(state.ys[i] - cy), 6),
-            "theta": round(float(state.ts[i] % TWO_PI), 6),
+            "x": round(float(state.xs[i] - cx), 8),
+            "y": round(float(state.ys[i] - cy), 8),
+            "theta": round(float(state.ts[i] % TWO_PI), 8),
         }
         for i in range(N)
     ]
 
 
 def payload_to_state(payload: list[dict[str, float]]) -> Optional[WalkerState]:
-    xs = np.array([round(float(s["x"]), 6) for s in payload], dtype=float)
-    ys = np.array([round(float(s["y"]), 6) for s in payload], dtype=float)
-    ts = np.array([round(float(s["theta"]), 6) for s in payload], dtype=float)
+    xs = np.array([round(float(s["x"]), 8) for s in payload], dtype=float)
+    ys = np.array([round(float(s["y"]), 8) for s in payload], dtype=float)
+    ts = np.array([round(float(s["theta"]), 8) for s in payload], dtype=float)
     return build_state(xs, ys, ts)
 
 
@@ -305,6 +305,61 @@ def mode_defaults(mode: str) -> tuple[float, float, float, float, float]:
     return 5e-4, 0.08, 1e-4, 0.50, 0.995
 
 
+def find_mec_boundary_pieces(state: WalkerState, top_k: int = 5) -> list[int]:
+    """Identify pieces whose farthest boundary point is closest to the MEC radius."""
+    cx, cy, r = state.mec
+    dists = []
+    for i in range(N):
+        sc = Semicircle(float(state.xs[i]), float(state.ys[i]), float(state.ts[i]))
+        fx, fy = farthest_boundary_point_from(sc, cx, cy)
+        d = math.hypot(fx - cx, fy - cy)
+        dists.append((r - d, i))  # smaller gap = closer to boundary
+    dists.sort()
+    return [idx for _, idx in dists[:top_k]]
+
+
+def propose_mec_biased(
+    state: WalkerState,
+    sigma_xy: float,
+    sigma_theta: float,
+    rng: random.Random,
+    mec_pieces: list[int],
+    *,
+    score_slack: float,
+    rescue_prob: float,
+) -> Optional[WalkerState]:
+    """Propose a move biased toward MEC-boundary pieces, nudging them inward."""
+    idx = rng.choice(mec_pieces)
+    xs = state.xs.copy()
+    ys = state.ys.copy()
+    ts = state.ts.copy()
+
+    cx, cy, _ = state.mec
+    # Bias displacement toward MEC center
+    dx_to_center = cx - xs[idx]
+    dy_to_center = cy - ys[idx]
+    dist = math.hypot(dx_to_center, dy_to_center)
+    if dist > 1e-12:
+        dx_to_center /= dist
+        dy_to_center /= dist
+
+    # 70% inward bias + 30% random
+    inward_weight = 0.7
+    rand_dx = gaussian(rng, sigma_xy)
+    rand_dy = gaussian(rng, sigma_xy)
+    inward_mag = abs(gaussian(rng, sigma_xy))
+    xs[idx] += inward_weight * inward_mag * dx_to_center + (1 - inward_weight) * rand_dx
+    ys[idx] += inward_weight * inward_mag * dy_to_center + (1 - inward_weight) * rand_dy
+    ts[idx] = (ts[idx] + gaussian(rng, sigma_theta)) % TWO_PI
+
+    if not moved_shape_valid(idx, xs, ys, ts):
+        return None
+    if not cheap_prefilter(state, xs, ys, ts, [idx], score_slack=score_slack, rescue_prob=rescue_prob, rng=rng):
+        return None
+
+    return build_state(xs, ys, ts)
+
+
 def propose_single(
     state: WalkerState,
     idx: int,
@@ -390,8 +445,21 @@ def propose(
     cluster_max: int,
     score_slack: float,
     rescue_prob: float,
+    mec_bias_prob: float = 0.0,
+    mec_pieces: Optional[list[int]] = None,
 ) -> Optional[WalkerState]:
-    if rng.random() < cluster_prob:
+    r = rng.random()
+    if mec_pieces and r < mec_bias_prob:
+        return propose_mec_biased(
+            state,
+            sigma_xy,
+            sigma_theta,
+            rng,
+            mec_pieces,
+            score_slack=score_slack,
+            rescue_prob=rescue_prob,
+        )
+    if r < mec_bias_prob + cluster_prob:
         return propose_cluster(
             state,
             sigma_xy,
@@ -418,6 +486,10 @@ def run(args: argparse.Namespace) -> None:
     temp, step_xy, min_step, max_step, cooling = mode_defaults(args.mode)
     temp = args.temp if args.temp is not None else temp
     step_xy = args.step if args.step is not None else step_xy
+    if args.min_step is not None:
+        min_step = args.min_step
+    if args.max_step is not None:
+        max_step = args.max_step
     sigma_theta_factor = args.theta_factor
 
     state = load_solution(Path(args.seed_file))
@@ -427,13 +499,21 @@ def run(args: argparse.Namespace) -> None:
     add_to_archive(archive, state, 'seed', args.archive_size)
 
     print(f"[{args.tag}] seed score: {state.score:.6f}")
-    print(f"[{args.tag}] mode={args.mode} temp={temp:.8f} step={step_xy:.6f} target_accept={args.target_accept:.3f} archive={len(archive)}")
+    print(f"[{args.tag}] mode={args.mode} temp={temp:.8f} step={step_xy:.6f} step_range=[{min_step},{max_step}] target_accept={args.target_accept:.3f} archive={len(archive)}")
+    if args.mec_bias_prob > 0:
+        print(f"[{args.tag}] MEC-biased proposals: {args.mec_bias_prob:.0%}")
 
     started = time.time()
     last_report = started
     last_improve_batch = 0
+    mec_pieces: list[int] = []
+    if args.mec_bias_prob > 0:
+        mec_pieces = find_mec_boundary_pieces(state, top_k=args.mec_top_k)
 
-    for batch_idx in range(1, args.batches + 1):
+    batch_idx = 0
+    infinite = args.batches == 0
+    while infinite or batch_idx < args.batches:
+        batch_idx += 1
         stats = BatchStats()
         global_best = maybe_reload_best(global_best)
         add_to_archive(archive, global_best, 'global_best', args.archive_size)
@@ -441,7 +521,7 @@ def run(args: argparse.Namespace) -> None:
         for _ in range(args.batch_size):
             stats.proposals += 1
             idx = rng.randrange(N)
-            cluster_prob = args.cluster_prob if args.mode == 'explorer' else 0.0
+            cluster_prob = args.cluster_prob if args.mode == 'explorer' else args.polisher_cluster_prob
             candidate = propose(
                 state,
                 idx,
@@ -453,6 +533,8 @@ def run(args: argparse.Namespace) -> None:
                 cluster_max=args.cluster_max,
                 score_slack=args.score_slack,
                 rescue_prob=args.rescue_prob,
+                mec_bias_prob=args.mec_bias_prob,
+                mec_pieces=mec_pieces,
             )
             if candidate is None:
                 continue
@@ -475,6 +557,9 @@ def run(args: argparse.Namespace) -> None:
                 if was_global:
                     global_best = maybe_reload_best(global_best)
                     add_to_archive(archive, global_best, 'global_best', args.archive_size)
+                # Recompute MEC pieces on improvement
+                if args.mec_bias_prob > 0:
+                    mec_pieces = find_mec_boundary_pieces(best_local, top_k=args.mec_top_k)
                 print(
                     f"[{args.tag}] improvement batch={batch_idx} score={best_local.score:.6f} "
                     f"global={'yes' if was_global else 'no'} archive={len(archive)}"
@@ -506,17 +591,21 @@ def run(args: argparse.Namespace) -> None:
                 temp = max(min(temp, args.min_temp * 10), args.min_temp)
                 step_xy = min(max(args.restart_step * 0.25, min_step), max_step)
             last_improve_batch = batch_idx
+            # Recompute MEC pieces on restart
+            if args.mec_bias_prob > 0:
+                mec_pieces = find_mec_boundary_pieces(state, top_k=args.mec_top_k)
             print(
                 f"[{args.tag}] restart batch={batch_idx} from={seed_entry.source} seed_score={seed_entry.state.score:.6f} "
                 f"new_score={state.score:.6f} archive={len(archive)}"
             )
 
         now = time.time()
+        batch_label = f"{batch_idx}" if infinite else f"{batch_idx}/{args.batches}"
         if batch_idx == 1 or batch_idx % args.report_every == 0 or (now - last_report) > 30:
             elapsed = now - started
             evals = batch_idx * args.batch_size
             print(
-                f"[{args.tag}] batch={batch_idx}/{args.batches} best={best_local.score:.6f} current={state.score:.6f} "
+                f"[{args.tag}] batch={batch_label} best={best_local.score:.6f} current={state.score:.6f} "
                 f"accept={acceptance:.3f} valid={stats.valid_proposals}/{stats.proposals} "
                 f"step={step_xy:.6f} temp={temp:.8f} evals={evals} elapsed={elapsed:.1f}s archive={len(archive)}"
             )
@@ -532,6 +621,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--batches", type=int, default=200)
     parser.add_argument("--batch-size", type=int, default=200)
     parser.add_argument("--step", type=float, default=None)
+    parser.add_argument("--min-step", type=float, default=None, help="Override min step size (default from mode)")
+    parser.add_argument("--max-step", type=float, default=None, help="Override max step size (default from mode)")
     parser.add_argument("--temp", type=float, default=None)
     parser.add_argument("--min-temp", type=float, default=1e-7)
     parser.add_argument("--theta-factor", type=float, default=math.pi)
@@ -546,8 +637,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--cluster-prob", type=float, default=0.25)
     parser.add_argument("--cluster-min", type=int, default=2)
     parser.add_argument("--cluster-max", type=int, default=4)
+    parser.add_argument("--polisher-cluster-prob", type=float, default=0.0, help="Cluster move prob in polisher mode")
     parser.add_argument("--score-slack", type=float, default=0.01)
     parser.add_argument("--rescue-prob", type=float, default=0.05)
+    parser.add_argument("--mec-bias-prob", type=float, default=0.0, help="Prob of MEC-boundary-biased proposal")
+    parser.add_argument("--mec-top-k", type=int, default=5, help="Number of MEC-boundary pieces to target")
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--tag", default="mcmc_exact")
     return parser.parse_args()

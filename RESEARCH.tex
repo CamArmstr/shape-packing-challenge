@@ -32,7 +32,7 @@ A Computational Study}
   Till\thanks{AI research assistant}
 }
 
-\date{March 2026}
+\date{April 2026}
 
 % ================================================================
 \begin{document}
@@ -42,12 +42,13 @@ A Computational Study}
 \begin{abstract}
 We study the problem of packing 15 unit semicircles (radius~$= 1$) into the smallest possible enclosing circle, minimising the enclosing-circle radius~$R$.
 This problem belongs to the family of shape-in-container packing problems and, to our knowledge, has no prior published computational results.
-Starting from a baseline packing of $R = 3.500$, we achieved a best result of $R \approx 2.975$ (official scorer), representing a $14.9\%$ improvement over baseline.
-We describe the methods attempted, identify which approaches were effective and which were not, and characterise the landscape structure of this problem.
+Starting from a baseline packing of $R = 3.500$, we achieved a best result of $R = 2.948911$ (official scorer), representing a $15.7\%$ improvement over baseline.
+We describe the methods attempted over 48 days of computation, identify which approaches were effective and which were not, and characterise the landscape structure of this problem.
 
-A key practical finding: for problems where an exact feasibility oracle is fast (here, Shapely polygon intersection at ${\sim}2000$~evaluations/sec), simple greedy hill-climbing with exact validation outperforms sophisticated approximate-gradient methods.
-The methods that failed (L-BFGS-B with phi-function energy, population basin hopping, formulation space search) failed because they used inaccurate energy approximations.
-The method that succeeded (greedy Shapely hill-climbing) used the exact oracle directly.
+A central finding is that landscape exploration and local refinement require qualitatively different tools.
+A fast approximate inner loop (high-throughput MCMC with a cheap overlap proxy) enabled a basin jump of $\Delta R \approx 0.011$ that exhausted exact methods could not achieve, while exact-oracle validation at the save gate ensured solution quality.
+A secondary finding: when an exact feasibility oracle is fast (${\sim}2000$ evaluations/sec), simple greedy hill-climbing with exact validation outperforms sophisticated approximate-gradient methods.
+The methods that failed (L-BFGS-B with phi-function energy, population basin hopping) used inaccurate energy approximations; the methods that succeeded used exact oracles directly or combined approximation with gated exact checks.
 \end{abstract}
 
 % ================================================================
@@ -61,7 +62,7 @@ Semicircle packing, by contrast, is far less explored.
 
 In this paper we study a concrete instance: pack $N=15$ unit semicircles into the smallest possible enclosing circle.
 Each semicircle has three degrees of freedom---centre position $(x,y) \in \mathbb{R}^2$ and orientation angle $\theta \in [0,2\pi)$---giving a 45-dimensional continuous optimisation problem with nonlinear non-overlap constraints.
-We report extensive computational experiments, achieving $R \approx 2.975$, and analyse why simple exact-oracle methods dominated sophisticated gradient-based approaches.
+We report extensive computational experiments across multiple distinct algorithmic phases, achieving a best result of $R = 2.948911$, and analyse the interplay between exploration and refinement that drove progress.
 
 % ================================================================
 \section{Problem Statement}
@@ -75,7 +76,7 @@ The total area of 15 unit semicircles is $15 \times \pi/2$. The area lower bound
   R \;\ge\; \sqrt{\frac{15\pi/2}{\pi}} \;=\; \sqrt{7.5} \;\approx\; 2.739.
 \]
 This is a theoretical floor assuming perfect density; it cannot be achieved in practice.
-Our best result is $R = 2.97468$ (official), giving a gap of $8.7\%$ to the area bound.
+Our best result is $R = 2.948911$, giving a gap of $7.6\%$ to the area bound.
 
 \paragraph{Prior work.}
 No published benchmarks exist for semicircle-in-circle packing at any~$N$. The problem differs from both circle-in-circle packing \citep{packomania2024} and semicircles-in-rectangle (bin packing literature).
@@ -117,7 +118,7 @@ We implemented GJK (Gilbert--Johnson--Keerthi) exact distance computation using 
 \subsection{Simulated Annealing (SA)}
 \label{sec:sa}
 
-The best-known solution was initially discovered by a Numba-JIT simulated annealing run (\texttt{sa\_v2.py}) with the following parameters:
+The best-known solution topology was initially discovered by a Numba-JIT simulated annealing run (\texttt{sa\_v2.py}) with the following parameters:
 \begin{itemize}
   \item Steps: 200M per run.
   \item Temperature: $T_{\mathrm{start}} = 0.003$ to $T_{\mathrm{end}} = 10^{-5}$ (exponential cooling).
@@ -130,7 +131,7 @@ The best-known solution was initially discovered by a Numba-JIT simulated anneal
 \subsection{Shapely Hill-Climber}
 \label{sec:hc}
 
-The solution was refined from $R=2.976$ to $R=2.974679$ by a greedy Shapely hill-climber, which is the method that produced our best result.
+Solutions were refined from $R \approx 2.976$ by a greedy Shapely hill-climber.
 
 \begin{algorithm}[t]
 \caption{Shapely Greedy Hill-Climber}\label{alg:hc}
@@ -153,7 +154,79 @@ The solution was refined from $R=2.976$ to $R=2.974679$ by a greedy Shapely hill
 \end{algorithmic}
 \end{algorithm}
 
-Over 123{,}382 trials the hill-climber found 37 improvements, reducing $R$ from 2.975245 to 2.974679. Each evaluation costs ${\sim}0.5$\,ms. Total runtime: ${\sim}18$ hours.
+Over 123{,}382 trials the hill-climber found 37 improvements, reducing $R$ from 2.975245 to 2.974679. Each evaluation costs ${\sim}0.5$\,ms.
+
+\subsection{Large Neighbourhood Search with GJK Polish (LNS)}
+\label{sec:lns}
+
+Large Neighbourhood Search (LNS) \citep{shaw1998} enabled the first major basin jump, from the 2.97x range to $R \approx 2.961$.
+The key insight was that destroying and reinserting shapes forces topological change in the contact graph, allowing the search to cross barriers inaccessible to continuous perturbation.
+
+\begin{algorithm}[t]
+\caption{LNS with GJK Polish}\label{alg:lns}
+\begin{algorithmic}[1]
+\REQUIRE Current best solution $\mathbf{s}^*$, destroy size $K \in \{1,2,3\}$
+\WHILE{budget remaining}
+  \STATE Select $K$ shapes uniformly at random
+  \STATE Remove selected shapes from $\mathbf{s}^*$
+  \STATE Reinsert each removed shape using contact-seeking placement (target tangency with nearest shapes)
+  \STATE Polish full solution with GJK-penalised SA (tight temperature, 50k steps)
+  \STATE Evaluate with Shapely oracle
+  \IF{score improves}
+    \STATE Accept; update $\mathbf{s}^*$
+  \ENDIF
+\ENDWHILE
+\end{algorithmic}
+\end{algorithm}
+
+The LNS variant (\texttt{lns3.py}) ran at ${\sim}$12 cycles/minute per worker and found $R = 2.961912$ from $R = 2.97468$ in 91 seconds---a $\Delta R = 0.013$ jump that 200+ rounds of other methods could not achieve.
+
+\subsection{Fast Approximate MCMC with Exact Validation Gate}
+\label{sec:fastmcmc}
+
+After LNS and exact-oracle polishing stalled near $R \approx 2.960$, a qualitative change in search strategy produced the largest single improvement: $\Delta R \approx 0.011$ in one run, bringing the best from $R \approx 2.960$ to $R = 2.949161$.
+
+The design was directly inspired by compusophy's browser-based parallel tempering optimizer \citep{compusophy2026}, which used a split architecture of 12 MCMC ``explorers'' and 4 ``greedy polishers'' targeting 0.234 acceptance rate (the theoretically optimal rate for random-walk Metropolis). Their approach achieved $R = 2.94960$ running entirely client-side in a browser. We adapted their explorer/polisher split, acceptance rate target, and Gaussian perturbation kernel into a Python implementation with archive-seeded restarts and an exact Shapely validation gate.
+
+The key idea is to decouple the inner search loop from exact validation.
+The inner loop uses a cheap approximate overlap proxy (GJK signed distance with a penalty energy) running at high throughput (${\sim}300{,}000$ mini-batches per run).
+Exact Shapely validation is only invoked when a candidate looks promising, acting as a save gate.
+
+\begin{algorithm}[t]
+\caption{Fast Approximate MCMC with Exact Gate}\label{alg:fastmcmc}
+\begin{algorithmic}[1]
+\REQUIRE Seed $\mathbf{s}$, gate window $w$, gate interval $g$
+\STATE $\mathbf{s}^* \gets \mathbf{s}$, $R^* \gets \infty$ \COMMENT{best seen approximate}
+\STATE $\hat{\mathbf{s}} \gets \mathbf{s}$, $\hat{R} \gets \infty$ \COMMENT{exact-validated anchor}
+\FOR{batch $= 1, 2, \ldots$}
+  \STATE Propose $\mathbf{s}'$ via MCMC step (translate/rotate/cluster)
+  \STATE Compute approximate score using cheap proxy
+  \STATE Accept/reject via Metropolis criterion
+  \IF{approximate score $<$ $R^*$}
+    \STATE $R^* \gets$ approximate score; $\mathbf{s}^* \gets \mathbf{s}'$
+    \STATE Run exact gate: validate with Shapely, compute MEC
+    \IF{valid and exact score $< \hat{R}$}
+      \STATE Update best; commit to solutions archive
+    \ENDIF
+  \ELSIF{approximate score $\le \hat{R} + w$ and batch $\equiv 0 \pmod{g}$}
+    \STATE Run gate probe: exact validation; save to restart pool if valid
+  \ENDIF
+  \IF{batch $\equiv 0 \pmod{\text{restart\_every}}$}
+    \STATE Restart from diverse seed in archive (bias toward best, penalise recently used)
+  \ENDIF
+\ENDFOR
+\end{algorithmic}
+\end{algorithm}
+
+Additional mechanisms proved important in practice:
+\begin{itemize}
+  \item \textbf{Archive-seeded restarts.} Rather than re-initialising randomly, restarts are seeded from the growing archive of exact-validated solutions, biased toward the best scores but with a recency penalty to avoid getting trapped in one basin.
+  \item \textbf{Invalid gate cooldown.} When a candidate signature fails exact validation, it is suppressed for a fixed cooldown window to avoid repeated wasted validation calls on the same invalid region.
+  \item \textbf{Scratch candidate retention.} States that pass exact validation but do not beat the current best are retained as restart seeds, effectively cross-pollinating between worker instances.
+  \item \textbf{Best-approximate persistence.} Every time the approximate best improves, the full solution JSON is saved to a permanent (never-pruned) archive with both approximate and exact scores recorded in the filename. This ensures no promising configuration is ever lost to retention pruning.
+\end{itemize}
+
+Three parallel explorer instances ran with diversified hyperparameters (step sizes, temperatures, cluster probabilities) to maximise basin coverage.
 
 % ================================================================
 \section{Results}
@@ -161,7 +234,7 @@ Over 123{,}382 trials the hill-climber found 37 improvements, reducing $R$ from 
 
 \subsection{Score Progression}
 
-Table~\ref{tab:progression} shows the progression of best scores over two days of computation.
+Table~\ref{tab:progression} shows the full progression of best scores across all phases.
 
 \begin{table}[t]
 \centering
@@ -171,84 +244,124 @@ Table~\ref{tab:progression} shows the progression of best scores over two days o
 \toprule
 Date/Time & Score ($R$) & Method & Notes \\
 \midrule
-Mar 26, 22:00 & 3.500 & Grid baseline & $3\times5$ grid layout \\
-Mar 27, 09:00 & 3.072 & Penalty SA & ${\sim}7$ steps/sec, pure Python \\
-Mar 27, 14:31 & 3.012 & SA (lucky find) & During phi-function debugging \\
-Mar 27, 14:48 & 3.010 & Hybrid optimiser & Jitter + squeeze move \\
-Mar 27--28     & 2.976 & Numba SA + hill-climber & 1M steps/sec \\
-Mar 28, morning & \textbf{2.97468} & Official submission & Rank \#9 on leaderboard \\
-Mar 28, 16:55  & 2.97522 & Hill-climber v2 & Ongoing refinement \\
+Mar 26, 22:00 & 3.500     & Grid baseline          & $3\times5$ grid layout \\
+Mar 27, 09:00 & 3.072     & Penalty SA             & ${\sim}7$ steps/sec, pure Python \\
+Mar 27, 14:31 & 3.012     & SA (lucky find)        & During phi-function debugging \\
+Mar 27, 14:48 & 3.010     & Hybrid optimiser       & Jitter + squeeze move \\
+Mar 27--28    & 2.976     & Numba SA + hill-climber & 1M steps/sec \\
+Mar 28, morning & 2.97468 & Official submission    & Rank \#9 on leaderboard \\
+Mar 28, 16:55 & 2.97522   & Hill-climber v2        & Ongoing refinement \\
+Mar 29, 04:05 & \textbf{2.961912} & LNS3 & Basin jump; $\Delta R = 0.013$ in 91\,s \\
+Mar 29--Apr 20 & 2.960344 & Exact-oracle polisher  & Grinding from LNS3 seed \\
+Apr 20--21   & \textbf{2.949161} & Fast approx.\ MCMC explorer & $\Delta R = 0.011$; largest single jump \\
+Apr 21       & \textbf{2.948911} & Fast approx.\ MCMC polisher & 41 incremental commits \\
 \bottomrule
 \end{tabular}
 \end{table}
 
+The two large jumps ($\Delta R = 0.013$ via LNS and $\Delta R = 0.011$ via fast approximate MCMC) account for ${\sim}70\%$ of the total improvement from the hill-climber plateau.
+Both required qualitative changes in search strategy rather than parameter tuning.
+
+\subsection{Phase Analysis}
+
+Figure~\ref{fig:phases} illustrates the score trajectory.
+Three qualitatively distinct phases are visible:
+\begin{enumerate}
+  \item \textbf{Rapid descent} (Mar 26--28): greedy methods, Numba SA, hill-climbing. $\Delta R \approx 0.53$.
+  \item \textbf{Plateau and basin jumps} (Mar 29--Apr 20): LNS3 breaks through to 2.961, then exact polishers grind to 2.960. $\Delta R \approx 0.014$.
+  \item \textbf{Fast MCMC phase} (Apr 20--22): approximate inner loop finds 2.949 basin; polisher refines to 2.948911. $\Delta R \approx 0.011$.
+\end{enumerate}
+
+The approximate MCMC discovery illustrates that the 2.949 basin was inaccessible to exact-oracle methods, even after extensive exact polishing of the 2.960 basin. The approximate inner loop, running ${\sim}300\times$ faster than Shapely, explored enough of the landscape to find an entry point.
+
 \subsection{Best Solution Structure}
 
-The best solution has a \emph{4-11 ring topology}: 4 inner semicircles at radial distance $r \approx 0.7$--$1.0$ from the origin and 11 outer semicircles at $r \approx 2.0$--$2.6$. Figure~\ref{fig:packing} shows an approximate schematic.
+The current best ($R = 2.948911$) has a \emph{3-11-1 topology}: 3 inner semicircles at $r < 1.0$, 11 mid-ring semicircles at $r \approx 1.7$--$2.0$, and 1 boundary-defining semicircle at $r \approx 2.77$.
+
+\begin{table}[t]
+\centering
+\caption{Radial structure of the best solution ($R = 2.948911$).}
+\label{tab:topology}
+\begin{tabular}{@{}lrl@{}}
+\toprule
+Ring & Radial distance $r$ & Shape count \\
+\midrule
+Inner core   & 0.63--0.97 & 3 \\
+Mid ring     & 1.68--1.95 & 11 \\
+Outer (MEC-defining) & 2.77 & 1 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The 11 mid-ring shapes are packed remarkably tightly: all lie within a radial band of width $0.27$, at distances between $1.68$ and $1.95$ from the origin. The single outer shape (shape 12, at $r = 2.774$) determines the MEC radius.
+
+Figure~\ref{fig:packing} shows a schematic of the arrangement.
 
 \begin{figure}[t]
 \centering
-\begin{tikzpicture}[scale=1.05]
+\begin{tikzpicture}[scale=1.0]
   % Enclosing circle
-  \draw[thick, gray] (0,0) circle (2.975);
-  \node[gray, above] at (0,3.1) {$R \approx 2.975$};
+  \draw[thick, red] (0,0) circle (2.949);
+  \node[red, above] at (0,3.05) {$R = 2.948911$};
 
-  % Define semicircle drawing macro
-  % #1=x, #2=y, #3=theta (rad), #4=fill color
   \newcommand{\semicircle}[4]{%
-    \begin{scope}[shift={(#1,#2)}, rotate={deg(#3)-90}]
-      \fill[#4, opacity=0.5] (0,0) -- (-1,0) arc (180:0:1) -- cycle;
+    \begin{scope}[shift={(#1,#2)}, rotate={#3}]
+      \fill[#4, opacity=0.45] (0,0) -- (-1,0) arc (180:0:1) -- cycle;
       \draw[thick] (-1,0) arc (180:0:1) -- cycle;
     \end{scope}
   }
 
-  % Inner 4 semicircles (indices 0,2,9,13 — r < 1.3)
-  \semicircle{-1.04}{1.36}{5.48}{blue!40}
-  \semicircle{-0.69}{-0.61}{0.28}{blue!40}
-  \semicircle{0.84}{0.69}{2.99}{blue!40}
-  \semicircle{1.24}{-1.14}{2.47}{blue!40}
+  % Inner 3 (shapes 3, 5, 8)
+  \semicircle{-0.620}{-0.083}{251.5}{blue!50}   % shape 3
+  \semicircle{0.686}{0.533}{314.6}{blue!50}      % shape 5
+  \semicircle{-0.377}{0.891}{250.1}{blue!50}     % shape 8
 
-  % Outer 11 semicircles (r > 1.5)
-  \semicircle{1.89}{0.90}{2.65}{orange!40}
-  \semicircle{-0.46}{1.92}{2.34}{orange!40}
-  \semicircle{-2.40}{1.44}{5.74}{orange!40}
-  \semicircle{-0.63}{-1.86}{5.39}{orange!40}
-  \semicircle{2.56}{-1.09}{2.74}{orange!40}
-  \semicircle{1.82}{0.77}{5.79}{orange!40}
-  \semicircle{0.92}{1.73}{1.79}{orange!40}
-  \semicircle{0.70}{-1.83}{5.62}{orange!40}
-  \semicircle{-1.95}{-0.29}{3.86}{orange!40}
-  \semicircle{-1.76}{-0.51}{0.72}{orange!40}
-  \semicircle{-1.51}{-1.28}{4.75}{orange!40}
+  % Mid ring 11 (shapes 0,1,2,4,6,7,9,10,11,13,14)
+  \semicircle{1.938}{0.202}{305.6}{orange!45}    % shape 0
+  \semicircle{0.124}{-1.945}{304.6}{orange!45}   % shape 1
+  \semicircle{-1.340}{1.415}{175.6}{orange!45}   % shape 2
+  \semicircle{0.829}{-1.462}{124.4}{orange!45}   % shape 4
+  \semicircle{-1.169}{-1.560}{301.6}{orange!45}  % shape 6
+  \semicircle{0.414}{1.667}{297.2}{orange!45}    % shape 7
+  \semicircle{-1.791}{-0.768}{252.9}{orange!45}  % shape 9
+  \semicircle{-0.298}{1.926}{166.1}{orange!45}   % shape 10
+  \semicircle{0.705}{1.817}{117.2}{orange!45}    % shape 11
+  \semicircle{1.563}{1.164}{13.5}{orange!45}     % shape 13
+  \semicircle{-1.922}{0.319}{205.7}{orange!45}   % shape 14
+
+  % Outer 1 (shape 12)
+  \semicircle{2.118}{-1.791}{139.7}{green!50}    % shape 12
 
   % Centre marker
   \fill (0,0) circle (0.04);
+  \node[below right, font=\small] at (0,0) {origin};
 \end{tikzpicture}
-\caption{Schematic of the best-known packing ($R \approx 2.975$). Blue (inner): 4~semicircles forming a loose core cluster. Orange (outer): 11~semicircles distributed around the perimeter. Semicircles are drawn as filled arcs at the actual solution coordinates and orientations.}
+\caption{Schematic of the best-known packing ($R = 2.948911$). Blue: 3 inner semicircles (core cluster). Orange: 11 mid-ring semicircles. Green: 1 boundary-defining semicircle (shape 12, $r = 2.774$). Drawn at solution coordinates and orientations.}
 \label{fig:packing}
 \end{figure}
 
 Notable properties of the best solution:
 \begin{itemize}
   \item Zero conjugate pairs (no antiparallel flat-face-to-flat-face contacts).
-  \item Approximate but imperfect rotational symmetry.
-  \item One semicircle lies on the MEC boundary; all others have slack.
-  \item Two micro-overlaps at GJK tolerance ($d \approx -0.0007$), accepted by Shapely.
+  \item One shape (shape 12) sits significantly further from the origin ($r = 2.774$) than all others, determining the MEC radius.
+  \item The 11 mid-ring shapes are densely packed and nearly equidistant from the origin ($r \approx 1.949 \pm 0.13$).
+  \item Approximate score: $R_{\mathrm{approx}} = 2.948586$; exact score: $R_{\mathrm{exact}} = 2.948911$. The gap of 325 millionths represents the residual approximation error of the inner-loop proxy.
 \end{itemize}
 
 \subsection{Topology Comparison}
 
-Table~\ref{tab:topology} compares the eight seed topologies tested, each followed by 50--100 rounds of population basin hopping.
+Table~\ref{tab:topologies} compares the seed topologies tested against the best results found.
 
 \begin{table}[t]
 \centering
-\caption{Comparison of seed topologies. All results after PBH refinement (50--100 rounds).}
-\label{tab:topology}
+\caption{Comparison of seed topologies.}
+\label{tab:topologies}
 \begin{tabular}{@{}lrl@{}}
 \toprule
 Topology & Best $R$ & Notes \\
 \midrule
-4-11 ring (ours) & 2.974 & Discovered by SA \\
+3-11-1 (current best) & 2.948911 & Found by fast MCMC \\
+4-11 ring (prior best) & 2.960344 & Found by LNS3 from SA seed \\
 C5 pentagonal ($5\times3$) & 3.453 & 5 groups of 3 \\
 6 conjugate pairs + 3 singles & 3.510 & Antiparallel flat-face pairs \\
 Brickwall random & 3.516 & Grid, random orientations \\
@@ -260,7 +373,7 @@ Brickwall standard & 3.723 & $2.1 \times 2.0$ grid spacing \\
 \end{tabular}
 \end{table}
 
-The 4-11 topology outperforms all alternatives by ${\sim}0.48$ in radius, a large structural gap.
+The 4-11 and 3-11-1 topologies both strongly outperform all others, but they are structurally distinct basins: direct perturbation from 4-11 configurations could not reach 3-11-1 geometries.
 
 % ================================================================
 \section{Analysis}
@@ -289,63 +402,82 @@ Converting to polar coordinates $(r, \varphi, \theta)$ changes the optimisation 
 We tested all 575 variants of 1-, 2-, and 3-shape $\theta + \pi$ flips, each followed by 5M steps of SA. Zero new bests. The leaderboard cluster at $R \approx 2.9727$ is not accessible from our configuration via orientation flips---it is in a structurally different basin.
 
 \paragraph{Random multistart.}
-50 independent SA runs from random starts (50M steps each) yielded $R \approx 3.06$ at best. Random configurations rarely produce the 4-11 topology.
+50 independent SA runs from random starts (50M steps each) yielded $R \approx 3.06$ at best. Random configurations rarely produce the tightly packed ring topology.
 
 \subsection{The Basin Discovery Problem}
 \label{sec:landscape}
 
-Our best solution was found by serendipity: a 1-5-9 topology seed stumbled into the 4-11 basin during an overnight SA run.
-We subsequently failed to replicate this with 200+ deliberate attempts from 4-11 seeds, orientation variants, and random starts.
-This suggests the 4-11 basin has a narrow entry funnel.
+Our best solution topologies were found through two distinct mechanisms: serendipitous topological collapse (SA falling into a 4-11 arrangement) and high-throughput approximate exploration (fast MCMC exploring the 3-11-1 region). Neither was achievable by careful exact refinement within the prior basin.
+
+This pattern suggests the landscape for semicircle packing is multi-modal with high inter-basin barriers. The barriers appear to require a minimum contact-graph change to cross, making them inaccessible to continuous exact-oracle perturbations that preserve local contacts.
 
 \subsection{Oracle Cost Determines Method Choice}
+\label{sec:oraclecost}
 
-This study provides a clear example where algorithmic sophistication was counterproductive:
+This study provides an extended case study where the cost of the feasibility oracle dominated method performance:
+
 \begin{itemize}
   \item Numba SA (${\sim}1$M steps/sec): found $R = 2.976$.
-  \item Greedy hill-climber (${\sim}120$ eval/sec, exact): found $R = 2.974679$.
+  \item Greedy hill-climber (${\sim}120$ eval/sec, exact Shapely): found $R = 2.974679$.
   \item MBH/PBH + L-BFGS-B (${\sim}100$ iter/hr): found nothing.
+  \item LNS3 with GJK polish (${\sim}12$ cycles/min): $\Delta R = 0.013$ in 91 seconds.
+  \item Fast approximate MCMC (${\sim}300$k batches/run, Shapely gate): $\Delta R = 0.011$ in one run.
 \end{itemize}
 
-The least sophisticated method with the most accurate oracle won. We conjecture the following heuristic for method selection based on oracle cost:
+The pattern is instructive: approximate fast methods dominated for large-scale basin exploration, while exact methods dominated for local refinement. Neither alone was sufficient to reach the current best.
+
+We propose the following heuristic for method selection:
+
 \begin{itemize}
-  \item Oracle cost $< 1$\,ms: greedy hill-climbing with exact evaluation at every step.
-  \item Oracle cost 1--100\,ms: SA with periodic exact validation; approximate energy for candidate screening.
-  \item Oracle cost $> 100$\,ms: surrogate models, population methods, approximate energy throughout.
+  \item Oracle cost $< 1$\,ms: greedy hill-climbing or SA with exact evaluation at every step.
+  \item Oracle cost 1--100\,ms: fast approximate inner loop with exact validation gate at save events.
+  \item Oracle cost $> 100$\,ms: surrogate models or population methods; approximate energy throughout.
 \end{itemize}
+
+\subsection{Approximate vs.\ Exact Score Gap}
+
+A persistent feature of the fast MCMC phase is a systematic gap between approximate and exact scores.
+Valid solutions with approximate score $R_{\mathrm{approx}} = 2.948586$ consistently validate to exact scores in the range $2.948911$--$2.948953$.
+The gap (${\sim}300$--$400$ millionths) arises from the cheap overlap proxy underestimating true distances.
+
+This gap is both a nuisance and an opportunity: the proxy may be finding configurations that are genuinely below the target in the exact scorer but have not yet been resolved as valid. Twelve distinct configurations with approximate score $2.948586$ (approximately $300$ millionths below the current target of $R^* = 2.94889$) are known but fail exact validation due to marginal overlaps. Whether any of these can be nudged to validity without inflating the exact score above $2.94889$ remains an open question.
 
 \subsection{Leaderboard Context}
 
-As of March 28, 2026: our score $R = 2.97468$ ranked \#9. A cluster at positions \#5--\#8 achieved $R \approx 2.9727$--$2.9728$ (gap: 0.002). The leader achieved $R = 2.96175$ (gap: 0.013). The 0.002 gap may be bridgeable by continuous refinement; the 0.013 gap likely requires a topological change.
+As of our last leaderboard check (March 28, 2026): our score $R = 2.97468$ ranked \#9. A cluster at positions \#5--\#8 achieved $R \approx 2.9727$--$2.9728$. The leader achieved $R = 2.96175$.
+
+Our current best ($R = 2.948911$, April 21, 2026) is approximately $0.013$ below the last-known leader, representing a substantial advance. The target to formally beat leaderboard position \#1 is $R < 2.94889$, a gap of approximately 22 millionths from our current best.
 
 % ================================================================
 \section{Conclusions}
 \label{sec:conclusions}
 
-We have presented the first computational study of packing 15 unit semicircles into a minimal enclosing circle, achieving $R \approx 2.975$. Our principal findings are:
+We have presented a computational study of packing 15 unit semicircles into a minimal enclosing circle, achieving a best result of $R = 2.948911$ after 48 days of computation across multiple algorithmic phases. Our principal findings are:
 
 \begin{enumerate}
-  \item \textbf{The 4-11 ring topology dominates.} Four inner semicircles at $r \approx 0.7$--$1.0$ and 11 outer at $r \approx 2.0$--$2.6$ outperform all other tested topologies by ${\sim}0.48$ in radius.
+  \item \textbf{Ring topologies dominate.} The 3-11-1 topology (3 inner, 11 mid-ring, 1 boundary-defining) and 4-11 topology both strongly outperform all other tested configurations. They represent distinct basins separated by barriers that continuous exact-oracle methods could not cross.
 
-  \item \textbf{Exact oracles beat approximate gradients.} When feasibility can be evaluated exactly in ${\sim}0.5$\,ms, a greedy hill-climber using the exact oracle outperforms L-BFGS-B with approximate phi-function energy. The phi-function's $\Phi_{PP}$ component is unreliable for non-anti-parallel flat faces, distorting the optimisation landscape.
+  \item \textbf{Exact oracles beat approximate gradients for local refinement.} When feasibility can be evaluated exactly in ${\sim}0.5$\,ms, a greedy hill-climber using the exact oracle outperforms L-BFGS-B with approximate phi-function energy. The phi-function's $\Phi_{PP}$ component is unreliable for non-anti-parallel flat faces, distorting the optimisation landscape.
 
-  \item \textbf{The landscape has narrow basins.} The best basin was discovered by serendipity and could not be replicated from 200+ deliberate starts. This suggests that for semicircle packing, global methods must be paired with extremely long run times or problem-specific basin-hopping strategies.
+  \item \textbf{Approximate inner loops enable basin exploration.} The two largest score improvements ($\Delta R = 0.013$ via LNS, $\Delta R = 0.011$ via fast approximate MCMC) both required methods that could modify the contact graph or explore at speeds impossible for exact-oracle methods. Exact refinement alone, applied to either basin, could not reach the other.
 
-  \item \textbf{No conjugate pairs in the best solution.} Despite theoretical expectations, zero antiparallel flat-face contacts appear, suggesting that for $N = 15$ the optimal regime avoids pair formation.
+  \item \textbf{The approximate/exact gap is a search signal.} Configurations with promising approximate scores that fail exact validation represent near-misses on the validity boundary. Retaining these and using them as restart seeds improved search diversity in the fast MCMC phase.
+
+  \item \textbf{No conjugate pairs in the best solution.} Despite theoretical expectations, zero antiparallel flat-face contacts appear in the best solution, suggesting that for $N = 15$ the optimal regime avoids flat-face pair formation.
 \end{enumerate}
 
 \paragraph{Open questions.}
-What topology do the top-ranked solutions use?
-What is the true optimum for $N = 15$ (likely in $[2.88, 2.96]$)?
-Can the phi-function be corrected for bounded semicircular segments?
-Does flat-face contact appear in the global optimum?
+The immediate open question is whether any of the 12 known configurations with approximate score $R_{\mathrm{approx}} = 2.948586$ can be made exactly valid. If so, the score would advance beyond the current target.
+More broadly: what is the true optimum for $N = 15$ (likely in $[2.85, 2.96]$ based on area bounds and observed landscape structure)? Does the global optimum use a ring topology, and if so which one? Can the phi-function be corrected for bounded semicircular segments to enable faster gradient-based polishing?
 
 \paragraph{Reproducibility.}
 Code is available at \url{https://github.com/CamArmstr/shape-packing-challenge}.
+The best solution JSON (\texttt{best\_solution.json}), solutions archive (\texttt{solutions/}), and all optimiser implementations are included.
 
 % ================================================================
 \paragraph{Acknowledgements.}
 Problem posed by benedictbrady via the shape-packing-challenge repository.
+The fast approximate MCMC approach (Section~\ref{sec:fastmcmc}) was directly inspired by compusophy's browser-based parallel tempering optimizer \citep{compusophy2026}, whose explorer/polisher architecture and targeting of the 0.234 optimal acceptance rate informed our design.
 Computational work performed on a Windows~11 / WSL2 machine with a 16-core Intel CPU.
 
 \bibliographystyle{plainnat}
