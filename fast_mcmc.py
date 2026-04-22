@@ -310,7 +310,14 @@ def pick_restart_path(
 
     last_recent_name = recent_names[-1] if recent_names else None
     if last_recent_name:
-        last_recent_family = restart_source_family(Path(last_recent_name))
+        last_recent_path = Path(last_recent_name)
+        last_recent_exact_bucket = exact_score_bucket(last_recent_path, score_bucket_decimals)
+        cooled = [path for path in filtered if exact_score_bucket(path, score_bucket_decimals) != last_recent_exact_bucket]
+        keep_exact_floor = min(max(3, recent_window // 2 if recent_window > 0 else 3), len(filtered))
+        if len(cooled) >= keep_exact_floor:
+            filtered = cooled
+
+        last_recent_family = restart_source_family(last_recent_path)
         cooled = [path for path in filtered if restart_source_family(path) != last_recent_family]
         keep_family_floor = min(max(3, recent_window // 2 if recent_window > 0 else 3), len(filtered))
         if len(cooled) >= keep_family_floor:
