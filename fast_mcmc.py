@@ -35,6 +35,7 @@ LOCK_FILE = ROOT / "best_solution.json.lock"
 SOLUTIONS_DIR = ROOT / "solutions"
 SCRATCH_DIR = SOLUTIONS_DIR / "scratch_candidates"
 RESTART_POOL_DIR = SOLUTIONS_DIR / "restart_pool"
+BEST_APPROX_DIR = SOLUTIONS_DIR / "best_approx"
 N = 15
 TWO_PI = 2 * math.pi
 ARC_STEPS = 30
@@ -299,6 +300,13 @@ def pick_restart_path(
             if recent_family_counts.get(restart_source_family(path), 0) < family_cooldown_threshold
         ]
         if cooled:
+            filtered = cooled
+
+    recent_exact_bucket_set = set(recent_exact_bucket_counts)
+    if recent_exact_bucket_set:
+        cooled = [path for path in filtered if exact_score_bucket(path, score_bucket_decimals) not in recent_exact_bucket_set]
+        keep_exact_diversity_floor = min(max(3, recent_window // 2 if recent_window > 0 else 3), len(filtered))
+        if len(cooled) >= keep_exact_diversity_floor:
             filtered = cooled
 
     recent_name_set = set(recent_names[-recent_window:]) if recent_window > 0 else set()
@@ -769,6 +777,20 @@ def retain_restart_pool_candidate(centered: list[dict[str, float]], exact_score:
     return out
 
 
+def save_best_approx(state: FastState, tag: str, batch: int, exact_score: Optional[float] = None, valid: bool = False) -> Path:
+    """Save a best-approximate solution to a permanent (never-pruned) directory."""
+    BEST_APPROX_DIR.mkdir(parents=True, exist_ok=True)
+    approx_text = f'{state.approx_score:.6f}'
+    exact_text = f'{exact_score:.6f}' if exact_score is not None else 'noexact'
+    valid_text = 'valid' if valid else 'invalid'
+    out = BEST_APPROX_DIR / f'A{approx_text}_E{exact_text}_{valid_text}_{tag}_b{batch}.json'
+    if not out.exists():
+        payload = rounded_state_payload(state)
+        with open(out, 'w') as f:
+            json.dump(payload, f, indent=2)
+    return out
+
+
 def try_save_best(centered: list, exact_score: float, tag: str, batch: int) -> bool:
     """Try to save centered solution as new best if it beats current best_solution.json."""
     with open(LOCK_FILE, 'w') as lf:
@@ -902,6 +924,7 @@ def run(args: argparse.Namespace) -> None:
                 if state.approx_score < best_seen.approx_score - 1e-12:
                     best_seen = FastState(state.xs.copy(), state.ys.copy(), state.ts.copy(), state.approx_score)
                     saved, exact_valid, exact_score = exact_save_gate(best_seen, args.tag)
+                    save_best_approx(best_seen, args.tag, batch, exact_score, exact_valid)
                     if not saved:
                         scratch_path = retain_scratch_candidate(
                             best_seen,
