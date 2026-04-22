@@ -301,6 +301,13 @@ def pick_restart_path(
         if cooled:
             filtered = cooled
 
+    recent_name_set = set(recent_names[-recent_window:]) if recent_window > 0 else set()
+    if recent_name_set:
+        cooled = [path for path in filtered if path.name not in recent_name_set]
+        keep_recent_floor = min(max(3, recent_window // 2), len(filtered))
+        if len(cooled) >= keep_recent_floor:
+            filtered = cooled
+
     filtered_mtimes = [path_mtime(path) for path in filtered]
     min_mtime = min(filtered_mtimes) if filtered_mtimes else 0.0
     max_mtime = max(filtered_mtimes) if filtered_mtimes else 0.0
