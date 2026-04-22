@@ -601,31 +601,33 @@ def retain_scratch_candidate(state: FastState, tag: str, batch: int, reason: str
 
     valid_quota = min(limit, max(8, limit // 4))
     valid_bucket_cap = 2
-    valid_family_cap = 4
+    family_cap = max(4, limit // 8)
     keep: set[Path] = set()
+    family_counts: dict[str, int] = {}
     valid_bucket_counts: dict[str, int] = {}
-    valid_family_counts: dict[str, int] = {}
+
+    def try_keep(path: Path, *, bucket: Optional[str] = None, enforce_bucket: bool = False) -> bool:
+        if path in keep:
+            return False
+        family = scratch_source_family(path)
+        if family_counts.get(family, 0) >= family_cap:
+            return False
+        if enforce_bucket and bucket is not None and valid_bucket_counts.get(bucket, 0) >= valid_bucket_cap:
+            return False
+        keep.add(path)
+        family_counts[family] = family_counts.get(family, 0) + 1
+        if enforce_bucket and bucket is not None:
+            valid_bucket_counts[bucket] = valid_bucket_counts.get(bucket, 0) + 1
+        return True
+
     for exact_value, _, path in valid_candidates:
         bucket = f'{round(exact_value, 4):.4f}' if math.isfinite(exact_value) else 'inf'
-        family = scratch_source_family(path)
-        if valid_bucket_counts.get(bucket, 0) >= valid_bucket_cap:
-            continue
-        if valid_family_counts.get(family, 0) >= valid_family_cap:
-            continue
-        keep.add(path)
-        valid_bucket_counts[bucket] = valid_bucket_counts.get(bucket, 0) + 1
-        valid_family_counts[family] = valid_family_counts.get(family, 0) + 1
+        try_keep(path, bucket=bucket, enforce_bucket=True)
         if len(keep) >= valid_quota:
             break
     if len(keep) < valid_quota:
-        for exact_value, _, path in valid_candidates:
-            if path in keep:
-                continue
-            family = scratch_source_family(path)
-            if valid_family_counts.get(family, 0) >= valid_family_cap:
-                continue
-            keep.add(path)
-            valid_family_counts[family] = valid_family_counts.get(family, 0) + 1
+        for _, _, path in valid_candidates:
+            try_keep(path)
             if len(keep) >= valid_quota:
                 break
     if len(keep) < valid_quota:
@@ -633,26 +635,22 @@ def retain_scratch_candidate(state: FastState, tag: str, batch: int, reason: str
             if path in keep:
                 continue
             keep.add(path)
+            family = scratch_source_family(path)
+            family_counts[family] = family_counts.get(family, 0) + 1
             if len(keep) >= valid_quota:
                 break
 
-    remaining = max(0, limit - len(keep))
-    invalid_family_cap = max(3, remaining // 2) if remaining > 0 else 0
-    invalid_family_counts: dict[str, int] = {}
+    diversity_target = min(limit, max(valid_quota + 12, limit // 2))
     for _, _, path in invalid_candidates:
-        if len(keep) >= limit:
+        try_keep(path)
+        if len(keep) >= diversity_target:
             break
-        family = scratch_source_family(path)
-        if invalid_family_cap > 0 and invalid_family_counts.get(family, 0) >= invalid_family_cap:
-            continue
-        keep.add(path)
-        invalid_family_counts[family] = invalid_family_counts.get(family, 0) + 1
-    if len(keep) < limit:
+    if len(keep) < diversity_target:
         for _, _, path in invalid_candidates:
             if path in keep:
                 continue
             keep.add(path)
-            if len(keep) >= limit:
+            if len(keep) >= diversity_target:
                 break
 
     for stale in list(SCRATCH_DIR.glob('*.json')):
