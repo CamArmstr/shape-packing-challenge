@@ -595,6 +595,37 @@ def retain_restart_pool_candidate(centered: list[dict[str, float]], exact_score:
     return out
 
 
+def try_save_best(centered: list, exact_score: float, tag: str, batch: int) -> bool:
+    """Try to save centered solution as new best if it beats current best_solution.json."""
+    with open(LOCK_FILE, 'w') as lf:
+        fcntl.flock(lf, fcntl.LOCK_EX)
+        current = load_json_state(BEST_FILE)
+        current_exact = validate_and_score([Semicircle(float(current.xs[i]), float(current.ys[i]), float(current.ts[i])) for i in range(N)])
+        current_score = current_exact.score if current_exact.valid and current_exact.score is not None else float('inf')
+        if exact_score >= current_score - 1e-12:
+            return False
+
+        tmp = BEST_FILE.with_suffix('.json.tmp')
+        with open(tmp, 'w') as f:
+            json.dump(centered, f, indent=2)
+            f.flush()
+            os.fsync(f.fileno())
+        os.replace(tmp, BEST_FILE)
+
+        SOLUTIONS_DIR.mkdir(exist_ok=True)
+        out = SOLUTIONS_DIR / f'R{exact_score:.6f}.json'
+        with open(out, 'w') as f:
+            json.dump(centered, f, indent=2)
+
+        try:
+            import subprocess
+            subprocess.run(['git', 'add', 'best_solution.json', str(out)], cwd=ROOT, capture_output=True)
+            subprocess.run(['git', 'commit', '-m', f'best: R={exact_score:.6f} ({tag} gate_probe b{batch})'], cwd=ROOT, capture_output=True)
+        except Exception:
+            pass
+        return True
+
+
 def exact_save_gate(state: FastState, tag: str) -> tuple[bool, bool, Optional[float]]:
     valid, exact_score, centered = exact_result_for_state(state)
     if not valid or exact_score is None or centered is None:
@@ -777,14 +808,18 @@ def run(args: argparse.Namespace) -> None:
                             exact_score=exact_score,
                             limit=args.scratch_retain_limit,
                         )
+                        gate_saved = False
                         if valid and exact_score is not None and centered is not None:
                             retain_restart_pool_candidate(centered, exact_score, args.tag, batch, args.restart_pool_limit)
+                            # Try to save as new best if gate_probe found a better exact score
+                            gate_saved = try_save_best(centered, exact_score, args.tag, batch)
                         exact_text = f'{exact_score:.6f}' if exact_score is not None else 'invalid'
                         scratch_text = f' scratch={scratch_path.name}' if scratch_path is not None else ''
+                        save_text = ' SAVED_BEST' if gate_saved else ''
                         print(
                             f'[{args.tag}] gate_probe batch={batch} current_approx={state.approx_score:.6f} '
                             f'anchor_approx={best_exact_anchor.approx_score:.6f} exact={exact_text} valid={"yes" if valid else "no"} '
-                            f'gate_checks={gate_checks}{scratch_text}'
+                            f'gate_checks={gate_checks}{scratch_text}{save_text}'
                         )
 
         ar = batch_accept / batch_valid if batch_valid else 0.0
