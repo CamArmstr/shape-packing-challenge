@@ -308,6 +308,14 @@ def pick_restart_path(
         if len(cooled) >= keep_recent_floor:
             filtered = cooled
 
+    last_recent_name = recent_names[-1] if recent_names else None
+    if last_recent_name:
+        last_recent_family = restart_source_family(Path(last_recent_name))
+        cooled = [path for path in filtered if restart_source_family(path) != last_recent_family]
+        keep_family_floor = min(max(3, recent_window // 2 if recent_window > 0 else 3), len(filtered))
+        if len(cooled) >= keep_family_floor:
+            filtered = cooled
+
     filtered_mtimes = [path_mtime(path) for path in filtered]
     min_mtime = min(filtered_mtimes) if filtered_mtimes else 0.0
     max_mtime = max(filtered_mtimes) if filtered_mtimes else 0.0
