@@ -88,22 +88,80 @@ def archive_sort_key(path: Path) -> tuple[float, float, str]:
     return (archive_exact_score(path), -path_mtime(path), path.name)
 
 
+def select_archive_subset(paths: list[Path], limit: int, *, family_cap: int, bucket_cap: int, score_bucket_decimals: int = 4) -> list[Path]:
+    if limit <= 0 or len(paths) <= limit:
+        return paths
+
+    keep: list[Path] = []
+    seen_paths: set[Path] = set()
+    family_counts: dict[str, int] = {}
+    bucket_counts: dict[str, int] = {}
+    seen_diversity_buckets: set[str] = set()
+
+    def try_add(path: Path) -> bool:
+        if path in seen_paths:
+            return False
+        family = restart_source_family(path)
+        score_bucket = exact_score_bucket(path, score_bucket_decimals)
+        if family_counts.get(family, 0) >= family_cap:
+            return False
+        if bucket_counts.get(score_bucket, 0) >= bucket_cap:
+            return False
+        keep.append(path)
+        seen_paths.add(path)
+        family_counts[family] = family_counts.get(family, 0) + 1
+        bucket_counts[score_bucket] = bucket_counts.get(score_bucket, 0) + 1
+        return True
+
+    for path in paths:
+        diversity_bucket = restart_diversity_bucket(path, score_bucket_decimals)
+        if diversity_bucket in seen_diversity_buckets:
+            continue
+        if try_add(path):
+            seen_diversity_buckets.add(diversity_bucket)
+        if len(keep) >= limit:
+            return keep
+
+    for path in paths:
+        family = restart_source_family(path)
+        if family_counts.get(family, 0) > 0:
+            continue
+        try_add(path)
+        if len(keep) >= limit:
+            return keep
+
+    for path in paths:
+        try_add(path)
+        if len(keep) >= limit:
+            return keep
+
+    if len(keep) >= limit:
+        return keep[:limit]
+
+    for path in paths:
+        if path in seen_paths:
+            continue
+        keep.append(path)
+        if len(keep) >= limit:
+            break
+    return keep[:limit]
+
+
+
 def load_archive_paths(limit: int, restart_pool_limit: int) -> list[Path]:
     paths = [BEST_FILE]
     solution_paths = sorted(
         (Path(p) for p in glob.glob(str(SOLUTIONS_DIR / "R*.json"))),
         key=archive_sort_key,
     )
-    if limit > 0 and len(solution_paths) > limit:
-        solution_paths = solution_paths[:limit]
+    solution_paths = select_archive_subset(solution_paths, limit, family_cap=4, bucket_cap=3)
     paths.extend(solution_paths)
 
     restart_pool_paths = sorted(
         (Path(p) for p in glob.glob(str(RESTART_POOL_DIR / "R*.json"))),
         key=archive_sort_key,
     )
-    if restart_pool_limit > 0 and len(restart_pool_paths) > restart_pool_limit:
-        restart_pool_paths = restart_pool_paths[:restart_pool_limit]
+    restart_pool_paths = select_archive_subset(restart_pool_paths, restart_pool_limit, family_cap=3, bucket_cap=2)
     paths.extend(restart_pool_paths)
 
     deduped = []
@@ -154,6 +212,7 @@ def restart_source_family(path: Path) -> str:
             source = source.rsplit('_b', 1)[0]
             if source:
                 return source
+        return 'archive'
     return stem
 
 
