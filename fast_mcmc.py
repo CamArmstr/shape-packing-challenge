@@ -188,14 +188,37 @@ def filter_restart_paths(archive_paths: list[Path], score_slack: float) -> list[
         return [p for _, p in scored[: min(8, len(scored))]]
 
     bucket_cap = 2
+    family_cap = 3
     filtered: list[Path] = []
     bucket_counts: dict[str, int] = {}
-    for path in within_slack:
+    family_counts: dict[str, int] = {}
+    seen_diversity_buckets: set[str] = set()
+    seen_paths: set[Path] = set()
+
+    def try_add(path: Path) -> bool:
+        if path in seen_paths:
+            return False
         bucket = exact_score_bucket(path, 4)
+        family = restart_source_family(path)
         if bucket_counts.get(bucket, 0) >= bucket_cap:
-            continue
+            return False
+        if family_counts.get(family, 0) >= family_cap:
+            return False
         filtered.append(path)
+        seen_paths.add(path)
         bucket_counts[bucket] = bucket_counts.get(bucket, 0) + 1
+        family_counts[family] = family_counts.get(family, 0) + 1
+        return True
+
+    for path in within_slack:
+        diversity_bucket = restart_diversity_bucket(path, 4)
+        if diversity_bucket in seen_diversity_buckets:
+            continue
+        if try_add(path):
+            seen_diversity_buckets.add(diversity_bucket)
+
+    for path in within_slack:
+        try_add(path)
 
     return filtered or [p for _, p in scored[: min(8, len(scored))]]
 
