@@ -77,11 +77,22 @@ def archive_exact_score(path: Path) -> float:
     return float('inf')
 
 
+def path_mtime(path: Path) -> float:
+    try:
+        return path.stat().st_mtime
+    except FileNotFoundError:
+        return 0.0
+
+
+def archive_sort_key(path: Path) -> tuple[float, float, str]:
+    return (archive_exact_score(path), -path_mtime(path), path.name)
+
+
 def load_archive_paths(limit: int, restart_pool_limit: int) -> list[Path]:
     paths = [BEST_FILE]
     solution_paths = sorted(
         (Path(p) for p in glob.glob(str(SOLUTIONS_DIR / "R*.json"))),
-        key=lambda p: (archive_exact_score(p), p.name),
+        key=archive_sort_key,
     )
     if limit > 0 and len(solution_paths) > limit:
         solution_paths = solution_paths[:limit]
@@ -89,7 +100,7 @@ def load_archive_paths(limit: int, restart_pool_limit: int) -> list[Path]:
 
     restart_pool_paths = sorted(
         (Path(p) for p in glob.glob(str(RESTART_POOL_DIR / "R*.json"))),
-        key=lambda p: (archive_exact_score(p), p.name),
+        key=archive_sort_key,
     )
     if restart_pool_limit > 0 and len(restart_pool_paths) > restart_pool_limit:
         restart_pool_paths = restart_pool_paths[:restart_pool_limit]
@@ -109,7 +120,7 @@ def load_archive_paths(limit: int, restart_pool_limit: int) -> list[Path]:
 def filter_restart_paths(archive_paths: list[Path], score_slack: float) -> list[Path]:
     if not archive_paths:
         return [BEST_FILE]
-    scored = sorted(((archive_exact_score(p), p) for p in archive_paths), key=lambda item: (item[0], item[1].name))
+    scored = sorted(((archive_exact_score(p), p) for p in archive_paths), key=lambda item: (item[0], -path_mtime(item[1]), item[1].name))
     best_score = scored[0][0]
     if not math.isfinite(best_score):
         return archive_paths
@@ -202,6 +213,11 @@ def pick_restart_path(
         if cooled:
             filtered = cooled
 
+    filtered_mtimes = [path_mtime(path) for path in filtered]
+    min_mtime = min(filtered_mtimes) if filtered_mtimes else 0.0
+    max_mtime = max(filtered_mtimes) if filtered_mtimes else 0.0
+    mtime_span = max(1.0, max_mtime - min_mtime)
+
     grouped: dict[str, list[tuple[int, Path]]] = {}
     for rank, path in enumerate(filtered):
         bucket = restart_diversity_bucket(path, score_bucket_decimals)
@@ -210,7 +226,9 @@ def pick_restart_path(
     bucket_weights: list[tuple[float, str]] = []
     for bucket, items in grouped.items():
         best_rank = min(rank for rank, _ in items)
-        base = 1.0 / (1.0 + best_rank)
+        freshest = max(path_mtime(path) for _, path in items)
+        freshness_bonus = 1.0 + 0.35 * ((freshest - min_mtime) / mtime_span)
+        base = (1.0 / (1.0 + best_rank)) * freshness_bonus
         exact_bucket, family = (bucket.split('|', 1) + [''])[:2]
         recent_diversity_penalty = 0.4 if bucket in recent_bucket_slice else 1.0
         exact_bucket_penalty = 1.0 / (1.0 + recent_exact_bucket_counts.get(exact_bucket, 0))
@@ -231,7 +249,8 @@ def pick_restart_path(
 
     weighted: list[tuple[float, Path]] = []
     for rank, path in grouped[chosen_bucket]:
-        base = 1.0 / (1.0 + rank)
+        freshness_bonus = 1.0 + 0.35 * ((path_mtime(path) - min_mtime) / mtime_span)
+        base = (1.0 / (1.0 + rank)) * freshness_bonus
         recent_penalty = 0.35 if path.name in recent_names[-recent_window:] else 1.0
         family_penalty = 1.0 / (1.0 + recent_family_counts.get(restart_source_family(path), 0))
         weighted.append((base * recent_penalty * family_penalty, path))
@@ -525,7 +544,7 @@ def retain_restart_pool_candidate(centered: list[dict[str, float]], exact_score:
         with open(out, 'w') as f:
             json.dump(centered, f, indent=2)
 
-    candidates = sorted(RESTART_POOL_DIR.glob('R*.json'), key=lambda p: (archive_exact_score(p), p.name))
+    candidates = sorted(RESTART_POOL_DIR.glob('R*.json'), key=archive_sort_key)
     keep: list[Path] = []
     seen_score_buckets: set[str] = set()
     seen_families: set[str] = set()
