@@ -195,20 +195,26 @@ def filter_restart_paths(archive_paths: list[Path], score_slack: float) -> list[
     seen_diversity_buckets: set[str] = set()
     seen_paths: set[Path] = set()
 
-    def try_add(path: Path) -> bool:
+    def try_add(path: Path, *, force: bool = False) -> bool:
         if path in seen_paths:
             return False
         bucket = exact_score_bucket(path, 4)
         family = restart_source_family(path)
-        if bucket_counts.get(bucket, 0) >= bucket_cap:
-            return False
-        if family_counts.get(family, 0) >= family_cap:
-            return False
+        if not force:
+            if bucket_counts.get(bucket, 0) >= bucket_cap:
+                return False
+            if family_counts.get(family, 0) >= family_cap:
+                return False
         filtered.append(path)
         seen_paths.add(path)
         bucket_counts[bucket] = bucket_counts.get(bucket, 0) + 1
         family_counts[family] = family_counts.get(family, 0) + 1
         return True
+
+    best_in_slack = BEST_FILE if BEST_FILE in within_slack else None
+    if best_in_slack is not None:
+        try_add(best_in_slack, force=True)
+        seen_diversity_buckets.add(restart_diversity_bucket(best_in_slack, 4))
 
     for path in within_slack:
         diversity_bucket = restart_diversity_bucket(path, 4)
