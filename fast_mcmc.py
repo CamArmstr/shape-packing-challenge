@@ -706,14 +706,23 @@ def retain_restart_pool_candidate(centered: list[dict[str, float]], exact_score:
     bucket_cap = 2
     family_cap = max(3, limit // 8)
 
-    def try_keep(path: Path, *, enforce_bucket: bool = True, enforce_family: bool = True) -> bool:
+    def try_keep(
+        path: Path,
+        *,
+        enforce_bucket: bool = True,
+        enforce_family: bool = True,
+        bucket_limit: Optional[int] = None,
+        family_limit: Optional[int] = None,
+    ) -> bool:
         if path in keep_set:
             return False
         score_bucket = exact_score_bucket(path, 4)
         family = restart_source_family(path)
-        if enforce_bucket and bucket_counts.get(score_bucket, 0) >= bucket_cap:
+        active_bucket_limit = bucket_cap if bucket_limit is None else bucket_limit
+        active_family_limit = family_cap if family_limit is None else family_limit
+        if enforce_bucket and bucket_counts.get(score_bucket, 0) >= active_bucket_limit:
             return False
-        if enforce_family and family_counts.get(family, 0) >= family_cap:
+        if enforce_family and family_counts.get(family, 0) >= active_family_limit:
             return False
         keep.append(path)
         keep_set.add(path)
@@ -731,15 +740,17 @@ def retain_restart_pool_candidate(centered: list[dict[str, float]], exact_score:
             break
 
     diversity_target = min(limit, max(16, limit // 2))
+    relaxed_bucket_cap = bucket_cap + 1
+    relaxed_family_cap = family_cap + 1
     if len(keep) < diversity_target:
         for path in candidates:
-            try_keep(path)
+            try_keep(path, bucket_limit=relaxed_bucket_cap, family_limit=relaxed_family_cap)
             if len(keep) >= diversity_target:
                 break
 
     if len(keep) < diversity_target:
         for path in candidates:
-            if try_keep(path, enforce_bucket=False):
+            if try_keep(path, enforce_bucket=False, family_limit=relaxed_family_cap):
                 if len(keep) >= diversity_target:
                     break
 
