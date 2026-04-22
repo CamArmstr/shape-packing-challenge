@@ -671,49 +671,59 @@ def retain_restart_pool_candidate(centered: list[dict[str, float]], exact_score:
 
     candidates = sorted(RESTART_POOL_DIR.glob('R*.json'), key=archive_sort_key)
     keep: list[Path] = []
-    seen_score_buckets: set[str] = set()
-    seen_families: set[str] = set()
+    keep_set: set[Path] = set()
+    seen_diversity_buckets: set[str] = set()
     bucket_counts: dict[str, int] = {}
+    family_counts: dict[str, int] = {}
     bucket_cap = 2
+    family_cap = max(3, limit // 8)
+
+    def try_keep(path: Path, *, enforce_bucket: bool = True, enforce_family: bool = True) -> bool:
+        if path in keep_set:
+            return False
+        score_bucket = exact_score_bucket(path, 4)
+        family = restart_source_family(path)
+        if enforce_bucket and bucket_counts.get(score_bucket, 0) >= bucket_cap:
+            return False
+        if enforce_family and family_counts.get(family, 0) >= family_cap:
+            return False
+        keep.append(path)
+        keep_set.add(path)
+        bucket_counts[score_bucket] = bucket_counts.get(score_bucket, 0) + 1
+        family_counts[family] = family_counts.get(family, 0) + 1
+        return True
 
     for path in candidates:
-        score_bucket = exact_score_bucket(path, 4)
-        if score_bucket in seen_score_buckets:
+        diversity_bucket = restart_diversity_bucket(path, 4)
+        if diversity_bucket in seen_diversity_buckets:
             continue
-        keep.append(path)
-        seen_score_buckets.add(score_bucket)
-        seen_families.add(restart_source_family(path))
-        bucket_counts[score_bucket] = bucket_counts.get(score_bucket, 0) + 1
+        if try_keep(path):
+            seen_diversity_buckets.add(diversity_bucket)
         if len(keep) >= limit:
             break
 
-    if len(keep) < limit:
+    diversity_target = min(limit, max(16, limit // 2))
+    if len(keep) < diversity_target:
         for path in candidates:
-            if path in keep:
-                continue
-            family = restart_source_family(path)
-            score_bucket = exact_score_bucket(path, 4)
-            if family in seen_families or bucket_counts.get(score_bucket, 0) >= bucket_cap:
-                continue
-            keep.append(path)
-            seen_families.add(family)
-            bucket_counts[score_bucket] = bucket_counts.get(score_bucket, 0) + 1
-            if len(keep) >= limit:
+            try_keep(path)
+            if len(keep) >= diversity_target:
                 break
 
-    if len(keep) < limit:
+    if len(keep) < diversity_target:
         for path in candidates:
-            if path in keep:
-                continue
-            score_bucket = exact_score_bucket(path, 4)
-            if bucket_counts.get(score_bucket, 0) >= bucket_cap:
+            if try_keep(path, enforce_bucket=False):
+                if len(keep) >= diversity_target:
+                    break
+
+    if len(keep) < diversity_target:
+        for path in candidates:
+            if path in keep_set:
                 continue
             keep.append(path)
-            bucket_counts[score_bucket] = bucket_counts.get(score_bucket, 0) + 1
-            if len(keep) >= limit:
+            keep_set.add(path)
+            if len(keep) >= diversity_target:
                 break
 
-    keep_set = set(keep)
     for stale in candidates:
         if stale not in keep_set:
             stale.unlink(missing_ok=True)
