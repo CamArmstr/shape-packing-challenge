@@ -1,7 +1,0 @@
-start R=2.969719 | max_cycles=1000
-cycle   0 remove=[np.int64(4)] reinsert=3.15693 refined=3.13607
-cycle   1 remove=[4] reinsert=3.24547 refined=3.21836
-cycle   2 remove=[np.int64(8)] reinsert=3.26927 refined=3.23761
-cycle   3 remove=[np.int64(10)] reinsert=3.36967 refined=3.34992
-cycle   4 remove=[4] reinsert=3.20887 refined=3.19088
-cycle   5 remove=[4] reinsert=3.30704 refined=3.24331

@@ -14,6 +14,8 @@
 \usepackage{algorithmic}
 \usepackage{url}
 \usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{subcaption}
 
 \hypersetup{
   colorlinks=true,
@@ -263,6 +265,52 @@ Apr 22       & \textbf{2.948572} & Nano/micro polisher & 662 total git-tracked c
 The two large jumps ($\Delta R = 0.013$ via LNS and $\Delta R = 0.011$ via fast approximate MCMC) account for ${\sim}70\%$ of the total improvement from the hill-climber plateau.
 Both required qualitative changes in search strategy rather than parameter tuning.
 
+\subsection{Path to the Lowest}
+\label{sec:path}
+
+Figure~\ref{fig:progression} shows the packing configuration at each major milestone, rendered geometrically exact from saved solution files.
+Each improvement required a qualitative change in method---not incremental tuning.
+
+\begin{figure}[htbp]
+\centering
+\begin{subfigure}[b]{0.32\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{figures/R2_970026.pdf}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.32\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{figures/R2_961486.pdf}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.32\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{figures/R2_960373.pdf}
+\end{subfigure}
+
+\vspace{0.5em}
+
+\begin{subfigure}[b]{0.32\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{figures/R2_948997.pdf}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.32\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{figures/best_solution.pdf}
+\end{subfigure}
+\caption{Path to the lowest: configuration snapshots at each major milestone.
+\textbf{Top row, left to right:}
+Phase~1 ($R = 2.970$, SA + hill-climber);
+Phase~2 ($R = 2.961$, LNS basin jump);
+Phase~2 ($R = 2.960$, exact polishing).
+\textbf{Bottom row:}
+Phase~3 ($R = 2.949$, fast MCMC explorer);
+Phase~4 ($R = 2.948572$, nano polish, final best).
+The contact-graph topology shifts from a 4-11 ring arrangement (top row) to the 3-11-1 arrangement (bottom row) during the fast MCMC phase---a reorganisation that exact-oracle methods alone could not achieve.}
+\label{fig:progression}
+\end{figure}
+
 \subsection{Phase Analysis}
 
 Figure~\ref{fig:phases} illustrates the score trajectory.
@@ -301,44 +349,8 @@ Figure~\ref{fig:packing} shows a schematic of the arrangement.
 
 \begin{figure}[t]
 \centering
-\begin{tikzpicture}[scale=1.0]
-  % Enclosing circle
-  \draw[thick, red] (0,0) circle (2.949);
-  \node[red, above] at (0,3.05) {$R = 2.948572$};
-
-  \newcommand{\semicircle}[4]{%
-    \begin{scope}[shift={(#1,#2)}, rotate={#3}]
-      \fill[#4, opacity=0.45] (0,0) -- (-1,0) arc (180:0:1) -- cycle;
-      \draw[thick] (-1,0) arc (180:0:1) -- cycle;
-    \end{scope}
-  }
-
-  % Inner 3 (shapes 3, 5, 8)
-  \semicircle{-0.620}{-0.083}{251.5}{blue!50}   % shape 3
-  \semicircle{0.686}{0.533}{314.6}{blue!50}      % shape 5
-  \semicircle{-0.377}{0.891}{250.1}{blue!50}     % shape 8
-
-  % Mid ring 11 (shapes 0,1,2,4,6,7,9,10,11,13,14)
-  \semicircle{1.938}{0.202}{305.6}{orange!45}    % shape 0
-  \semicircle{0.124}{-1.945}{304.6}{orange!45}   % shape 1
-  \semicircle{-1.340}{1.415}{175.6}{orange!45}   % shape 2
-  \semicircle{0.829}{-1.462}{124.4}{orange!45}   % shape 4
-  \semicircle{-1.169}{-1.560}{301.6}{orange!45}  % shape 6
-  \semicircle{0.414}{1.667}{297.2}{orange!45}    % shape 7
-  \semicircle{-1.791}{-0.768}{252.9}{orange!45}  % shape 9
-  \semicircle{-0.298}{1.926}{166.1}{orange!45}   % shape 10
-  \semicircle{0.705}{1.817}{117.2}{orange!45}    % shape 11
-  \semicircle{1.563}{1.164}{13.5}{orange!45}     % shape 13
-  \semicircle{-1.922}{0.319}{205.7}{orange!45}   % shape 14
-
-  % Outer 1 (shape 12)
-  \semicircle{2.118}{-1.791}{139.7}{green!50}    % shape 12
-
-  % Centre marker
-  \fill (0,0) circle (0.04);
-  \node[below right, font=\small] at (0,0) {origin};
-\end{tikzpicture}
-\caption{Schematic of the best-known packing ($R = 2.948572$). Blue: 3 inner semicircles (core cluster). Orange: 11 mid-ring semicircles. Green: 1 boundary-defining semicircle (shape 12, $r = 2.774$). Drawn at solution coordinates and orientations.}
+\includegraphics[width=0.65\textwidth]{figures/best_solution.pdf}
+\caption{Best-known packing ($R = 2.948572$, 3-11-1 topology). Blue: 3 inner semicircles (core cluster, $r < 1.0$). Orange: 11 mid-ring semicircles ($r \approx 1.55$--$2.11$). Green: 1 boundary-defining semicircle (shape~12, $r = 2.834$). Enclosing circle shown in red. Rendered geometrically exact via Shapely boolean intersection.}
 \label{fig:packing}
 \end{figure}
 

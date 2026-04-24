@@ -7,9 +7,27 @@ build/
 dist/
 uv.lock
 
-# Runtime search artifacts
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.blg
+*.out
+*.synctex.gz
+RESEARCH.log
+
+# Runtime / search artifacts
 *.log
+*.pid
+.pid_*
 *_pids.txt
-*_events.log
+*_log.txt
+*_stdout.txt
+*_out.log
+*.lock
+_tmp_*.json
+start_pool.jsonl
+flip_chunk_*.json
+
+# Solution scratch directories
 solutions/scratch_candidates/
 solutions/restart_pool/
