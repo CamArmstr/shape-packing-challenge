@@ -273,41 +273,47 @@ Each improvement required a qualitative change in method---not incremental tunin
 
 \begin{figure}[htbp]
 \centering
-\begin{subfigure}[b]{0.32\textwidth}
+% Row 1 — two milestone packings
+\begin{subfigure}[b]{0.42\textwidth}
   \centering
   \includegraphics[width=\textwidth]{figures/R2_970026.pdf}
 \end{subfigure}
 \hfill
-\begin{subfigure}[b]{0.32\textwidth}
+\begin{subfigure}[b]{0.42\textwidth}
   \centering
   \includegraphics[width=\textwidth]{figures/R2_961486.pdf}
-\end{subfigure}
-\hfill
-\begin{subfigure}[b]{0.32\textwidth}
-  \centering
-  \includegraphics[width=\textwidth]{figures/R2_960373.pdf}
 \end{subfigure}
 
 \vspace{0.5em}
 
-\begin{subfigure}[b]{0.32\textwidth}
+% Row 2 — two more milestone packings
+\begin{subfigure}[b]{0.42\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{figures/R2_960373.pdf}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.42\textwidth}
   \centering
   \includegraphics[width=\textwidth]{figures/R2_948997.pdf}
 \end{subfigure}
-\hfill
-\begin{subfigure}[b]{0.32\textwidth}
+
+\vspace{1em}
+
+% Row 3 — best solution, centred and larger
+\begin{subfigure}[b]{0.60\textwidth}
   \centering
   \includegraphics[width=\textwidth]{figures/best_solution.pdf}
 \end{subfigure}
+
 \caption{Path to the lowest: configuration snapshots at each major milestone.
-\textbf{Top row, left to right:}
+\textbf{Top two rows (left to right):}
 Phase~1 ($R = 2.970$, SA + hill-climber);
 Phase~2 ($R = 2.961$, LNS basin jump);
-Phase~2 ($R = 2.960$, exact polishing).
-\textbf{Bottom row:}
-Phase~3 ($R = 2.949$, fast MCMC explorer);
+Phase~2 ($R = 2.960$, exact polishing);
+Phase~3 ($R = 2.949$, fast MCMC explorer).
+\textbf{Bottom:}
 Phase~4 ($R = 2.948572$, nano polish, final best).
-The contact-graph topology shifts from a 4-11 ring arrangement (top row) to the 3-11-1 arrangement (bottom row) during the fast MCMC phase---a reorganisation that exact-oracle methods alone could not achieve.}
+The contact-graph topology shifts from a 4-11 ring arrangement (top rows) to the 3-11-1 arrangement (bottom) during the fast MCMC phase---a reorganisation that exact-oracle methods alone could not achieve.}
 \label{fig:progression}
 \end{figure}
 
