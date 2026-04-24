@@ -42,7 +42,7 @@ A Computational Study}
 \begin{abstract}
 We study the problem of packing 15 unit semicircles (radius~$= 1$) into the smallest possible enclosing circle, minimising the enclosing-circle radius~$R$.
 This problem belongs to the family of shape-in-container packing problems and, to our knowledge, has no prior published computational results.
-Starting from a baseline packing of $R = 3.500$, we achieved a best result of $R = 2.948911$ (official scorer), representing a $15.7\%$ improvement over baseline.
+Starting from a baseline packing of $R = 3.500$, we achieved a best result of $R = 2.948572$ (official scorer), representing a $15.7\%$ improvement over baseline.
 We describe the methods attempted over 48 days of computation, identify which approaches were effective and which were not, and characterise the landscape structure of this problem.
 
 A central finding is that landscape exploration and local refinement require qualitatively different tools.
@@ -62,7 +62,7 @@ Semicircle packing, by contrast, is far less explored.
 
 In this paper we study a concrete instance: pack $N=15$ unit semicircles into the smallest possible enclosing circle.
 Each semicircle has three degrees of freedom---centre position $(x,y) \in \mathbb{R}^2$ and orientation angle $\theta \in [0,2\pi)$---giving a 45-dimensional continuous optimisation problem with nonlinear non-overlap constraints.
-We report extensive computational experiments across multiple distinct algorithmic phases, achieving a best result of $R = 2.948911$, and analyse the interplay between exploration and refinement that drove progress.
+We report extensive computational experiments across multiple distinct algorithmic phases, achieving a best result of $R = 2.948572$, and analyse the interplay between exploration and refinement that drove progress.
 
 % ================================================================
 \section{Problem Statement}
@@ -76,7 +76,7 @@ The total area of 15 unit semicircles is $15 \times \pi/2$. The area lower bound
   R \;\ge\; \sqrt{\frac{15\pi/2}{\pi}} \;=\; \sqrt{7.5} \;\approx\; 2.739.
 \]
 This is a theoretical floor assuming perfect density; it cannot be achieved in practice.
-Our best result is $R = 2.948911$, giving a gap of $7.6\%$ to the area bound.
+Our best result is $R = 2.948572$, giving a gap of $7.6\%$ to the area bound.
 
 \paragraph{Prior work.}
 No published benchmarks exist for semicircle-in-circle packing at any~$N$. The problem differs from both circle-in-circle packing \citep{packomania2024} and semicircles-in-rectangle (bin packing literature).
@@ -254,7 +254,8 @@ Mar 28, 16:55 & 2.97522   & Hill-climber v2        & Ongoing refinement \\
 Mar 29, 04:05 & \textbf{2.961912} & LNS3 & Basin jump; $\Delta R = 0.013$ in 91\,s \\
 Mar 29--Apr 20 & 2.960344 & Exact-oracle polisher  & Grinding from LNS3 seed \\
 Apr 20--21   & \textbf{2.949161} & Fast approx.\ MCMC explorer & $\Delta R = 0.011$; largest single jump \\
-Apr 21       & \textbf{2.948911} & Fast approx.\ MCMC polisher & 41 incremental commits \\
+Apr 21       & 2.948911 & Fast approx.\ MCMC polisher & 41 incremental commits \\
+Apr 22       & \textbf{2.948572} & Nano/micro polisher & 662 total git-tracked commits \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -269,31 +270,32 @@ Three qualitatively distinct phases are visible:
 \begin{enumerate}
   \item \textbf{Rapid descent} (Mar 26--28): greedy methods, Numba SA, hill-climbing. $\Delta R \approx 0.53$.
   \item \textbf{Plateau and basin jumps} (Mar 29--Apr 20): LNS3 breaks through to 2.961, then exact polishers grind to 2.960. $\Delta R \approx 0.014$.
-  \item \textbf{Fast MCMC phase} (Apr 20--22): approximate inner loop finds 2.949 basin; polisher refines to 2.948911. $\Delta R \approx 0.011$.
+  \item \textbf{Fast MCMC phase} (Apr 20--21): approximate inner loop finds 2.949 basin; polisher refines to 2.948911. $\Delta R \approx 0.011$.
+  \item \textbf{Nano polishing} (Apr 21--22): exact-oracle nano/micro polishing from 2.948911 to 2.948572. $\Delta R \approx 0.000339$.
 \end{enumerate}
 
 The approximate MCMC discovery illustrates that the 2.949 basin was inaccessible to exact-oracle methods, even after extensive exact polishing of the 2.960 basin. The approximate inner loop, running ${\sim}300\times$ faster than Shapely, explored enough of the landscape to find an entry point.
 
 \subsection{Best Solution Structure}
 
-The current best ($R = 2.948911$) has a \emph{3-11-1 topology}: 3 inner semicircles at $r < 1.0$, 11 mid-ring semicircles at $r \approx 1.7$--$2.0$, and 1 boundary-defining semicircle at $r \approx 2.77$.
+The current best ($R = 2.948572$) has a \emph{3-11-1 topology}: 3 inner semicircles at $r < 1.0$, 11 mid-ring semicircles at $r \approx 1.7$--$2.0$, and 1 boundary-defining semicircle at $r \approx 2.77$.
 
 \begin{table}[t]
 \centering
-\caption{Radial structure of the best solution ($R = 2.948911$).}
+\caption{Radial structure of the best solution ($R = 2.948572$).}
 \label{tab:topology}
 \begin{tabular}{@{}lrl@{}}
 \toprule
 Ring & Radial distance $r$ & Shape count \\
 \midrule
-Inner core   & 0.63--0.97 & 3 \\
-Mid ring     & 1.68--1.95 & 11 \\
-Outer (MEC-defining) & 2.77 & 1 \\
+Inner core   & 0.72--0.85 & 3 \\
+Mid ring     & 1.55--2.11 & 11 \\
+Outer (MEC-defining) & 2.83 & 1 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-The 11 mid-ring shapes are packed remarkably tightly: all lie within a radial band of width $0.27$, at distances between $1.68$ and $1.95$ from the origin. The single outer shape (shape 12, at $r = 2.774$) determines the MEC radius.
+The 11 mid-ring shapes span a radial band of width $0.56$, at distances between $1.55$ and $2.11$ from the origin. The single outer shape (shape 12, at $r = 2.834$) determines the MEC radius.
 
 Figure~\ref{fig:packing} shows a schematic of the arrangement.
 
@@ -302,7 +304,7 @@ Figure~\ref{fig:packing} shows a schematic of the arrangement.
 \begin{tikzpicture}[scale=1.0]
   % Enclosing circle
   \draw[thick, red] (0,0) circle (2.949);
-  \node[red, above] at (0,3.05) {$R = 2.948911$};
+  \node[red, above] at (0,3.05) {$R = 2.948572$};
 
   \newcommand{\semicircle}[4]{%
     \begin{scope}[shift={(#1,#2)}, rotate={#3}]
@@ -336,7 +338,7 @@ Figure~\ref{fig:packing} shows a schematic of the arrangement.
   \fill (0,0) circle (0.04);
   \node[below right, font=\small] at (0,0) {origin};
 \end{tikzpicture}
-\caption{Schematic of the best-known packing ($R = 2.948911$). Blue: 3 inner semicircles (core cluster). Orange: 11 mid-ring semicircles. Green: 1 boundary-defining semicircle (shape 12, $r = 2.774$). Drawn at solution coordinates and orientations.}
+\caption{Schematic of the best-known packing ($R = 2.948572$). Blue: 3 inner semicircles (core cluster). Orange: 11 mid-ring semicircles. Green: 1 boundary-defining semicircle (shape 12, $r = 2.774$). Drawn at solution coordinates and orientations.}
 \label{fig:packing}
 \end{figure}
 
@@ -344,8 +346,8 @@ Notable properties of the best solution:
 \begin{itemize}
   \item Zero conjugate pairs (no antiparallel flat-face-to-flat-face contacts).
   \item One shape (shape 12) sits significantly further from the origin ($r = 2.774$) than all others, determining the MEC radius.
-  \item The 11 mid-ring shapes are densely packed and nearly equidistant from the origin ($r \approx 1.949 \pm 0.13$).
-  \item Approximate score: $R_{\mathrm{approx}} = 2.948586$; exact score: $R_{\mathrm{exact}} = 2.948911$. The gap of 325 millionths represents the residual approximation error of the inner-loop proxy.
+  \item The 11 mid-ring shapes span $r \approx 1.55$--$2.11$; shape 3 is the most connected (6 contacts).
+  \item After nano polishing, the exact score reached $R_{\mathrm{exact}} = 2.948572$, surpassing the formal leaderboard target.
 \end{itemize}
 
 \subsection{Topology Comparison}
@@ -360,7 +362,7 @@ Table~\ref{tab:topologies} compares the seed topologies tested against the best 
 \toprule
 Topology & Best $R$ & Notes \\
 \midrule
-3-11-1 (current best) & 2.948911 & Found by fast MCMC \\
+3-11-1 (current best) & 2.948572 & Found by fast MCMC + nano polish \\
 4-11 ring (prior best) & 2.960344 & Found by LNS3 from SA seed \\
 C5 pentagonal ($5\times3$) & 3.453 & 5 groups of 3 \\
 6 conjugate pairs + 3 singles & 3.510 & Antiparallel flat-face pairs \\
@@ -437,22 +439,21 @@ We propose the following heuristic for method selection:
 \subsection{Approximate vs.\ Exact Score Gap}
 
 A persistent feature of the fast MCMC phase is a systematic gap between approximate and exact scores.
-Valid solutions with approximate score $R_{\mathrm{approx}} = 2.948586$ consistently validate to exact scores in the range $2.948911$--$2.948953$.
-The gap (${\sim}300$--$400$ millionths) arises from the cheap overlap proxy underestimating true distances.
+Valid solutions with approximate score $R_{\mathrm{approx}} = 2.948586$ consistently validated to exact scores in the range $2.948911$--$2.948953$ before the nano polishing phase. The gap (${\sim}300$--$400$ millionths) arises from the cheap overlap proxy underestimating true distances. Subsequent nano polishing closed part of this gap, pushing the exact score from $2.948911$ to $2.948572$.
 
-This gap is both a nuisance and an opportunity: the proxy may be finding configurations that are genuinely below the target in the exact scorer but have not yet been resolved as valid. Twelve distinct configurations with approximate score $2.948586$ (approximately $300$ millionths below the current target of $R^* = 2.94889$) are known but fail exact validation due to marginal overlaps. Whether any of these can be nudged to validity without inflating the exact score above $2.94889$ remains an open question.
+Twelve distinct configurations with approximate score $2.948586$ were known but failed exact validation due to marginal overlaps. Whether any of these can be nudged to validity without inflating the exact score remains an open question.
 
 \subsection{Leaderboard Context}
 
 As of our last leaderboard check (March 28, 2026): our score $R = 2.97468$ ranked \#9. A cluster at positions \#5--\#8 achieved $R \approx 2.9727$--$2.9728$. The leader achieved $R = 2.96175$.
 
-Our current best ($R = 2.948911$, April 21, 2026) is approximately $0.013$ below the last-known leader, representing a substantial advance. The target to formally beat leaderboard position \#1 is $R < 2.94889$, a gap of approximately 22 millionths from our current best.
+Our current best ($R = 2.948572$, April 22, 2026) is approximately $0.013$ below the last-known leader, surpassing the formal target of $R < 2.94889$ by approximately 320 millionths.
 
 % ================================================================
 \section{Conclusions}
 \label{sec:conclusions}
 
-We have presented a computational study of packing 15 unit semicircles into a minimal enclosing circle, achieving a best result of $R = 2.948911$ after 48 days of computation across multiple algorithmic phases. Our principal findings are:
+We have presented a computational study of packing 15 unit semicircles into a minimal enclosing circle, achieving a best result of $R = 2.948572$ after 27 days of computation (March 26 -- April 22, 2026) across multiple algorithmic phases and 662 git-tracked solution commits. Our principal findings are:
 
 \begin{enumerate}
   \item \textbf{Ring topologies dominate.} The 3-11-1 topology (3 inner, 11 mid-ring, 1 boundary-defining) and 4-11 topology both strongly outperform all other tested configurations. They represent distinct basins separated by barriers that continuous exact-oracle methods could not cross.
@@ -467,8 +468,7 @@ We have presented a computational study of packing 15 unit semicircles into a mi
 \end{enumerate}
 
 \paragraph{Open questions.}
-The immediate open question is whether any of the 12 known configurations with approximate score $R_{\mathrm{approx}} = 2.948586$ can be made exactly valid. If so, the score would advance beyond the current target.
-More broadly: what is the true optimum for $N = 15$ (likely in $[2.85, 2.96]$ based on area bounds and observed landscape structure)? Does the global optimum use a ring topology, and if so which one? Can the phi-function be corrected for bounded semicircular segments to enable faster gradient-based polishing?
+What is the true optimum for $N = 15$ (likely in $[2.85, 2.95]$ based on area bounds and observed landscape structure)? Does the global optimum use a ring topology, and if so which one? The 3-11-1 and 4-11 topologies are structurally distinct basins; whether a third, undiscovered topology exists below 2.948 is unknown. Can the phi-function be corrected for bounded semicircular segments to enable faster gradient-based polishing?
 
 \paragraph{Reproducibility.}
 Code is available at \url{https://github.com/CamArmstr/shape-packing-challenge}.

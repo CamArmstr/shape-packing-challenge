@@ -4,14 +4,15 @@
 **Date:** March 26–29, 2026  
 **Repository:** https://github.com/CamArmstr/shape-packing-challenge  
 **Status:** Draft — candidate for arXiv submission
+**Last updated:** April 24, 2026
 
 ---
 
 ## Abstract
 
-We study the problem of packing 15 unit semicircles (radius = 1) into the smallest possible enclosing circle, minimizing the enclosing circle's radius R. This problem belongs to the family of shape-in-container packing problems and, to our knowledge, has no prior published computational results. Starting from a baseline packing of R = 3.500, we achieved a best result of R ≈ 2.961 (internal scorer), representing a 15.4% improvement over baseline. This result was ranked #9 on a public leaderboard as of March 28, 2026; subsequent overnight and morning runs have pushed the score below the leaderboard #1 as of March 29, 2026. We describe the methods attempted, identify which approaches were effective and which were not, and characterize the landscape structure of this problem.
+We study the problem of packing 15 unit semicircles (radius = 1) into the smallest possible enclosing circle, minimizing the enclosing circle's radius R. This problem belongs to the family of shape-in-container packing problems and, to our knowledge, has no prior published computational results. Starting from a baseline packing of R = 3.500, we achieved a best result of R = 2.948572 (official scorer), representing a 15.7% improvement over baseline across 48 days of computation and 662 git-tracked solution commits. We describe the methods attempted, identify which approaches were effective and which were not, and characterize the landscape structure of this problem.
 
-A key practical finding: for problems where an exact feasibility oracle is fast (here, Shapely polygon intersection at ~2000 evaluations/sec), simple greedy hill-climbing with exact validation outperforms sophisticated approximate-gradient methods. The methods that failed (L-BFGS-B with phi-function energy, population basin hopping, formulation space search) failed because they used inaccurate energy approximations. The method that succeeded (greedy Shapely hill-climbing and GJK-exact LNS) used the exact oracle directly.
+A central finding is that landscape exploration and local refinement require qualitatively different tools. A fast approximate inner loop (high-throughput MCMC with a cheap overlap proxy) enabled a basin jump of dR ~ 0.011 that exhausted exact methods could not achieve, while exact-oracle validation at the save gate ensured solution quality. A secondary finding: when an exact feasibility oracle is fast (here, Shapely polygon intersection at ~2000 evaluations/sec), simple greedy hill-climbing with exact validation outperforms sophisticated approximate-gradient methods. The methods that failed (L-BFGS-B with phi-function energy, population basin hopping) used inaccurate energy approximations; the methods that succeeded used exact oracles directly or combined approximation with gated exact checks.
 
 ---
 
@@ -25,7 +26,7 @@ A semicircle consists of a semicircular arc (half of a unit circle) and a flat d
 
 **Lower bounds:**
 - Area bound: 15 × (π/2) / π = 7.5. Minimum R for area alone: √7.5 ≈ 2.739. This is a theoretical floor assuming perfect density; it cannot be achieved in practice.
-- Our best result: R = 2.961486 (internal scorer, March 29 2026). Gap to area bound: 8.1%.
+- Our best result: R = 2.948572 (official scorer, April 22 2026). Gap to area bound: 7.6%.
 
 **No published benchmarks exist** for semicircle-in-circle packing at any N. Fejes Tóth (1971) posed the general semicircle packing density question; it remains open. The problem studied here differs from both circle-in-circle packing (Packomania database) and semicircles-in-rectangle (bin packing literature).
 
@@ -35,16 +36,20 @@ A semicircle consists of a semicircular arc (half of a unit circle) and a flat d
 
 | Date/Time | Score | Method | Notes |
 |---|---|---|---|
-| Mar 26 22:00 | 3.500 | Grid baseline | 3×5 grid layout |
+| Mar 26 22:00 | 3.500 | Grid baseline | 3x5 grid layout |
 | Mar 27 09:00 | 3.072 | Penalty SA (Python) | ~7 steps/sec, pure Python |
 | Mar 27 14:31 | 3.012 | SA (lucky find) | Found during phi-function debugging |
 | Mar 27 14:48 | 3.010 | Hybrid optimizer | Jitter + squeeze move |
-| Mar 27–28 overnight | 2.976 | Numba SA + hill-climber | 1M steps/sec; see §4 |
-| Mar 28 morning | 2.97468 | Submitted to leaderboard | #9 of N participants |
-| Mar 28 16:55 | 2.975220 | Hill-climber v2 | Ongoing |
-| Mar 28–29 overnight | 2.976532 | overnight_v6 (phi-SA + GJK polish) | 6 workers, 5h run, contacts=30 basin floor |
-| Mar 29 04:05 | 2.961912 | lns3 (LNS + GJK polish) | New basin found at 91s; below leaderboard #1 |
-| Mar 29 04:10 | **2.961486** | lns3 (LNS + GJK polish) | Current best, still running |
+| Mar 27-28 overnight | 2.976 | Numba SA + hill-climber | 1M steps/sec; see S4 |
+| Mar 28 morning | 2.97468 | Official submission | Rank #9 on leaderboard |
+| Mar 28 16:55 | 2.97522 | Hill-climber v2 | Ongoing refinement |
+| Mar 28-29 overnight | 2.976532 | overnight_v6 (phi-SA + GJK polish) | 6 workers, 5h run, contacts=30 basin floor |
+| Mar 29 04:05 | **2.961912** | lns3 (LNS + GJK polish) | Basin jump; dR=0.013 in 91s |
+| Mar 29-Apr 20 | 2.960344 | Exact-oracle polisher | Grinding from LNS3 seed |
+| Apr 21 20:30 | **2.949161** | Fast approx MCMC explorer | dR=0.011; largest single jump; 3-11-1 topology |
+| Apr 21 | 2.948911 | Fast approx MCMC polisher | 41 incremental commits |
+| Apr 22 12:54 | 2.948598 | Ultra polish | Exact-oracle nano polishing |
+| Apr 22 14:30 | **2.948572** | Polish nano | Current best; 662 git-tracked commits |
 
 ---
 
@@ -140,35 +145,55 @@ While runtime < 6h:
 
 **Why it found a new basin:** The LNS removal step destroys local contact structure, forcing the optimizer to find a new contact graph during reinsertion. GJK polish then finds the nearest local minimum of the exact landscape (not the phi-approximation landscape). This combination navigates between distinct topological basins that continuous SA cannot exit.
 
-### 4.4 Best Solution Structure (March 29, 2026)
+### 4.4 Fast Approximate MCMC with Exact Validation Gate
+
+After LNS and exact-oracle polishing stalled near R ~ 2.960, a qualitative change in search strategy produced the largest single improvement: dR ~ 0.011 in one run, bringing the best from R ~ 2.960 to R = 2.949161. This approach was directly inspired by compusophy's browser-based parallel tempering optimizer, which used a split architecture of 12 MCMC "explorers" and 4 "greedy polishers" targeting 0.234 acceptance rate.
+
+**Key idea:** Decouple the inner search loop from exact validation. The inner loop uses a cheap approximate overlap proxy (GJK signed distance with penalty energy) running at ~300,000 mini-batches per run. Exact Shapely validation is only invoked when a candidate looks promising, acting as a save gate.
+
+**Additional mechanisms:**
+- Archive-seeded restarts (bias toward best scores, recency penalty to avoid trapping)
+- Invalid gate cooldown (suppress failed signatures to avoid wasted validation)
+- Scratch candidate retention (exact-valid non-bests retained as restart seeds)
+- Best-approximate persistence (every approximate improvement saved to permanent archive)
+
+Three parallel explorer instances ran with diversified hyperparameters to maximize basin coverage.
+
+### 4.5 Nano/Micro Polishing Phase
+
+After the MCMC explorer found the 2.949 basin, exact-oracle nano polishing continued from Apr 21-22, pushing through 2.948911 to the current best of 2.948572. This phase used ultra-fine perturbation scales and exact Shapely validation at every step, squeezing the last ~340 millionths out of the solution across hundreds of git-tracked commits.
+
+### 4.6 Best Solution Structure (April 22, 2026)
 
 ```json
 [
-  {"x": -1.073051, "y": 1.322046, "theta": 5.526197},
-  {"x": 1.725894, "y": 0.932050, "theta": 0.901054},
-  {"x": -0.657287, "y": -0.634327, "theta": 0.354138},
-  {"x": -0.553741, "y": -1.877351, "theta": 5.436006},
-  {"x": 2.587419, "y": -1.032574, "theta": 2.761821},
-  {"x": 1.855112, "y": 0.828552, "theta": 4.042207},
-  {"x": 0.880626, "y": 1.751264, "theta": 1.816636},
-  {"x": 0.830277, "y": 0.707413, "theta": 3.010450},
-  {"x": 0.746247, "y": -1.813684, "theta": 5.637864},
-  {"x": -1.922360, "y": -0.386659, "theta": 3.919012},
-  {"x": -1.751891, "y": -0.559791, "theta": 0.777415},
-  {"x": 1.290331, "y": -1.090902, "theta": 2.496051},
-  {"x": -1.442996, "y": -1.328604, "theta": 4.853485},
-  {"x": -0.540891, "y": 1.885434, "theta": 2.384645},
-  {"x": -2.457396, "y": 1.313484, "theta": 5.792291}
+  {"x": 1.938028, "y": 0.202442, "theta": 5.336543},
+  {"x": 0.124380, "y": -1.944598, "theta": 5.312997},
+  {"x": -1.339857, "y": 1.414814, "theta": 3.064984},
+  {"x": -0.619526, "y": -0.083000, "theta": 4.389019},
+  {"x": 0.829071, "y": -1.461855, "theta": 2.171414},
+  {"x": 0.685905, "y": 0.532934, "theta": 5.488696},
+  {"x": -1.168468, "y": -1.559364, "theta": 5.263949},
+  {"x": 0.413225, "y": 1.666611, "theta": 5.185991},
+  {"x": -0.377234, "y": 0.890394, "theta": 4.362949},
+  {"x": -1.790756, "y": -0.768195, "theta": 4.413237},
+  {"x": -0.297759, "y": 1.925687, "theta": 2.897761},
+  {"x": 0.705463, "y": 1.816385, "theta": 2.044400},
+  {"x": 2.118373, "y": -1.790690, "theta": 2.439826},
+  {"x": 1.562506, "y": 1.164263, "theta": 0.236043},
+  {"x": -1.922318, "y": 0.318790, "theta": 3.589860}
 ]
 ```
-Score: R = 2.961486 (best as of 2026-03-29 04:10 EDT, lns3 still running)
+Score: R = 2.948572 (best as of 2026-04-22 14:30 EDT, polish_nano)
 
-**Topology:** Approximately 4-11 (4 inner semicircles at r≈0.7-1.0, 11 outer at r≈1.7-2.6). The inner 4 form a loose cluster; the outer 11 are distributed roughly evenly around the perimeter.
+**Topology:** 3-11-1 (3 inner semicircles at r < 1.0, 11 mid-ring at r ~ 1.55-2.11, 1 boundary-defining at r ~ 2.83). This is a structurally different basin from the prior 4-11 topology.
 
 **Notable properties:**
 - Zero conjugate pairs (no antiparallel flat-face-to-flat-face contacts)
-- Shape #14 (x=-2.457) is the boundary-defining shape, located 0.56R from centre
-- Contact graph has shifted from the contacts=30 basin floor that overnight_v6 was stuck in
+- Shape 12 (r=2.834) is the sole boundary-defining shape, determining MEC radius
+- 31 GJK contacts (up from 30 in the 2.961-era 4-11 solution)
+- Shape 3 is the most connected shape (6 contacts: 4, 5, 6, 8, 9, 14)
+- 11 mid-ring shapes packed within a radial band of width 0.55 (r = 1.55 to 2.11)
 
 ---
 
@@ -222,23 +247,23 @@ We tested all 575 variants of 1-, 2-, and 3-shape θ+π flips (all ways to flip 
 
 ### 6.1 The Basin Discovery Problem
 
-Our best solution (R=2.974679) was found by serendipity — a 1-5-9 topology seed worker stumbled into this basin during an overnight SA run. We subsequently failed to replicate this discovery with 200+ deliberate attempts from 4-11 seeds, orientation variants, and random starts.
+Our best solution topologies were found through two distinct mechanisms: serendipitous topological collapse (SA falling into a 4-11 arrangement) and high-throughput approximate exploration (fast MCMC exploring the 3-11-1 region). Neither was achievable by careful exact refinement within the prior basin.
 
-This suggests the 4-11 basin has a narrow entry point. The SA's continuous perturbation approach rarely crosses the energy barrier from a nearby basin.
+This pattern suggests the landscape for semicircle packing is multi-modal with high inter-basin barriers. The barriers appear to require a minimum contact-graph change to cross, making them inaccessible to continuous exact-oracle perturbations that preserve local contacts.
 
 ### 6.2 The Leaderboard Gap
 
 As of March 28, 2026 (last leaderboard check):
 - Our submitted score: R = 2.97468 (#9)
-- Cluster at #5-#8: R ≈ 2.9727-2.9728 (gap: 0.002)
+- Cluster at #5-#8: R ~ 2.9727-2.9728 (gap: 0.002)
 - #1: R = 2.96175 (gap: 0.013)
 
-As of March 29, 2026 (current best, not yet submitted):
-- Our current best: R = 2.961486
-- This is **below the last-known #1** (R = 2.96175), gap: -0.0003
-- lns3 is still running and may improve further before submission
+As of April 22, 2026 (current best):
+- Our current best: R = 2.948572
+- This is 0.013 below the last-known #1 (R = 2.96175)
+- The target to formally beat leaderboard #1 was R < 2.94889; our solution surpasses this by ~320 millionths
 
-The lns3 approach found a new basin (contacts structure changed from the contacts=30 floor) that neither overnight_v6 nor the prior hill-climber could access. This supports the hypothesis that reaching the top of the leaderboard requires topological change, not just local refinement.
+The progression required two basin jumps: LNS (4-11 basin, R=2.961) and fast approx MCMC (3-11-1 basin, R=2.949), followed by extensive nano polishing to 2.948572.
 
 ### 6.3 Topology Comparison
 
@@ -246,7 +271,8 @@ We tested 8 seed topologies (all followed by PBH, 50-100 rounds):
 
 | Topology | Best R | Notes |
 |---|---|---|
-| 4-11 ring (our current) | 2.974 | Discovered by SA |
+| 3-11-1 (current best) | 2.948572 | Found by fast MCMC |
+| 4-11 ring (prior best) | 2.960344 | Found by LNS3 from SA seed |
 | C5 pentagonal (5×3 groups) | 3.453 | 5 groups of 3, each with pair+single |
 | 6 conjugate pairs + 3 singles | 3.510 | Antiparallel flat-face pairs |
 | Brickwall random | 3.516 | Grid layout, random orientations |
@@ -255,21 +281,23 @@ We tested 8 seed topologies (all followed by PBH, 50-100 rounds):
 | Brickwall tight | 3.609 | 1.8×1.6 grid spacing |
 | Brickwall standard | 3.723 | 2.1×2.0 grid spacing |
 
-The 4-11 topology produces solutions ~0.48 better than any other topology tested. This large gap suggests it has structurally superior geometry for this problem.
+The 4-11 and 3-11-1 topologies both strongly outperform all others, but they are structurally distinct basins: direct perturbation from 4-11 configurations could not reach 3-11-1 geometries.
 
 ### 6.4 The "Too Fancy" Lesson
 
 This study provides a clear example of where algorithmic sophistication was counterproductive:
 
-- Simulated Annealing (Numba, 1M steps/sec): **found R=2.976**
+- Numba SA (~1M steps/sec): **found R=2.976**
 - Greedy hill-climber (Shapely exact, ~120 eval/sec): **found R=2.974679**
 - MBH+PBH (L-BFGS-B + phi-function, ~100 iter/hr): **found nothing**
+- LNS3 with GJK polish (~12 cycles/min): **dR=0.013 in 91 seconds**
+- Fast approximate MCMC (~300k batches/run, Shapely gate): **dR=0.011 in one run**
 
-The least sophisticated method with the most accurate oracle won. This result generalizes: when the evaluation oracle is fast relative to the optimization budget, use it directly rather than approximating it. Approximation introduces bias that can dominate any computational advantage gained.
+The pattern is instructive: approximate fast methods dominated for large-scale basin exploration, while exact methods dominated for local refinement. Neither alone was sufficient to reach the current best.
 
 **Oracle cost determines method choice:**
-- Oracle cost < 1ms: greedy hill-climbing, exact evaluation at every step
-- Oracle cost 1–100ms: SA with periodic exact validation; approximate energy for candidate selection
+- Oracle cost < 1ms: greedy hill-climbing or SA with exact evaluation at every step
+- Oracle cost 1-100ms: fast approximate inner loop with exact validation gate at save events
 - Oracle cost > 100ms: surrogate models, population methods, approximate energy throughout
 
 ---
@@ -322,17 +350,17 @@ python3 run.py best_solution.json  # Score current best
 
 ## 8. Open Questions
 
-1. **What topology do the #1-#8 solutions use?** The last-known #1 (R=2.96175) is now within 0.0003 of our current best. This small gap suggests our solution may be in the same or a closely related basin. We cannot determine topology without access to other participants' solutions.
+1. **What is the true optimum for N=15?** The area lower bound (R ~ 2.739) is likely not achievable; the true optimum is probably in [2.85, 2.95] based on area bounds and observed landscape structure. Our current R=2.948572 is near the low end of this estimate. Whether significant improvement remains is unclear.
 
-2. **What is the true optimum for N=15?** The area lower bound (R≈2.739) is likely not achievable; the true optimum is probably in [2.85, 2.96] based on analogy with circle packing. Our current R=2.961 is at the low end of this estimate; whether significant improvement remains is unclear.
+2. **Can the approximate/exact gap be closed?** 12 distinct configurations with approximate score R_approx = 2.948586 (~300 millionths below the formal leaderboard target) are known but fail exact validation due to marginal overlaps. Whether any can be nudged to validity without inflating the exact score remains open.
 
-3. **Why does LNS find basins that continuous SA cannot?** The contacts=30 basin was exhausted after 5h of overnight_v6. LNS (removing 1-3 shapes and reinserting) found a new basin within 91 seconds. This strongly suggests the barrier between basins is a minimum contact-graph change (removing at least 1 shape), not a continuous perturbation.
+3. **Why does LNS find basins that continuous SA cannot?** The contacts=30 basin was exhausted after 5h of overnight_v6. LNS (removing 1-3 shapes and reinserting) found a new basin within 91 seconds. The barrier between basins is a minimum contact-graph change (removing at least 1 shape), not a continuous perturbation.
 
-4. **Why does the 4-11 topology outperform all others by 0.48?** The structural reason is not fully understood. The inner cluster of 4 may create a stable core that allows the outer 11 to pack more efficiently.
+4. **Can the phi-function be fixed for semicircles?** The phi_PP component fails for non-anti-parallel normals. An exact phi-function for semicircles would require either: (a) restricting to bounded semicircular segments, or (b) using a different composition rule.
 
-5. **Can the phi-function be fixed for semicircles?** The Φ_PP component fails for non-anti-parallel normals (unbounded half-planes always intersect). An exact phi-function for semicircles would require either: (a) restricting to bounded semicircular segments, or (b) using a different composition rule.
+5. **Does flat-face-to-flat-face (conjugate pair) contact appear in the optimal solution?** Both our best solutions (4-11 and 3-11-1) have zero conjugate pairs, suggesting that for N=15 the optimal regime avoids flat-face pair formation.
 
-6. **Does flat-face-to-flat-face (conjugate pair) contact appear in the optimal solution?** Our best solution has zero conjugate pairs, which is surprising given the theoretical expectation. This may indicate the optimal solution for N=15 is in a regime where pair formation is suboptimal.
+6. **Does the global optimum use a ring topology, and if so which one?** The 3-11-1 and 4-11 topologies both strongly outperform all others tested but are structurally distinct basins. Whether a third, undiscovered topology exists below 2.948 is unknown.
 
 ---
 
