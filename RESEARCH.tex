@@ -29,9 +29,9 @@
 A Computational Study}
 
 \author{
-  Cameron Armstrong\thanks{\url{tilluntil.com}}
+  Cameron Armstrong\thanks{\url{cameronarmstrong.org}}
   \and
-  Till\thanks{AI research assistant}
+  Till\thanks{AI research assistant (Claude, Anthropic). Listed as co-author per our own attribution policy; not all venues accept AI co-authorship.}
 }
 
 \date{April 2026}
@@ -43,9 +43,9 @@ A Computational Study}
 % ---- Abstract ----
 \begin{abstract}
 We study the problem of packing 15 unit semicircles (radius~$= 1$) into the smallest possible enclosing circle, minimising the enclosing-circle radius~$R$.
-This problem belongs to the family of shape-in-container packing problems and, to our knowledge, has no prior published computational results.
-Starting from a baseline packing of $R = 3.500$, we achieved a best result of $R = 2.948572$ (official scorer), representing a $15.7\%$ improvement over baseline.
-We describe the methods attempted over 48 days of computation, identify which approaches were effective and which were not, and characterise the landscape structure of this problem.
+This problem, posed as a competition on the Optimization Arena platform, has no published benchmarks for semicircle-in-circle packing at $N = 15$, though the general semicircle packing density question remains open \citep{fejestoth1971,brass2005}.
+We achieved a best result of $R = 2.948572$ (validated by the Optimization Arena scorer, which rounds coordinates to 6 decimal places and checks overlap via Shapely polygon intersection), approximately $\Delta R = 0.013$ below the prior leaderboard leader ($R \approx 2.962$).
+We describe the methods attempted over 27 days of computation (March 26 -- April 22, 2026), identify which approaches were effective and which were not, and characterise the landscape structure of this problem.
 
 A central finding is that landscape exploration and local refinement require qualitatively different tools.
 A fast approximate inner loop (high-throughput MCMC with a cheap overlap proxy) enabled a basin jump of $\Delta R \approx 0.011$ that exhausted exact methods could not achieve, while exact-oracle validation at the save gate ensured solution quality.
@@ -62,7 +62,7 @@ Circle-in-circle packing has been studied extensively \citep{grosso2010,addis200
 Semicircle packing, by contrast, is far less explored.
 \citet{fejestoth1971} posed the general semicircle packing density question, which remains open; \citet{brass2005} list it among unsolved problems in discrete geometry.
 
-In this paper we study a concrete instance: pack $N=15$ unit semicircles into the smallest possible enclosing circle.
+In this paper we study a concrete instance posed as a competition on the Optimization Arena \citep{optimizationarena2026}: pack $N=15$ unit semicircles into the smallest possible enclosing circle.
 Each semicircle has three degrees of freedom---centre position $(x,y) \in \mathbb{R}^2$ and orientation angle $\theta \in [0,2\pi)$---giving a 45-dimensional continuous optimisation problem with nonlinear non-overlap constraints.
 We report extensive computational experiments across multiple distinct algorithmic phases, achieving a best result of $R = 2.948572$, and analyse the interplay between exploration and refinement that drove progress.
 
@@ -78,7 +78,7 @@ The total area of 15 unit semicircles is $15 \times \pi/2$. The area lower bound
   R \;\ge\; \sqrt{\frac{15\pi/2}{\pi}} \;=\; \sqrt{7.5} \;\approx\; 2.739.
 \]
 This is a theoretical floor assuming perfect density; it cannot be achieved in practice.
-Our best result is $R = 2.948572$, giving a gap of $7.6\%$ to the area bound.
+Our best result is $R = 2.948572$, giving a density gap of $(2.948572/2.739)^2 - 1 \approx 15.9\%$ to the area bound.
 
 \paragraph{Prior work.}
 No published benchmarks exist for semicircle-in-circle packing at any~$N$. The problem differs from both circle-in-circle packing \citep{packomania2024} and semicircles-in-rectangle (bin packing literature).
@@ -90,7 +90,7 @@ No published benchmarks exist for semicircle-in-circle packing at any~$N$. The p
 \subsection{Feasibility Oracle}
 \label{sec:oracle}
 
-All feasibility checking uses the Shapely library (Python), with semicircles approximated as polygons with 64 arc points. This serves as the ground-truth oracle. Speed: ${\sim}2000$ pairwise overlap checks per second on commodity hardware.
+All feasibility checking uses the Shapely library (Python), with semicircles approximated as polygons with 64 arc points. This serves as the ground-truth oracle. Speed: ${\sim}2000$ pairwise overlap checks per second on commodity hardware (${\sim}0.5$\,ms per pair). A full 15-shape configuration requires $\binom{15}{2} = 105$ pairwise checks plus MEC computation, giving ${\sim}120$ full-configuration evaluations per second (${\sim}8$\,ms each).
 
 \subsection{Scoring}
 
@@ -188,7 +188,11 @@ The LNS variant (\texttt{lns3.py}) ran at ${\sim}$12 cycles/minute per worker an
 
 After LNS and exact-oracle polishing stalled near $R \approx 2.960$, a qualitative change in search strategy produced the largest single improvement: $\Delta R \approx 0.011$ in one run, bringing the best from $R \approx 2.960$ to $R = 2.949161$.
 
-The design was directly inspired by compusophy's browser-based parallel tempering optimizer \citep{compusophy2026}, which used a split architecture of 12 MCMC ``explorers'' and 4 ``greedy polishers'' targeting 0.234 acceptance rate (the theoretically optimal rate for random-walk Metropolis). Their approach achieved $R = 2.94960$ running entirely client-side in a browser. We adapted their explorer/polisher split, acceptance rate target, and Gaussian perturbation kernel into a Python implementation with archive-seeded restarts and an exact Shapely validation gate.
+The design builds on compusophy's browser-based parallel tempering optimizer \citep{compusophy2026}, which used a split architecture of 12 MCMC ``explorers'' and 4 ``greedy polishers'' targeting 0.234 acceptance rate (the theoretically optimal rate for random-walk Metropolis). Their approach achieved $R = 2.94960$ running entirely client-side in a browser.
+
+\paragraph{What we took from compusophy:} the explorer/polisher split, the 0.234 acceptance rate target, and the Gaussian perturbation kernel. These core architectural choices were reimplemented in Python.
+
+\paragraph{What we added:} archive-seeded restarts with recency penalty (biasing toward best solutions but penalising recently used seeds), invalid-gate cooldown (suppressing repeated exact validation of the same failing region), scratch candidate retention (cross-pollinating between workers via exact-validated non-bests), and the exact Shapely validation gate itself (compusophy's implementation used approximate overlap throughout).
 
 The key idea is to decouple the inner search loop from exact validation.
 The inner loop uses a cheap approximate overlap proxy (GJK signed distance with a penalty energy) running at high throughput (${\sim}300{,}000$ mini-batches per run).
@@ -319,8 +323,7 @@ The topology shifts from a 4-11 ring (top) to the 3-11-1 arrangement (bottom) du
 
 \subsection{Phase Analysis}
 
-Figure~\ref{fig:phases} illustrates the score trajectory.
-Three qualitatively distinct phases are visible:
+Three qualitatively distinct phases are visible in the score trajectory:
 \begin{enumerate}
   \item \textbf{Rapid descent} (Mar 26--28): greedy methods, Numba SA, hill-climbing. $\Delta R \approx 0.53$.
   \item \textbf{Plateau and basin jumps} (Mar 29--Apr 20): LNS3 breaks through to 2.961, then exact polishers grind to 2.960. $\Delta R \approx 0.014$.
@@ -332,7 +335,7 @@ The approximate MCMC discovery illustrates that the 2.949 basin was inaccessible
 
 \subsection{Best Solution Structure}
 
-The current best ($R = 2.948572$) has a \emph{3-11-1 topology}: 3 inner semicircles at $r < 1.0$, 11 mid-ring semicircles at $r \approx 1.7$--$2.0$, and 1 boundary-defining semicircle at $r \approx 2.77$.
+The current best ($R = 2.948572$) has a \emph{3-11-1 topology}: 3 inner semicircles at $r < 1.0$, 11 mid-ring semicircles at $r \approx 1.55$--$2.11$, and 1 boundary-defining semicircle at $r \approx 2.774$.
 
 \begin{table}[t]
 \centering
@@ -344,26 +347,26 @@ Ring & Radial distance $r$ & Shape count \\
 \midrule
 Inner core   & 0.72--0.85 & 3 \\
 Mid ring     & 1.55--2.11 & 11 \\
-Outer (MEC-defining) & 2.83 & 1 \\
+Outer (MEC-defining) & 2.774 & 1 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-The 11 mid-ring shapes span a radial band of width $0.56$, at distances between $1.55$ and $2.11$ from the origin. The single outer shape (shape 12, at $r = 2.834$) determines the MEC radius.
+The 11 mid-ring shapes span a radial band of width $0.56$, at distances between $1.55$ and $2.11$ from the origin. The single outer shape (shape 12, at $r = 2.774$) determines the MEC radius.
 
 Figure~\ref{fig:packing} shows a schematic of the arrangement.
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=0.65\textwidth]{figures/best_solution.pdf}
-\caption{Best-known packing ($R = 2.948572$, 3-11-1 topology). Blue: 3 inner semicircles (core cluster, $r < 1.0$). Orange: 11 mid-ring semicircles ($r \approx 1.55$--$2.11$). Green: 1 boundary-defining semicircle (shape~12, $r = 2.834$). Enclosing circle shown in red. Rendered geometrically exact from solution coordinates.}
+\caption{Best-known packing ($R = 2.948572$, 3-11-1 topology). Blue: 3 inner semicircles (core cluster, $r < 1.0$). Orange: 11 mid-ring semicircles ($r \approx 1.55$--$2.11$). Green: 1 boundary-defining semicircle (shape~12, $r = 2.774$). Enclosing circle shown in red. Rendered geometrically exact from solution coordinates.}
 \label{fig:packing}
 \end{figure}
 
 Notable properties of the best solution:
 \begin{itemize}
   \item Zero conjugate pairs (no antiparallel flat-face-to-flat-face contacts).
-  \item One shape (shape 12) sits significantly further from the origin ($r = 2.774$) than all others, determining the MEC radius.
+  \item One shape (shape~12) sits significantly further from the origin ($r = 2.774$) than all others, whose centres cluster at $r \approx 1.95$, determining the MEC radius.
   \item The 11 mid-ring shapes span $r \approx 1.55$--$2.11$; shape 3 is the most connected (6 contacts).
   \item After nano polishing, the exact score reached $R_{\mathrm{exact}} = 2.948572$, surpassing the formal leaderboard target.
 \end{itemize}
@@ -446,7 +449,7 @@ This study provides an extended case study where the cost of the feasibility ora
 
 The pattern is instructive: approximate fast methods dominated for large-scale basin exploration, while exact methods dominated for local refinement. Neither alone was sufficient to reach the current best.
 
-We propose the following heuristic for method selection:
+Based on our experience with this single problem, we conjecture the following rough guide for method selection (this is supported by only a few data points and should be treated as anecdotal):
 
 \begin{itemize}
   \item Oracle cost $< 1$\,ms: greedy hill-climbing or SA with exact evaluation at every step.
@@ -465,7 +468,7 @@ Twelve distinct configurations with approximate score $2.948586$ were known but 
 
 As of our last leaderboard check (March 28, 2026): our score $R = 2.97468$ ranked \#9. A cluster at positions \#5--\#8 achieved $R \approx 2.9727$--$2.9728$. The leader achieved $R = 2.96175$.
 
-Our current best ($R = 2.948572$, April 22, 2026) is approximately $0.013$ below the last-known leader, surpassing the formal target of $R < 2.94889$ by approximately 320 millionths.
+Our current best ($R = 2.948572$, April 22, 2026) is approximately $0.013$ below the last-known leader, surpassing the formal target of $R < 2.94889$ by approximately 320 millionths. We have no visibility into other competitors' methods; the leaderboard does not publish solution structures or algorithmic approaches.
 
 % ================================================================
 \section{Conclusions}
@@ -482,7 +485,7 @@ We have presented a computational study of packing 15 unit semicircles into a mi
 
   \item \textbf{The approximate/exact gap is a search signal.} Configurations with promising approximate scores that fail exact validation represent near-misses on the validity boundary. Retaining these and using them as restart seeds improved search diversity in the fast MCMC phase.
 
-  \item \textbf{No conjugate pairs in the best solution.} Despite theoretical expectations, zero antiparallel flat-face contacts appear in the best solution, suggesting that for $N = 15$ the optimal regime avoids flat-face pair formation.
+  \item \textbf{No conjugate pairs in the best solution.} Zero antiparallel flat-face contacts appear in the best solution, despite the intuition that pairing flat faces would improve local density. For $N = 15$, the optimal regime appears to avoid flat-face pair formation.
 \end{enumerate}
 
 \paragraph{Open questions.}
@@ -491,11 +494,13 @@ What is the true optimum for $N = 15$ (likely in $[2.85, 2.95]$ based on area bo
 \paragraph{Reproducibility.}
 Code is available at \url{https://github.com/CamArmstr/shape-packing-challenge}.
 The best solution JSON (\texttt{best\_solution.json}), solutions archive (\texttt{solutions/}), and all optimiser implementations are included.
+The best result $R = 2.948572$ corresponds to commit \texttt{e5eb8ba}.
+Hyperparameters for each optimiser are hardcoded in the respective scripts; no external configuration files are required.
 
 % ================================================================
 \paragraph{Acknowledgements.}
-Problem posed by benedictbrady via the shape-packing-challenge repository.
-The fast approximate MCMC approach (Section~\ref{sec:fastmcmc}) was directly inspired by compusophy's browser-based parallel tempering optimizer \citep{compusophy2026}, whose explorer/polisher architecture and targeting of the 0.234 optimal acceptance rate informed our design.
+Problem posed by benedictbrady via the Optimization Arena \citep{optimizationarena2026}.
+The fast approximate MCMC approach (Section~\ref{sec:fastmcmc}) builds on compusophy's parallel tempering architecture \citep{compusophy2026}, as detailed in Section~\ref{sec:fastmcmc}.
 Computational work performed on a Windows~11 / WSL2 machine with a 16-core Intel CPU.
 
 \bibliographystyle{plainnat}
